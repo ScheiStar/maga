@@ -6,61 +6,77 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
 
-  <body ng-app="todo" ng-controller="todo">
-    <div class="container m-t-3">
-      <div class="row">
-        <div class="col-xs-4">
-          <h2>Add a task</h2>
-          <form name="taskForm" ng-submit="submit()">
-            <fieldset class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name of Todo" ng-model="name" required>
-                <small class="text-muted">Please input the name of your todo.</small>
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description of Todo" ng-model="description" required>
-                <small class="text-muted">Write down everything you want to get done!</small>
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="date">Date</label>
-                <input type="date" class="form-control" id="date" name="date" placeholder="Enter Date of Todo" ng-model="date" required>
-                <small class="text-muted">When do you want to get it done?</small>
-            </fieldset>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-        <div class="col-xs-8">
-          <h2>Your Tasks</h2>
-          <fieldset class="form-group">
-              <label for="search">Search</label>
-              <input type="text" class="form-control" id="search" name="search" placeholder="Search your todos!" ng-model="search">
-          </fieldset>
-          <table class="table">
-            <tr>
-              <th></th>
-              <th>Name
-                <sort name="name" sort="sort"></sort>
-              </th>
-              <th>Description
-                <sort name="description" sort="sort"></sort>
-              </th>
-              <th>Date
-                <sort name="date" sort="sort"></sort>
-              </th>
-              <th></th>
-            </tr>
-            <tr ng-repeat="task in tasks | filter:search | orderBy:sort" ng-class="{done: task.done}">
-              <td><input type="checkbox" ng-model="task.done"></td>
-              <td>{{task.name}}</td>
-              <td>{{task.description}}</td>
-              <td>{{task.date | date:'shortDate'}}</td>
-              <td><i class="fa fa-times" ng-click="delete($index)"></i></td>
-            </tr>
-          </table>
-        </div>
-      </div>
+  <body ng-app="ApplicationPage2" ng-controller="ApplicationPage2">
+    <div class="container-fluid">
+        <form name="taskForm" ng-submit="submit()">
+            <h1><p class="text-xs-center">Application Form</p></h1>
+            <div class="row">
+<!--            <div class="col-sm-1"></div>-->
+            <div class="col-sm-7">
+                <div class="form-group row">
+                    <label for="fName" class="col-sm-3 form-control-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="fName" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lName" class="col-sm-3 form-control-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="lName" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pass" class="col-sm-3 form-control-label">Password</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="pass" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="confPass" class="col-sm-3 form-control-label">Confirm Password</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="confPass" placeholder="Confirm Password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="id" class="col-sm-3 form-control-label">SMU ID</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="id" placeholder="SMU ID">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-3 form-control-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="major" class="col-sm-3 form-control-label">Major</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="major" placeholder="Major">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="gpa" class="col-sm-3 form-control-label">GPA</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="gpa" placeholder="GPA">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6"></div>
+                    <button type="submit" class="btn btn-primary">Next <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i> </button>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <fieldset class="form-group">
+                    <label for="exampleInputFile">Upload DPR or Transcript</label>
+                    <input type="file" class="form-control-file" id="inputFile">
+                    <small class="text-muted">Upload your DPR or transcript for grade verification.</small>
+                </fieldset>    
+            </div>
+            </div>
+            
+            
+        </form>
     </div>
   </body>
-
 </html>
