@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 3663
+  config.vm.network "forwarded_port", guest: 80, host: 9999, auto_correct: true
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -65,14 +65,22 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get update
-    sudo apt-get upgrade
+    # Updating repository
 
-    sudo apt-get install -y build-essential checkinstall
-    sudo apt-get install -y apache2
-    sudo apt-get install -y libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
-    
-    sudo apt-get install -y python python-dev python-pip
-    sudo pip install Flask
+    sudo apt-get -y update
+
+    # Installing Apache
+
+    sudo apt-get -y install apache2
+
+    # Installing MySQL and it's dependencies, Also, setting up root password for MySQL as it will prompt to enter the password during installation
+
+    sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password rootpass'
+    sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password rootpass'
+    sudo apt-get -y install mysql-server libapache2-mod-auth-mysql php5-mysql
+
+    # Installing PHP and it's dependencies
+    sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
+
   SHELL
 end
