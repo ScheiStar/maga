@@ -1,0 +1,63 @@
+# Scheistar stuff
+## tutors [/tutor/getTutors]
+### list all tutors[GET]
++ Response 200 (application/json)
+  [
+    {
+      id: "40382684",
+      first_name: "John",
+      last_name: "Doe",
+      classes: ["CSE 1342", "CSE 4348", "CSE 2341"],
+      times: ["MWF 12 - 2", "TTh 5 -7"]
+    },
+    {
+      id: "12345678",
+      first_name: "Dohn",
+      last_name: "Joe",
+      classes: ["CSE 1341", "KNW 2300", "CSE 1342"],
+      times: ["MW 12 - 3", "T 6 -9"]
+    }
+  ]
+
+##tutors [/tutor/getTutor/{id}]
+### get tutor by id[GET]
+
++ Parameters
+  + id - student id
+
++ Response 200 (application/json)
+  {
+    id: "12345678",
+    first_name: "Dohn",
+    last_name: "Joe",
+    classes: ["CSE 1341", "KNW 2300", "CSE 1342"],
+    times: ["MW 12 - 3", "T 6 -9"]
+  }
+
+##tutors [/tutor/updateTutor]
+### update tutor info/create new tutor[POST]
+
++ Parameters
+  + id - tutor id
+  + first_name - tutor first name
+  + last_name - tutor last name
+  + classes - list of classes the tutor teaches
+  + times - timeslots that the tutor teaches
+
+##tutors [/tutor/removeTutor/{id}]
+### remove tutor by id[POST]
+
++ Parameters
+  + id - tutor id
+
+##tutors [/tutor]
+### return current logged on tutor info[GET]
+
++ Response 200 (application/json)
+  {
+    id: "12345678",
+    first_name: "Dohn",
+    last_name: "Joe",
+    classes: ["CSE 1341", "KNW 2300", "CSE 1342"],
+    times: ["MW 12 - 3", "T 6 -9"]
+  }
