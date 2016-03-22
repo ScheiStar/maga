@@ -224,7 +224,7 @@ module.exports = function (grunt) {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
-    }, 
+    },
 
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
@@ -277,7 +277,7 @@ module.exports = function (grunt) {
         flow: {
           html: {
             steps: {
-              js: ['concat', 'uglifyjs'],
+              js: ['concat', 'uglify'],
               css: ['cssmin']
             },
             post: {}
@@ -319,14 +319,17 @@ module.exports = function (grunt) {
     // uglify: {
     //   dist: {
     //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
+    //       '<%= yeoman.dist %>/scripts/scriptsTwo.js': [
     //         '<%= yeoman.dist %>/scripts/scripts.js'
     //       ]
     //     }
     //   }
     // },
     // concat: {
-    //   dist: {}
+    //   dist: {
+    //     src: '<%= yeoman.dist %>/scripts/*.js',
+    //     dest: '<%= yeoman.dist %>/scripts/scriptsThree.js'
+    //   }
     // },
 
     imagemin: {
@@ -513,4 +516,5 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
 };
