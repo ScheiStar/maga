@@ -146,7 +146,6 @@ DROP TABLE IF EXISTS `mydb`.`Users` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
   `user_id` INT NOT NULL,
-  `password` VARCHAR(45) NULL,
   `hash` VARCHAR(45) NULL,
   `salt` VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`))
