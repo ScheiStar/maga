@@ -1,49 +1,46 @@
 <?php
 // Routes
-
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
 $app->get('/', function ($request, $response, $args) {
-  // Sample log message
-  // $this->logger->info("Slim-Skeleton '/' route");
 
-  // Render index view
   return $this->renderer->render($response, 'index.phtml', $args);
 });
 
-$app->get('/login', function () {
-  $app = \Slim\Slim::getInstance();
-  $post_vars = $app->request->post();
-  $uid = $post_vars['userID'];
-  $password = $post_vars['password'];
-
-  echo ('Username: ' . $uid . ' Password: ' . $password);
-
+$app->post('/login', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
   $db = $this->authConn;
-  try{
-    $query = $db->prepare('SELECT * from Users WHERE user_id = :uid');
+  $json = $request->getBody();
+  $data = json_decode($json);
+  $uid = $data->userID;
+  $password = $data->password;
 
-    $query->bindParam(':uid', $uid, PDO::PARAM_INT);
-    $query->execute();
-
-    $user = $query->fetch(PDO::FETCH_OBJ);
-
-    if($user){
-      $db_hash = $user->hash;
-      if(password_verify($password, $db_hash)){
-        $app->response()->setStatus(200);
-        echo('Success');
-      }else{
-        $app->response()->setStatus(403);
-        echo('Invalid password');
-      }
-
-    }else{
-      throw new PDOException('No user found');
-    }
-  }catch (PDOException $e){
-    $app->response()->setStatus(403);
-    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  if(!isset($uid) || !isset($password)){
+    $new_response = $response->withStatus(418);
+    echo("Provide a user or password");
+    return $new_response;
   }
 
+  $query = $db->prepare('SELECT * from Users WHERE user_id = :uid');
 
+  $query->bindParam(':uid', $uid, PDO::PARAM_INT);
+  $query->execute();
+
+  $user = $query->fetch(PDO::FETCH_OBJ);
+
+  if($user){
+    $db_hash = $user->hash;
+    if(password_verify($password, $db_hash)){
+      $new_response = $response->withStatus(200);
+      echo('Success');
+    }else{
+      $new_response = $response->withStatus(403);
+      echo('Invalid password');
+    }
+
+  }else{
+    $new_response = $response->withStatus(403);
+    echo('No user found');
+  }
+
+  return $new_response;
 });
-//echo (password_hash("123456", PASSWORD_DEFAULT));
