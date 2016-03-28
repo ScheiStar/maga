@@ -14,15 +14,15 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `alecDB` DEFAULT CHARACTER SET utf8 ;
+USE `alecDB` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Tutors`
+-- Table `alecDB`.`Tutors`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Tutors` ;
+DROP TABLE IF EXISTS `alecDB`.`Tutors` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Tutors` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Tutors` (
   `tutor_id` INT NOT NULL,
   `tutor_first_name` VARCHAR(45) NULL COMMENT '	',
   `tutor_last_name` VARCHAR(45) NULL,
@@ -35,11 +35,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Timeslots`
+-- Table `alecDB`.`Timeslots`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Timeslots` ;
+DROP TABLE IF EXISTS `alecDB`.`Timeslots` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Timeslots` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
   `timeslot_id` INT NOT NULL,
   `timeslot_time` VARCHAR(45) NULL,
   `Tutors_tutor_id` INT NOT NULL,
@@ -47,18 +47,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Timeslots` (
   INDEX `fk_Timeslots_Tutors1_idx` (`Tutors_tutor_id` ASC),
   CONSTRAINT `fk_Timeslots_Tutors1`
     FOREIGN KEY (`Tutors_tutor_id`)
-    REFERENCES `mydb`.`Tutors` (`tutor_id`)
+    REFERENCES `alecDB`.`Tutors` (`tutor_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Sessions`
+-- Table `alecDB`.`Sessions`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Sessions` ;
+DROP TABLE IF EXISTS `alecDB`.`Sessions` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Sessions` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Sessions` (
   `session_id` INT NOT NULL,
   `session_date` DATE NULL,
   `session_time` VARCHAR(45) NULL,
@@ -73,18 +73,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Sessions` (
   INDEX `fk_Sessions_Tutors_idx` (`Tutors_tutor_id` ASC),
   CONSTRAINT `fk_Sessions_Tutors`
     FOREIGN KEY (`Tutors_tutor_id`)
-    REFERENCES `mydb`.`Tutors` (`tutor_id`)
+    REFERENCES `alecDB`.`Tutors` (`tutor_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Applicants`
+-- Table `alecDB`.`Applicants`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Applicants` ;
+DROP TABLE IF EXISTS `alecDB`.`Applicants` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Applicants` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Applicants` (
   `applicant_id` INT NOT NULL,
   `applicant_first_name` VARCHAR(45) NULL,
   `applicant_last_name` VARCHAR(45) NULL,
@@ -98,11 +98,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ApplicantTimeslots`
+-- Table `alecDB`.`ApplicantTimeslots`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ApplicantTimeslots` ;
+DROP TABLE IF EXISTS `alecDB`.`ApplicantTimeslots` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`ApplicantTimeslots` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
   `timeslot_id` INT NOT NULL,
   `timeslot_time` VARCHAR(45) NULL,
   `Applicants_applicant_id` INT NOT NULL,
@@ -110,18 +110,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ApplicantTimeslots` (
   INDEX `fk_ApplicantTimeslots_Applicants1_idx` (`Applicants_applicant_id` ASC),
   CONSTRAINT `fk_ApplicantTimeslots_Applicants1`
     FOREIGN KEY (`Applicants_applicant_id`)
-    REFERENCES `mydb`.`Applicants` (`applicant_id`)
+    REFERENCES `alecDB`.`Applicants` (`applicant_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Reviews`
+-- Table `alecDB`.`Reviews`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Reviews` ;
+DROP TABLE IF EXISTS `alecDB`.`Reviews` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Reviews` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Reviews` (
   `review_id` INT NOT NULL,
   `score_helpfulness` INT NULL,
   `score_clarity` INT NULL,
@@ -133,31 +133,30 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Reviews` (
   INDEX `fk_Reviews_Sessions1_idx` (`Sessions_session_id` ASC),
   CONSTRAINT `fk_Reviews_Sessions1`
     FOREIGN KEY (`Sessions_session_id`)
-    REFERENCES `mydb`.`Sessions` (`session_id`)
+    REFERENCES `alecDB`.`Sessions` (`session_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Users`
+-- Table `alecDB`.`Users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Users` ;
+DROP TABLE IF EXISTS `alecDB`.`Users` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Users` (
   `user_id` INT NOT NULL,
-  `hash` VARCHAR(45) NULL,
-  `salt` VARCHAR(45) NULL,
+  `hash` VARCHAR(60) NULL,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Admins`
+-- Table `alecDB`.`Admins`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Admins` ;
+DROP TABLE IF EXISTS `alecDB`.`Admins` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Admins` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Admins` (
   `admin_id` INT NOT NULL,
   `admin_first_name` VARCHAR(45) NULL,
   `admin_last_name` VARCHAR(45) NULL,
@@ -168,11 +167,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`TutorClasses`
+-- Table `alecDB`.`TutorClasses`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`TutorClasses` ;
+DROP TABLE IF EXISTS `alecDB`.`TutorClasses` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`TutorClasses` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`TutorClasses` (
   `tutorclass_id` INT NOT NULL,
   `class_name` VARCHAR(45) NULL,
   `class_gpa` DECIMAL(3) NULL,
@@ -181,18 +180,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TutorClasses` (
   INDEX `fk_TutorClasses_Tutors1_idx` (`Tutors_tutor_id` ASC),
   CONSTRAINT `fk_TutorClasses_Tutors1`
     FOREIGN KEY (`Tutors_tutor_id`)
-    REFERENCES `mydb`.`Tutors` (`tutor_id`)
+    REFERENCES `alecDB`.`Tutors` (`tutor_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ApplicantClasses`
+-- Table `alecDB`.`ApplicantClasses`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ApplicantClasses` ;
+DROP TABLE IF EXISTS `alecDB`.`ApplicantClasses` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`ApplicantClasses` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
   `idApplicantClasses` INT NOT NULL,
   `class_name` VARCHAR(45) NULL,
   `class_gpa` DECIMAL(3) NULL,
@@ -201,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ApplicantClasses` (
   INDEX `fk_ApplicantClasses_Applicants1_idx` (`Applicants_applicant_id` ASC),
   CONSTRAINT `fk_ApplicantClasses_Applicants1`
     FOREIGN KEY (`Applicants_applicant_id`)
-    REFERENCES `mydb`.`Applicants` (`applicant_id`)
+    REFERENCES `alecDB`.`Applicants` (`applicant_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
