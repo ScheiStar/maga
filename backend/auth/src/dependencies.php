@@ -18,7 +18,7 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
-$container['authConn'] - function ($c) {
+$container['authConn'] = function ($c) {
   $settings = $c->get('settings')['auth_db'];
 
   $connString = $settings['db'] . ': host=' . $settings['host'];
