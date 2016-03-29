@@ -11,6 +11,14 @@ return [
           'db' => 'mysql',
         ],
 
+        'auth_db' => [
+          'username' => 'passman',
+          'password' => 'masterofpass',
+          'host' => 'localhost',
+          'dbname' => 'alecDB',
+          'db' => 'mysql',
+        ],
+
         // Renderer settings
         'renderer' => [
             'template_path' => __DIR__ . '/../templates/',
