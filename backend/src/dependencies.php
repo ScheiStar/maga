@@ -22,10 +22,14 @@ $container['logger'] = function ($c) {
 };
 
 $container['createDB'] = function ($c) {
+  $settings = $c->get('settings')['dbConn'];
 
-	$db = new PDO('mysql:host=localhost;dbname=alecDB', 'root', ' ');
+  $connString = $settings['db'] . ': host=' . $settings['host'];
+  $connString .= ';dbname=' . $settings['dbname'] . ';charset=utf8mb4';
 
-	return $db;
+  $db = new PDO($connString, $settings['username'], $settings['password']);
+
+  return $db;
 };
 
 $container['authConn'] = function ($c) {
