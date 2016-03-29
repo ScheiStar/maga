@@ -54,7 +54,7 @@ $app->get('/admin/getTutors/{id}',function($request,$response,$args){
 
         $db = $this->alec;
          $result=$db->query('select * from Tutor where id='.$id);
-         $user=query->fetch(PDO::FETCH_OBJ);
+         $user=$result->fetch(PDO::FETCH_OBJ);
          if ($user){
            echo json_encode($user);
            return $response;
