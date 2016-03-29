@@ -1,64 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
-		<title>Welcome!</title>
+		<title>Login</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+			<!-- <script src="/Users/jmiller/Projects/Spring 2016/GUI/Semester Project/maga/maga/frontend/app/scripts/controllers/login.js"></script> -->
 	</head>
-	<body ng-app="LoginCtrl">
-	
+	<body ng-controller="LoginCtrl">
+
 	<div class="offsetLogo">
 		<div class="text-center">
-			<img src="C:\Repositories\maga\maga\frontend\app\images\logo.png" alt="Maga" height="50" width="50">
+			<!-- Change to location of image on server -->
+			<img src="/Users/jmiller/Projects/Spring 2016/GUI/Semester Project/maga/maga/frontend/app/images/logo.png" alt="Maga" height="50" width="50">
+			<!-- Change to location of image on server -->
 			<h1>Maga</h1>
 		</div>
 	</div>
-	
+
 	<!-- ADD FORM VALIDATION -->
 	<!-- ANGULAR CONVERT USERNAME AND PWD INTO JSON -->
 	<!-- post request like in beer app -->
-	<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">   
-		<div class="panel panel-default" style="padding:15px">
+	<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="panel panel-default" style="padding:15px" >
 			<h3 style="position: relative; right:-10px">Sign In</h3>
 			<hr style="width: 98%; height: 1px; background-color:#e0e0d2;" />
-			<form>
+			<form class="simple-form">
 				<fieldset class="form-group">
 					<label for="inputEmail" class="col-md-4">Email Address</label>
 					<div class="col-md-8">
-						<input type="email" class="form-control" id="inputEmail" placeholder="Enter Email" name="emailError" required>
+						<input type="email" ng-model="email" class="form-control" id="inputEmail" placeholder="Enter Email" name="emailError" required>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
 					<label for="inputPassword" class="col-md-4">Password</label>
 					<div class="col-md-8">
-						<input type="password" class="form-control" id="inputPassword"placeholder="Password" required>
+						<input type="password" ng-model="password" class="form-control" id="inputPassword"placeholder="Password" required>
 					</div>
 				</fieldset>
 				<div class="col-md-offset-4">
 					<div class="checkbox">
 						<label><input type="checkbox" value="">Remember me</label>
 					</div>
-					<button type="button" class="btn btn-secondary">Sign In</button>
 				</div>
 			</form>
 			<br>
-			<div class="col-md-offset-1 col-md-3">
-				<button type="button" class="btn btn-secondary">Forgot your password?</button>
+			<div style="text-align: center">
+				<button  type="button" class="btn btn-secondary" ng-click="update(user)">Sign In</button>
 			</div>
-			<div class="col-md-offset-1 col-md-3">
-				<button type="button" class="btn btn-primary">Not a tutor yet? Apply!</button>
+			<br>
+			<div>
+				<span><button type="button" class="btn btn-secondary">Forgot your password?</button></span>
+				<span style="float: right"><button type="button" class="btn btn-primary">Not a tutor yet? Apply!</button></span>
 			</div>
-			<div class="col-md-offset-1 col-md-3">
-				<button type="button" class="btn btn-secondary">Apply</button>
-			</div>
-			<br><br>
 		</div>
 	</div>
-	
+
 
 	</body>
 </html>

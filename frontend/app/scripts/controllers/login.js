@@ -7,14 +7,15 @@
  * # LoginCtrl
  * Controller of the frontendApp
  */
-var login = angular.module('frontendApp',[]);
+angular.module('frontendApp')
+  .controller('LoginCtrl', function ($scope) {
 
+    console.log('inside controller');
+    $scope.master = {};
+    $scope.email = '';
 
-login.controller('LoginCtrl', [$scope, function($scope) {
-    // this.awesomeThings = [
-    //   'HTML5 Boilerplate',
-    //   'AngularJS',
-    //   'Karma'
-    // ];
-    $scope.inputEmail = 0;
-  }]);
+    $scope.update = function(user) {
+      $scope.master = angular.copy(user);
+    };
+
+  });

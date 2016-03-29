@@ -14,4 +14,5 @@ angular.module('frontendApp')
       'AngularJS',
       'Karma'
     ];
+    $scope.name = {};
   });
