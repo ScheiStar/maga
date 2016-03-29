@@ -41,8 +41,8 @@ $app->get('/getapplicant/{id}', function ($request, $response, $args) {
 	//if there is an applicant then respond with 200 else respond with 403
 		  if($user){
 
-			  $new_response = $response->withJson($applicant, 200);
-		      //echo('Success! Applicant Found');
+		   echo($applicant);
+		   return $response;
 
 
 		  }else{
