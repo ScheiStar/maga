@@ -1,5 +1,7 @@
 <?php
 // Routes
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 $app->get('/home', function ($request, $response, $args) {
     // Sample log message
@@ -43,21 +45,31 @@ echo json_encode($temp);
 $app->get('/admin/getTutors/{id}',function($request,$response,$args){
   //$query = mysql_query("SELECT * FROM Tutor");
         $id=$args['id'];
+        if(!isset($id))
+        {
+          $new_response=$response->withStatus(400);
+          echo "please provide a user id";
+          return $new_response;
+        }
+
         $db = $this->alec;
          $result=$db->query('select * from Tutor where id='.$id);
-         $temp = array();
-         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-           $temp[] = $row;
+         $user=query->fetch(PDO::FETCH_OBJ);
+         if ($user){
+           echo json_encode($user);
+           return $response;
          }
-echo json_encode($temp);
-// In case any of o
+         else{
+           $new_response=$response->withStatus(204);
+           echo "user not found";
+           return $new_response;
+         }
+
 });
 $app->delete('/admin/getTutors/{id}',function($request,$response,$args){
   //$query = mysql_query("SELECT * FROM Tutor");
         $id=$args['id'];
         $db = $this->alec;
          $result=$db->query('delete from Tutor where id='.$id);
-
 echo 'success';
-// In case any of o
 });
