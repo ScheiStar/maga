@@ -9,8 +9,7 @@
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	</head>
-	<body>
-	
+	<body ng-app="LoginCtrl">
 	
 	<div class="offsetLogo">
 		<div class="text-center">
@@ -19,42 +18,45 @@
 		</div>
 	</div>
 	
+	<!-- ADD FORM VALIDATION -->
+	<!-- ANGULAR CONVERT USERNAME AND PWD INTO JSON -->
+	<!-- post request like in beer app -->
 	<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">   
-			<div class="panel panel-default" style="padding:15px">
-				<h3 style="position: relative; right:-10px">Sign In</h3>
-				<hr style="width: 98%; height: 1px; background-color:#e0e0d2;" />
-				<form>
-					<fieldset class="form-group">
-						<label for="inputEmail" class="col-md-4">Email Address</label>
-						<div class="col-md-8">
-							<input type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
-						</div>
-					</fieldset>
-					<fieldset class="form-group">
-						<label for="inputPassword" class="col-md-4">Password</label>
-						<div class="col-md-8">
-							<input type="password" class="form-control" id="inputPassword"placeholder="Password">
-						</div>
-					</fieldset>
-					<div class="col-md-offset-4">
-						<div class="checkbox">
-							<label><input type="checkbox" value="">Remember me</label>
-						</div>
-						<button type="button" class="btn btn-secondary">Sign In</button>
+		<div class="panel panel-default" style="padding:15px">
+			<h3 style="position: relative; right:-10px">Sign In</h3>
+			<hr style="width: 98%; height: 1px; background-color:#e0e0d2;" />
+			<form>
+				<fieldset class="form-group">
+					<label for="inputEmail" class="col-md-4">Email Address</label>
+					<div class="col-md-8">
+						<input type="email" class="form-control" id="inputEmail" placeholder="Enter Email" name="emailError" required>
 					</div>
-				</form>
-				<br>
-				<div class="col-md-offset-1 col-md-3">
-					<button type="button" class="btn btn-secondary">Forgot your password?</button>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="inputPassword" class="col-md-4">Password</label>
+					<div class="col-md-8">
+						<input type="password" class="form-control" id="inputPassword"placeholder="Password" required>
+					</div>
+				</fieldset>
+				<div class="col-md-offset-4">
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Remember me</label>
+					</div>
+					<button type="button" class="btn btn-secondary">Sign In</button>
 				</div>
-				<div class="col-md-offset-1 col-md-3">
-					<button type="button" class="btn btn-primary">Not a tutor yet? Apply!</button>
-				</div>
-				<div class="col-md-offset-1 col-md-3">
-					<button type="button" class="btn btn-secondary">Apply</button>
-				</div>
-				<br><br>
+			</form>
+			<br>
+			<div class="col-md-offset-1 col-md-3">
+				<button type="button" class="btn btn-secondary">Forgot your password?</button>
 			</div>
+			<div class="col-md-offset-1 col-md-3">
+				<button type="button" class="btn btn-primary">Not a tutor yet? Apply!</button>
+			</div>
+			<div class="col-md-offset-1 col-md-3">
+				<button type="button" class="btn btn-secondary">Apply</button>
+			</div>
+			<br><br>
+		</div>
 	</div>
 	
 
