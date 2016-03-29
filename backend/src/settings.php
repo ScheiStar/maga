@@ -5,9 +5,9 @@ return [
 
         'dbConn' => [
           'username' =>'root',
-          'password' => ' ',
+          'password' => 'rootpass',
           'host' => 'localhost',
-          'dbname' => 'solr_test',
+          'dbname' => 'alecDB',
           'db' => 'mysql',
         ],
 
