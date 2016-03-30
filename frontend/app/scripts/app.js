@@ -15,41 +15,48 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.router',
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/");
+
+    $stateProvider
+      .state('state1', {
+        url: '/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
+      .state('about', {
+        url: '/about',
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/login', {
+      .state('login', {
+        url: '/login',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/applicationForm', {
+      .state('applicationForm', {
+        url: '/applicationForm',
         templateUrl: 'views/applicationform.html',
         controller: 'ApplicationformCtrl',
         controllerAs: 'applicationForm'
       })
-      .when('/userDash', {
+      .state('userDash', {
+        url: '/userDash',
         templateUrl: 'views/userdash.html',
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
-      .when('/adminDash', {
+      .state('adminDash', {
+        url: '/adminDash',
         templateUrl: 'views/admindash.html',
         controller: 'AdmindashCtrl',
         controllerAs: 'adminDash'
       })
-      .otherwise({
-        redirectTo: '/'
-      });
+
   });
