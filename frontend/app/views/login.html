@@ -11,13 +11,11 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
 			<!-- <script src="/Users/jmiller/Projects/Spring 2016/GUI/Semester Project/maga/maga/frontend/app/scripts/controllers/login.js"></script> -->
 	</head>
-	<body ng-app="frontendApp" ng-controller="LoginCtrl">
+	<body>
 
 	<div class="offsetLogo">
 		<div class="text-center">
-			<!-- Change to location of image on server -->
 			<img src="../images/logo.png" alt="Maga" height="50" width="50">
-			<!-- Change to location of image on server -->
 			<h1>Maga</h1>
 		</div>
 	</div>
@@ -33,7 +31,7 @@
 				<fieldset class="form-group">
 					<label for="inputEmail" class="col-md-4">Email Address</label>
 					<div class="col-md-8">
-						<input type="email" ng-model="user.userID" class="form-control" id="inputEmail" placeholder="Enter Email" name="emailError" required>
+						<input type="text" ng-model="user.userID" class="form-control" id="inputEmail" placeholder="Enter Email" name="emailError" required>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">

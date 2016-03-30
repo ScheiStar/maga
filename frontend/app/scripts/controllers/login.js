@@ -18,6 +18,7 @@ angular.module('frontendApp')
         'userID': user.userID,
         'password': user.password
       };
+      console.log(user);
 
       var user_json = JSON.stringify(user_data);
 
