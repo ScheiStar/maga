@@ -79,7 +79,7 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
     $db_hash = $user->hash;
     if(password_verify($password, $db_hash)){
       $new_response = $response->withStatus(200);
-      $new_response = $new_response->withHeader('Access-Control-Allow-Origin', '"*"');
+      $new_response = $new_response->withHeader('Access-Control-Allow-Origin', '*');
       echo('Success');
     }else{
       $new_response = $response->withStatus(403);
