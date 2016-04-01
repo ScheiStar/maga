@@ -126,7 +126,7 @@ $app->get('/getApplications', function($request, $response, $args) {
 
 $app->get('/admin/getTutors',function($request,$response,$args){
   //$query = mysql_query("SELECT * FROM Tutor");
-      $db = $this->alec;
+      $db = $this->createDB;
          $result=$db->query('select * from Tutor');
          $temp = array();
          while($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -144,7 +144,7 @@ $app->get('/admin/getTutors/{id}',function($request,$response,$args){
           echo "please provide a user id";
           return $new_response;
         }
-        $db = $this->alec;
+        $db = $this->createDB;
          $result=$db->query('select * from Tutor where id='.$id);
          $user=$result->fetch(PDO::FETCH_OBJ);
          if ($user){
@@ -166,7 +166,7 @@ $app->delete('/admin/getTutors/{id}',function($request,$response,$args){
           echo "please provide a user id";
           return $new_response;
         }
-        $db = $this->alec;
+        $db = $this->createDB;
         $result=$db->query('delete from Tutor where id='.$id);
         echo 'success';
    return $response;
