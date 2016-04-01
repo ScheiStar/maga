@@ -92,3 +92,35 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
 
   return $new_response;
 });
+
+
+$app->get('/getApplications', function($request, $response, $args) {
+	
+	
+	  $db = $this->createDB;
+	
+	  $query = $db->prepare('SELECT * FROM Applicants');
+	  $query->execute();
+	
+	  $temp = array(); 
+
+	while($row = $query->fetch(PDO::FETCH_OBJ)){
+	    //iterate over all the fields
+		$temp[] = $row; 
+	}
+	
+	  if($temp){
+
+	      echo( json_encode($temp));
+		  return $response;
+
+	  }else{
+		
+	    $new_response = $response->withStatus(204);
+	   
+		return $new_response; 
+	
+	  }
+	
+});
+
