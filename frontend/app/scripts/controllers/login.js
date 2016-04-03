@@ -8,36 +8,37 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('LoginCtrl', function ($scope, $http) {
-
-    console.log('inside controller');
-
+  .controller('LoginCtrl', function ($state, $scope, $http, userFactory, $window) {
 
     $scope.signIn = function(user) {
       var user_data = {
         'userID': user.userID,
         'password': user.password
       };
-      console.log(user);
 
-      var user_json = JSON.stringify(user_data);
-
-      $http({
-        method: 'POST',
-        url: 'http://54.86.70.62/login',
-        data: user_json
-        }).then(function successCallback(response) {
-          if(response.data == "Success") {
-            $scope.user = '';
-            alert("Log In Successful");
-
+      userFactory.signIn(user_data).then(function (response) {
+        if(angular.isUndefined(response)) {
+          console.log('asd');
+          return;
+        }
+        if(response.data == "Success") {
+          //save token
+          //get token
+          //alert("Log In Successful");
+          console.log("user");
+          console.log(user);
+          $state.go("userDash");
+          return;
           }
-          }, function errorCallback(response) {
-            console.log(response);
-            alert("Log In Unsuccessful");
-            $scope.user = '';
+      });
+    },
 
-          });
-        };
-
+    $scope.recoverPass = function(password) {
+      console.log('Will recover password now.');
+      //get request and email for recovering password
+    }
+    
+    $scope.apply = function() {
+      $state.go("applicationForm");
+    }
   });

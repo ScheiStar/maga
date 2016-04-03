@@ -9,55 +9,29 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
-			<!-- <script src="/Users/jmiller/Projects/Spring 2016/GUI/Semester Project/maga/maga/frontend/app/scripts/controllers/login.js"></script> -->
+		<link rel="stylesheet" type="text/css" href="styles/login.css">
 	</head>
 	<body>
 
 	<div class="offsetLogo">
 		<div class="text-center">
-			<img src="../images/logo.png" alt="Maga" height="50" width="50">
+			<img src="../images/logo.png" alt="Maga" height="200" width="200">
 			<h1>Maga</h1>
+			<form id="asd" class="form-signin" >
+		        <label for="inputEmail" class="sr-only">Email address</label>
+		        <input type="text" id="inputEmail" ng-model="user.userID" class="form-control" placeholder="User ID" required="" autofocus="">
+		        <label for="inputPassword" class="sr-only">Password</label>
+		        <input type="password" id="inputPassword" ng-model="user.password" class="form-control" placeholder="Password" required="">
+		        <div class="checkbox">
+		          <label class="pull-left">
+		            <input type="checkbox" value="remember-me"> Remember me
+		          </label><br>
+		        </div>
+		        <button class="btn btn-md btn-info btn-block" ng-click="signIn(user)" type="submit">Sign in</button><br>
+						<button class="btn btn-md btn-primary pull-right" ng-click="recoverPass(user.password)" type="submit">Forgot Password?</button>
+						<button class="btn btn-md btn-primary pull-left" ng-click="apply()" type="submit" formnovalidate>Apply Here</button>
+		  </form>
 		</div>
 	</div>
-
-	<!-- ADD FORM VALIDATION -->
-	<!-- ANGULAR CONVERT USERNAME AND PWD INTO JSON -->
-	<!-- post request like in beer app -->
-	<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-		<div class="panel panel-default" style="padding:15px" >
-			<h3 style="position: relative; right:-10px">Sign In</h3>
-			<hr style="width: 98%; height: 1px; background-color:#e0e0d2;" />
-			<form class="simple-form">
-				<fieldset class="form-group">
-					<label for="inputEmail" class="col-md-4">Email Address</label>
-					<div class="col-md-8">
-						<input type="text" ng-model="user.userID" class="form-control" id="inputEmail" placeholder="Enter Email" name="emailError" required>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="inputPassword" class="col-md-4">Password</label>
-					<div class="col-md-8">
-						<input type="password" ng-model="user.password" class="form-control" id="inputPassword"placeholder="Password" required>
-					</div>
-				</fieldset>
-				<div class="col-md-offset-4">
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Remember me</label>
-					</div>
-				</div>
-			</form>
-			<br>
-			<div style="text-align: center">
-				<button  type="button" class="btn btn-secondary" ng-click="signIn(user)">Sign In</button>
-			</div>
-			<br>
-			<div>
-				<span><button type="button" class="btn btn-secondary">Forgot your password?</button></span>
-				<span style="float: right"><button type="button" class="btn btn-primary">Not a tutor yet? Apply!</button></span>
-			</div>
-		</div>
-	</div>
-
-
 	</body>
 </html>

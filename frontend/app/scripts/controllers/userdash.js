@@ -8,10 +8,12 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('UserdashCtrl', function () {
+  .controller('UserdashCtrl', function (userFactory) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    console.log("in userDash now");
+    console.log(userFactory.getCurrentUser());
   });
