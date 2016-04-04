@@ -22,12 +22,13 @@ angular.module('frontendApp')
           return;
         }
         if(response.data == "Success") {
+          console.log("Also Success!");
           //save token
           //get token
           //alert("Log In Successful");
           console.log("user");
           console.log(user);
-          $state.go("userDash");
+          //$state.go("userDash");
           return;
           }
       });
@@ -37,7 +38,7 @@ angular.module('frontendApp')
       console.log('Will recover password now.');
       //get request and email for recovering password
     }
-    
+
     $scope.apply = function() {
       $state.go("applicationForm");
     }

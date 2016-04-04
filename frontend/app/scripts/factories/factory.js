@@ -1,5 +1,5 @@
 angular.module('frontendApp')
-  .factory('userFactory', function ($http, $window) {
+  .factory('userFactory', function ($http, $window, $state) {
     var currentUser = null;
 
     return {
@@ -10,14 +10,17 @@ angular.module('frontendApp')
           url: 'http://54.86.70.62/login',
           data: user_json
         }).then(function(data){
+          console.log("Success!");
             currentUser = data;
+            console.log(data.data);
+            $state.go("userDash");
             //set token
-            //userToken = data.token;
+            userToken = data.data;
             return data;
         }, function errorCallback(response) {
+          console.log("Failure!");
               console.log(response);
               alert("Log In Unsuccessful");
-
     });
   },
       getCurrentUser: function(){
@@ -25,7 +28,7 @@ angular.module('frontendApp')
       },
 
       saveToken: function() {
-        $window.localStorage['jwtToken'] = token;
+        $window.localStorage['jwtToken'] = userToken;
         return;
       },
 
@@ -48,7 +51,7 @@ angular.module('frontendApp')
            return false;
          }
       },
-      
+
 
       signOut: function() {
         $window.localStorage.removeItem('jwtToken');
