@@ -79,7 +79,9 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
     $db_hash = $user->hash;
     if(password_verify($password, $db_hash)){
       $new_response = $response->withStatus(200);
-      echo('Success');
+      $token = (new Builder())->set('userID', $uid)
+                              ->getToken();
+      echo $token;
     }else{
       $new_response = $response->withStatus(403);
       echo('Invalid password');
