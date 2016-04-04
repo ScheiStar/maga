@@ -1,5 +1,6 @@
 <?php
 // Routes
+use Lcobucci\JWT\Builder;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
