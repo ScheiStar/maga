@@ -54,3 +54,42 @@ $app->get('/getapplicant/{id}', function ($request, $response, $args) {
 		  return $new_response; //returns the response 
 		
 });
+
+
+
+
+$app->post('/applicationForm', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+
+
+	$db = $this->createDB;
+	$json = $request->getBody();
+	$data = json_decode($json);
+
+
+	// create a variable
+	$first_name = $data->fName;
+	$last_name = $data->lName;
+	$password = $data->pass;
+	$config_password = $data->confPass;
+	$id = $data->id
+	$email = $data->email;
+	$major = $data->major;
+	$gpa = $data->gpa;;
+
+
+
+  if(!isset($first_name) || !isset($last_name) !isset($password) || !isset($config_password)!isset($id) || !isset($email)!isset($major) || !isset($gpa)){
+    $new_response = $response->withStatus(418);
+    echo("The application is not filled out completely ");
+    return $new_response;
+  }
+
+  $query = $db->prepare('INSERT INTO Applicants values('$id', '$first_name', '$last_name', '$email', '$gpa', '$major', '$password')');
+  $query->execute();
+  $user = $query->fetch(PDO::FETCH_OBJ);
+
+	
+
+  return $new_response;
+});
+
