@@ -15,7 +15,7 @@ angular.module('frontendApp')
       'Karma'
     ];
     console.log("in userDash now");
-    console.log(userFactory.getCurrentUser());
+
     userFactory.saveToken()
     var userID = (userFactory.parseToken(userFactory.getToken()));
     console.log(userID);

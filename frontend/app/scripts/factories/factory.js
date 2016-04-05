@@ -11,11 +11,23 @@ angular.module('frontendApp')
           data: user_json
         }).then(function(data){
           console.log("Success!");
-            currentUser = data;
             console.log(data.data);
-            $state.go("userDash");
-            //set token
             userToken = data.data;
+            // var api_key = 'key-3a991789584ec646b3e2e88d5a737923';
+            // var domain = 'sandbox2d09628f0b6b414ebc37579659ff9a21.mailgun.org';
+            // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+            //
+            // var data = {
+            //   from: 'Excited User <me@samples.mailgun.org>',
+            //   to: 'jaycem@smu.edu',
+            //   subject: 'Hello',
+            //   text: 'Testing some Mailgun awesomness!'
+            // };
+
+          // mailgun.messages().send(data, function (error, body) {
+          //   console.log(body);
+//});
+            $state.go("userDash");
             return data;
         }, function errorCallback(response) {
           console.log("Failure!");

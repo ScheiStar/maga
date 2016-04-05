@@ -16,22 +16,7 @@ angular.module('frontendApp')
         'password': user.password
       };
 
-      userFactory.signIn(user_data).then(function (response) {
-        if(angular.isUndefined(response)) {
-          console.log('asd');
-          return;
-        }
-        if(response.data == "Success") {
-          console.log("Also Success!");
-          //save token
-          //get token
-          //alert("Log In Successful");
-          console.log("user");
-          console.log(user);
-          //$state.go("userDash");
-          return;
-          }
-      });
+      userFactory.signIn(user_data);
     },
 
     $scope.recoverPass = function(password) {
