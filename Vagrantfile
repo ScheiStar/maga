@@ -80,7 +80,7 @@ Vagrant.configure(2) do |config|
     sudo apt-get -y install mysql-server libapache2-mod-auth-mysql php5-mysql
 
     # Installing PHP and it's dependencies
-    sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
+    sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt git
 
   SHELL
 end
