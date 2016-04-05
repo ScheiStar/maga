@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Applicants` (
   `applicant_gpa` DECIMAL(3) NULL,
   `applicant_major` VARCHAR(45) NULL,
   `application_status` TINYINT(1) NULL,
-  `applicant_password` VARCHAR(45) NULL,
+  `applicant_hash` VARCHAR(60) NULL,
   PRIMARY KEY (`applicant_id`))
 ENGINE = InnoDB;
 
