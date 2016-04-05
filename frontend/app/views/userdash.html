@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>User Dashboard</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/userDash.css"
+  </head>
+  <body ng-app="frontendApp" ng-controller="UserdashCtrl">
+    <button type="submit" class="btn btn-primary">Sign Out</button>
+    <div class="container fluid" style="background: blue">
+      <br>
+      <div id="userCard" class="card card-block text-xs-center col-xs-3">
+        <img class="card-img-top" src="../images/yeoman.png" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{user.name}}</h4>
+          <p class="card-text">Thanks for joining us today {{user.name}}. We hope you are able to spread knowsledge and joy everyhwere you seek.</p>
+        </div>
+      </div>
+      <div id="ugh" class="card card-block text-xs-center col-xs-3">
+        <img class="card-img-top" src="../images/yeoman.png" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{user.name}}</h4>
+          <p class="card-text">Thanks for joining us today {{user.name}}. We hope you are able to spread knowsledge and joy everyhwere you seek.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
