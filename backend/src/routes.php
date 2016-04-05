@@ -14,7 +14,7 @@ $app->get('/', function($request, $response, $args){
 });
 
 
-$app->get('/getapplicant/{id}', function ($request, $response, $args) {
+$app->get('/getApplication/{id}', function ($request, $response, $args) {
 
 
 		//echo "Success:". $args['id'];
