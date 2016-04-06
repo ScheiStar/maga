@@ -12,8 +12,7 @@ $app->get('/', function($request, $response, $args){
     //return $this->renderer->render($response, 'index.html', $args);
 });
 
-
-$$app->post('/applicationForm', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+$app->post('/applicationForm', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
 
 
 	$db = $this->createDB;
@@ -39,21 +38,57 @@ $$app->post('/applicationForm', function (ServerRequestInterface $request, Respo
     return $new_response;
   }
 
+
+	  $query = $db->prepare('SELECT * FROM Applicants WHERE applicant_id = :uid');
+	  $query->bindParam(':uid', $uid, PDO::PARAM_INT);
+	  $query->execute();
+
+	//gets the user and applicant
+	  $applicant = $query->fetch(PDO::FETCH_OBJ);
+	
+	
+	  $query = $db->prepare('SELECT * FROM Users WHERE applicant_id = :uid');
+	  $query->bindParam(':uid', $uid, PDO::PARAM_INT);
+	  $query->execute();
+
+	//gets the user and applicant
+	  $user = $query->fetch(PDO::FETCH_OBJ);
+	
+	
+	  
+	if($applicant || $user){
+		
+		//applicant or user exists 
+		    $new_response = $response->withStatus(409);
+		    echo("Usero or Applicant already exists");
+		    return $new_response;
+		
+	} else {
+	
+		//applicant or user does not exist does not exits 
+
   $query = $db->prepare('INSERT INTO Applicants values(:id, :first_name, :last_name, :email, :gpa, :major, :password)');
   $query->bindParam(":email", $email, PDO::PARAM_STR);
   $query->bindParam(":id", $id, PDO::PARAM_INT);
   $query->bindParam(":first_name", $first_name, PDO::PARAM_STR);
   $query->bindParam(":last_name", $last_name, PDO::PARAM_STR);
-  $query->bindParam(":gpa", $gpa, PDO::PARAM_DEC);
+  $query->bindParam(":gpa", $gpa, PDO::PARAM_STR);
   $query->bindParam(":major", $major, PDO::PARAM_INT);
   $query->bindParam(":password", $password, PDO::PARAM_STR);
   $query->execute();
   $user = $query->fetch(PDO::FETCH_OBJ);
 
+	$new_response = $response->withStatus(200);
+     return $response;
+
+	}
 
 
   return $response;
+  
 });
+
+
 $app->get('/getapplicant/{id}', function ($request, $response, $args) {
 
 
