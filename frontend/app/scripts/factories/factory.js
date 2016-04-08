@@ -13,20 +13,9 @@ angular.module('frontendApp')
           console.log("Success!");
             console.log(data.data);
             userToken = data.data;
-            // var api_key = 'key-3a991789584ec646b3e2e88d5a737923';
-            // var domain = 'sandbox2d09628f0b6b414ebc37579659ff9a21.mailgun.org';
-            // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-            //
-            // var data = {
-            //   from: 'Excited User <me@samples.mailgun.org>',
-            //   to: 'jaycem@smu.edu',
-            //   subject: 'Hello',
-            //   text: 'Testing some Mailgun awesomness!'
-            // };
-
-          // mailgun.messages().send(data, function (error, body) {
-          //   console.log(body);
-//});
+            console.log('About to save token');
+            localStorage.setItem("token", userToken);
+            console.log('Saved token');
             $state.go("userDash");
             return data;
         }, function errorCallback(response) {
@@ -39,13 +28,14 @@ angular.module('frontendApp')
         return currentUser;
       },
 
-      saveToken: function() {
-        $window.localStorage['jwtToken'] = userToken;
-        return;
-      },
+      // saveToken: function() {
+      //   console.log('Saving token now');
+      //   $window.localStorage['jwtToken'] = userToken;
+      //   return;
+      // },
 
       getToken: function() {
-        return $window.localStorage['jwtToken'];
+        return localStorage.getItem("token");
       },
 
       parseToken: function(token) {

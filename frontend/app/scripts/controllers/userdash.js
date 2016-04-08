@@ -16,7 +16,6 @@ angular.module('frontendApp')
     ];
     console.log("in userDash now");
 
-    userFactory.saveToken()
     var userID = (userFactory.parseToken(userFactory.getToken()));
     console.log(userID);
   });
