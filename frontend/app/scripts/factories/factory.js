@@ -10,12 +10,12 @@ angular.module('frontendApp')
           url: 'http://54.86.70.62/login',
           data: user_json
         }).then(function(data){
-          console.log("Success!");
-            console.log(data.data);
+          //console.log("Success!");
             userToken = data.data;
-            console.log('About to save token');
             localStorage.setItem("token", userToken);
-            console.log('Saved token');
+            console.log('uhh');
+            //remember = user_data.auth;
+            remember = true;
             $state.go("userDash");
             return data;
         }, function errorCallback(response) {
@@ -56,7 +56,30 @@ angular.module('frontendApp')
 
 
       signOut: function() {
-        $window.localStorage.removeItem('jwtToken');
+        console.log('signing out');
+        console.log(remember);
+        if(remember) {
+          console.log('dont remove token');
+          // $window.localStorage.removeItem('jwtToken');
+          $state.go("login");
+        }
+        else {
+          console.log('remove token');
+          localStorage.removeItem("token");
+          $state.go("login");
+        }
+
+      },
+
+      loginInit: function() {
+        potentialToken = localStorage.getItem("token");
+        if(potentialToken) {
+          //return potentialToken.parseToken(potentialToken).userID;
+          return potentialToken;
+        }
+        else {
+          return;
+        }
       }
 }
 });

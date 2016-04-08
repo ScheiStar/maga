@@ -20,8 +20,13 @@ angular.module('frontendApp')
     // console.log(userFactory.getCurrentUser());
     // $scope.user = userFactory.getCurrentUser();
 
-    var userID = (userFactory.parseToken(userFactory.getToken()));
+    //var userID = (userFactory.parseToken(userFactory.getToken()));
+    var userID = userFactory.getToken();
     console.log(userID);
+
+    $scope.signOut = function() {
+      userFactory.signOut();
+    }
 
 
   	// $scope.getHelp = function() {
