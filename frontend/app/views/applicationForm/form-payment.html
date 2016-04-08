@@ -1,0 +1,65 @@
+
+<div class="text-center">
+    <span class="glyphicon glyphicon-heart"></span>
+    <h3>Verify Your Info, Please!</h3>
+    <div class="container">
+        <div class="col-xs-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Detail</th>
+                    <th>Your Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">First Name</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.fName}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Last Name</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.lName}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Password</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.pass}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Confirm Password</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.confPass}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">SMU ID</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.id}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.email}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Major</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.major}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">GPA</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.gpa}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Course 1</th>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.course1}}   {{formData.course1Grade}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Course 2</th>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.course2}}   {{formData.course2Grade}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Course 3</th>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.course3}}   {{formData.course3Grade}}</a></p></td>
+                </tr>
+            </tbody>
+        </table>
+            <a ui-sref="form.interests">Click Here to Verify Tutor Times</a>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-danger">Submit</button>
+</div>
