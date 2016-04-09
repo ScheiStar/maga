@@ -2,17 +2,15 @@
 
 /**
  * @ngdoc function
- * @name frontendApp.controller:ContactadminCtrl
+ * @name frontendApp.controller:TutorquitCtrl
  * @description
- * # ContactadminCtrl
+ * # TutorquitCtrl
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('ContactadminCtrl', function ($scope, $state, userFactory, contactAdminFactory) {
+  .controller('TutorquitCtrl', function ($scope, $state, userFactory, contactAdminFactory) {
 
-    console.log('in contact admin dash');
-
-    $scope.submitMessage = function(user) {
+    $scope.quitJob = function(user) {
       if(user){
         var user_data = {
           'userID': userFactory.parseToken(userFactory.getToken()).userID,
@@ -20,7 +18,7 @@ angular.module('frontendApp')
         };
 
         if(contactAdminFactory.emailAdmin(user_data)) {
-          alert('Thank you for submitting. You will hear from us soon!')
+          alert('Thank you for submitting. You will hear from us soon regarding your desired termination.')
           $state.go("userDash");
         } else {
           alert('Oops looks like we had trouble handling that. Please try again.')
