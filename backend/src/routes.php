@@ -175,3 +175,48 @@ $app->delete('/admin/getTutors/{id}',function($request,$response,$args){
    return $response;
 });
 
+$app->delete('/deleteApplication/{id}',function($request,$response,$args){
+
+
+		$db = $this->createDB;
+    $id=$args['id'];
+
+    if(!isset($id)){
+
+      $new_response=$response->withStatus(400);
+      echo "please provide a user id";
+			return $new_response;
+
+        }
+
+		// creates, prepares and executes sql query
+		$query = $db->prepare('SELECT * FROM Applicants WHERE applicant_id = :id');
+		$query->bindParam(':id', $id, PDO::PARAM_INT);
+		$query->execute();
+
+		//gets the user and applicant
+		$user = $query->fetch(PDO::FETCH_OBJ);
+
+	  //if there is an applicant then respond with 200 else respond with 403
+		if($user){
+
+			$query = $db->prepare('DELETE FROM Applicants WHERE applicant_id = :id');
+			$query->bindParam(':id', $id, PDO::PARAM_INT);
+			if($query->execute()){
+
+				return $response;
+
+				} else {
+
+				echo "Failed Deleting Applicant";
+
+			}
+
+		} else {
+			$new_response = $response->withStatus(204);
+			return $new_response;
+
+			}
+
+   return $response;
+});
