@@ -32,12 +32,11 @@ angular.module('frontendApp')
       var user_data = {
         'userID': user.userID,
         'password': user.password
-        //,'auth': user.auth
       };
 
       console.log(user_data);
 
-      userFactory.signIn(user_data);
+      userFactory.signIn(user_data, user.auth);
     },
 
     $scope.recoverPass = function() {

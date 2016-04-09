@@ -22,7 +22,8 @@ angular.module('frontendApp')
 
     //var userID = (userFactory.parseToken(userFactory.getToken()));
     var userID = userFactory.getToken();
-    console.log(userID);
+    console.log(userFactory.parseToken(userID).userID);
+    console.log(userFactory.parseToken(userFactory.getToken()).userID)
 
     $scope.signOut = function() {
       userFactory.signOut();

@@ -70,5 +70,9 @@ angular
         controller: 'HelpdashCtrl',
         controllerAs: 'helpDash'
       })
-
+      .state('tutorQuit', {
+        templateUrl: 'views/tutorquit.html',
+        controller: 'TutorquitCtrl',
+        controllerAs: 'tutorQuit'
+      })
   });

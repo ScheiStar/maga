@@ -3,7 +3,7 @@ angular.module('frontendApp')
     var currentUser = null;
 
     return {
-      signIn: function(user_json) {
+      signIn: function(user_json, auth) {
 
         return $http({
           method: 'POST',
@@ -14,8 +14,8 @@ angular.module('frontendApp')
             userToken = data.data;
             localStorage.setItem("token", userToken);
             console.log('uhh');
-            //remember = user_data.auth;
-            remember = true;
+            remember = auth;
+            //remember = true;
             $state.go("userDash");
             return data;
         }, function errorCallback(response) {
