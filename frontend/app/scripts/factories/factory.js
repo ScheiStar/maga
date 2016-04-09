@@ -10,12 +10,10 @@ angular.module('frontendApp')
           url: 'http://54.86.70.62/login',
           data: user_json
         }).then(function(data){
-          //console.log("Success!");
             userToken = data.data;
             localStorage.setItem("token", userToken);
             console.log('uhh');
             remember = auth;
-            //remember = true;
             $state.go("userDash");
             return data;
         }, function errorCallback(response) {
