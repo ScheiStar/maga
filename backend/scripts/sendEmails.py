@@ -24,6 +24,7 @@ sandbox = 'sandbox2d09628f0b6b414ebc37579659ff9a21.mailgun.org'
 #Contact Admin Confirmation
 #Email to Admin with Message
 #Application Acceptance
+#Tutor quitting
 #Password Recovery
 
 form = cgi.FieldStorage()
@@ -31,7 +32,7 @@ email = form.getvalue('email')
 contentMessage = form.getvalue('contentMessage')
 emailType = form.getvalue('emailType')
 
-emailTypeList = ['appConfirm', 'contactAdminConfirm', 'emailToAdmin', 'appAcceptance', 'passRecovery']
+emailTypeList = ['appConfirm', 'contactAdminConfirm', 'emailToAdmin', 'appAcceptance', 'passRecovery', 'tutorQuit']
 
 if not re.match(r'[^@]+@[^@]+\.[^@]+', email):
     print 'Invalid Email. Returning...'
@@ -54,6 +55,12 @@ if(email and emailType):
 
     elif emailType == 'emailToAdmin':
         f = open("html/emailAdmin.html","r")
+        message = f.read() + str(contentMessage) + '</p><br>' + str(email) + '</body></html>'
+        #input whoever admin email in. For this purpose we only have one admin
+        email = 'jaycem@smu.edu'
+
+    elif emailType == 'tutorQuit':
+        f = open("html/tutorQuit.html","r")
         message = f.read() + str(contentMessage) + '</p><br>' + str(email) + '</body></html>'
         #input whoever admin email in. For this purpose we only have one admin
         email = 'jaycem@smu.edu'
