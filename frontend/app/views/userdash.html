@@ -22,28 +22,50 @@
         <p>Classes:</p>
         <div>
           <ul>
-            <li ng-repeat="item in classArr.classInfo"><a href="#">{{item}}</a></li>
+            <li ng-repeat="item in classArr.classInfo">{{item}}</li>
             <!-- CSE1342<br>
             CSE2342<br>
             CSE3342<br>
             CSE3345<br> -->
           </ul>
         </div>
-        <button class="btn btn-primary">Add Class</button><br>
+        <!-- Popup show input for Class: Grade: -->
+        <button class="btn btn-primary" id="popover">Add Class</button>
+		<div id="popover-head" class="hide">Add Class:</div>
+		<div id="popover-content" class="hide">
+		  <form>
+		    <!-- my form -->
+		    <input type="text" name="class" ng-model="add.Class" placeholder="Class">
+		    <input type="text" name="grade" ng-model="add.Grade" placeholder="Grade">
+		    <button class="btn btn-primary">Submit</button>
+		  </form>
+		</div><br>
         <button class="btn btn-primary" ui-sref="helpDash" >Help</button>
       </div>
       <!-- Drop -->
       <div class="col-xs-12 col-md-4">
         <p>Don't want to be a tutor anymore?</p>
-        <button class="btn btn-primary">Drop</button>
+        <!-- POPUP get request show person's classes and select to drop -->
+        <button class="btn btn-primary" id="popover2">Drop Class</button>
+		<div id="popover-head2" class="hide">Drop:</div>
+		<div id="popover-content2" class="hide">
+		  <ul>
+            <!-- <li ng-repeat="item in classArr.classInfo">{{item}}</li> -->
+            <label ng-repeat="item in classArr.classInfo">
+            	<input type="checkbox"> {{item}} <br>
+            </label>
+            <!-- <input type="checkbox" name="dropClass">class -->
+            <br>
+            <button class="btn btn-primary" ng-click="addClassFun()">Submit</button>
+          </ul>
+		</div>
         <p>Rating</p>
         <!-- stars rating -->
-        <i class="fa fa-star-o"></i>
-        <i class="fa fa-star-o"></i>
-        <i class="fa fa-star-o"></i>
-        <i class="fa fa-star-o"></i>
-        <i class="fa fa-star-o"></i>
         <i class="fa fa-star"></i>
+        <i class="fa fa-star-o"></i>
+        <i class="fa fa-star-o"></i>
+        <i class="fa fa-star-o"></i>
+        <i class="fa fa-star-o"></i>
       </div>
     </div>
 <!-- Calendar -->
@@ -134,5 +156,35 @@
     </tr>
   </tbody>
 </table>
+
+
+<script>
+$('#popover').popover({ 
+    html : true,
+    title: function() {
+      return $("#popover-head").html();
+    },
+    content: function() {
+      return $("#popover-content").html();
+    }
+});
+
+$('#popover2').popover({ 
+    html : true,
+    title: function() {
+      return $("#popover-head2").html();
+    },
+    content: function() {
+      return $("#popover-content2").html();
+    }
+});
+
+// $("input:checkbox[name=type]:checked").each(function(){
+//     yourArray.push($(this).val());
+// });
+
+
+</script>
+
   </body>
 </html>
