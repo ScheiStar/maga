@@ -220,3 +220,22 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 
    return $response;
 });
+
+$app->get('/sendEmail', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+  $args = $request->getQueryParams();
+  $email = $args['email'];
+  $message = $args['message'];
+  $type = $args['type'];
+    
+  if(!isset($email) || !isset($message) || !isset($type)){
+    $new_response = $response->withStatus(400);
+    echo "invalid GET request";
+    return $new_response;
+  }
+    
+  ob_start();
+  passthru("/usr/bin/python2.7 /var/www/maga/scripts/sendEmails.py {$email} {$message} {$type}");
+  $output = ob_get_clean();
+  echo $output;
+  return $response;
+});
