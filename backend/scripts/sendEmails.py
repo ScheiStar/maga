@@ -10,12 +10,6 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 cgitb.enable()
 
-#print "Content-Type: text/plain;charset=utf-8"
-
-print "Content-Type: text/html"
-
-print
-
 key = 'key-3a991789584ec646b3e2e88d5a737923'
 sandbox = 'sandbox2d09628f0b6b414ebc37579659ff9a21.mailgun.org'
 
@@ -27,10 +21,9 @@ sandbox = 'sandbox2d09628f0b6b414ebc37579659ff9a21.mailgun.org'
 #Tutor quitting
 #Password Recovery
 
-form = cgi.FieldStorage()
-email = form.getvalue('email')
-contentMessage = form.getvalue('contentMessage')
-emailType = form.getvalue('emailType')
+email = sys.argv[1]
+contentMessage = sys.argv[2]
+emailType = sys.argv[3]
 
 emailTypeList = ['appConfirm', 'contactAdminConfirm', 'emailToAdmin', 'appAcceptance', 'passRecovery', 'tutorQuit']
 
@@ -83,11 +76,10 @@ else:
 
 request_url = 'https://api.mailgun.net/v2/{0}/messages'.format(sandbox)
 request = requests.post(request_url, auth=('api', key), data={
-    'from': 'jiceResources@Scheistar.com',
+    'from': 'jiceResources@scheistar.com',
     'to': email,
     'subject': 'Scheistar HR',
     'html': message
 })
 
-print 'Status: {0}'.format(request.status_code)
-print 'Body:   {0}'.format(request.text)
+print request.text
