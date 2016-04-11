@@ -34,12 +34,14 @@
 		<div id="popover-head" class="hide">Add Class:</div>
 		<div id="popover-content" class="hide">
 		  <form>
-		    <!-- my form -->
-		    <input type="text" name="class" ng-model="add.Class" placeholder="Class">
+		    <!-- Need to replace popver jquery with angular -->
+		    <input type="text" name="class" ng-model="Class" placeholder="Class">
 		    <input type="text" name="grade" ng-model="add.Grade" placeholder="Grade">
-		    <button class="btn btn-primary">Submit</button>
+		    <button class="btn btn-primary" ng-click="addClass()">Save</button>
 		  </form>
 		</div><br>
+    <span ng-bind="Class"></span><span ng-bind="add.Grade"></span>
+    <button class="btn btn-primary" ng-click="addClass()">harr</button>
         <button class="btn btn-primary" ui-sref="helpDash" >Help</button>
       </div>
       <!-- Drop -->

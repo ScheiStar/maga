@@ -12,11 +12,18 @@
   // 	return{classes: {}};
   // })
 angular.module('frontendApp')
-  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, $window) {
+  .factory('UserData', function(){
+    return {info: {}};
+  })
+  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window) {
 
   	$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
-    $scope.add = {};
-    $scope.getUserTest = {};
+    $scope.add = {};//stores class into json
+    $scope.Class = 'www';
+    //Used to display user information
+    $scope.getUserID = {};
+    $scope.user = null;
+    //$scope.add.Class = 10;<-- works
   	// //Store class input -- json
     var classData = {
       'userID': userFactory.getToken(),
@@ -27,44 +34,61 @@ angular.module('frontendApp')
     console.log("in userDash now");
     // console.log(userFactory.getCurrentUser());
     // $scope.user = userFactory.getCurrentUser();
-    
+
     // userFactory.saveToken()
     // var userID = (userFactory.parseToken(userFactory.getToken()));
     // console.log(userID);
 
-    $scope.addClassFun = function(){
+    $scope.addClass = function(){
       console.log("Sent classes");
+      
       // $http({
       //   method: 'POST',
       //   url: 'http://54.86.70.62/admin/addClass/',
       //   data: classData
       // });
     }
-    
-    $scope.getUser = function() {
-      console.log("uuu");
-      $http({
+
+    $http({
       method: 'GET',
       url: 'http://54.86.70.62/admin/getTutors'
       //params: {'userID': userID}
     }).then(function successCallback(response) {
         // this callback will be called asynchronously
         // when the response is available
-        //classesData.classes = response.data.classes;
-        $scope.getUserTest = response;
-        console.log('success');
-        console.log($scope.getUserTest);
+        // factory version
+        // UserData.info = response.data;
+        // console.log(UserData.info[1]);
+        // console.log('success');
+        
+        $scope.getUserID = response;
+        console.log($scope.getUserID.data[1]);
+        //switch this to ng-model for mini ddos program lol
+        //Use subtraction for instant number
+        for(var i = 0; i < $scope.getUserID.data.length; i++) {
+            console.log(i);//userID
+            if("11380723" == $scope.getUserID.data[i].tutor_id) {
+              console.log("tits");
+              $scope.user = $scope.getUserID.data[i].tutor_first_name;
+              break;  
+            }
+        }
+        
       }, function errorCallback(response) {
         console.log('fail');
       });
 
-    //if(userID = $scope.getUserTest.data.)
-    // for(var i = 0; i < $scope.getUserTest.data; i++) {
-    //   if(userID = $scope.getUserTest.data.tutorID) {
+    $scope.getUser = function() {
+      
 
-    //   }
-    // }
+    //Interesting: $http request is always last
+    console.log("i");
+    // console.log(UserData.info[2]);
+    // console.log($scope.getUserTest.data);
+    
 
     }
+
+
     
   });
