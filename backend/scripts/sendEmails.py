@@ -39,27 +39,27 @@ if emailType not in emailTypeList:
 if(email and emailType):
 
     if emailType == 'appConfirm':
-        f = open("html/confirmApp.html","r")
+        f = open("./html/confirmApp.html","r")
         message = f.read()
 
     elif emailType == 'contactAdminConfirm':
-        f = open("html/confirmAdminFirst.html","r")
+        f = open("./html/confirmAdminFirst.html","r")
         message = f.read() + str(contentMessage) + '</p></body></html>'
 
     elif emailType == 'emailToAdmin':
-        f = open("html/emailAdmin.html","r")
+        f = open("./html/emailAdmin.html","r")
         message = f.read() + str(contentMessage) + '</p><br>' + str(email) + '</body></html>'
         #input whoever admin email in. For this purpose we only have one admin
         email = 'jaycem@smu.edu'
 
     elif emailType == 'tutorQuit':
-        f = open("html/tutorQuit.html","r")
+        f = open("./html/tutorQuit.html","r")
         message = f.read() + str(contentMessage) + '</p><br>' + str(email) + '</body></html>'
         #input whoever admin email in. For this purpose we only have one admin
         email = 'jaycem@smu.edu'
 
     elif emailType == 'appAcceptance':
-        f = open("html/appAcceptance.html","r")
+        f = open("./html/appAcceptance.html","r")
         message = f.read()
 
     elif emailType == 'passRecovery':
