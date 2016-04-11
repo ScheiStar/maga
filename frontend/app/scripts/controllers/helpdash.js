@@ -12,11 +12,11 @@ angular.module('frontendApp')
 
   $scope.animationsEnabled = true;
 
-  $scope.open = function (size) {
+  $scope.openAdminModal = function (size) {
 
     var modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
-      templateUrl: 'myModalContent.html',
+      templateUrl: 'views/contactAdminModal.html',
       controller: 'ContactAdminModalInstanceCtrl',
       size: size,
       resolve: {
@@ -26,31 +26,19 @@ angular.module('frontendApp')
       }
     });
   };
-  });
 
-  angular.module('frontendApp').controller('ContactAdminModalInstanceCtrl', function (contactAdminFactory, userFactory, $scope, $uibModalInstance, items) {
-    console.log('in contact admin dash');
+  $scope.openQuitModal = function (size) {
 
-    $scope.submitMessage = function(user) {
-      if(user){
-        var user_data = {
-          'userID': userFactory.parseToken(userFactory.getToken()).userID,
-          'message': user.message
-        };
-
-        if(contactAdminFactory.emailAdmin(user_data)) {
-          alert('Thank you for submitting. You will hear from us soon!')
-          $state.go("userDash");
-        } else {
-          alert('Oops looks like we had trouble handling that. Please try again.')
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'views/quitTutorModal.html',
+      controller: 'QuitTutorModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
         }
       }
-      else alert('Please enter an actual message.');
-
-      //TODO: Log values in database and do something with them
-
-      //TODO: Get request for python script
-    }
-
-
-});
+    });
+  };
+  });

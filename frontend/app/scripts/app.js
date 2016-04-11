@@ -59,21 +59,10 @@ angular
         controller: 'AdmindashCtrl',
         controllerAs: 'adminDash'
       })
-      .state('contactAdmin', {
-        url: '/contactAdmin',
-        templateUrl: 'views/contactadmin.html',
-        controller: 'ContactadminCtrl',
-        controllerAs: 'contactAdmin'
-      })
       .state('helpDash', {
         url: '/helpDash',
         templateUrl: 'views/helpdash.html',
         controller: 'HelpdashCtrl',
         controllerAs: 'helpDash'
-      })
-      .state('tutorQuit', {
-        templateUrl: 'views/tutorquit.html',
-        controller: 'TutorquitCtrl',
-        controllerAs: 'tutorQuit'
       })
   });

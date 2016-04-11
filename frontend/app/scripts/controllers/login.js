@@ -9,7 +9,9 @@
  */
 angular.module('frontendApp')
   .controller('LoginCtrl', function ($state, $scope, $http, userFactory, $window) {
-    console.log(userFactory.getToken());
+    console.log(userFactory.parseToken(userFactory.getToken()).userID);
+    $scope.user = {};
+    $scope.user.userID = userFactory.parseToken(userFactory.getToken()).userID;
 
     // angular.element(document).ready(function () {
     //     document.getElementById('inputEmail').value = 'Hello';
