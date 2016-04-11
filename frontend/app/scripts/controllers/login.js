@@ -25,6 +25,6 @@ angular.module('frontendApp')
     }
 
     $scope.apply = function() {
-      $state.go("applicationForm");
+      $state.go("form");
     }
   });

@@ -4,28 +4,28 @@
         <div class="form-group row">
             <label for="class1" class="col-xs-1 form-control-label">Course 1</label>
             <div class="col-xs-4">
-                <input type="text" class="form-control" id="class1" placeholder="Course Number" ng-model="formData.course1" required>
+                <input type="text" class="form-control" id="class1" placeholder="Course Number" ng-model="formData.courseArray[0]" required>
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" id="class1Grade" placeholder="Grade" ng-model="formData.course1Grade" required>
+                <input type="text" class="form-control" id="class1Grade" placeholder="Grade" ng-model="formData.courseArray[1]" required>
             </div>
         </div>
         <div class="form-group row">
             <label for="class2" class="col-xs-1 form-control-label">Course 2</label>
             <div class="col-xs-4">
-                <input type="text" class="form-control" id="class2" placeholder="Course Number" ng-model="formData.course2" required>
+                <input type="text" class="form-control" id="class2" placeholder="Course Number" ng-model="formData.courseArray[2]" required>
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" id="class2Grade" placeholder="Grade" ng-model="formData.course2Grade" required>
+                <input type="text" class="form-control" id="class2Grade" placeholder="Grade" ng-model="formData.courseArray[3]" required>
             </div>
         </div>
         <div class="form-group row">
             <label for="class3" class="col-xs-1 form-control-label">Course 3</label>
             <div class="col-xs-4">
-                <input type="text" class="form-control" id="class3" placeholder="Course Number" ng-model="formData.course3" required>
+                <input type="text" class="form-control" id="class3" placeholder="Course Number" ng-model="formData.courseArray[4]" required>
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" id="class3Grade" placeholder="Grade" ng-model="formData.course3Grade" required>
+                <input type="text" class="form-control" id="class3Grade" placeholder="Grade" ng-model="formData.courseArray[5]" required>
             </div>
         </div>
 </div>
@@ -44,76 +44,87 @@
   </thead>
   <tbody>
     <tr>
+<!--
       <th scope="row">2:00 - 3:00</th>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.sun2"></label></td>
+      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal[0][2]"></label></td>
       <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.mon2"></label></td>
       <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.tue2"></label></td>
       <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.wed2"></label></td>
       <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.thu2"></label></td>
       <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.fri2"></label></td>
     </tr>
+-->
+    <tr>
+      <th scope="row">2:00 - 3:00</th>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 2)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 2)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 2)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 2)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 2)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 2)"></td>
+    </tr>   
     <tr>
       <th scope="row">3:00 - 4:00</th>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.sun3"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.mon3"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.tue3"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.wed3"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.thu3"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.fri3"></label></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 3)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 3)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 3)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 3)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 3)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 3)"></td>
     </tr>
     <tr>
       <th scope="row">4:00 - 5:00</th>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.sun4"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.mon4"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.tue4"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.wed4"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.thu4"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.fri4"></label></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 4)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 4)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 4)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 4)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 4)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 4)"></td>
     </tr>
     <tr>
       <th scope="row">5:00 - 6:00</th>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.sun5"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.mon5"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.tue5"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.wed5"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.thu5"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.fri5"></label></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 5)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 5)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 5)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 5)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 5)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 5)"></td>
     </tr>
     <tr>
       <th scope="row">6:00 - 7:00</th>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.sun6"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.mon6"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.tue6"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.wed6"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.thu6"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.fri6"></label></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 6)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 6)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 6)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 6)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 6)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 6)"></td>
     </tr>
     <tr>
       <th scope="row">7:00 - 8:00</th>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.sun7"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.mon7"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.tue7"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.wed7"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.thu7"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.fri7"></label></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 7)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 7)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 7)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 7)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 7)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 7)"></td>
     </tr>
     <tr>
       <th scope="row">8:00 - 9:00</th>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.sun8"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.mon8"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.tue8"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.wed8"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.thu8"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.fri8"></label></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 8)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 8)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 8)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 8)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 8)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 8)"></td>
     </tr>
     <tr>
       <th scope="row">9:00 - 10:00</th>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.sun9"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.mon9"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.tue9"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.wed9"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.thu9"></label></td>
-      <td><label class="btn btn-primary"><input type="checkbox" autocomplete="off" ng-model="formData.cal.fri9"></label></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 9)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 9)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 9)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 9)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 9)"></td>
+      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 9)"></td>
     </tr>
   </tbody>
 </table>

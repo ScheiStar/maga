@@ -12,18 +12,20 @@
 
 ## Nested States
 - Nested states are the bomb, just make sure that the parent [.state] name matches the child [.state] name. If you have the following example it won't work because the parent name is different from the child name:
-
-      .state('applicationForm', {
+```javascript
+    .state('applicationForm', {
         url: '/applicationForm',
         templateUrl: 'views/applicationForm/form.html',
         controller: 'formController',
         controllerAs: 'applicationForm'
-      })
-      .state('form.profile', {
-          url: '/profile',
-          templateUrl: 'views/applicationForm/form-profile.html'
-      })
-      
+    })
+    .state('form.profile', {
+        url: '/profile',
+        templateUrl: 'views/applicationForm/form-profile.html'
+    })
+    ```
+
+    
 The following code will not recognize the states as linked:
 
     <div id="status-buttons" class="text-center">
