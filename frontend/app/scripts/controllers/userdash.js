@@ -17,15 +17,22 @@ angular.module('frontendApp')
   	//$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
 
     console.log("in userDash now");
-    (!userFactory.isAuthed()) $state.go('login');
+    console.log('authed?');
+    console.log(userFactory.isAuthed());
+    if(!userFactory.isAuthed()) $state.go('login');
 
     $scope.signOut = function() {
       userFactory.signOut();
     }
 
     $window.onbeforeunload = function(){
+      alert('shit');
       userFactory.onExit();
     };
+
+    $(window).unload(function() {
+      userFactory.onExit();
+    });
     //$window.onbeforeunload =  userFactory.onExit();
 
 

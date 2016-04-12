@@ -9,20 +9,15 @@
  */
 angular.module('frontendApp')
 
-.controller('formController', function($scope) {
-      this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];  
+.controller('formController', function($scope, $state, contactAdminFactory) {
     // we will store all of our form data in this object
     $scope.formData = {};
     $scope.formData.cal = {};
     $scope.formData.courseDictArray = [];
     var courseDict = {};
-    
+
     // function to process the form
-    $scope.processForm = function() { 
+    $scope.processForm = function() {
         //processes the calendar into strings
         for (var day in $scope.formData.cal){
              $scope.formData.cal[day] = $scope.formData.cal[day].toString();
@@ -32,10 +27,18 @@ angular.module('frontendApp')
             console.log("Course Array: ", $scope.formData.courseArray);
             $scope.formData.courseDictArray.push({'courseNum':$scope.formData.courseArray[i], 'grade':$scope.formData.courseArray[i+1]});
             i++;
-        } 
+        }
         delete $scope.formData.courseArray; //delete because its not needed in formData anymore!
         console.log($scope.formData);
+        console.log($scope.formData.email);
+        var user_data = {
+          'email': $scope.formData.email,
+          'message': '',
+          'type': "appConfirm"
+        };
+        contactAdminFactory.emailAdmin(user_data);
         alert('Thanks for Applying!');
+        $state.go('login');
     };
     //int for $time version
     $scope.addTime = function($day,$time) {
@@ -52,4 +55,3 @@ angular.module('frontendApp')
         $scope.formData.cal[$day].sort();
     };
 });
-
