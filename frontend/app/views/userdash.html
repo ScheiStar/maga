@@ -30,18 +30,17 @@
           </ul>
         </div>
         <!-- Popup show input for Class: Grade: -->
-        
+        <button type="button" class="btn btn-primary" ng-click="open('lg')">Add/Drop Class</button>
 		<!-- Angular popover -->
-    <div> 
+    <!-- <div> 
       <button custom-popover class="btn-btn-primary" isolated-expression-foo="updateFoo(newFoo)" attribute-foo="{{foo}}" binding-foo="foo" popover-html="
       <form>
         <input type='text' name='class' ng-model='isolatedBindingFoo' placeholder='Class'>
         <input type='text' name='grade' ng-model='add.Grade' placeholder='Grade'>
         <button class='btn btn-primary'>Hello</button><strong>get:</strong> {{isolatedBindingFoo}}, {{isolatedAttributeFoo}}
       </form>" popover-placement="right" popover-label="Add Class"></button>
-    </div>
-    <input ng-model="foo">
-    <strong>get:</strong> {{isolatedBindingFoo}}
+    </div> -->
+    
     <!--<button class="btn btn-primary" id="popover">Add Class</button>
     <div id="popover-head" class="hide">Add Class:</div>
 		<div id="popover-content" class="hide">
@@ -53,9 +52,7 @@
 		  </form>
 		</div><br> -->
     <!-- This works need to replace jquery -->
-    <span ng-bind="Class"></span>
-    <span ng-bind="add.Grade"></span>
-    <button class="btn btn-primary" ng-click="addClass()">harr</button>
+    
     <!-- word -->
     <br>
         <button class="btn btn-primary" ui-sref="helpDash" >Help</button>
@@ -198,6 +195,36 @@ $('#popover2').popover({
 });
 
 </script>
+<!-- <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+<button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
+<button type="button" class="btn btn-default" ng-click="open('sm')">Small modal</button>
+<button type="button" class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>
+<div ng-show="selected">Selection from a modal: {{ selected }}</div> -->
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Add or Drop a Class</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="item in arrayText">
+                <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <form>
+          <input type="text" ng-model="myText" value="">
+          <input type="submit" id="submit" ng-click="addText()"/>
+          <button ng-click="removeItem($index)">Remove</button>
+          <pre>list={{arrayText}}</pre>
+        <form>
+    </div>
+</script>
+
+
+
+
 
   </body>
 </html>

@@ -35,7 +35,7 @@ angular.module('frontendApp')
         }
     };
   })
-  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window) {
+  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window, $uibModal, $log, $filter) {
 
   	$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
     $scope.add = {};//stores class into json
@@ -66,8 +66,88 @@ angular.module('frontendApp')
     // var userID = (userFactory.parseToken(userFactory.getToken()));
     // console.log(userID);
 
-    (!userFactory.isAuthed()) $state.go('login');
+    //(!userFactory.isAuthed()) $state.go('login');
+    //------------------------MODAL-----------------------------------------
+    $scope.items = ['CSE1342','CSE2340'];
+    $scope.animationsEnabled = true;
 
+    $scope.myText = "";//takes input
+    
+    $scope.arrayText = ['CSE1342','CSE2340'];
+
+    $scope.addText = function() {
+        $scope.arrayText.push(this.myText);
+    }
+
+    $scope.removeItem = function(index){
+      // $scope.arrayText.splice(index, 1);
+      //delete $scope.arrayText[index];
+      // console.log(i);
+      for(var i = 0; i < $scope.arrayText.length; i++) {
+        if(this.myText == $scope.arrayText[i]) {
+          console.log("Removed");
+          console.log(i);
+          console.log($scope.arrayText[i]);
+          $scope.arrayText.splice(i, 1);//doesnt work
+          //delete $scope.arrayText[i];//doesnt work
+          //return !($scope.arrayText == $scope.arrayText[i]);
+          //$scope.arrayText = $filter('filter')($scope.arrayText, {name: '!hey'})//almost worked
+          
+          break;
+        }
+        else {
+          console.log("Invalid Class");
+        }
+      }//for
+
+    }
+
+
+    $scope.open = function (size) {
+
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalContent.html',
+        controller: 'UserdashCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+
+
+    $scope.ok = function () {
+      $uibModal.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+      $uibModal.dismiss('cancel');
+    };
+
+
+
+
+
+
+
+
+
+
+
+    //------------------------------------------------------------------------
 
     $scope.addClass = function(){
       console.log("Sent classes");
