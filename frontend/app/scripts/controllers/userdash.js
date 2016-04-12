@@ -62,6 +62,10 @@ angular.module('frontendApp')
     console.log(userFactory.isAuthed());
     if(!userFactory.isAuthed()) $state.go('login');
 
+    $scope.signOut = function() {
+      userFactory.signOut();
+    }
+
     // console.log(userFactory.getCurrentUser());
     // $scope.user = userFactory.getCurrentUser();
 
