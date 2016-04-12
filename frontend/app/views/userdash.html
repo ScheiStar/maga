@@ -30,18 +30,34 @@
           </ul>
         </div>
         <!-- Popup show input for Class: Grade: -->
-        <button class="btn btn-primary" id="popover">Add Class</button>
-		<div id="popover-head" class="hide">Add Class:</div>
+        
+		<!-- Angular popover -->
+    <div> 
+      <button custom-popover class="btn-btn-primary" isolated-expression-foo="updateFoo(newFoo)" attribute-foo="{{foo}}" binding-foo="foo" popover-html="
+      <form>
+        <input type='text' name='class' ng-model='isolatedBindingFoo' placeholder='Class'>
+        <input type='text' name='grade' ng-model='add.Grade' placeholder='Grade'>
+        <button class='btn btn-primary'>Hello</button><strong>get:</strong> {{isolatedBindingFoo}}, {{isolatedAttributeFoo}}
+      </form>" popover-placement="right" popover-label="Add Class"></button>
+    </div>
+    <input ng-model="foo">
+    <strong>get:</strong> {{isolatedBindingFoo}}
+    <!--<button class="btn btn-primary" id="popover">Add Class</button>
+    <div id="popover-head" class="hide">Add Class:</div>
 		<div id="popover-content" class="hide">
 		  <form>
-		    <!-- Need to replace popver jquery with angular -->
+		    
 		    <input type="text" name="class" ng-model="Class" placeholder="Class">
 		    <input type="text" name="grade" ng-model="add.Grade" placeholder="Grade">
 		    <button class="btn btn-primary" ng-click="addClass()">Save</button>
 		  </form>
-		</div><br>
-    <span ng-bind="Class"></span><span ng-bind="add.Grade"></span>
+		</div><br> -->
+    <!-- This works need to replace jquery -->
+    <span ng-bind="Class"></span>
+    <span ng-bind="add.Grade"></span>
     <button class="btn btn-primary" ng-click="addClass()">harr</button>
+    <!-- word -->
+    <br>
         <button class="btn btn-primary" ui-sref="helpDash" >Help</button>
       </div>
       <!-- Drop -->
@@ -180,11 +196,6 @@ $('#popover2').popover({
       return $("#popover-content2").html();
     }
 });
-
-// $("input:checkbox[name=type]:checked").each(function(){
-//     yourArray.push($(this).val());
-// });
-
 
 </script>
 

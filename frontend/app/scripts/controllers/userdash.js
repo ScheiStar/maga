@@ -15,11 +15,31 @@ angular.module('frontendApp')
   .factory('UserData', function(){
     return {info: {}};
   })
+  .directive('customPopover', function () {
+    return {
+        restrict: 'A',
+        template: '<span>{{label}}</span>',
+        link: function (scope, el, attrs) {
+            scope.label = attrs.popoverLabel;
+            scope:{
+              isolatedAttributeFoo:'@attributeFoo'
+              isolatedBindingFoo:'=bindingFoo'
+              isolatedExpressionFoo:'&'
+            }
+            $(el).popover({
+                trigger: 'click',
+                html: true,
+                content: attrs.popoverHtml,
+                placement: attrs.popoverPlacement
+            });
+        }
+    };
+  })
   .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window) {
 
   	$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
     $scope.add = {};//stores class into json
-    $scope.Class = 'www';
+    
     //Used to display user information
     $scope.getUserID = {};
     $scope.user = null;
@@ -30,6 +50,12 @@ angular.module('frontendApp')
       'classID': $scope.add.Class,
       'grades': $scope.add.Grade
     };
+
+    //test
+    $scope.foo = 'Hello!';
+    $scope.updateFoo = function (newFoo) {
+        $scope.foo = newFoo;
+    }
 
     console.log("in userDash now");
     // console.log(userFactory.getCurrentUser());
