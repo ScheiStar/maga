@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('frontendApp')
   .factory('userFactory', function ($http, $window, $state) {
     var currentUser = null;
@@ -12,7 +14,6 @@ angular.module('frontendApp')
         }).then(function(data){
             userToken = data.data;
             localStorage.setItem("token", userToken);
-            console.log('uhh');
             remember = auth;
             $state.go("userDash");
             return data;
@@ -43,30 +44,30 @@ angular.module('frontendApp')
       },
 
       isAuthed: function() {
-        var token = self.getToken();
+        var token = this.getToken();
         if(token) {
-           var params = self.parseJwt(token);
-           return Math.round(new Date().getTime() / 1000) <= params.exp;
+          console.log(token);
+           var params = this.parseToken(token);
+           console.log(params);
+           //remember = true;
+           return true;
+           //return Math.round(new Date().getTime() / 1000) <= params.exp;
          } else {
            return false;
          }
       },
 
+      onExit: function() {
+        if(remember) return;
+        else {
+          localStorage.removeItem("token");
+          return;
+        }
+      },
 
       signOut: function() {
-        console.log('signing out');
-        console.log(remember);
-        if(remember) {
-          console.log('dont remove token');
-          // $window.localStorage.removeItem('jwtToken');
-          $state.go("login");
-        }
-        else {
-          console.log('remove token');
-          localStorage.removeItem("token");
-          $state.go("login");
-        }
-
+        localStorage.removeItem("token");
+        $state.go("login");
       },
 
       loginInit: function() {

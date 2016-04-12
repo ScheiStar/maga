@@ -17,17 +17,16 @@ angular.module('frontendApp')
   	//$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
 
     console.log("in userDash now");
-    // console.log(userFactory.getCurrentUser());
-    // $scope.user = userFactory.getCurrentUser();
-
-    //var userID = (userFactory.parseToken(userFactory.getToken()));
-    var userID = userFactory.getToken();
-    console.log(userFactory.parseToken(userID).userID);
-    console.log(userFactory.parseToken(userFactory.getToken()).userID)
+    if(!userFactory.isAuthed()) $state.go('login');
 
     $scope.signOut = function() {
       userFactory.signOut();
     }
+
+    $window.onbeforeunload = function(){
+      userFactory.onExit();
+    };
+    //$window.onbeforeunload =  userFactory.onExit();
 
 
   	// $scope.getHelp = function() {
