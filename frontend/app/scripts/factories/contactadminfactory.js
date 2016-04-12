@@ -56,7 +56,7 @@ angular.module('frontendApp')
       getTutors: function() {
         var userArray = new Array();
         var user = {};
-        $http({
+        return $http({
           method: 'GET',
           url: 'http://54.86.70.62/admin/getTutors'
         }).then(function(data){
@@ -69,8 +69,9 @@ angular.module('frontendApp')
             user.major = data.data[i].tutor_major;
             user.gpa = data.data[i].tutor_gpa;
             userArray.push(user);
+            user = {};
           }
-          console.log('tutor shit');
+          console.log('tutor shit inside factory');
           console.log(data);
           console.log('returning');
           console.log(userArray);

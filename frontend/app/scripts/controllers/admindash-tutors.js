@@ -13,9 +13,13 @@ angular.module('frontendApp')
     $scope.ugh = new Array();
     var user = {};
     console.log('before');
-    $scope.ugh = contactAdminFactory.getTutors();
-    console.log('tits');
-    console.log(contactAdminFactory.getTutors());
+    contactAdminFactory.getTutors().then(function(data){
+      console.log('ASDASFFAS');
+      console.log(data);
+      $scope.ugh = data;
+    });
+    //console.log('tits outside factory');
+    //console.log(contactAdminFactory.getTutors());
     //console.log('after');
     //console.log(ugh);
 

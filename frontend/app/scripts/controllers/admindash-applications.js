@@ -17,23 +17,29 @@ angular.module('frontendApp')
     // console.log('after');
     // console.log(ugh);
 
+    contactAdminFactory.getTutors().then(function(data){
+      //console.log('ASDASFFAS');
+      //console.log(data);
+      $scope.ugh = data;
+    });
 
-    user.lastName = 'Miller';
-    user.appID = '123';
-    user.firstName = 'Jayce';
-    user.major = 'Math';
-    user.appStatus = 0;
-    $scope.ugh.push(user);
 
-    user = {};
-
-    user.lastName = 'Lee';
-    user.appID = '69';
-    user.firstName = 'Matthew';
-    user.major = 'CSE';
-    user.appStatus = 1;
-    $scope.ugh.push(user);
-
-    console.log($scope.ugh);
+    // user.lastName = 'Miller';
+    // user.appID = '123';
+    // user.firstName = 'Jayce';
+    // user.major = 'Math';
+    // user.appStatus = 0;
+    // $scope.ugh.push(user);
+    //
+    // user = {};
+    //
+    // user.lastName = 'Lee';
+    // user.appID = '69';
+    // user.firstName = 'Matthew';
+    // user.major = 'CSE';
+    // user.appStatus = 1;
+    // $scope.ugh.push(user);
+    //
+    // console.log($scope.ugh);
 
   });

@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="x in ugh">
+    <tr ng-repeat="x in ugh track by $index">
       <td ng-bind="x.appID">123</td>
       <td ng-bind="x.firstName">Jayce</td>
       <td ng-bind="x.lastName">Miller</td>
