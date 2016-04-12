@@ -231,7 +231,7 @@ $app->post('/sendEmail', function (ServerRequestInterface $request, ResponseInte
   $message = "'" . $message . "'";
     
   if(!isset($email) || !isset($message) || !isset($type)){
-    $new_response = $response->withStatus(400);
+    $new_response = $response->withStatus(418);
     echo "invalid GET request";
     return $new_response;
   }
