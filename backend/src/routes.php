@@ -227,6 +227,8 @@ $app->post('/sendEmail', function (ServerRequestInterface $request, ResponseInte
   $email = $data->email;
   $message = $data->message;
   $type = $data->type;
+  
+  $message = "'" . $message . "'";
     
   if(!isset($email) || !isset($message) || !isset($type)){
     $new_response = $response->withStatus(400);
