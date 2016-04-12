@@ -113,3 +113,122 @@ echo json_encode($temp);
 
 
 });
+$app->post('/setApplicationStatus', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+
+
+	$db = $this->createDB;
+	$json = $request->getBody();
+	$data = json_decode($json);
+
+	$id = $data->id;
+	$status = $data->status;
+
+
+  if(!isset($id) ||!isset($status)){
+    $new_response = $response->withStatus(418);
+    echo("ID or status not given ");
+    return $new_response;
+  }
+  $checkForID=$db->prepare('select id from Applicants where id=:id');
+  $checkForID->bindParam(":id", $id, PDO::PARAM_INT);
+  $checkForID->execute();
+  $user=$checkForID->fetch(PDO::FETCH_OBJ);
+  if ($user){
+    $query = $db->prepare('UPDATE Applicants SET status=:status WHERE id=:id;');
+    $query->bindParam(":status", $status, PDO::PARAM_STR);
+    $query->bindParam(":id", $id, PDO::PARAM_INT);
+    $query->execute();
+    $user = $query->fetch(PDO::FETCH_OBJ);
+   $new_response=$response->withStatus(201);
+   echo "successfully updated status";
+  return $new_response;
+  }
+  else{
+    $new_response=$response->withStatus(404);
+    echo "user not found";
+    return $new_response;
+  }
+
+
+
+});
+$app->post('/addClass', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+
+
+	$db = $this->createDB;
+	$json = $request->getBody();
+	$data = json_decode($json);
+
+	$userID = $data->userID;
+	$classID = $data->classID;
+  $className=$data->className;
+  $gpa=$data->gpa;
+
+  if(!isset($userID) || !isset($classID) || !isset($gpa) || !isset($className)){
+    $new_response = $response->withStatus(418);
+    echo("userID, classID, className or gpa not given ");
+    return $new_response;
+  }
+  $checkForID=$db->prepare('select id from Tutors where id=:userID');
+  $checkForID->bindParam(":userID", $userID, PDO::PARAM_INT);
+  $checkForID->execute();
+  $user=$checkForID->fetch(PDO::FETCH_OBJ);
+  if ($user){
+    $query = $db->prepare('INSERT into TutorClasses values(:classID,:className,:gpa, :userID)');
+    $query->bindParam(":className", $className, PDO::PARAM_STR);
+    $query->bindParam(":classID", $classID, PDO::PARAM_INT);
+    $query->bindParam(":gpa", $gpa, PDO::PARAM_STR);
+    $query->bindParam(":userID", $userID, PDO::PARAM_INT);
+    $query->execute();
+    $user = $query->fetch(PDO::FETCH_OBJ);
+   $new_response=$response->withStatus(201);
+   echo "successfully created class";
+  return $new_response;
+  }
+  else{
+    echo"no tutor found";
+    $new_response=$response->withStatus(404);
+    return $new_response;
+  }
+
+
+
+});
+$app->delete('/dropClass', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+
+
+	$db = $this->createDB;
+	$json = $request->getBody();
+	$data = json_decode($json);
+
+	$userID = $data->userID;
+	$classID = $data->classID;
+
+  if(!isset($userID) || !isset($classID)){
+    $new_response = $response->withStatus(418);
+    echo("userID or classID not given ");
+    return $new_response;
+  }
+  $checkForID=$db->prepare('select id from Tutors where id=:userID');
+  $checkForID->bindParam(":userID", $userID, PDO::PARAM_INT);
+  $checkForID->execute();
+  $user=$checkForID->fetch(PDO::FETCH_OBJ);
+  if ($user){
+    $query = $db->prepare('Delete from TutorClasses where id=:classID and tutor_ID=:userID');
+    $query->bindParam(":classID", $classID, PDO::PARAM_INT);
+    $query->bindParam(":userID", $userID, PDO::PARAM_INT);
+    $query->execute(); 
+    $user = $query->fetch(PDO::FETCH_OBJ);
+   $new_response=$response->withStatus(410);
+   echo "successfully deleted class";
+  return $new_response;
+  }
+  else{
+    echo"no tutor found";
+    $new_response=$response->withStatus(404);
+    return $new_response;
+  }
+
+
+
+});
