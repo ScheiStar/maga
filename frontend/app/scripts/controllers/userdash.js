@@ -12,18 +12,184 @@
   // 	return{classes: {}};
   // })
 angular.module('frontendApp')
-  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, $window) {
+  .factory('UserData', function(){
+    return {info: {}};
+  })
+  .directive('customPopover', function () {
+    return {
+        restrict: 'A',
+        template: '<span>{{label}}</span>',
+        link: function (scope, el, attrs) {
+            scope.label = attrs.popoverLabel;
+            scope:{
+              isolatedAttributeFoo:'@attributeFoo'
+              isolatedBindingFoo:'=bindingFoo'
+              isolatedExpressionFoo:'&'
+            }
+            $(el).popover({
+                trigger: 'click',
+                html: true,
+                content: attrs.popoverHtml,
+                placement: attrs.popoverPlacement
+            });
+        }
+    };
+  })
+  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window, $uibModal, $log, $filter) {
 
-  	//$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
+  	$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
+    $scope.add = {};//stores class into json
+
+    //Used to display user information
+    $scope.getUserID = {};
+    $scope.user = null;
+    //$scope.add.Class = 10;<-- works
+  	// //Store class input -- json
+    var classData = {
+      'userID': userFactory.getToken(),
+      'classID': $scope.add.Class,
+      'grades': $scope.add.Grade
+    };
+
+    //test
+    $scope.foo = 'Hello!';
+    $scope.updateFoo = function (newFoo) {
+        $scope.foo = newFoo;
+    }
 
     console.log("in userDash now");
     console.log('authed?');
     console.log(userFactory.isAuthed());
     if(!userFactory.isAuthed()) $state.go('login');
 
-    $scope.signOut = function() {
-      userFactory.signOut();
+    // console.log(userFactory.getCurrentUser());
+    // $scope.user = userFactory.getCurrentUser();
+
+    // userFactory.saveToken()
+    // var userID = (userFactory.parseToken(userFactory.getToken()));
+    // console.log(userID);
+
+    //(!userFactory.isAuthed()) $state.go('login');
+    //------------------------MODAL-----------------------------------------
+    $scope.items = ['CSE1342','CSE2340'];
+    $scope.animationsEnabled = true;
+
+    $scope.myText = "";//takes input
+
+    $scope.arrayText = ['CSE1342','CSE2340'];
+
+    $scope.addText = function() {
+        $scope.arrayText.push(this.myText);
     }
+
+    $scope.removeItem = function(index){
+      // $scope.arrayText.splice(index, 1);
+      //delete $scope.arrayText[index];
+      // console.log(i);
+      for(var i = 0; i < $scope.arrayText.length; i++) {
+        if(this.myText == $scope.arrayText[i]) {
+          console.log("Removed");
+          console.log(i);
+          console.log($scope.arrayText[i]);
+          $scope.arrayText.splice(i, 1);//doesnt work
+          //delete $scope.arrayText[i];//doesnt work
+          //return !($scope.arrayText == $scope.arrayText[i]);
+          //$scope.arrayText = $filter('filter')($scope.arrayText, {name: '!hey'})//almost worked
+
+          break;
+        }
+        else {
+          console.log("Invalid Class");
+        }
+      }//for
+
+    }
+
+
+    $scope.open = function (size) {
+
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalContent.html',
+        controller: 'UserdashCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+
+
+    $scope.ok = function () {
+      $uibModal.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+      $uibModal.dismiss('cancel');
+    };
+
+
+
+
+
+
+
+
+
+
+
+    //------------------------------------------------------------------------
+
+    $scope.addClass = function(){
+      console.log("Sent classes");
+
+      // $http({
+      //   method: 'POST',
+      //   url: 'http://54.86.70.62/admin/addClass/',
+      //   data: classData
+      // });
+    }
+
+    $http({
+      method: 'GET',
+      url: 'http://54.86.70.62/admin/getTutors'
+      //params: {'userID': userID}
+    }).then(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+        // factory version
+        // UserData.info = response.data;
+        // console.log(UserData.info[1]);
+        // console.log('success');
+
+        $scope.getUserID = response;
+        console.log($scope.getUserID.data[1]);
+        //switch this to ng-model for mini ddos program lol
+        //Use subtraction for instant number
+        for(var i = 0; i < $scope.getUserID.data.length; i++) {
+            console.log(i);//userID
+            if("11380723" == $scope.getUserID.data[i].tutor_id) {
+              console.log("tits");
+              $scope.user = $scope.getUserID.data[i].tutor_first_name;
+              break;
+            }
+        }
+
+      }, function errorCallback(response) {
+        console.log('fail');
+      });
 
     $window.onbeforeunload = function(){
       alert('shit');
@@ -35,37 +201,17 @@ angular.module('frontendApp')
     });
     //$window.onbeforeunload =  userFactory.onExit();
 
-
-  	// $scope.getHelp = function() {
-  	// 	$state.go("helpdash");
-  	// 	console.log('helpdash');
-  	// }
+    $scope.getUser = function() {
 
 
-  //   $scope.classesData = function(){
-  	//$http.get('http://54.86.70.62/admin/getTutor/?format=json').success(function(data) {
-        //$scope.classes = data;
-        // for (var i=0; i < $scope.classes.results.length; i++)
-        // {
-        //     if ($scope.classes.results.status == 0)
-        //     {
-        //         tobedone++;
-        //     }
-        // }
-  //  });
+    //Interesting: $http request is always last
+    console.log("i");
+    // console.log(UserData.info[2]);
+    // console.log($scope.getUserTest.data);
 
-  //   	$http({
-		//   method: 'GET',
-		//   url: 'http://54.86.70.62/admin/getTutor'
-		//   params: {abv: userFactory.getCurrentUser().abv}
-		// }).then(function successCallback(response) {
-		//     // this callback will be called asynchronously
-		//     // when the response is available
-		//     //classesData.classes = response.data.classes;
-		//     console.log('success');
-		//   }, function errorCallback(response) {
-		//     console.log('fail');
-		//   });
 
-    //});
+    }
+
+
+
   });
