@@ -221,11 +221,12 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
    return $response;
 });
 
-$app->get('/sendEmail', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
-  $args = $request->getQueryParams();
-  $email = $args['email'];
-  $message = $args['message'];
-  $type = $args['type'];
+$app->post('/sendEmail', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+  $json = $request->getBody();
+  $data = json_decode($json);
+  $email = $data->email;
+  $message = $data->message;
+  $type = $data->type;
     
   if(!isset($email) || !isset($message) || !isset($type)){
     $new_response = $response->withStatus(400);
