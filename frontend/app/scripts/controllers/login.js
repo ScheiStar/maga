@@ -9,17 +9,9 @@
  */
 angular.module('frontendApp')
   .controller('LoginCtrl', function ($state, $scope, $http, userFactory, $window) {
-    console.log(userFactory.getToken());
-
-    // angular.element(document).ready(function () {
-    //     document.getElementById('inputEmail').value = 'Hello';
-    // });
-
-    if(userFactory.loginInit()) {
-      //TODO: Autopopulate userID textbox with parsed token value
-      console.log(String(userFactory.loginInit()));
-      //$scope.user.userID = String(userFactory.loginInit());
-    }
+    $scope.user = {};
+    console.log(userFactory.isAuthed());
+    if(userFactory.isAuthed()) $state.go('userDash');
 
 
     $scope.signIn = function(user) {

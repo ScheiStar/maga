@@ -1,0 +1,64 @@
+
+<div class="col-sm-7">
+    <div class="form-group row">
+        <label for="fName" class="col-sm-3 form-control-label">First Name</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="fName" placeholder="First Name" ng-model="formData.fName" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="lName" class="col-sm-3 form-control-label">Last Name</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="lName" placeholder="Last Name" ng-model="formData.lName" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="pass" class="col-sm-3 form-control-label">Password</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="pass" placeholder="Password" ng-model="formData.pass" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="confPass" class="col-sm-3 form-control-label">Confirm Password</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="confPass" placeholder="Confirm Password" ng-model="formData.confPass" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="id" class="col-sm-3 form-control-label">SMU ID</label>
+        <div class="col-sm-9">
+            <input type="number" class="form-control" id="id" placeholder="SMU ID" ng-model="formData.id" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="email" class="col-sm-3 form-control-label">Email</label>
+        <div class="col-sm-9">
+            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="formData.email" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="major" class="col-sm-3 form-control-label">Major</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="major" placeholder="Major" ng-model="formData.major" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="gpa" class="col-sm-3 form-control-label">GPA</label>
+        <div class="col-sm-9">
+            <input type="number" class="form-control" id="gpa" placeholder="GPA" ng-model="formData.gpa" required>
+        </div>
+    </div>
+    <fieldset class="form-group">
+        <label for="exampleInputFile">Upload DPR or Transcript</label>
+        <input type="file" class="form-control-file" id="inputFile">
+        <small class="text-muted">Upload your DPR or transcript for grade verification.</small>
+    </fieldset>    
+</div>
+
+<div class="form-group row">
+<div class="col-xs-6 col-xs-offset-3">
+    <a ui-sref="form.interests" class="btn btn-block btn-info">
+    Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>
+</div>

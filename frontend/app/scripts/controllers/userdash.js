@@ -58,12 +58,16 @@ angular.module('frontendApp')
     }
 
     console.log("in userDash now");
+
     // console.log(userFactory.getCurrentUser());
     // $scope.user = userFactory.getCurrentUser();
 
     // userFactory.saveToken()
     // var userID = (userFactory.parseToken(userFactory.getToken()));
     // console.log(userID);
+
+    (!userFactory.isAuthed()) $state.go('login');
+
 
     $scope.addClass = function(){
       console.log("Sent classes");
@@ -103,6 +107,11 @@ angular.module('frontendApp')
       }, function errorCallback(response) {
         console.log('fail');
       });
+
+    $window.onbeforeunload = function(){
+      userFactory.onExit();
+    };
+    //$window.onbeforeunload =  userFactory.onExit();
 
     $scope.getUser = function() {
       
