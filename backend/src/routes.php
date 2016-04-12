@@ -309,3 +309,61 @@ $app->delete('/dropClass', function (ServerRequestInterface $request, ResponseIn
     return $new_response;
   }
 });
+
+$app->post('/setApplicationStatus',function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+
+  $data = $request->getBody();
+  $id = $data->userID;
+  $status = $data->status;
+
+  if(!isset($id) || !isset($status)){
+    $new_response = $response->withStatus(400);
+    echo("Please provide a user ID and/or a status");
+    return $new_response;
+  }
+
+  $db = $this->createDB;
+
+  if($status == "0"){
+    $query = $db->prepare("UPDATE Applicants SET application_status='0'
+      WHERE applicant_id = :id");
+    $query->bindParam(':id', $id, PDO::PARAM_INT);
+    $query->execute();
+    return $response;
+  }else{
+    $query1 = $db->prepare("INSERT INTO Tutors (tutor_id, tutor_first_name, tutor_last_name,
+      tutor_email, tutor_phone, tutor_gpa, tutor_major) SELECT applicant_id, applicant_first_name,
+      applicant_last_name, applicant_email, applicant_gpa, applicant_major
+      FROM Applicants
+      WHERE applicant_id = :id");
+    $query1->bindParam(':id', $id, PDO::PARAM_INT);
+    $query1->execute();
+
+    $query2 = $db->prepare("INSERT INTO Users (user_id, hash)
+      SELECT applicant_id, applicant_hash
+      FROM Applicants
+      WHERE applicant_id = :id");
+    $query2->bindParam(':id', $id, PDO::PARAM_INT);
+    $query2->execute();
+
+    $query3 = $db->prepare("INSERT INTO TutorClasses
+      SELECT * FROM ApplicantClasses
+      WHERE applicant_id = :id");
+    $query3->bindParam(':id', $id, PDO::PARAM_INT);
+    $query3->execute();
+
+    $query4 = $db->prepare("INSERT INTO Timeslots
+      SELECT * FROM ApplicantTimeslots
+      WHERE applicant_id = :id");
+    $query4->bindParam(':id', $id, PDO::PARAM_INT);
+    $query4->execute();
+
+    $query5 = $db->prepare("DELETE FROM Applicants WHERE applicant_id = :id");
+    $query5->bindParam(':id', $id, PDO::PARAM_INT);
+    $query5->execute();
+    
+    return $response;
+  }
+
+
+});
