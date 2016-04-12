@@ -15,9 +15,9 @@ angular.module('frontendApp')
         console.log("in admin factory");
         console.log(user_data);
             $http({
-              method: 'GET',
-              url: 'http://54.86.70.62/sendEmail?email=' + user_data.email + '&message=' + user_data.message + '&type=' + user_data.type
-              //params: 'user_data'
+              method: 'POST',
+              url: 'http://54.86.70.62/sendEmail',
+              data: 'user_data'
             }).then(function(data){
               console.log("Email Sent!");
               return true;

@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('frontendApp')
   .factory('userFactory', function ($http, $window, $state) {
     var currentUser = null;

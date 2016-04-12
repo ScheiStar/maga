@@ -7,7 +7,6 @@ angular.module('frontendApp').controller('ContactAdminModalInstanceCtrl', functi
         'email': 'jaycem@smu.edu',
         'message': user.message,
         'type': 'contactAdminConfirm'
-        //'userID': userFactory.parseToken(userFactory.getToken()).userID
       };
 
       var user_data_admin = {
