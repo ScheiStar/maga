@@ -17,7 +17,7 @@ angular.module('frontendApp')
             $http({
               method: 'POST',
               url: 'http://54.86.70.62/sendEmail',
-              data: 'user_data'
+              data: user_data
             }).then(function(data){
               console.log("Email Sent!");
               return true;
