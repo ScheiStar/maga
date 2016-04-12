@@ -10,7 +10,6 @@
 angular.module('frontendApp')
 
 .controller('formController', function($scope) {
-    console.log("In formController");
       this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -19,38 +18,25 @@ angular.module('frontendApp')
     // we will store all of our form data in this object
     $scope.formData = {};
     $scope.formData.cal = {};
+    $scope.formData.courseDictArray = [];
+    var courseDict = {};
+    
     // function to process the form
-    $scope.processForm = function() {
-        //!!!!!!!!!!!!!!!!! Need to convert the times arrays all to strings here so that ehy can be post to the data base!!!!!!!!!!!!!!!!!!!!!
-        alert('Thanks for Applying!');  
+    $scope.processForm = function() { 
+        //processes the calendar into strings
+        for (var day in $scope.formData.cal){
+             $scope.formData.cal[day] = $scope.formData.cal[day].toString();
+        }
+        //processes the input courses into array of dictionaries where 'courseNum':"CSE2341",'grade':"A"
+        for(var i = 0; i < (Object.keys($scope.formData.courseArray).length); i++){
+            console.log("Course Array: ", $scope.formData.courseArray);
+            $scope.formData.courseDictArray.push({'courseNum':$scope.formData.courseArray[i], 'grade':$scope.formData.courseArray[i+1]});
+            i++;
+        } 
+        delete $scope.formData.courseArray; //delete because its not needed in formData anymore!
+        console.log($scope.formData);
+        alert('Thanks for Applying!');
     };
-//    $scope.apply = function() {
-//        console.log("apply")
-//      $state.go("main.html");
-//    };
-    $scope.createCourseArray = function() {
-        
-    };
-        //str for $time version
-//    $scope.addTime = function($day,$time) {
-//        if (angular.isDefined($scope.formData.cal[$day])){
-// //           console.log($day, "In dictionary");
-//            if($scope.formData.cal[$day].indexOf($time) !== -1){
-//                console.log("Time in string, removing");
-//                $scope.formData.cal[$day] = $scope.formData.cal[$day].replace($time, '');
-//            }
-//            else
-//                $scope.formData.cal[$day] = $scope.formData.cal[$day] + ' ' + $time;
-//        }
-//        else{
-//  //          console.log($day, "Not in Dict, adding now");
-//            $scope.formData.cal[$day] = $time;
-//        }
-//        console.log($scope.formData.cal);
-//        console.log('Sorted?' + $scope.formData.cal[$day].sort());
-//        
-//        
-//    };
     //int for $time version
     $scope.addTime = function($day,$time) {
         if (angular.isDefined($scope.formData.cal[$day])){
@@ -64,7 +50,6 @@ angular.module('frontendApp')
             $scope.formData.cal[$day].push($time);
         }
         $scope.formData.cal[$day].sort();
-        console.log($scope.formData.cal);
     };
 });
 
