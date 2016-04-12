@@ -17,11 +17,12 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
+    'ui.bootstrap',
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
-
     $stateProvider
+
       .state('state1', {
         url: '/',
         templateUrl: 'views/main.html',
@@ -40,12 +41,36 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .state('applicationForm', {
-        url: '/applicationForm',
-        templateUrl: 'views/applicationform.html',
-        controller: 'ApplicationformCtrl',
-        controllerAs: 'applicationForm'
+//      .state('applicationForm', {
+//        url: '/applicationForm',
+//        templateUrl: 'views/applicationForm/form.html',
+//        controller: 'formController',
+//        controllerAs: 'applicationForm'
+//      })
+      // route to show our basic form (/form)
+      .state('form', {
+          url: '/form',
+          templateUrl: 'views/applicationForm/form.html',
+          controller: 'formController'
       })
+      // nested states
+      // each of these sections will have their own view
+      // url will be nested (/form/profile)
+      .state('form.profile', {
+          url: '/profile',
+          templateUrl: 'views/applicationForm/form-profile.html'
+      })
+      // url will be /form/interests
+      .state('form.interests', {
+          url: '/interests',
+          templateUrl: 'views/applicationForm/form-interests.html'
+      })
+      // url will be /form/payment
+      .state('form.payment', {
+          url: '/payment',
+          templateUrl: 'views/applicationForm/form-payment.html'
+      })
+
       .state('userDash', {
         url: '/userDash',
         templateUrl: 'views/userdash.html',
@@ -58,17 +83,10 @@ angular
         controller: 'AdmindashCtrl',
         controllerAs: 'adminDash'
       })
-      .state('contactAdmin', {
-        url: '/contactAdmin',
-        templateUrl: 'views/contactadmin.html',
-        controller: 'ContactadminCtrl',
-        controllerAs: 'contactAdmin'
-      })
       .state('helpDash', {
         url: '/helpDash',
         templateUrl: 'views/helpdash.html',
         controller: 'HelpdashCtrl',
         controllerAs: 'helpDash'
       })
-
-  });
+    });
