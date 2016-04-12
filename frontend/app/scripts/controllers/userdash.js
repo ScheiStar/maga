@@ -17,7 +17,7 @@ angular.module('frontendApp')
   	//$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
 
     console.log("in userDash now");
-    if(!userFactory.isAuthed()) $state.go('login');
+    (!userFactory.isAuthed()) $state.go('login');
 
     $scope.signOut = function() {
       userFactory.signOut();
