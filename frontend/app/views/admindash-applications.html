@@ -1,30 +1,22 @@
-<html>
-	<head>
-		<title>Login</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="styles/admindash.css">
-	</head>
-	<body>
-		<div id="profile">
-			<img src="../images/logo.png" alt="Maga" height="100" width="100">
-			<p>Welcome {{user}}</p>
-		</div>
-		<div class="col-xs-12 col-md-3">
-			<div id="history" class="panel panel-default">
-				<h4>History</h4>
-			</div>
-			<div id="tutors" class="panel panel-default">
-				<h4>Tutors</h4>
-			</div>
-			<div id="schedule" class="panel panel-default">
-				<h4>Schedule</h4>
-			</div>
-			<div id="applications" class="panel panel-default">
-				<h4>Applications</h4>
-			</div>
-		</div>
-
-	
-	</body>
-</html>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Major</th>
+      <th>Status</th>
+      <th>View</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in ugh">
+      <td ng-bind="x.appID">123</td>
+      <td ng-bind="x.firstName">Jayce</td>
+      <td ng-bind="x.lastName">Miller</td>
+      <td ng-bind="x.major">Math</td>
+      <td ng-bind="x.appStatus">Pending</td>
+      <td>View</td>
+    </tr>
+  </tbody>
+</table>

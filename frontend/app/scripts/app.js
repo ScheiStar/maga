@@ -41,12 +41,6 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-//      .state('applicationForm', {
-//        url: '/applicationForm',
-//        templateUrl: 'views/applicationForm/form.html',
-//        controller: 'formController',
-//        controllerAs: 'applicationForm'
-//      })
       // route to show our basic form (/form)
       .state('form', {
           url: '/form',
@@ -77,16 +71,25 @@ angular
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
-      .state('adminDash', {
-        url: '/adminDash',
-        templateUrl: 'views/admindash.html',
-        controller: 'AdmindashCtrl',
-        controllerAs: 'adminDash'
-      })
       .state('helpDash', {
         url: '/helpDash',
         templateUrl: 'views/helpdash.html',
         controller: 'HelpdashCtrl',
         controllerAs: 'helpDash'
+      })
+      .state('adminDash', {
+        templateUrl: 'views/admindash.html',
+        controller: 'AdmindashCtrl',
+        controllerAs: 'adminDash'
+      })
+      .state('admindash-applications', {
+        templateUrl: 'views/admindash-applications.html',
+        controller: 'AdmindashApplicationsCtrl',
+        controllerAs: 'admindashApplications'
+      })
+      .state('admindash-tutors', {
+        templateUrl: 'views/admindash-tutors.html',
+        controller: 'AdmindashTutorsCtrl',
+        controllerAs: 'admindashTutors'
       })
     });
