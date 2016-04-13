@@ -150,7 +150,7 @@ $app->get('/admin/getTutors/{id}',function($request,$response,$args){
         }
 
         $db = $this->createDB;
-         $result=$db->query('select * from Tutors where id='.$id);
+         $result=$db->query('select * from Tutors where tutor_id='.$id);
          $user=$result->fetch(PDO::FETCH_OBJ);
          if ($user){
            echo json_encode($user);
