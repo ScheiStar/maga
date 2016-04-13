@@ -138,28 +138,7 @@ $app->get('/admin/getTutors',function($request,$response,$args){
 echo json_encode($temp);
 // In case any of o
 });
-$app->get('/admin/getTutors/{id}',function($request,$response,$args){
-  //$query = mysql_query("SELECT * FROM Tutors");
-        $id=$args['id'];
-        if(!isset($id))
-        {
-          $new_response=$response->withStatus(400);
-          echo "please provide a user id";
-          return $new_response;
-        }
-        $db = $this->createDB;
-         $result=$db->query('select * from Tutors where id='.$id);
-         $user=$result->fetch(PDO::FETCH_OBJ);
-         if ($user){
-           echo json_encode($user);
-           return $response;
-         }
-         else{
-           $new_response=$response->withStatus(204);
-           echo "user not found";
-           return $new_response;
-         }
-});
+
 $app->get('/admin/getTutors/{id}',function($request,$response,$args){
 //$query = mysql_query("SELECT * FROM Tutor");
 $id=$args['id'];
