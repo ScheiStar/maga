@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../styles/userDash.css">
+	</head>
+	<body ng-app="frontendApp" ng-controller="UserdashCtrl">
+		<nav class="navbar navbar-default navbar-static-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="userdash-home.html">Matthew Lee</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse">
+		      <ul class="nav navbar-nav">
+		        <li><a href="userdash-home.html">Home<span class="sr-only">(current)</span></a></li>
+		        <li  class="active"><a href="userdash-classes.html">Add/Drop Class</a></li>
+		        <li><a href="#">Contact Admin</a></li>
+		        <li><a href="#">Quit Tutor</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+			      <li><button type="button" class="btn btn-default navbar-btn">Sign Out</button></li>
+			  </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+		<div class="col-xs-12 col-md-4">
+        <p>Current Classes:</p>
+          <ul>
+            <div class="panel panel-default">
+            	<div id="show-classes" class="panel panel-heading" ng-repeat="item in classArr.classInfo">{{item}}</div>
+        	</div>
+          </ul>
+          <p>Pending Classes:</p>
+          <ul>
+          	<div class="panel panel-warning">
+            	<div id="show-classes" class="panel panel-heading" ng-repeat="item in classArr.classInfo">{{item}}</div>
+        	</div>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-md-4">
+        	<h1>Add Class</h1>
+        	<button type="button" class="btn btn-primary" ng-click="open('lg')">Add Class</button>
+        </div>
+        <div class="col-xs-12 col-md-4">
+        	<h1>Drop Class</h1>
+        	<button type="button" class="btn btn-primary" ng-click="open('lg')">Drop Class</button>
+        </div>
+
+
+
+     	<script type="text/ng-template" id="myModalContent.html">
+		    <div class="modal-header">
+		        <h3 class="modal-title">Add or Drop a Class</h3>
+		    </div>
+		    <div class="modal-body">
+		    </div>
+
+		    <div class="modal-footer">
+			    <form>
+			        <div class="col-xs-12 col-md-4">
+			          	<h4>Class Type</h4> 
+			          	<input list="classType">
+					  	<datalist id="classType">
+					    <option value="ADV">
+					    <option value="ANTH">
+					    <option value="CSE">
+					    <option value="EMIS">
+					    <option value="BUSI">
+					  </datalist>
+					</div>
+				    <div class="col-xs-12 col-md-4">
+				  	  	<h4>Class Number</h4>
+			            <input type="text" ng-model="myText" value="">
+		            </div>
+		            <div class="col-xs-12 col-md-4">
+			          	<h4>Grade Earned</h4> 
+			          	<input list="gradeClass">
+					  	<datalist id="gradeClass">
+					    <option value="A">
+					    <option value="A-">
+					    <option value="B">
+					    <option value="B-">
+					    <option value="C">
+					    <option value="C-">
+					    <option value="D">
+					    <option value="D-">
+					    <option value="F">
+					  </datalist>
+					  <br>
+					  <br>
+					  <input class="btn btn-primary" type="submit" id="submit" ng-click="addText()"/>
+					</div>
+			    <form>
+		    </div>
+		</script>
+
+	</body>
+</html>

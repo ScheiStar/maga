@@ -37,7 +37,7 @@ angular.module('frontendApp')
   })
   .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window, $uibModal, $log, $filter) {
 
-  	$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
+  	
     $scope.add = {};//stores class into json
     
     //Used to display user information
@@ -68,7 +68,12 @@ angular.module('frontendApp')
 
     //(!userFactory.isAuthed()) $state.go('login');
     //------------------------MODAL-----------------------------------------
-    $scope.items = ['CSE1342','CSE2340'];
+    $scope.classArr = { 
+      classType: ['CSE','CSE'],
+      classNumber: ['1342','2340'],
+      classGrade: ['A','B+']
+    };
+
     $scope.animationsEnabled = true;
 
     $scope.myText = "";//takes input
@@ -136,16 +141,6 @@ angular.module('frontendApp')
     $scope.cancel = function () {
       $uibModal.dismiss('cancel');
     };
-
-
-
-
-
-
-
-
-
-
 
     //------------------------------------------------------------------------
 
