@@ -150,7 +150,7 @@ return $new_response;
 }
 
 $db = $this->createDB;
-$result=$db->query('select * from Tutor where id='.$id);
+$result=$db->query('select * from Tutors where id='.$id);
 $user=$result->fetch(PDO::FETCH_OBJ);
 if ($user){
 echo json_encode($user);
