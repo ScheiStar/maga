@@ -160,7 +160,7 @@ $app->get('/admin/getTutors/{id}',function($request,$response,$args){
            return $new_response;
          }
 });
-app->get('/admin/getTutors/{id}',function($request,$response,$args){
+$app->get('/admin/getTutors/{id}',function($request,$response,$args){
 //$query = mysql_query("SELECT * FROM Tutor");
 $id=$args['id'];
 if(!isset($id))
@@ -288,6 +288,7 @@ $app->post('/addClass', function (ServerRequestInterface $request, ResponseInter
     return $new_response;
   }
 });
+
 $app->delete('/dropClass', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
 	$db = $this->createDB;
 	$json = $request->getBody();
