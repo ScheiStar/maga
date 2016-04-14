@@ -75,18 +75,24 @@ angular.module('frontendApp')
     };
 
     $scope.animationsEnabled = true;
-
-    $scope.myText = "";//takes input
+    $scope.myClassType = "";
+    $scope.myClassGrade = "";
+    $scope.myText = "";//takes input for adding class number
     
     $scope.arrayText = ['CSE1342','CSE2340'];
 
     $scope.addText = function() {
         $scope.arrayText.push(this.myText);
     }
-
+    $scope.addClassInfo = function() {
+        $scope.classArr.classType.push(this.myClassType);
+        $scope.classArr.classNumber.push(this.myText);
+        $scope.classArr.classGrade.push(this.myClassGrade);
+    }
+    //Need to improve efficiency of this.
     $scope.removeItem = function(index){
       // $scope.arrayText.splice(index, 1);
-      //delete $scope.arrayText[index];
+      // delete $scope.arrayText[index];
       // console.log(i);
       for(var i = 0; i < $scope.arrayText.length; i++) {
         if(this.myText == $scope.arrayText[i]) {
@@ -95,21 +101,16 @@ angular.module('frontendApp')
           console.log($scope.arrayText[i]);
           $scope.arrayText.splice(i, 1);//doesnt work
           //delete $scope.arrayText[i];//doesnt work
-          //return !($scope.arrayText == $scope.arrayText[i]);
-          //$scope.arrayText = $filter('filter')($scope.arrayText, {name: '!hey'})//almost worked
-          
           break;
         }
         else {
           console.log("Invalid Class");
         }
-      }//for
-
+      }
     }
 
 
     $scope.open = function (size) {
-
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'myModalContent.html',
@@ -129,6 +130,28 @@ angular.module('frontendApp')
       });
     };
 
+    $scope.openDrop = function (size) {
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'dropClassModal.html',
+        controller: 'UserdashCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      
+    };
+
+
     $scope.toggleAnimation = function () {
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
@@ -141,6 +164,14 @@ angular.module('frontendApp')
     $scope.cancel = function () {
       $uibModal.dismiss('cancel');
     };
+
+    $scope.displayTable = function() {
+      $scope.column1 = "";
+      $scope.column2 = "";
+      $scope.column3 = "";
+      $scope.classArr.push({'classType': $scope.column1, 'classNumber': $scope.column2})
+    };
+
 
     //------------------------------------------------------------------------
 

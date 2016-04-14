@@ -77,9 +77,9 @@ angular
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
-      // .state('userDash.classes', {
+      // .state('userDash.home', {
       //   url: '/userDashClass',
-      //   templateUrl: 'views/userDash/userdash-classes.html',
+      //   templateUrl: 'views/userDash/userdash-home.html',
       //   controller: 'UserdashCtrl',
       //   controllerAs: 'userDash'
       // })

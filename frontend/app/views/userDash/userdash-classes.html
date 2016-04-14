@@ -35,13 +35,13 @@
         <p>Current Classes:</p>
           <ul>
             <div class="panel panel-default">
-            	<div id="show-classes" class="panel panel-heading" ng-repeat="item in classArr.classInfo">{{item}}</div>
+            	<div id="show-classes" class="panel panel-heading" ng-repeat="item in arrayText">{{item}}</div>
         	</div>
           </ul>
           <p>Pending Classes:</p>
           <ul>
           	<div class="panel panel-warning">
-            	<div id="show-classes" class="panel panel-heading" ng-repeat="item in classArr.classInfo">{{item}}</div>
+            	<div id="show-classes" class="panel panel-heading" ng-repeat="item in classArr">{{item}}</div>
         	</div>
           </ul>
         </div>
@@ -51,14 +51,12 @@
         </div>
         <div class="col-xs-12 col-md-4">
         	<h1>Drop Class</h1>
-        	<button type="button" class="btn btn-primary" ng-click="open('lg')">Drop Class</button>
+        	<button type="button" class="btn btn-primary" ng-click="openDrop('lg')">Drop Class</button>
         </div>
-
-
 
      	<script type="text/ng-template" id="myModalContent.html">
 		    <div class="modal-header">
-		        <h3 class="modal-title">Add or Drop a Class</h3>
+		        <h3 class="modal-title">Add Class</h3>
 		    </div>
 		    <div class="modal-body">
 		    </div>
@@ -67,14 +65,14 @@
 			    <form>
 			        <div class="col-xs-12 col-md-4">
 			          	<h4>Class Type</h4> 
-			          	<input list="classType">
-					  	<datalist id="classType">
-					    <option value="ADV">
-					    <option value="ANTH">
-					    <option value="CSE">
-					    <option value="EMIS">
-					    <option value="BUSI">
-					  </datalist>
+			          	<input list="classType" ng-model="myClassType">
+					  	<datalist id="classType" >
+						    <option value="ADV">
+						    <option value="ANTH">
+						    <option value="CSE">
+						    <option value="EMIS">
+						    <option value="BUSI">
+					  	</datalist>
 					</div>
 				    <div class="col-xs-12 col-md-4">
 				  	  	<h4>Class Number</h4>
@@ -82,25 +80,71 @@
 		            </div>
 		            <div class="col-xs-12 col-md-4">
 			          	<h4>Grade Earned</h4> 
-			          	<input list="gradeClass">
-					  	<datalist id="gradeClass">
-					    <option value="A">
-					    <option value="A-">
-					    <option value="B">
-					    <option value="B-">
-					    <option value="C">
-					    <option value="C-">
-					    <option value="D">
-					    <option value="D-">
-					    <option value="F">
-					  </datalist>
+			          	<input list="classGrade" ng-model="myClassGrade">
+					  	<datalist id="classGrade">
+						    <option value="A">
+						    <option value="A-">
+						    <option value="B">
+						    <option value="B-">
+						    <option value="C">
+						    <option value="C-">
+						    <option value="D">
+						    <option value="D-">
+						    <option value="F">
+					  	</datalist>
 					  <br>
 					  <br>
-					  <input class="btn btn-primary" type="submit" id="submit" ng-click="addText()"/>
+					  <input class="btn btn-primary" type="submit" id="submit" ng-click="addClassInfo()"/>
 					</div>
 			    <form>
+			    <pre>list={{classArr.classType}}</pre>
+			    <pre>list={{classArr.classNumber}}</pre>
+			    <pre>list={{classArr.classGrade}}</pre>
 		    </div>
 		</script>
+		<script type="text/ng-template" id="dropClassModal.html">
+		    <div class="modal-header">
+		        <h3 class="modal-title">Add Class</h3>
+		    </div>
+		    <div class="modal-body">
+		    </div>
 
+		    <div class="modal-footer">
+		    	<table class="table">
+		    		<thead>
+		    			<tr>
+		    				<th>Class Type</th>
+		    				<th>Class Number</th>
+		    				<th>Drop</th>
+		    			</tr>
+		    		</thead>
+		    		<tbody>
+		    			<tr ng-repeat="data in classArr">
+		    				<td>{{data.column1}}</td>
+		    				<td>{{data.column2}}</td>
+		    				
+		    			</tr>
+		    			
+		    		</tbody>
+		    	</table>
+		    	<div ng-repeat="item in classArr">
+		    		display: {{classArr.classType}}
+		    	</div>
+
+			    <pre>list={{classArr.classType}}</pre>
+			    <pre>list={{classArr.classNumber}}</pre>
+			    <pre>list={{classArr.classGrade}}</pre>
+		    </div>
+		</script>
+<!-- <tr>
+		    				<td>classType</td>
+		    				<td>classNumber</td>
+		    				<td>Drop</td>
+		    			</tr>
+		    			<tr>
+		    				<td>classType</td>
+		    				<td>classNumber</td>
+		    				<td>Drop</td>
+		    			</tr> -->
 	</body>
 </html>
