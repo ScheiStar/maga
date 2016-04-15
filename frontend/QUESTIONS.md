@@ -9,3 +9,5 @@
 - How can the buttons in the calendar stay activated once pressed? (Caleb)
 - How can one make a POST request? (Caleb)
 - How can I resolve some of the stylistic errors? (Caleb)
+- Add Course name drop down "CSE, BIOL, HIST" etc, then user enters in the actual number (Caleb)
+- Make grade a dropdown "A, A-, B+, B" (Caleb)
