@@ -41,7 +41,7 @@
           <p>Pending Classes:</p>
           <ul>
           	<div class="panel panel-warning">
-            	<div id="show-classes" class="panel panel-heading" ng-repeat="item in classArr">{{item}}</div>
+            	<div id="show-classes" class="panel panel-heading" ng-repeat="item in arrayText">{{item}}</div>
         	</div>
           </ul>
         </div>
@@ -67,11 +67,14 @@
 			          	<h4>Class Type</h4> 
 			          	<input list="classType" ng-model="myClassType">
 					  	<datalist id="classType" >
-						    <option value="ADV">
-						    <option value="ANTH">
-						    <option value="CSE">
-						    <option value="EMIS">
-						    <option value="BUSI">
+					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH"><option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM"><option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
+						    <option value="BA"><option value="BAEX"><option value="BB"><option value="BHSC"><option value="BIOL"><option value="BL"><option value="BLI"><option value="BSSN"><option value="BUSE">
+						    <option value="CA"><option value="CEE"><option value="CELL"><option value="CF"><option value="CFA"><option value="CFB"><option value="CHEM"><option value="CHIN"><option value="CISB"><option value="CLAR"><option value="CLAS"><option value="CM"><option value="COMM"><option value="CRCP"><option value="CSE">
+						    <option value="DANC"><option value="DBBS"><option value="DISC"><option value="DM"><option value="DNSH"><option value="DSIN">
+						    <option value="ECO"><option value="EDU"><option value="EE"><option value="EETS"><option value="EMIS"><option value="ENGL"><option value="ENGR"><option value="ENSC"><option value="ENST"><option value="ECO"><option value="EPL"><option value="ESL"><option value="ETST"><option value="EUPH"><option value="EV">
+						    <option value="FILM"><option value="FINA"><option value="FLUT"><option value="FNAR"><option value="FREN"><option value="FRHN">
+						    <option value="GEOL"><option value="GERM"><option value="GR"><option value="GUIT">
+						    <option value="HARP"><option value="HARS"><option value="HB">
 					  	</datalist>
 					</div>
 				    <div class="col-xs-12 col-md-4">
@@ -82,14 +85,10 @@
 			          	<h4>Grade Earned</h4> 
 			          	<input list="classGrade" ng-model="myClassGrade">
 					  	<datalist id="classGrade">
-						    <option value="A">
-						    <option value="A-">
-						    <option value="B">
-						    <option value="B-">
-						    <option value="C">
-						    <option value="C-">
-						    <option value="D">
-						    <option value="D-">
+						    <option value="A"><option value="A-">
+						    <option value="B+"><option value="B"><option value="B-">
+						    <option value="C+"><option value="C"><option value="C-">
+						    <option value="D+"><option value="D"><option value="D-">
 						    <option value="F">
 					  	</datalist>
 					  <br>
@@ -104,47 +103,35 @@
 		</script>
 		<script type="text/ng-template" id="dropClassModal.html">
 		    <div class="modal-header">
-		        <h3 class="modal-title">Add Class</h3>
+		        <h3 class="modal-title">Drop Class</h3>
 		    </div>
 		    <div class="modal-body">
 		    </div>
 
 		    <div class="modal-footer">
-		    	<table class="table">
+		    	<table class="table" align="left">
 		    		<thead>
 		    			<tr>
 		    				<th>Class Type</th>
 		    				<th>Class Number</th>
+		    				<th>Grade</th>
 		    				<th>Drop</th>
 		    			</tr>
 		    		</thead>
 		    		<tbody>
-		    			<tr ng-repeat="data in classArr">
-		    				<td>{{data.column1}}</td>
-		    				<td>{{data.column2}}</td>
-		    				
-		    			</tr>
-		    			
+		    			<tr ng-repeat="col in classArr.classType track by $index">
+		    				<td ng-repeat="col in classArr track by $index">
+		    					{{col[$parent.$index]}}
+		    				</td>
+		    				<td ng-click="dropClass($index)">drop</td>
+		    			</tr>	
 		    		</tbody>
 		    	</table>
-		    	<div ng-repeat="item in classArr">
-		    		display: {{classArr.classType}}
-		    	</div>
 
 			    <pre>list={{classArr.classType}}</pre>
 			    <pre>list={{classArr.classNumber}}</pre>
 			    <pre>list={{classArr.classGrade}}</pre>
 		    </div>
 		</script>
-<!-- <tr>
-		    				<td>classType</td>
-		    				<td>classNumber</td>
-		    				<td>Drop</td>
-		    			</tr>
-		    			<tr>
-		    				<td>classType</td>
-		    				<td>classNumber</td>
-		    				<td>Drop</td>
-		    			</tr> -->
 	</body>
 </html>
