@@ -12,32 +12,9 @@
   // 	return{classes: {}};
   // })
 angular.module('frontendApp')
-  .factory('UserData', function(){
-    return {info: {}};
-  })
-  .directive('customPopover', function () {
-    return {
-        restrict: 'A',
-        template: '<span>{{label}}</span>',
-        link: function (scope, el, attrs) {
-            scope.label = attrs.popoverLabel;
-            scope:{
-              isolatedAttributeFoo:'@attributeFoo'
-              isolatedBindingFoo:'=bindingFoo'
-              isolatedExpressionFoo:'&'
-            }
-            $(el).popover({
-                trigger: 'click',
-                html: true,
-                content: attrs.popoverHtml,
-                placement: attrs.popoverPlacement
-            });
-        }
-    };
-  })
   .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window, $uibModal, $log, $filter) {
 
-  	$scope.classArr = { classInfo: ['CSE1342','CSE2340'] };
+
     $scope.add = {};//stores class into json
 
     //Used to display user information
@@ -55,7 +32,7 @@ angular.module('frontendApp')
     $scope.foo = 'Hello!';
     $scope.updateFoo = function (newFoo) {
         $scope.foo = newFoo;
-    }
+    };
 
     console.log("in userDash now");
     console.log('authed?');
@@ -64,7 +41,7 @@ angular.module('frontendApp')
 
     $scope.signOut = function() {
       userFactory.signOut();
-    }
+    };
 
     // console.log(userFactory.getCurrentUser());
     // $scope.user = userFactory.getCurrentUser();
@@ -74,14 +51,36 @@ angular.module('frontendApp')
     // console.log(userID);
 
     //(!userFactory.isAuthed()) $state.go('login');
-    //------------------------MODAL-----------------------------------------
-    $scope.items = ['CSE1342','CSE2340'];
-    $scope.animationsEnabled = true;
+
+    //-----------------------------MODAL CODE-----------------------------------
+    //Modal code which is used to both 'add' and 'drop' class
+
+    //Array to store classes and display information to user of their
+    //current classes they are taking. This is also used to help push
+    //information into a json file for POST request to and and drop classes
+    $scope.classArr = {
+      classType: ['CSE','CSE', 'ADV', 'BUSI'],
+      classNumber: ['1342','2340', '1234', '4566'],
+      classGrade: ['A','B+','A','A']
+    };
 
     $scope.myText = "";//takes input
 
-    $scope.arrayText = ['CSE1342','CSE2340'];
+    $scope.classArr2 = {
+      classType: ['1','2'],
+      classNumber: ['1','2'],
+      classGrade: ['1','2']
+    };
 
+    //These variables are used to help push inputs into classArr
+    $scope.myClassType = "";
+    $scope.myClassGrade = "";
+    $scope.myText = "";//takes input for adding class number
+
+    //Animation for modal enabled
+    $scope.animationsEnabled = true;
+    $scope.arrayText = ['CSE1342','CSE2340'];
+    //debug test function
     $scope.addText = function() {
         $scope.arrayText.push(this.myText);
     }
@@ -105,13 +104,70 @@ angular.module('frontendApp')
         else {
           console.log("Invalid Class");
         }
-      }//for
+      }
+    };//for
+    //Allows a tutor to send add class request to admin
+    $scope.addClassInfo = function() {
+        //store class info in array for visual
+        $scope.classArr.classType.push(this.myClassType);
+        $scope.classArr.classNumber.push(this.myText);
+        $scope.classArr.classGrade.push(this.myClassGrade);
+        //get info from class array and store in json
+        var addclass_data = {
+          'userID': $scope.user,
+          'classType': $scope.classArr.classType,
+          'classNumber': $scope.classArr.classNumber,
+          'classGrade': ['A','B+']
+        };
+        console.log(addclass_data)
+        //do post request to add class
+
+        //update pending class
 
     }
 
+    $scope.dropClass = function(index) {
+      console.log(index);
+      $scope.classArr.classType.splice(index, 1);
+      $scope.classArr.classNumber.splice(index, 1);
+      $scope.classArr.classGrade.splice(index, 1);
+      // $scope.arrayText.splice(index, 1);
+    }
 
+    // $scope.displayTable= {
+    //   myClass: ['cse','1333','cse','1334'];
+    // };
+    //create function which will grab data from classArr
+    //and put it into a new function
+    // $scope.convertTable = function(){
+    //   for(var i = 0;i<classArr.classType.length;i++){
+
+    //   }
+    // }
+
+    //Used to remove items from the array
+    //Need to improve efficiency of this.
+    // $scope.removeItem = function(index){
+    //   // $scope.arrayText.splice(index, 1);
+    //   // delete $scope.arrayText[index];
+    //   // console.log(i);
+    //   for(var i = 0; i < $scope.arrayText.length; i++) {
+    //     if(this.myText == $scope.arrayText[i]) {
+    //       console.log("Removed");
+    //       console.log(i);
+    //       console.log($scope.arrayText[i]);
+    //       $scope.arrayText.splice(i, 1);//doesnt work
+    //       //delete $scope.arrayText[i];//doesnt work
+    //       break;
+    //     }
+    //     else {
+    //       console.log("Invalid Class");
+    //     }
+    //   }
+    // }
+
+    //Important to allow add class modal to appear on screen
     $scope.open = function (size) {
-
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'myModalContent.html',
@@ -130,6 +186,29 @@ angular.module('frontendApp')
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
+
+    //Important to allow drop class modal to appear on screen
+    $scope.openDrop = function (size) {
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'dropClassModal.html',
+        controller: 'UserdashCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+
+    };
+
 
     $scope.toggleAnimation = function () {
       $scope.animationsEnabled = !$scope.animationsEnabled;
@@ -152,8 +231,6 @@ angular.module('frontendApp')
 
 
 
-
-
     //------------------------------------------------------------------------
 
     $scope.addClass = function(){
@@ -165,6 +242,12 @@ angular.module('frontendApp')
       //   data: classData
       // });
     }
+
+    //--------------------End of Modal Code---------------------------
+
+    //GET request retreives current user id and displays it to pages
+    //Used in Add/Drop class' post request to add and drop classes
+    //Used in home page to display welcome "tutor name"
 
     $http({
       method: 'GET',

@@ -67,10 +67,16 @@ angular
 
       .state('userDash', {
         url: '/userDash',
-        templateUrl: 'views/userdash.html',
+        templateUrl: 'views/userDash/userdash-classes.html',
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
+      // .state('userDash.home', {
+      //   url: '/userDashClass',
+      //   templateUrl: 'views/userDash/userdash-home.html',
+      //   controller: 'UserdashCtrl',
+      //   controllerAs: 'userDash'
+      // })
       .state('helpDash', {
         url: '/helpDash',
         templateUrl: 'views/helpdash.html',
