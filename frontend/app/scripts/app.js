@@ -78,17 +78,17 @@ angular
         controllerAs: 'helpDash'
       })
       .state('adminDash', {
-        templateUrl: 'views/admindash.html',
+        templateUrl: 'views/adminDash/admindash.html',
         controller: 'AdmindashCtrl',
         controllerAs: 'adminDash'
       })
       .state('admindash-applications', {
-        templateUrl: 'views/admindash-applications.html',
+        templateUrl: 'views/adminDash/admindash-applications.html',
         controller: 'AdmindashApplicationsCtrl',
         controllerAs: 'admindashApplications'
       })
       .state('admindash-tutors', {
-        templateUrl: 'views/admindash-tutors.html',
+        templateUrl: 'views/adminDash/admindash-tutors.html',
         controller: 'AdmindashTutorsCtrl',
         controllerAs: 'admindashTutors'
       })

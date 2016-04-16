@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Login</title>
+		<title>Administrator Dashboard</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="styles/admindash.css">
 	</head>
@@ -11,15 +11,14 @@
   			<div id="history" class="panel panel-default">
   				<h4>History</h4>
   			</div>
-  			<div ng-click="openTutorsModal('lg')" id="tutors" class="panel panel-default">
+  			<div ui-sref="admindash-tutors" id="tutors" class="panel panel-default">
   				<h4>Tutors</h4>
   			</div>
   			<div id="schedule" class="panel panel-default">
   				<h4>Schedule</h4>
   			</div>
-  			<div ng-click="openAppModal('lg')" id="applications" class="panel panel-default">
+  			<div ui-sref="admindash-applications" id="applications" class="panel panel-default">
   				<h4>Applications</h4>
   			</div>
-    </div>
 	</body>
 </html>

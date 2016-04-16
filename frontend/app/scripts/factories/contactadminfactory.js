@@ -30,7 +30,7 @@ angular.module('frontendApp')
       getApplicants: function() {
         var userArray = new Array();
         var user = {};
-        $http({
+        return $http({
           method: 'GET',
           url: 'http://54.86.70.62/getApplications'
         }).then(function(data){
@@ -42,7 +42,9 @@ angular.module('frontendApp')
             user.major = data.data[i].applicant_major;
             user.appStatus = data.data[i].application_status;
             userArray.push(user);
+            user = {};
           }
+          console.log('printing shit');
           console.log(data);
           console.log(userArray);
           //console.log(data);
@@ -60,7 +62,7 @@ angular.module('frontendApp')
           method: 'GET',
           url: 'http://54.86.70.62/admin/getTutors'
         }).then(function(data){
-          console.log("Successfully recieved applications.");
+          console.log("Successfully recieved tutors.");
           for (var i = 0; i < data.data.length; i++) {
             user.userID = data.data[i].tutor_id;
             user.lastName = data.data[i].tutor_first_name;
