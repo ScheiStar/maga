@@ -36,23 +36,23 @@ angular.module('frontendApp')
           'message': '',
           'type': "appConfirm"
         };
-        contactAdminFactory.emailAdmin(user_data);
-        //work on hooking this up to database
-        return $http({
-          method: 'POST',
-          url: 'http://54.86.70.62/login',
-          data: user_json
-        }).then(function(data){
-            var userToken = data.data;
-            localStorage.setItem("token", userToken);
-            var remember = auth;
-            $state.go("userDash");
-            return data;
-        }, function errorCallback(response) {
-          console.log("Failure!");
-              console.log(response);
-              alert("Log In Unsuccessful");
-    });
+//        contactAdminFactory.emailAdmin(user_data);
+//        //work on hooking this up to database
+//        return $http({
+//          method: 'POST',
+//          url: 'http://54.86.70.62/login',
+//          data: user_json
+//        }).then(function(data){
+//            var userToken = data.data;
+//            localStorage.setItem("token", userToken);
+//            var remember = auth;
+//            $state.go("userDash");
+//            return data;
+//        }, function errorCallback(response) {
+//          console.log("Failure!");
+//              console.log(response);
+//              alert("Log In Unsuccessful");
+//    });
         
         
         
