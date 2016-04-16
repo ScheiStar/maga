@@ -22,28 +22,49 @@
         <div class="form-group row">
             <label for="class1" class="col-xs-1 form-control-label">Course 1</label>
             <div class="col-xs-4">
-                <input type="text" class="form-control" id="class1" placeholder="Course Number" ng-model="formData.courseArray[0]" required>
+<!--                <input type="text" class="form-control" id="class1" placeholder="Course Number" ng-model="formData.courseArray[0]" required>-->
+			          	<input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[0]">
+					  	<datalist id="classType" >
+					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH">                               <option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM">                             <option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
+						    <option value="BA"><option value="BAEX"><option value="BB"><option value="BHSC"><option value="BIOL"><option value="BL">                                   <option value="BLI"><option value="BSSN"><option value="BUSE">
+						    <option value="CA"><option value="CEE"><option value="CELL"><option value="CF"><option value="CFA"><option value="CFB">                                     <option value="CHEM"><option value="CHIN"><option value="CISB"><option value="CLAR"><option value="CLAS"><option value="CM">                               <option value="COMM"><option value="CRCP"><option value="CSE">
+						    <option value="DANC"><option value="DBBS"><option value="DISC"><option value="DM"><option value="DNSH"><option value="DSIN">
+						    <option value="ECO"><option value="EDU"><option value="EE"><option value="EETS"><option value="EMIS"><option value="ENGL">                                 <option value="ENGR"><option value="ENSC"><option value="ENST"><option value="ECO"><option value="EPL"><option value="ESL">                                 <option value="ETST"><option value="EUPH"><option value="EV">
+						    <option value="FILM"><option value="FINA"><option value="FLUT"><option value="FNAR"><option value="FREN"><option value="FRHN">
+						    <option value="GEOL"><option value="GERM"><option value="GR"><option value="GUIT">
+						    <option value="HARP"><option value="HARS"><option value="HB">
+					  	</datalist>
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" id="class1Grade" placeholder="Grade" ng-model="formData.courseArray[1]" required>
+<!--                <input type="text" class="form-control" id="class1Grade" placeholder="Grade" ng-model="formData.courseArray[1]" required>-->
+                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[1]">
+					<datalist id="classGrade">
+			             <option value="A"><option value="A-">
+			             <option value="B+"><option value="B"><option value="B-">
+			             <option value="C+"><option value="C"><option value="C-">
+			             <option value="D+"><option value="D"><option value="D-">
+			             <option value="F">
+					</datalist>
             </div>
         </div>
+    
         <div class="form-group row">
             <label for="class2" class="col-xs-1 form-control-label">Course 2</label>
             <div class="col-xs-4">
-                <input type="text" class="form-control" id="class2" placeholder="Course Number" ng-model="formData.courseArray[2]" required>
+                <input type="text" class="form-control" list="classType" placeholder="Course Number" ng-model="formData.courseArray[2]" required>
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" id="class2Grade" placeholder="Grade" ng-model="formData.courseArray[3]" required>
+                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[3]" required>
             </div>
         </div>
+    
         <div class="form-group row">
             <label for="class3" class="col-xs-1 form-control-label">Course 3</label>
             <div class="col-xs-4">
-                <input type="text" class="form-control" id="class3" placeholder="Course Number" ng-model="formData.courseArray[4]" required>
+                <input type="text" class="form-control" list="classType" placeholder="Course Number" ng-model="formData.courseArray[4]" required>
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" id="class3Grade" placeholder="Grade" ng-model="formData.courseArray[5]" required>
+                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[5]" required>
             </div>
         </div>
 </div>
