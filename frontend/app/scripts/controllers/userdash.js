@@ -112,12 +112,22 @@ angular.module('frontendApp')
           'classNumber': $scope.classArr.classNumber,
           'classGrade': ['A','B+']
         };
-        console.log(addclass_data)
+        console.log(addclass_data);
+        
         //do post request to add class
 
         //update pending class
-
+        
+        //clear fields 
+        $scope.clearFields();
     }
+    
+    $scope.clearFields = function() {
+      $scope.myClassType = null;
+      $scope.myClassGrade = null;
+      $scope.myText = null;
+    }
+
 
     $scope.dropClass = function(index) {
       console.log(index);
@@ -218,7 +228,93 @@ angular.module('frontendApp')
 
 
     //--------------------End of Modal Code---------------------------
+
+
+    //--------------------CALENDAR CODE START-------------------------
+
+    $scope.calenderArr = {
+      sun:[0, 0, 0, 0, 0, 0, 0, 0],
+      mon:[0, 0, 0, 0, 0, 0, 0, 0],
+      tue:[0, 0, 0, 0, 0, 0, 0, 0],
+      wed:[0, 0, 0, 0, 0, 0, 0, 0],
+      thu:[0, 0, 0, 0, 0, 0, 0, 0],
+      fri:[0, 0, 0, 0, 0, 0, 0, 0]
+    };
+
     
+    //test calendar data
+    $scope.calendarstuff = "'sun':'2,3,4','tue':'1,2,3','wed':'4'";
+
+    //need to remove from function in future
+    $scope.displayCalendar = function(){
+      console.log("enter displayCalendar");
+      //test string
+      var calendarstuff = "'sun':'2,3,4','tue':'1,2,3','wed':'4'";
+
+      //regex
+      var test = /shit/;
+      var dayRegex = /(sun|mon|tue|wed|thu|fri)/;
+      var quotesRegex = /'\d+'/;
+      var numberRegex = /[0-9]/;
+      var nextDataRegex = /','/;
+      var superRegex = /('sun'|'mon'|'tue'|'wed'|'thu'|'fri'):['](\d*|,*)*[']/
+      var superRegex2 = /(sun|mon|tue|wed|thu|fri)+/
+      //Get request to extract string
+      //TEST super regex
+      // if(superRegex2.exec(calendarstuff)) {
+      //   var omg = calendarstuff.match(superRegex2);
+      //   console.log(omg);
+      //   console.log('lol');
+      // }
+      //regex performed on string // 8 times total
+      //regex for '2,3,4' and then use match to grab individual numbers
+      console.log(dayRegex.toString(calendarstuff));
+      console.log(calendarstuff.match(dayRegex)); 
+      //store data into calendarArr
+      if(calendarstuff.match(dayRegex) == 'sun') {
+        console.log("enter sun"); 
+        
+        //grab quote regex. use substring to focus on those numbers
+        //use match to extract numbers
+        //grabs block of string starting from date to last of quotesRegex
+        var numberBlock = calendarstuff.substring(calendarstuff.search(dayRegex), calendarstuff.match(quotesRegex).lastIndexOf());
+        console.log("number");
+        console.log(numberBlock);
+
+        //var regexBlock = 
+        $scope.calenderArr[0][numberRegex] = 1;
+      }
+      else if(dayRegex == "mon") {
+        $scope.calenderArr[1][numberRegex] = 1;
+      }
+      else if(dayRegex == "tue") {
+        $scope.calenderArr[2][numberRegex] = 1;
+      }
+      else if(dayRegex == "wed") {
+        $scope.calenderArr[3][numberRegex] = 1;
+      }
+      else if(dayRegex == "thu") {
+        $scope.calenderArr[4][numberRegex] = 1;
+      }
+      else if(dayRegex == "fri") {
+        $scope.calenderArr[5][numberRegex] = 1;
+      }
+      else if(nextDataRegex == "','") {
+        //reset if needed
+      }
+      //display calendar using ng-repeat
+
+    };    
+
+    $scope.removeCalendar = function() {
+
+    }
+
+
+
+
+
+    //--------------------CALENDAR CODE END---------------------------
     //GET request retreives current user id and displays it to pages
     //Used in Add/Drop class' post request to add and drop classes
     //Used in home page to display welcome "tutor name"
