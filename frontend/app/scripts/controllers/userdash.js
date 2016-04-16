@@ -12,7 +12,7 @@
   // 	return{classes: {}};
   // })
 angular.module('frontendApp')
-  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window, $uibModal, $log, $filter) {
+  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, $window, $uibModal, $log, $filter) {
 
 
     $scope.add = {};//stores class into json
