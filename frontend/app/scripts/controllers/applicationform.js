@@ -24,9 +24,10 @@ angular.module('frontendApp')
         }
         //processes the input courses into array of dictionaries where 'courseNum':"CSE2341",'grade':"A"
         for(var i = 0; i < (Object.keys($scope.formData.courseArray).length); i++){
+            console.log((Object.keys($scope.formData.courseArray).length));
             console.log("Course Array: ", $scope.formData.courseArray);
-            $scope.formData.courseDictArray.push({'courseNum':$scope.formData.courseArray[i], 'grade':$scope.formData.courseArray[i+1]});
-            i++;
+            $scope.formData.courseDictArray.push({'courseType':$scope.formData.courseArray[i], 'courseNum':$scope.formData.courseArray[i+1], 'grade':$scope.formData.courseArray[i+2]});
+            i = i+2;
         }
         delete $scope.formData.courseArray; //delete because its not needed in formData anymore!
         console.log($scope.formData);
