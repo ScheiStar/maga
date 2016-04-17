@@ -8,7 +8,7 @@
  * Factory in the frontendApp.
  */
 angular.module('frontendApp')
-  .factory('contactAdminFactory', function ($http) {
+  .factory('contactAdminFactory', function ($http, userFactory) {
 
     return {
       emailAdmin: function (user_data) {
@@ -82,8 +82,30 @@ angular.module('frontendApp')
            console.log("We fucked up on the application retrieval.");
            return false;
       });
+    },
+
+    storeAppID: function(appID){
+      localStorage.setItem("currentAppID", appID);
+      return;
+    },
+
+    getAppID: function(){
+      return localStorage.getItem("currentAppID");
     }
-
-  }
-
-  });
+    //
+    // getIndApp: function(userID) {
+    //   var userArray = new Array();
+    //   var user = {};
+    //   return $http({
+    //     method: 'GET',
+    //     url: 'http://54.86.70.62/admin/getApplicant',
+    //     params: {id: userID}
+    //   }).then(function(data){
+    //     console.log("Successfully recieved tutors.");
+    //   }, function errorCallback(response) {
+    //      console.log("We fucked up on the application retrieval.");
+    //      return false;
+    // });
+    // }
+   }
+ });

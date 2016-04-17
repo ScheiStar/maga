@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('frontendApp').controller('QuitTutorModalInstanceCtrl', function ($state, contactAdminFactory, userFactory, $scope, $uibModalInstance, items) {
   console.log('in contact admin dash');
 
