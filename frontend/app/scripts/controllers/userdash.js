@@ -37,7 +37,7 @@ angular.module('frontendApp')
     console.log("in userDash now");
     console.log('authed?');
     console.log(userFactory.isAuthed());
-    if(!userFactory.isAuthed()) $state.go('login');
+    //if(!userFactory.isAuthed()) $state.go('login');
 
     $scope.signOut = function() {
       userFactory.signOut();

@@ -8,8 +8,10 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AdmindashCtrl', function ($scope, $uibModal, contactAdminFactory) {
+  .controller('AdmindashCtrl', function ($scope, $uibModal, contactAdminFactory, userFactory) {
 
+
+    console.log(userFactory.parseToken(userFactory.getToken()).userID);
     $scope.animationsEnabled = true;
 
     $scope.openAppModal = function (size) {

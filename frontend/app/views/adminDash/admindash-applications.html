@@ -1,0 +1,30 @@
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Major</th>
+      <th>Status</th>
+      <th>View</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in ugh track by $index">
+      <td ng-bind="x.appID"></td>
+      <td ng-bind="x.firstName"></td>
+      <td ng-bind="x.lastName"></td>
+      <td ng-bind="x.major"></td>
+      <td class="label label label-primary" ng-bind="x.appStatus"></td>
+      <td>
+        <button ng-click="openAppModal('lg', x.appID)">View</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
