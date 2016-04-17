@@ -25,7 +25,7 @@
 		        <li><a href="#">Quit Tutor</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-			      <li><button type="button" class="btn btn-default navbar-btn">Sign Out</button></li>
+			      <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
 			  </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -64,7 +64,7 @@
 		    <div class="modal-footer">
 			    <form>
 			        <div class="col-xs-12 col-md-4">
-			          	<h4>Class Type</h4> 
+			          	<h4>Class Type</h4>
 			          	<input list="classType" ng-model="myClassType">
 					  	<datalist id="classType" >
 					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH"><option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM"><option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
@@ -82,7 +82,7 @@
 			            <input type="text" ng-model="myText" value="">
 		            </div>
 		            <div class="col-xs-12 col-md-4">
-			          	<h4>Grade Earned</h4> 
+			          	<h4>Grade Earned</h4>
 			          	<input list="classGrade" ng-model="myClassGrade">
 					  	<datalist id="classGrade">
 						    <option value="A"><option value="A-">
@@ -124,7 +124,7 @@
 		    					{{col[$parent.$index]}}
 		    				</td>
 		    				<td ng-click="dropClass($index)">drop</td>
-		    			</tr>	
+		    			</tr>
 		    		</tbody>
 		    	</table>
 
