@@ -51,6 +51,11 @@ angular.module('frontendApp')
       'grades': $scope.add.Grade
     };
 
+    $scope.goHome = function() {
+      console.log('going home');
+      $state.go('userDash.home');
+    }
+
     //test
     $scope.foo = 'Hello!';
     $scope.updateFoo = function (newFoo) {
@@ -101,25 +106,34 @@ angular.module('frontendApp')
 
     //Allows a tutor to send add class request to admin
     $scope.addClassInfo = function() {
-        //store class info in array for visual
-        $scope.classArr.classType.push(this.myClassType);
-        $scope.classArr.classNumber.push(this.myText);
-        $scope.classArr.classGrade.push(this.myClassGrade);
-        //get info from class array and store in json
-        var addclass_data = { 
-          'userID': $scope.user,
-          'classType': $scope.classArr.classType,
-          'classNumber': $scope.classArr.classNumber,
-          'classGrade': ['A','B+']
-        };
-        console.log(addclass_data);
-        
-        //do post request to add class
+        //error control -- need to add specific error control for scope
+        if($scope.myClassType == "" || ($scope.myText == "" || $scope.myText.length < 4) || $scope.myClassGrade == "") {
+          console.log("Error");
+        }
+        else {
+          //alert
+          alert("Class Successfully Added");
+          //store class info in array for visual
+          $scope.classArr.classType.push(this.myClassType);
+          $scope.classArr.classNumber.push(this.myText);
+          $scope.classArr.classGrade.push(this.myClassGrade);
+          //get info from class array and store in json
+          var addclass_data = { 
+            'userID': $scope.user,
+            'classType': $scope.classArr.classType,
+            'classNumber': $scope.classArr.classNumber,
+            'classGrade': ['A','B+']
+          };
+          console.log(addclass_data);
+          
+          //do post request to add class
 
-        //update pending class
+          //update pending class
+          
+          //clear fields 
+          $scope.clearFields();
+        }
         
-        //clear fields 
-        $scope.clearFields();
     }
     
     $scope.clearFields = function() {
@@ -128,6 +142,21 @@ angular.module('frontendApp')
       $scope.myText = null;
     }
 
+    // $scope.showConfirm = function(ev) {
+    //   // Appending dialog to document.body to cover sidenav in docs app
+    //   var confirm = $mdDialog.confirm()
+    //         .title('Would you like to delete your debt?')
+    //         .textContent('All of the banks have agreed to forgive you your debts.')
+    //         .ariaLabel('Lucky day')
+    //         .targetEvent(ev)
+    //         .ok('Please do it!')
+    //         .cancel('Sounds like a scam');
+    //   $mdDialog.show(confirm).then(function() {
+    //     $scope.status = 'You decided to get rid of your debt.';
+    //   }, function() {
+    //     $scope.status = 'You decided to keep your debt.';
+    //   });
+    // };
 
     $scope.dropClass = function(index) {
       console.log(index);
@@ -136,17 +165,6 @@ angular.module('frontendApp')
       $scope.classArr.classGrade.splice(index, 1);
       // $scope.arrayText.splice(index, 1);
     }
-
-    // $scope.displayTable= {
-    //   myClass: ['cse','1333','cse','1334'];
-    // };
-    //create function which will grab data from classArr
-    //and put it into a new function
-    // $scope.convertTable = function(){
-    //   for(var i = 0;i<classArr.classType.length;i++){
-
-    //   }
-    // }
 
     //Used to remove items from the array
     //Need to improve efficiency of this.

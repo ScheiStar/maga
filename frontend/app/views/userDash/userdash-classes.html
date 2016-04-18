@@ -19,10 +19,10 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse">
 		      <ul class="nav navbar-nav">
-		        <li><a href="userdash-home.html">Home<span class="sr-only">(current)</span></a></li>
-		        <li  class="active"><a href="userdash-classes.html">Add/Drop Class</a></li>
-		        <li><a href="#">Contact Admin</a></li>
-		        <li><a href="#">Quit Tutor</a></li>
+		        <li><a ng-click="goHome()" ui-sref="userDash.home">Home<span class="sr-only">(current)</span></a></li>
+		        <li  class="active"><a ui-sref="userDash.classes">Add/Drop Class</a></li>
+		        <li><a ui-sref="#">Contact Admin</a></li>
+		        <li><a ui-sref="#">Quit Tutor</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 			      <li><button type="button" class="btn btn-default navbar-btn">Sign Out</button></li>
@@ -63,10 +63,10 @@
 		    </div>
 
 		    <div class="modal-footer">
-			    <form>
+			    <form name="myForm">
 			        <div class="col-xs-12 col-md-4">
 			          	<h4>Class Type</h4> 
-			          	<input list="classType" ng-model="myClassType" required>
+			          	<input list="classType" name="myClassType" ng-model="myClassType" required>
 					  	<datalist id="classType" >
 					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH"><option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM"><option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
 						    <option value="BA"><option value="BAEX"><option value="BB"><option value="BHSC"><option value="BIOL"><option value="BL"><option value="BLI"><option value="BSSN"><option value="BUSE">
@@ -92,14 +92,21 @@
 						    <option value="WGST"><option value="WL"><option value="WLAN"><option value="WO"><option value="WX">
 						    <option value="XS"><option value="XX">
 					  	</datalist>
+					  	<br>
+					  	<span style="color:red" ng-show="myForm.myClassType.$dirty && myForm.myClassType.$invalid">
+					  	<span ng-show="myForm.myClassType.$error.required">Class type is required.</span>
 					</div>
 				    <div class="col-xs-12 col-md-4">
 				  	  	<h4>Class Number</h4>
-			            <input type="text" ng-model="myText" value="" required>
+			            <input type="text" name="myText" ng-model="myText" value="" required>
+			            <br>
+			            <span style="color:red" ng-show="myForm.myText.$dirty && myForm.myText.$invalid">
+						<span ng-show="myForm.myText.$error.required">Class number is required.</span>
 		            </div>
+		            
 		            <div class="col-xs-12 col-md-4">
 			          	<h4>Grade Earned</h4> 
-			          	<input list="classGrade" ng-model="myClassGrade" required>
+			          	<input list="classGrade" name="myClassGrade" ng-model="myClassGrade" required>
 					  	<datalist id="classGrade">
 						    <option value="A"><option value="A-">
 						    <option value="B+"><option value="B"><option value="B-">
@@ -108,10 +115,16 @@
 						    <option value="F">
 					  	</datalist>
 					  <br>
-					  <br>
-					  <input class="btn btn-primary" type="submit" id="submit" ng-click="addClassInfo()">
+					  <span style="color:red" ng-show="myForm.myClassGrade.$dirty && myForm.myClassGrade.$invalid">
+					  <span ng-show="myForm.myClassGrade.$error.required">Class number is required.</span>
 					</div>
+					<br>
+					<br>
+			    	<input class="btn btn-primary" type="submit" id="submit" ng-click="addClassInfo()" ng-disabled="myForm.myClassGrade.$dirty && myForm.myClassGrade.$invalid ||
+			    	myForm.myText.$dirty && myForm.myText.$invalid ||
+			    	myForm.myClassType.$dirty && myForm.myClassType.$invalid">
 			    <form>
+			    
 			    <pre>list={{classArr.classType}}</pre>
 			    <pre>list={{classArr.classNumber}}</pre>
 			    <pre>list={{classArr.classGrade}}</pre>
@@ -140,16 +153,36 @@
 		    				<td ng-repeat="col in classArr track by $index">
 		    					{{col[$parent.$index]}}
 		    				</td>
-		    				<td ng-click="dropClass($index)">drop</td>
+		    				<td><md-button class="md-primary md-raised" ng-click="dropClass($index)">drop</md-button></td>
 		    			</tr>	
 		    		</tbody>
-		    	</table>
 
+		    		<table class="table" align="left">
+		    		<thead>
+		    			<tr>
+		    				<th>Class Type</th>
+		    				<th>Class Number</th>
+		    				<th>Grade</th>
+		    				<th>Undo</th>
+		    			</tr>
+		    		</thead>
+		    		<tbody>
+		    			<tr ng-repeat="col in classArr.classType track by $index">
+		    				<td ng-repeat="col in classArr track by $index">
+		    					{{col[$parent.$index]}}
+		    				</td>
+		    				<td><md-button class="md-primary md-raised" ng-click="dropClass($index)">Undo</md-button>
+		    				</td>
+		    			</tr>	
+		    		</tbody>
+
+		    	</table>
+		    	<input class="btn btn-primary" type="submit" id="submit" ng-click="">
 			    <pre>list={{classArr.classType}}</pre>
 			    <pre>list={{classArr.classNumber}}</pre>
 			    <pre>list={{classArr.classGrade}}</pre>
 		    </div>
 		</script>
-		<button class="btn btn-primary" ng-click="displayCalendar()">Magic</button>
+		<!-- <button class="btn btn-primary" ng-click="displayCalendar()">Magic</button> -->
 	</body>
 </html>
