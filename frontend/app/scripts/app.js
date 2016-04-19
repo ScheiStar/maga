@@ -73,26 +73,30 @@ angular
 
       .state('userDash', {
         url: '/userDash',
+        templateUrl: 'views/userDash/userdash-home.html',
+        controller: 'UserdashCtrl',
+        controllerAs: 'userDash'
+      })
+      .state('userDashClass', {
+        url: '/userDashClass',
         templateUrl: 'views/userDash/userdash-classes.html',
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
-      .state('userDash.home', {
-        url: '/userDashClass',
-        templateUrl: 'views/userDash/userdash-home.html',
-        controller: 'UserdashCtrl',
-        controllerAs: 'userDash'
+      .state('contactAdmin', {
+            templateUrl: 'views/contactadmin.html',
+            controller: 'ContactadminCtrl',
+            controllerAs: 'contactAdmin'
+      })
+      .state('tutorQuit', {
+      templateUrl: 'views/tutorquit.html',
+      controller: 'TutorquitCtrl',
+      controllerAs: 'tutorQuit'
       })
       .state('adminDash', {
         url: '/adminDash',
         templateUrl: 'views/admindash.html',
         controller: 'AdmindashCtrl',
         controllerAs: 'adminDash'
-      })
-      .state('helpDash', {
-        url: '/helpDash',
-        templateUrl: 'views/helpdash.html',
-        controller: 'HelpdashCtrl',
-        controllerAs: 'helpDash'
       })
     });

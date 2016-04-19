@@ -13,16 +13,16 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="userdash-home.html">Matthew Lee</a>
+		      <a class="navbar-brand" ui-sref="userDash">Matthew Lee</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse">
 		      <ul class="nav navbar-nav">
-		        <li><a ng-click="goHome()" ui-sref="userDash.home">Home<span class="sr-only">(current)</span></a></li>
-		        <li  class="active"><a ui-sref="userDash.classes">Add/Drop Class</a></li>
-		        <li><a ui-sref="#">Contact Admin</a></li>
-		        <li><a ui-sref="#">Quit Tutor</a></li>
+		        <li><a ui-sref="userDash">Home<span class="sr-only">(current)</span></a></li>
+		        <li  class="active"><a ui-sref="userDashClass">Add/Drop Class</a></li>
+		        <li style="cursor: pointer;"><a ui-sref="contactAdmin">Contact Admin</a></li>
+		        <li style="cursor: pointer;"><a ui-sref="tutorQuit">Quit Tutor</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 			      <li><button type="button" class="btn btn-default navbar-btn">Sign Out</button></li>
@@ -45,13 +45,13 @@
         	</div>
           </ul>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-md-4 text-center">
         	<h1>Add Class</h1>
-        	<button type="button" class="btn btn-primary" ng-click="open('lg')">Add Class</button>
+        	<button id="addButton" sstyle="text-align:center" type="button" class="btn btn-primary" ng-click="open('lg')">Add Class</button>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-md-4 text-center">
         	<h1>Drop Class</h1>
-        	<button type="button" class="btn btn-primary" ng-click="openDrop('lg')">Drop Class</button>
+        	<button id="dropButton" type="button" class="btn btn-primary" ng-click="openDrop('lg')">Drop Class</button>
         </div>
 
      	<script type="text/ng-template" id="myModalContent.html">

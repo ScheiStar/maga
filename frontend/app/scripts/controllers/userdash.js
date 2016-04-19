@@ -12,30 +12,7 @@
   // 	return{classes: {}};
   // })
 angular.module('frontendApp')
-  .factory('UserData', function(){
-    return {info: {}};
-  })
-  .directive('customPopover', function () {
-    return {
-        restrict: 'A',
-        template: '<span>{{label}}</span>',
-        link: function (scope, el, attrs) {
-            scope.label = attrs.popoverLabel;
-            scope:{
-              isolatedAttributeFoo:'@attributeFoo'
-              isolatedBindingFoo:'=bindingFoo'
-              isolatedExpressionFoo:'&'
-            }
-            $(el).popover({
-                trigger: 'click',
-                html: true,
-                content: attrs.popoverHtml,
-                placement: attrs.popoverPlacement
-            });
-        }
-    };
-  })
-  .controller('UserdashCtrl', function ($state, $scope, $http, userFactory, UserData, $window, $uibModal, $log, $filter) {
+  .controller('UserdashCtrl', function ($state, $scope, $http, contactAdminFactory, userFactory, $window, $uibModal, $log, $filter) {
 
   	
     $scope.add = {};//stores class into json

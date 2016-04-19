@@ -9,6 +9,7 @@
  */
 angular.module('frontendApp')
   .controller('AdmindashCtrl', function () {
+  	console.log('in adminDash');
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
