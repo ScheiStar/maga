@@ -109,6 +109,7 @@ angular.module('frontendApp')
           
           //clear fields 
           $scope.clearFields();
+          $uibModal.close();
         }
         
     }
@@ -134,13 +135,47 @@ angular.module('frontendApp')
     //     $scope.status = 'You decided to keep your debt.';
     //   });
     // };
-
+    $scope.dropArr = {
+      classType: [],
+      classNumber: [],
+      classGrade: []
+    }
     $scope.dropClass = function(index) {
       console.log(index);
+      $scope.dropArr.classType.push($scope.classArr.classType[index])
+      $scope.dropArr.classNumber.push($scope.classArr.classNumber[index])
+      $scope.dropArr.classGrade.push($scope.classArr.classGrade[index])
       $scope.classArr.classType.splice(index, 1);
       $scope.classArr.classNumber.splice(index, 1);
       $scope.classArr.classGrade.splice(index, 1);
-      // $scope.arrayText.splice(index, 1);
+    }
+    $scope.undoDrop = function(index) {
+      $scope.classArr.classType.push($scope.dropArr.classType[index])
+      $scope.classArr.classNumber.push($scope.dropArr.classNumber[index])
+      $scope.classArr.classGrade.push($scope.dropArr.classGrade[index])
+      $scope.dropArr.classType.splice(index, 1);
+      $scope.dropArr.classNumber.splice(index, 1);
+      $scope.dropArr.classGrade.splice(index, 1);
+    }
+    $scope.submitDrop = function() {
+      if($scope.dropArr.classType.length == 0 || $scope.dropArr.classNumber.length == 0 || $scope.dropArr.classGrade.length == 0) {
+        alert("You did not drop any classes");
+      }
+      else {
+        alert("Classes successfully dropped");
+        //Store drop class data
+        var addclass_data = { 
+          'userID': $scope.user,
+          'classType': $scope.dropClass.classType,
+          'classNumber': $scope.dropClass.classNumber,
+          'classGrade': $scope.dropClass.classGrade
+        };
+        $uibModal.close();
+      }
+      
+
+      //post request to drop classess in drop arr
+
     }
 
     //Used to remove items from the array

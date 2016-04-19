@@ -167,17 +167,17 @@
 		    			</tr>
 		    		</thead>
 		    		<tbody>
-		    			<tr ng-repeat="col in classArr.classType track by $index">
-		    				<td ng-repeat="col in classArr track by $index">
+		    			<tr ng-repeat="col in dropArr.classType track by $index">
+		    				<td ng-repeat="col in dropArr track by $index">
 		    					{{col[$parent.$index]}}
 		    				</td>
-		    				<td><md-button class="md-primary md-raised" ng-click="dropClass($index)">Undo</md-button>
+		    				<td><md-button class="md-primary md-raised" ng-click="undoDrop($index)">Undo</md-button>
 		    				</td>
 		    			</tr>	
 		    		</tbody>
 
 		    	</table>
-		    	<input class="btn btn-primary" type="submit" id="submit" ng-click="">
+		    	<input class="btn btn-primary" type="submit" id="submit" ng-click="submitDrop()">
 			    <pre>list={{classArr.classType}}</pre>
 			    <pre>list={{classArr.classNumber}}</pre>
 			    <pre>list={{classArr.classGrade}}</pre>
