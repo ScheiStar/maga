@@ -16,23 +16,23 @@
 		      <ul class="nav navbar-nav">
 		        <li><a ui-sref="userDash">Home</a></li>
 		        <li><a ui-sref="userDashClass">Add/Drop Class</a></li>
-		        <li class="active" style="cursor: pointer;"><a ui-sref="contactAdmin">Contact Admin<span class="sr-only">(current)</span></a></li>
-		        <li style="cursor: pointer;"><a ui-sref="tutorQuit">Quit Tutor</a></li>
+		        <li style="cursor: pointer;"><a ui-sref="contactAdmin">Contact Admin</a></li>
+		        <li class="active" style="cursor: pointer;"><a ui-sref="tutorQuit">Quit Tutor<span class="sr-only">(current)</span></a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-			      <li><button type="button" class="btn btn-default navbar-btn">Sign Out</button></li>
+			      <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
 			  </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 <div class="modal-header text-center">
-    <h3 class="modal-title"><b>Contact Administrator</b></h3>
+    <h3 class="modal-title"><b>Quitting So Soon? :/</b></h3>
 </div>
 <div class="form-group text-center">
   <img src="../images/logo.png" alt="Maga"  height="200" width="200">
-  <h4> Please type your message below. The administrator will get back to you usually within 24-48 hours via the email you signed up with.</h4>
+  <h4> We're sorry to hear that you'll be leaving us. Please give a brief explanation of why and the administrator will be in contact to confirm your termination.</h4>
   <label>Message:</label>
   <textarea class="form-control" ng-model="user.message" rows="5"></textarea>
   <br>
-  <button class="btn btn-md btn-info btn-block" ng-click="submitMessage(user)">Submit</button>
+  <button class="btn btn-md btn-danger btn-block" ng-click="submitMessage(user)">Submit</button>
 </div>
