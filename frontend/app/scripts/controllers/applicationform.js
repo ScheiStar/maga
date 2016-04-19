@@ -13,6 +13,7 @@ angular.module('frontendApp')
     // we will store all of our form data in this object
     $scope.formData = {};
     $scope.formData.cal = {};
+    $scope.formData.calArray = [];
     $scope.formData.courseDictArray = [];
     var courseDict = {};
 
@@ -20,18 +21,20 @@ angular.module('frontendApp')
     $scope.processForm = function() {
         //processes the calendar into strings
         for (var day in $scope.formData.cal){
-             $scope.formData.cal[day] = $scope.formData.cal[day].toString();
+            $scope.formData.cal[day] = $scope.formData.cal[day].toString();
+            $scope.formData.calArray.push({'day':day, 'times':$scope.formData.cal[day]});
         }
         //processes the input courses into array of dictionaries where 'courseNum':"CSE2341",'grade':"A"
         for(var i = 0; i < (Object.keys($scope.formData.courseArray).length); i++){
             console.log((Object.keys($scope.formData.courseArray).length));
-            console.log("Course Array: ", $scope.formData.courseArray);
+//            console.log("Course Array: ", $scope.formData.courseArray);
             $scope.formData.courseDictArray.push({'courseType':$scope.formData.courseArray[i], 'courseNum':$scope.formData.courseArray[i+1], 'grade':$scope.formData.courseArray[i+2]});
             i = i+2;
         }
         delete $scope.formData.courseArray; //delete because its not needed in formData anymore!
-        console.log($scope.formData);
-        console.log($scope.formData.email);
+        delete $scope.formData.cal;
+        console.log("FORM_DATA: ", $scope.formData);
+//        console.log($scope.formData.email);
         var user_data = {
           'email': $scope.formData.email,
           'message': '',
