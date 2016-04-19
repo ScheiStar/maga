@@ -26,6 +26,7 @@ body {
 .header {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
+  background-color:aqua;
 
   /* Make the masthead heading the same height as the navigation */
   h3 {
@@ -39,7 +40,8 @@ body {
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
+  color: #000;
+  background-color: aqua;
   border-top: 1px solid #e5e5e5;
 }
 
@@ -51,6 +53,7 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+//      border-bottom: 10px solid #ffffff;
 
   .btn {
     font-size: 21px;

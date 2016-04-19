@@ -25,7 +25,7 @@
 		        <li style="cursor: pointer;"><a ui-sref="tutorQuit">Quit Tutor</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-			      <li><button type="button" class="btn btn-default navbar-btn">Sign Out</button></li>
+			      <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
 			  </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -65,7 +65,7 @@
 		    <div class="modal-footer">
 			    <form name="myForm">
 			        <div class="col-xs-12 col-md-4">
-			          	<h4>Class Type</h4> 
+			          	<h4>Class Type</h4>
 			          	<input list="classType" name="myClassType" ng-model="myClassType" required>
 					  	<datalist id="classType" >
 					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH"><option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM"><option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
@@ -94,18 +94,18 @@
 					  	</datalist>
 					  	<br>
 					  	<span style="color:red" ng-show="myForm.myClassType.$dirty && myForm.myClassType.$invalid">
-					  	
+
 					</div>
 				    <div class="col-xs-12 col-md-4">
 				  	  	<h4>Class Number</h4>
 			            <input type="text" name="myText" ng-model="myText" value="" required>
 			            <br>
 			            <span style="color:red" ng-show="myForm.myText.$dirty && myForm.myText.$invalid">
-						
+
 		            </div>
-		            
+
 		            <div class="col-xs-12 col-md-4">
-			          	<h4>Grade Earned</h4> 
+			          	<h4>Grade Earned</h4>
 			          	<input list="classGrade" name="myClassGrade" ng-model="myClassGrade" required>
 					  	<datalist id="classGrade">
 						    <option value="A"><option value="A-">
@@ -116,7 +116,7 @@
 					  	</datalist>
 					  <br>
 					  <span style="color:red" ng-show="myForm.myClassGrade.$dirty && myForm.myClassGrade.$invalid">
-					  
+
 					</div>
 					<br>
 					<br>
@@ -124,7 +124,7 @@
 			    	myForm.myText.$dirty && myForm.myText.$invalid ||
 			    	myForm.myClassType.$dirty && myForm.myClassType.$invalid">
 			    <form>
-			    
+
 			    <pre>list={{classArr.classType}}</pre>
 			    <pre>list={{classArr.classNumber}}</pre>
 			    <pre>list={{classArr.classGrade}}</pre>
@@ -154,8 +154,9 @@
 		    					{{col[$parent.$index]}}
 		    				</td>
 		    				<td><md-button class="md-primary md-raised" ng-click="dropClass($index)">drop</md-button></td>
-		    			</tr>	
+		    			</tr>
 		    		</tbody>
+					</table>
 
 		    		<table class="table" align="left">
 		    		<thead>
@@ -173,7 +174,8 @@
 		    				</td>
 		    				<td><md-button class="md-primary md-raised" ng-click="undoDrop($index)">Undo</md-button>
 		    				</td>
-		    			</tr>	
+		    			</tr>
+
 		    		</tbody>
 
 		    	</table>
@@ -184,7 +186,7 @@
 		    </div>
 		</script>
 		<!-- <button class="btn btn-primary" ng-click="displayCalendar()">Magic</button> -->
-		<!--<span ng-show="myForm.myClassType.$error.required">Class type is required.</span>		 
+		<!--<span ng-show="myForm.myClassType.$error.required">Class type is required.</span>
 		<span ng-show="myForm.myText.$error.required">Class number is required.</span>
 		<span ng-show="myForm.myClassGrade.$error.required">Class number is required.</span> -->
 	</body>

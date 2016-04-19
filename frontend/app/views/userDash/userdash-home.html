@@ -25,7 +25,7 @@
 		        <li style="cursor: pointer;"><a ui-sref="tutorQuit">Quit Tutor</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-			      <li><button type="button" class="btn btn-default navbar-btn">Sign Out</button></li>
+			      <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
 			  </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 
-		<label>Your Schedule</label>
+		<label>You Schedule</label>
 		<table class="table table-bordered table-hover">
 		  <thead>
 		    <tr>
@@ -54,75 +54,75 @@
 		  <tbody>
 		    <tr>
 		      <th scope="row">2:00 - 3:00</th>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 2)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 2)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 2)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 2)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 2)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 2)"></td>
+		      <td ng-click="addTime('sun', 2)"></td>
+		      <td ng-click="addTime('mon', 2)"></td>
+		      <td ng-click="addTime('tue', 2)"></td>
+		      <td ng-click="addTime('wed', 2)"></td>
+		      <td ng-click="addTime('thu', 2)"></td>
+		      <td ng-click="addTime('fri', 2)"></td>
 		    </tr>   
 		    <tr>
 		      <th scope="row">3:00 - 4:00</th>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 3)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 3)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 3)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 3)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 3)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 3)"></td>
+		      <td ng-click="addTime('sun', 3)"></td>
+		      <td ng-click="addTime('mon', 3)"></td>
+		      <td ng-click="addTime('tue', 3)"></td>
+		      <td ng-click="addTime('wed', 3)"></td>
+		      <td ng-click="addTime('thu', 3)"></td>
+		      <td ng-click="addTime('fri', 3)"></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">4:00 - 5:00</th>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 4)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 4)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 4)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 4)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 4)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 4)"></td>
+		      <td ng-click="addTime('sun', 4)"></td>
+		      <td ng-click="addTime('mon', 4)"></td>
+		      <td ng-click="addTime('tue', 4)"></td>
+		      <td ng-click="addTime('wed', 4)"></td>
+		      <td ng-click="addTime('thu', 4)"></td>
+		      <td ng-click="addTime('fri', 4)"></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">5:00 - 6:00</th>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 5)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 5)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 5)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 5)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 5)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 5)"></td>
+		      <td ng-click="addTime('sun', 5)"></td>
+		      <td ng-click="addTime('mon', 5)"></td>
+		      <td ng-click="addTime('tue', 5)"></td>
+		      <td ng-click="addTime('wed', 5)"></td>
+		      <td ng-click="addTime('thu', 5)"></td>
+		      <td ng-click="addTime('fri', 5)"></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">6:00 - 7:00</th>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 6)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 6)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 6)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 6)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 6)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 6)"></td>
+		      <td ng-click="addTime('sun', 6)"></td>
+		      <td ng-click="addTime('mon', 6)"></td>
+		      <td ng-click="addTime('tue', 6)"></td>
+		      <td ng-click="addTime('wed', 6)"></td>
+		      <td ng-click="addTime('thu', 6)"></td>
+		      <td ng-click="addTime('fri', 6)"></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">7:00 - 8:00</th>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 7)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 7)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 7)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 7)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 7)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 7)"></td>
+		      <td ng-click="addTime('sun', 7)"></td>
+		      <td ng-click="addTime('mon', 7)"></td>
+		      <td ng-click="addTime('tue', 7)"></td>
+		      <td ng-click="addTime('wed', 7)"></td>
+		      <td ng-click="addTime('thu', 7)"></td>
+		      <td ng-click="addTime('fri', 7)"></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">8:00 - 9:00</th>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 8)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 8)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 8)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 8)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 8)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 8)"></td>
+		      <td ng-click="addTime('sun', 8)"></td>
+		      <td ng-click="addTime('mon', 8)"></td>
+		      <td ng-click="addTime('tue', 8)"></td>
+		      <td ng-click="addTime('wed', 8)"></td>
+		      <td ng-click="addTime('thu', 8)"></td>
+		      <td ng-click="addTime('fri', 8)"></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">9:00 - 10:00</th>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('sun', 9)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('mon', 9)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('tue', 9)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('wed', 9)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('thu', 9)"></td>
-		      <td><input class="btn btn-primary" type="button" ng-click="addTime('fri', 9)"></td>
+		      <td ng-click="addTime('sun', 9)"></td>
+		      <td ng-click="addTime('mon', 9)"></td>
+		      <td ng-click="addTime('tue', 9)"></td>
+		      <td ng-click="addTime('wed', 9)"></td>
+		      <td ng-click="addTime('thu', 9)"></td>
+		      <td ng-click="addTime('fri', 9)"></td>
 		    </tr>
 		  </tbody>
 		</table>

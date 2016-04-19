@@ -1,0 +1,62 @@
+html>
+  <head>
+    <title>Admin Dashboard</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="userdash-home.html">adminName</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a ui-sref="adminDash">Home<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a>Add/Drop Requests</a></li>
+            <li><a ui-sref="admindash-tutors">Tutors</a></li>
+            <li><a ui-sref="admindash-applications">Applications</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
+        </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Type</th>
+          <th>Class Type</th>
+          <th>Class Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="x in ugh track by $index">
+          <td ng-bind="x.userID"></td>
+          <td ng-bind="x.firstName"></td>
+          <td ng-bind="x.lastName"></td>
+          <td ng-bind="x.email"></td>
+          <td ng-bind="x.major"></td>
+          <td ng-bind="x.gpa"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

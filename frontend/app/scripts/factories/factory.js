@@ -6,16 +6,17 @@ angular.module('frontendApp')
 
     return {
       signIn: function(user_json, auth) {
+        console.log('signing in');
 
         return $http({
           method: 'POST',
           url: 'http://54.86.70.62/login',
           data: user_json
         }).then(function(data){
-            userToken = data.data;
+            var userToken = data.data;
             localStorage.setItem("token", userToken);
-            remember = auth;
-            $state.go("userDash");
+            var remember = auth;
+            $state.go("adminDash");
             return data;
         }, function errorCallback(response) {
           console.log("Failure!");
@@ -46,9 +47,9 @@ angular.module('frontendApp')
       isAuthed: function() {
         var token = this.getToken();
         if(token) {
-          console.log(token);
+          //console.log(token);
            var params = this.parseToken(token);
-           console.log(params);
+           //console.log(params);
            //remember = true;
            return true;
            //return Math.round(new Date().getTime() / 1000) <= params.exp;

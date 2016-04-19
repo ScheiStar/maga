@@ -41,12 +41,6 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-//      .state('applicationForm', {
-//        url: '/applicationForm',
-//        templateUrl: 'views/applicationForm/form.html',
-//        controller: 'formController',
-//        controllerAs: 'applicationForm'
-//      })
       // route to show our basic form (/form)
       .state('form', {
           url: '/form',
@@ -83,20 +77,52 @@ angular
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
+      // .state('userDash.home', {
+      //   url: '/userDashClass',
+      //   templateUrl: 'views/userDash/userdash-home.html',
+      //   controller: 'UserdashCtrl',
+      //   controllerAs: 'userDash'
+      // })
+      .state('helpDash', {
+        url: '/helpDash',
+        templateUrl: 'views/helpdash.html',
+        controller: 'HelpdashCtrl',
+        controllerAs: 'helpDash'
+      })
+      .state('adminDash', {
+        templateUrl: 'views/adminDash/admindash.html',
+        controller: 'AdmindashCtrl',
+        controllerAs: 'adminDash'
+      })
+      .state('admindash-applications', {
+        templateUrl: 'views/adminDash/admindash-applications.html',
+        controller: 'AdmindashApplicationsCtrl',
+        controllerAs: 'admindashApplications'
+      })
+      .state('admindash-tutors', {
+        templateUrl: 'views/adminDash/admindash-tutors.html',
+        controller: 'AdmindashTutorsCtrl',
+        controllerAs: 'admindashTutors'
+      })
+      .state('adminDash-requests', {
+        templateUrl: 'views/adminDash/admindash-requests.html',
+        controller: 'AdmindashRequestsCtrl',
+        controllerAs: 'adminDashRequests'
+      })
+      .state('/appModal', {
+        templateUrl: 'views/adminDash/appmodal.html',
+        controller: 'AppmodalCtrl',
+        controllerAs: 'appModal'
+      })
+
       .state('contactAdmin', {
-            templateUrl: 'views/contactadmin.html',
+            templateUrl: 'views/userDash/contactadmin.html',
             controller: 'ContactadminCtrl',
             controllerAs: 'contactAdmin'
       })
       .state('tutorQuit', {
-      templateUrl: 'views/tutorquit.html',
+      templateUrl: 'views/userDash/tutorquit.html',
       controller: 'TutorquitCtrl',
       controllerAs: 'tutorQuit'
-      })
-      .state('adminDash', {
-        url: '/adminDash',
-        templateUrl: 'views/admindash.html',
-        controller: 'AdmindashCtrl',
-        controllerAs: 'adminDash'
       })
     });

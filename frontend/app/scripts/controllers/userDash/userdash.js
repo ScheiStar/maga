@@ -14,9 +14,9 @@
 angular.module('frontendApp')
   .controller('UserdashCtrl', function ($state, $scope, $http, contactAdminFactory, userFactory, $window, $uibModal, $log, $filter) {
 
-  	
+
     $scope.add = {};//stores class into json
-    
+
     //Used to display user information
     $scope.getUserID = {};
     $scope.user = null;
@@ -37,9 +37,16 @@ angular.module('frontendApp')
     $scope.foo = 'Hello!';
     $scope.updateFoo = function (newFoo) {
         $scope.foo = newFoo;
-    }
+    };
 
     console.log("in userDash now");
+    console.log('authed?');
+    console.log(userFactory.isAuthed());
+    //if(!userFactory.isAuthed()) $state.go('login');
+
+    $scope.signOut = function() {
+      userFactory.signOut();
+    };
 
     // console.log(userFactory.getCurrentUser());
     // $scope.user = userFactory.getCurrentUser();
@@ -49,30 +56,32 @@ angular.module('frontendApp')
     // console.log(userID);
 
     //(!userFactory.isAuthed()) $state.go('login');
-    
+
     //-----------------------------MODAL CODE-----------------------------------
     //Modal code which is used to both 'add' and 'drop' class
 
     //Array to store classes and display information to user of their
     //current classes they are taking. This is also used to help push
-    //information into a json file for POST request to and and drop classes 
-    $scope.classArr = { 
+    //information into a json file for POST request to and and drop classes
+    $scope.classArr = {
       classType: ['CSE','CSE', 'ADV', 'BUSI'],
       classNumber: ['1342','2340', '1234', '4566'],
       classGrade: ['A','B+','A','A']
     };
 
-    $scope.classArr2 = { 
+    $scope.myText = "";//takes input
+
+    $scope.classArr2 = {
       classType: ['1','2'],
       classNumber: ['1','2'],
       classGrade: ['1','2']
     };
-    
-    //These variables are used to help push inputs into classArr 
+
+    //These variables are used to help push inputs into classArr
     $scope.myClassType = "";
     $scope.myClassGrade = "";
     $scope.myText = "";//takes input for adding class number
-    
+
     //Animation for modal enabled
     $scope.animationsEnabled = true;
     $scope.arrayText = ['CSE1342','CSE2340'];
@@ -80,6 +89,48 @@ angular.module('frontendApp')
     $scope.addText = function() {
         $scope.arrayText.push(this.myText);
     }
+// <<<<<<< HEAD
+//
+//     $scope.removeItem = function(index){
+//       // $scope.arrayText.splice(index, 1);
+//       //delete $scope.arrayText[index];
+//       // console.log(i);
+//       for(var i = 0; i < $scope.arrayText.length; i++) {
+//         if(this.myText == $scope.arrayText[i]) {
+//           console.log("Removed");
+//           console.log(i);
+//           console.log($scope.arrayText[i]);
+//           $scope.arrayText.splice(i, 1);//doesnt work
+//           //delete $scope.arrayText[i];//doesnt work
+//           //return !($scope.arrayText == $scope.arrayText[i]);
+//           //$scope.arrayText = $filter('filter')($scope.arrayText, {name: '!hey'})//almost worked
+//
+//           break;
+//         }
+//         else {
+//           console.log("Invalid Class");
+//         }
+//       }
+//     };//for
+//     //Allows a tutor to send add class request to admin
+//     $scope.addClassInfo = function() {
+//         //store class info in array for visual
+//         $scope.classArr.classType.push(this.myClassType);
+//         $scope.classArr.classNumber.push(this.myText);
+//         $scope.classArr.classGrade.push(this.myClassGrade);
+//         //get info from class array and store in json
+//         var addclass_data = {
+//           'userID': $scope.user,
+//           'classType': $scope.classArr.classType,
+//           'classNumber': $scope.classArr.classNumber,
+//           'classGrade': ['A','B+']
+//         };
+//         console.log(addclass_data)
+//         //do post request to add class
+//
+//         //update pending class
+//
+// =======
     $scope.flag = 0;
     //Allows a tutor to send add class request to admin
     $scope.addClassInfo = function() {
@@ -99,29 +150,30 @@ angular.module('frontendApp')
           $scope.classArr.classNumber.push(this.myText);
           $scope.classArr.classGrade.push(this.myClassGrade);
           //get info from class array and store in json
-          var addclass_data = { 
+          var addclass_data = {
             'userID': $scope.user,
             'classType': $scope.classArr.classType,
             'classNumber': $scope.classArr.classNumber,
             'classGrade': ['A','B+']
           };
           console.log(addclass_data);
-          
+
           //do post request to add class
 
           //update pending class
-          
-          //clear fields 
+
+          //clear fields
           $scope.clearFields();
           $uibModal.close();
         }
-        
+
     }
-    
+
     $scope.clearFields = function() {
       $scope.myClassType = null;
       $scope.myClassGrade = null;
       $scope.myText = null;
+// >>>>>>> userDash
     }
 
     // $scope.showConfirm = function(ev) {
@@ -168,7 +220,7 @@ angular.module('frontendApp')
       else {
         alert("Classes successfully dropped");
         //Store drop class data
-        var addclass_data = { 
+        var addclass_data = {
           'userID': $scope.user,
           'classType': $scope.dropClass.classType,
           'classNumber': $scope.dropClass.classNumber,
@@ -176,7 +228,7 @@ angular.module('frontendApp')
         };
         $uibModal.close();
       }
-      
+
 
       //post request to drop classess in drop arr
 
@@ -243,7 +295,7 @@ angular.module('frontendApp')
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-      
+
     };
 
 
@@ -261,6 +313,25 @@ angular.module('frontendApp')
     };
 
 
+
+
+
+
+
+
+
+    //------------------------------------------------------------------------
+
+    $scope.addClass = function(){
+      console.log("Sent classes");
+
+      // $http({
+      //   method: 'POST',
+      //   url: 'http://54.86.70.62/admin/addClass/',
+      //   data: classData
+      // });
+    }
+
     //--------------------End of Modal Code---------------------------
 
 
@@ -275,7 +346,7 @@ angular.module('frontendApp')
       fri:[0, 0, 0, 0, 0, 0, 0, 0]
     };
 
-    
+
     //test calendar data
     $scope.calendarstuff = "'sun':'2,3,4','tue':'1,2,3','wed':'4'";
 
@@ -303,11 +374,11 @@ angular.module('frontendApp')
       //regex performed on string // 8 times total
       //regex for '2,3,4' and then use match to grab individual numbers
       console.log(dayRegex.toString(calendarstuff));
-      console.log(calendarstuff.match(dayRegex)); 
+      console.log(calendarstuff.match(dayRegex));
       //store data into calendarArr
       if(calendarstuff.match(dayRegex) == 'sun') {
-        console.log("enter sun"); 
-        
+        console.log("enter sun");
+
         //grab quote regex. use substring to focus on those numbers
         //use match to extract numbers
         //grabs block of string starting from date to last of quotesRegex
@@ -315,7 +386,7 @@ angular.module('frontendApp')
         console.log("number");
         console.log(numberBlock);
 
-        //var regexBlock = 
+        //var regexBlock =
         $scope.calenderArr[0][numberRegex] = 1;
       }
       else if(dayRegex == "mon") {
@@ -338,7 +409,7 @@ angular.module('frontendApp')
       }
       //display calendar using ng-repeat
 
-    };    
+    };
 
     $scope.removeCalendar = function() {
 
@@ -352,6 +423,7 @@ angular.module('frontendApp')
     //GET request retreives current user id and displays it to pages
     //Used in Add/Drop class' post request to add and drop classes
     //Used in home page to display welcome "tutor name"
+
     $http({
       method: 'GET',
       url: 'http://54.86.70.62/admin/getTutors'
@@ -363,7 +435,7 @@ angular.module('frontendApp')
         // UserData.info = response.data;
         // console.log(UserData.info[1]);
         // console.log('success');
-        
+
         $scope.getUserID = response;
         console.log($scope.getUserID.data[1]);
         //switch this to ng-model for mini ddos program lol
@@ -373,30 +445,35 @@ angular.module('frontendApp')
             if("11380723" == $scope.getUserID.data[i].tutor_id) {
               console.log("tits");
               $scope.user = $scope.getUserID.data[i].tutor_first_name;
-              break;  
+              break;
             }
         }
-        
+
       }, function errorCallback(response) {
         console.log('fail');
       });
 
     $window.onbeforeunload = function(){
+      alert('shit');
       userFactory.onExit();
     };
+
+    $(window).unload(function() {
+      userFactory.onExit();
+    });
     //$window.onbeforeunload =  userFactory.onExit();
 
     $scope.getUser = function() {
-      
+
 
     //Interesting: $http request is always last
     console.log("i");
     // console.log(UserData.info[2]);
     // console.log($scope.getUserTest.data);
-    
+
 
     }
 
 
-    
+
   });

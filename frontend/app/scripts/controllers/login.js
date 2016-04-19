@@ -10,6 +10,7 @@
 angular.module('frontendApp')
   .controller('LoginCtrl', function ($state, $scope, $http, userFactory, $window) {
     $scope.user = {};
+    console.log('authed?');
     console.log(userFactory.isAuthed());
     if(userFactory.isAuthed()) $state.go('userDash');
 
@@ -20,13 +21,13 @@ angular.module('frontendApp')
       else
         user.auth = false;
 
-      console.log(user.auth);
+      //console.log(user.auth);
       var user_data = {
         'userID': user.userID,
         'password': user.password
       };
 
-      console.log(user_data);
+      //console.log(user_data);
 
       userFactory.signIn(user_data, user.auth);
     },

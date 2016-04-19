@@ -9,33 +9,57 @@
  */
 angular.module('frontendApp')
 
-.controller('formController', function($scope) {
-      this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];  
+.controller('formController', function($scope, $state, contactAdminFactory) {
     // we will store all of our form data in this object
     $scope.formData = {};
     $scope.formData.cal = {};
     $scope.formData.courseDictArray = [];
     var courseDict = {};
-    
+
     // function to process the form
-    $scope.processForm = function() { 
+    $scope.processForm = function() {
         //processes the calendar into strings
         for (var day in $scope.formData.cal){
              $scope.formData.cal[day] = $scope.formData.cal[day].toString();
         }
         //processes the input courses into array of dictionaries where 'courseNum':"CSE2341",'grade':"A"
         for(var i = 0; i < (Object.keys($scope.formData.courseArray).length); i++){
+            console.log((Object.keys($scope.formData.courseArray).length));
             console.log("Course Array: ", $scope.formData.courseArray);
-            $scope.formData.courseDictArray.push({'courseNum':$scope.formData.courseArray[i], 'grade':$scope.formData.courseArray[i+1]});
-            i++;
-        } 
+            $scope.formData.courseDictArray.push({'courseType':$scope.formData.courseArray[i], 'courseNum':$scope.formData.courseArray[i+1], 'grade':$scope.formData.courseArray[i+2]});
+            i = i+2;
+        }
         delete $scope.formData.courseArray; //delete because its not needed in formData anymore!
         console.log($scope.formData);
+        console.log($scope.formData.email);
+        var user_data = {
+          'email': $scope.formData.email,
+          'message': '',
+          'type': "appConfirm"
+        };
+//        contactAdminFactory.emailAdmin(user_data);
+//        //work on hooking this up to database
+//        return $http({
+//          method: 'POST',
+//          url: 'http://54.86.70.62/login',
+//          data: user_json
+//        }).then(function(data){
+//            var userToken = data.data;
+//            localStorage.setItem("token", userToken);
+//            var remember = auth;
+//            $state.go("userDash");
+//            return data;
+//        }, function errorCallback(response) {
+//          console.log("Failure!");
+//              console.log(response);
+//              alert("Log In Unsuccessful");
+//    });
+        
+        
+        
         alert('Thanks for Applying!');
+        $state.go('login');
+        
     };
     //int for $time version
     $scope.addTime = function($day,$time) {
@@ -52,4 +76,3 @@ angular.module('frontendApp')
         $scope.formData.cal[$day].sort();
     };
 });
-
