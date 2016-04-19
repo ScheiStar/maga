@@ -9,6 +9,11 @@
 - How can I change the color of the td when it is active (change it from just gray)? (Caleb)
 - How can we make the user pick an item off of the list instead of typing in something stupid? (Caleb)
 
+- TODO for Jayce
+    - Complete GET request for indie applications
+    - Populate app modal.html (its a file!) with return data
+    - Adjust appmodal.js & conatactadminfactory.js at the very bottom (the GET request) and appmodal.html
+
 - ~~Calendar looks alright, how can I make just the cell clickable and not the actual checkbox? (Caleb)~~
 - ~~How can we do the calendar entry JSON better? (Caleb)~~
 - ~~How can the buttons in the calendar stay activated once pressed? (Caleb)~~

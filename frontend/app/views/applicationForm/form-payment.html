@@ -13,47 +13,49 @@
             <tbody>
                 <tr>
                     <th scope="row">First Name</th>
-                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.fName}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_first_name}}</a></p></td>
                 </tr>
                 <tr>
                     <th scope="row">Last Name</th>
-                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.lName}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_last_name}}</a></p></td>
                 </tr>
                 <tr>
                     <th scope="row">Password</th>
-                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.pass}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_hash}}</a></p></td>
                 </tr>
+<!--
                 <tr>
                     <th scope="row">Confirm Password</th>
                     <td><p class="text-left"><a ui-sref="form.profile">{{formData.confPass}}</a></p></td>
                 </tr>
+-->
                 <tr>
                     <th scope="row">SMU ID</th>
-                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.id}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_id}}</a></p></td>
                 </tr>
                 <tr>
                     <th scope="row">Email</th>
-                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.email}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_email}}</a></p></td>
                 </tr>
                 <tr>
                     <th scope="row">Major</th>
-                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.major}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_major}}</a></p></td>
                 </tr>
                 <tr>
                     <th scope="row">GPA</th>
-                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.gpa}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_gpa}}</a></p></td>
                 </tr>
                 <tr>
                     <th scope="row">Course 1</th>
-                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[0]}}   {{formData.courseArray[1]}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[0]}}{{formData.courseArray[1]}}   {{formData.courseArray[2]}}</a></p></td>
                 </tr>
                 <tr>
                     <th scope="row">Course 2</th>
-                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[2]}}   {{formData.courseArray[3]}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[3]}}{{formData.courseArray[4]}}   {{formData.courseArray[5]}}</a></p></td>
                 </tr>
                 <tr>
                     <th scope="row">Course 3</th>
-                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[4]}}   {{formData.courseArray[5]}}</a></p></td>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[6]}}{{formData.courseArray[7]}}   {{formData.courseArray[8]}}</a></p></td>
                 </tr>
             </tbody>
         </table>

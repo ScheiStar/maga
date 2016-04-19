@@ -57,7 +57,7 @@
                 <input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[3]" required>
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" placeholder="Course #" ng-model="formData.courseArray[4]">
+                <input type="text" class="form-control" placeholder="Course #" pattern="[0-9]{4}" ng-model="formData.courseArray[4]" required>
             </div>
             <div class="col-xs-2">
                 <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[5]" required>
