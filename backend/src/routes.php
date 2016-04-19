@@ -78,9 +78,11 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
 
   if($user){
     $db_hash = $user->hash;
+    $is_admin = $user->admin;
     if(password_verify($password, $db_hash)){
       $new_response = $response->withStatus(200);
       $token = (new Builder())->set('userID', $uid)
+                              ->set('admin', $is_admin)
                               ->getToken();
       echo $token;
     }else{
@@ -98,33 +100,33 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
 
 
 $app->get('/getApplications', function($request, $response, $args) {
-	
-	
+
+
 	  $db = $this->createDB;
-	
+
 	  $query = $db->prepare('SELECT * FROM Applicants');
 	  $query->execute();
-	
-	  $temp = array(); 
+
+	  $temp = array();
 
 	while($row = $query->fetch(PDO::FETCH_OBJ)){
 	    //iterate over all the fields
-		$temp[] = $row; 
+		$temp[] = $row;
 	}
-	
+
 	  if($temp){
 
 	      echo( json_encode($temp));
 		  return $response;
 
 	  }else{
-		
+
 	    $new_response = $response->withStatus(204);
-	   
-		return $new_response; 
-	
+
+		return $new_response;
+
 	  }
-	
+
 });
 
 $app->get('/admin/getTutors',function($request,$response,$args){
@@ -216,15 +218,15 @@ $app->post('/sendEmail', function (ServerRequestInterface $request, ResponseInte
   $email = $data->email;
   $message = $data->message;
   $type = $data->type;
-  
+
   $message = "'" . $message . "'";
-    
+
   if(!isset($email) || !isset($message) || !isset($type)){
     $new_response = $response->withStatus(418);
     echo "invalid GET request";
     return $new_response;
   }
-    
+
   ob_start();
   passthru("/usr/bin/python2.7 /var/www/maga/scripts/sendEmails.py {$email} {$message} {$type}");
   $output = ob_get_clean();
@@ -287,7 +289,7 @@ $app->delete('/dropClass', function (ServerRequestInterface $request, ResponseIn
     $query = $db->prepare('Delete from TutorClasses where id=:classID and tutor_ID=:userID');
     $query->bindParam(":classID", $classID, PDO::PARAM_INT);
     $query->bindParam(":userID", $userID, PDO::PARAM_INT);
-    $query->execute(); 
+    $query->execute();
     $user = $query->fetch(PDO::FETCH_OBJ);
    $new_response=$response->withStatus(410);
    echo "successfully deleted class";
@@ -336,6 +338,12 @@ $app->post('/setApplicationStatus',function (ServerRequestInterface $request, Re
     $query2->bindParam(':id', $id, PDO::PARAM_INT);
     $query2->execute();
 
+    $query2_1 - $db->prepare("INSERT INTO Users (admin)
+    VALUES(0)
+    WHERE applicant_id = :id");
+    $query2_1->bindParam(':id', $id, PDO::PARAM_INT);
+    $query2_1->execute();
+
     $query3 = $db->prepare("INSERT INTO TutorClasses
       SELECT * FROM ApplicantClasses
       WHERE applicant_id = :id");
@@ -351,7 +359,7 @@ $app->post('/setApplicationStatus',function (ServerRequestInterface $request, Re
     $query5 = $db->prepare("DELETE FROM Applicants WHERE applicant_id = :id");
     $query5->bindParam(':id', $id, PDO::PARAM_INT);
     $query5->execute();
-    
+
     return $response;
   }
 
@@ -443,4 +451,28 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 		}
 
 			return $response;
+});
+
+$app->post('/requestClass',function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+  $db = $this->createDB;
+  $data = json_decode($request->getBody());
+  $uid = $data->userID;
+  $classname = $data->className;
+  $classnum = $data->classNum;
+  $reqtype = $data->requestType;
+
+  if(!isset($uid) || !isset($classname) || !isset($classnum) || !isset($reqtype)){
+    $new_response = $response->withStatus(400);
+    echo("Please send a valid JSON");
+    return $new_response;
+  }
+
+  $query = $db->prepare("INSERT INTO TutorRequests
+    (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type)
+    VALUES(:uid, :classname, :classnum, :reqtype)");
+  $query->bindParam(":uid", $uid, PDO::PARAM_INT);
+  $query->bindParam(":classname", $classname, PDO::PARAM_STR);
+  $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
+  $query->bindParam(":reqtype", $reqtype, PDO::PARAM_STR);
+
 });
