@@ -80,14 +80,18 @@ angular.module('frontendApp')
     $scope.addText = function() {
         $scope.arrayText.push(this.myText);
     }
-
+    $scope.flag = 0;
     //Allows a tutor to send add class request to admin
     $scope.addClassInfo = function() {
         //error control -- need to add specific error control for scope
-        if($scope.myClassType == "" || ($scope.myText == "" || $scope.myText.length < 4) || $scope.myClassGrade == "") {
+        if(($scope.myClassType == "" || ($scope.myText == "" || $scope.myText.length < 4) || $scope.myClassGrade == "") && $scope.flag == 0) {
           console.log("Error");
+          console.log($scope.flag);
+          $scope.flag = 0;
         }
         else {
+          $scope.flag = 1;
+          console.log($scope.flag);
           //alert
           alert("Class Successfully Added");
           //store class info in array for visual
