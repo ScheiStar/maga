@@ -13,16 +13,16 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="userdash-home.html">Matthew Lee</a>
+		      <a class="navbar-brand" ui-sref="userDash">Matthew Lee</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse">
 		      <ul class="nav navbar-nav">
-		        <li><a href="userdash-home.html">Home<span class="sr-only">(current)</span></a></li>
-		        <li  class="active"><a href="userdash-classes.html">Add/Drop Class</a></li>
-		        <li><a href="#">Contact Admin</a></li>
-		        <li><a href="#">Quit Tutor</a></li>
+		        <li><a ui-sref="userDash">Home<span class="sr-only">(current)</span></a></li>
+		        <li  class="active"><a ui-sref="userDashClass">Add/Drop Class</a></li>
+		        <li style="cursor: pointer;"><a ui-sref="contactAdmin">Contact Admin</a></li>
+		        <li style="cursor: pointer;"><a ui-sref="tutorQuit">Quit Tutor</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 			      <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
@@ -32,26 +32,26 @@
 		</nav>
 
 		<div class="col-xs-12 col-md-4">
-        <p>Current Classes:</p>
+        <b><p>Current Classes:</p></b>
           <ul>
             <div class="panel panel-default">
             	<div id="show-classes" class="panel panel-heading" ng-repeat="item in arrayText">{{item}}</div>
         	</div>
           </ul>
-          <p>Pending Classes:</p>
+          <b><p>Pending Classes:</p></b>
           <ul>
           	<div class="panel panel-warning">
             	<div id="show-classes" class="panel panel-heading" ng-repeat="item in arrayText">{{item}}</div>
         	</div>
           </ul>
         </div>
-        <div class="col-xs-12 col-md-4">
-        	<h1>Add Class</h1>
-        	<button type="button" class="btn btn-primary" ng-click="open('lg')">Add Class</button>
+        <div class="col-xs-12 col-md-4 text-center" style="padding-left:8%">
+        	<b><h3>Add Class</h3></b>
+        	<button id="addButton" sstyle="text-align:center" type="button" class="btn btn-primary" ng-click="open('lg')">Add Class</button>
         </div>
-        <div class="col-xs-12 col-md-4">
-        	<h1>Drop Class</h1>
-        	<button type="button" class="btn btn-primary" ng-click="openDrop('lg')">Drop Class</button>
+        <div class="col-xs-12 col-md-4 text-center" style="padding-left:8%">
+        	<h3>Drop Class</h3>
+        	<button id="dropButton" type="button" class="btn btn-primary" ng-click="openDrop('lg')">Drop Class</button>
         </div>
 
      	<script type="text/ng-template" id="myModalContent.html">
@@ -59,13 +59,14 @@
 		        <h3 class="modal-title">Add Class</h3>
 		    </div>
 		    <div class="modal-body">
+		    Adding a class to tutor in requires admin approval.
 		    </div>
 
 		    <div class="modal-footer">
-			    <form>
+			    <form name="myForm">
 			        <div class="col-xs-12 col-md-4">
 			          	<h4>Class Type</h4>
-			          	<input list="classType" ng-model="myClassType">
+			          	<input list="classType" name="myClassType" ng-model="myClassType" required>
 					  	<datalist id="classType" >
 					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH"><option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM"><option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
 						    <option value="BA"><option value="BAEX"><option value="BB"><option value="BHSC"><option value="BIOL"><option value="BL"><option value="BLI"><option value="BSSN"><option value="BUSE">
@@ -74,16 +75,38 @@
 						    <option value="ECO"><option value="EDU"><option value="EE"><option value="EETS"><option value="EMIS"><option value="ENGL"><option value="ENGR"><option value="ENSC"><option value="ENST"><option value="ECO"><option value="EPL"><option value="ESL"><option value="ETST"><option value="EUPH"><option value="EV">
 						    <option value="FILM"><option value="FINA"><option value="FLUT"><option value="FNAR"><option value="FREN"><option value="FRHN">
 						    <option value="GEOL"><option value="GERM"><option value="GR"><option value="GUIT">
-						    <option value="HARP"><option value="HARS"><option value="HB">
+						    <option value="HARP"><option value="HARS"><option value="HB"><option value="HDCN"><option value="HDDR"><option value="HDEV"><option value="HGAM"><option value="HIST"><option value="HR"><option value="HRTS"><option value="HMUN"><option value="HX">
+						    <option value="IAM"><option value="INTL"><option value="ITAL"><option value="ITOM">
+						    <option value="JAPN"><option value="JOUR"><option value="JWST">
+						    <option value="KNW">
+						    <option value="LATN"><option value="LAW">
+						    <option value="MAST"><option value="MATH"><option value="MDVL"><option value="ME"><option value="MKTG"><option value="MN"><option value="MGNT"><option value="MNO"><option value="MPED"><option value="MREP"><option value="MSA"><option value="MSDS"><option value="MT"><option value="MUAC"><option value="MUAS"><option value="MUCO"><option value="MUED"><option value="MUHI"><option value="MUPD"><option value="MURE"><option value="MUTH"><option value="MUTY">
+						    <option value="NT">
+						    <option value="OBOE"><option value="ORG"><option value="OT">
+						    <option value="PC"><option value="PERB"><option value="PERC"><option value="PERE"><option value="PHIL"><option value="PHYS"><option value="PIAN"><option value="PLSC"><option value="PPIA"><option value="PR"><option value="PRW"><option value="PS"><option value="PSYC">
+						    <option value="RE"><option value="RELI"><option value="RMI"><option value="ROTC"><option value="RUSS">
+						    <option value="SAX"><option value="SCCL"><option value="SOCI"><option value="SOSC"><option value="SPAN"><option value="SPRT"><option value="ST"><option value="STAT"><option value="STRA">
+						    <option value="TC"><option value="THEA"><option value="TROM"><option value="TRPT"><option value="STUBA">
+						    <option value="UGRD"><option value="UHP">
+						    <option value="VIOL"><option value="VLA"><option value="VOIC">
+						    <option value="WGST"><option value="WL"><option value="WLAN"><option value="WO"><option value="WX">
+						    <option value="XS"><option value="XX">
 					  	</datalist>
+					  	<br>
+					  	<span style="color:red" ng-show="myForm.myClassType.$dirty && myForm.myClassType.$invalid">
+
 					</div>
 				    <div class="col-xs-12 col-md-4">
 				  	  	<h4>Class Number</h4>
-			            <input type="text" ng-model="myText" value="">
+			            <input type="text" name="myText" ng-model="myText" value="" required>
+			            <br>
+			            <span style="color:red" ng-show="myForm.myText.$dirty && myForm.myText.$invalid">
+
 		            </div>
+
 		            <div class="col-xs-12 col-md-4">
 			          	<h4>Grade Earned</h4>
-			          	<input list="classGrade" ng-model="myClassGrade">
+			          	<input list="classGrade" name="myClassGrade" ng-model="myClassGrade" required>
 					  	<datalist id="classGrade">
 						    <option value="A"><option value="A-">
 						    <option value="B+"><option value="B"><option value="B-">
@@ -92,10 +115,16 @@
 						    <option value="F">
 					  	</datalist>
 					  <br>
-					  <br>
-					  <input class="btn btn-primary" type="submit" id="submit" ng-click="addClassInfo()"/>
+					  <span style="color:red" ng-show="myForm.myClassGrade.$dirty && myForm.myClassGrade.$invalid">
+
 					</div>
+					<br>
+					<br>
+			    	<input class="btn btn-primary" type="submit" id="submit" ng-click="addClassInfo()" ng-disabled="myForm.myClassGrade.$dirty && myForm.myClassGrade.$invalid ||
+			    	myForm.myText.$dirty && myForm.myText.$invalid ||
+			    	myForm.myClassType.$dirty && myForm.myClassType.$invalid">
 			    <form>
+
 			    <pre>list={{classArr.classType}}</pre>
 			    <pre>list={{classArr.classNumber}}</pre>
 			    <pre>list={{classArr.classGrade}}</pre>
@@ -106,6 +135,7 @@
 		        <h3 class="modal-title">Drop Class</h3>
 		    </div>
 		    <div class="modal-body">
+		    Dropping a class to stop tutoring in requires admin approval.
 		    </div>
 
 		    <div class="modal-footer">
@@ -123,15 +153,41 @@
 		    				<td ng-repeat="col in classArr track by $index">
 		    					{{col[$parent.$index]}}
 		    				</td>
-		    				<td ng-click="dropClass($index)">drop</td>
+		    				<td><md-button class="md-primary md-raised" ng-click="dropClass($index)">drop</md-button></td>
 		    			</tr>
 		    		</tbody>
-		    	</table>
+					</table>
 
+		    		<table class="table" align="left">
+		    		<thead>
+		    			<tr>
+		    				<th>Class Type</th>
+		    				<th>Class Number</th>
+		    				<th>Grade</th>
+		    				<th>Undo</th>
+		    			</tr>
+		    		</thead>
+		    		<tbody>
+		    			<tr ng-repeat="col in dropArr.classType track by $index">
+		    				<td ng-repeat="col in dropArr track by $index">
+		    					{{col[$parent.$index]}}
+		    				</td>
+		    				<td><md-button class="md-primary md-raised" ng-click="undoDrop($index)">Undo</md-button>
+		    				</td>
+		    			</tr>
+
+		    		</tbody>
+
+		    	</table>
+		    	<input class="btn btn-primary" type="submit" id="submit" ng-click="submitDrop()">
 			    <pre>list={{classArr.classType}}</pre>
 			    <pre>list={{classArr.classNumber}}</pre>
 			    <pre>list={{classArr.classGrade}}</pre>
 		    </div>
 		</script>
+		<!-- <button class="btn btn-primary" ng-click="displayCalendar()">Magic</button> -->
+		<!--<span ng-show="myForm.myClassType.$error.required">Class type is required.</span>
+		<span ng-show="myForm.myText.$error.required">Class number is required.</span>
+		<span ng-show="myForm.myClassGrade.$error.required">Class number is required.</span> -->
 	</body>
 </html>

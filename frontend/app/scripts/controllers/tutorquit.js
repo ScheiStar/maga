@@ -1,6 +1,4 @@
-
-'use strict';
-angular.module('frontendApp').controller('QuitTutorModalInstanceCtrl', function ($state, contactAdminFactory, userFactory, $scope) {
+angular.module('frontendApp').controller('TutorquitCtrl', function ($state, contactAdminFactory, userFactory, $scope) {
   console.log('in contact admin dash');
 
   $scope.submitMessage = function(user) {

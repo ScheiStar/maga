@@ -67,6 +67,12 @@ angular
 
       .state('userDash', {
         url: '/userDash',
+        templateUrl: 'views/userDash/userdash-home.html',
+        controller: 'UserdashCtrl',
+        controllerAs: 'userDash'
+      })
+      .state('userDashClass', {
+        url: '/userDashClass',
         templateUrl: 'views/userDash/userdash-classes.html',
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
@@ -102,5 +108,16 @@ angular
         templateUrl: 'views/adminDash/appmodal.html',
         controller: 'AppmodalCtrl',
         controllerAs: 'appModal'
+      })
+
+      .state('contactAdmin', {
+            templateUrl: 'views/contactadmin.html',
+            controller: 'ContactadminCtrl',
+            controllerAs: 'contactAdmin'
+      })
+      .state('tutorQuit', {
+      templateUrl: 'views/tutorquit.html',
+      controller: 'TutorquitCtrl',
+      controllerAs: 'tutorQuit'
       })
     });
