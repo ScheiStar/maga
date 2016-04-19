@@ -37,22 +37,61 @@ $app->get('/getApplication/{id}', function ($request, $response, $args) {
 
 		//gets the user and applicant
 		  $user = $query->fetch(PDO::FETCH_OBJ);
-		  $applicant = json_encode($user);
+
+			//gets the classes
+			$query = $db->prepare('SELECT * from ApplicantClasses WHERE Applicants_applicant_id = :uid');
+			$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+			$query->execute();
+
+			$courses = array();
+
+			//puts info in an array
+			while($row = $query->fetch(PDO::FETCH_OBJ)){
+				//iterate over all the fields
+			$courses[] = $row;
+			}
+
+			//gets the timeslots
+			$query = $db->prepare('SELECT * from ApplicantTimeslots WHERE Applicants_applicant_id = :uid');
+			$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+			$query->execute();
+
+			$cal = array();
+
+			while($row = $query->fetch(PDO::FETCH_OBJ)){
+				//iterate over all the fields
+			$cal[] = $row;
+
+			}
+
+			//json object with all the info of an applicant
+			$tempApplicant = array(
+				'calArray' => $cal,
+				'courseDictArray' => $courses,
+				'applicantInfo' => $user
+			);
+
+
+			//converts it to json 
+		  $applicant = json_encode($tempApplicant);
+
+
+
 
 	//if there is an applicant then respond with 200 else respond with 403
 		  if($user){
 
-		   echo($applicant);
-		   return $response;
-
+		    echo($applicant);
+			  return $response;
 
 		  }else{
 		    $new_response = $response->withStatus(204);
+				return $new_response;
 		   // echo('No Applicant Found');
 		  }
 
 
-		  return $new_response; //returns the response
+		  return $response; //returns the response
 
 });
 
