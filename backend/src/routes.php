@@ -357,3 +357,90 @@ $app->post('/setApplicationStatus',function (ServerRequestInterface $request, Re
 
 
 });
+
+$app->post('/applicationForm', function ($request, $response, $args)  {
+	$db = $this->createDB;
+	$json = $request->getBody();
+	$data = json_decode($json);
+
+	$fName = $data->applicant_first_name;
+	$lName = $data->applicant_last_name;
+	$major = $data->applicant_major;
+	$password = $data->applicant_hash;
+	$uid = $data->applicant_id;
+	$calander = $data->cal;
+	$courses = $data->courseDictArray;
+  $email = $data->applicant_email;
+  $gpa=$data->applicant_gpa;
+	$status = 0;
+
+
+
+		// gets applicant
+		$query = $db->prepare('SELECT * FROM Applicants WHERE applicant_id = :uid');
+		$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+		$query->execute();
+		$applicant = $query->fetch(PDO::FETCH_OBJ);
+
+		  // gets tutor
+			$query = $db->prepare('SELECT * FROM Tutors WHERE applicant_id = :uid');
+			$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+			$query->execute();
+			$tutor = $query->fetch(PDO::FETCH_OBJ);
+
+			//checks to see if a tutor or applicant already exists with that id
+			if($tutor || $applicant){
+
+				$new_response = $response->withStatus(409);
+				echo("Applicant or Tutor with that ID already exists");
+				return $new_response;
+			}
+
+			//inserts general info
+
+			$query = $db->prepare('INSERT into Applicants values(:applicant_id,:applicant_first_name,:applicant_last_name, :applicant_email, :applicant_gpa, :applicant_major, :application_status, :applicant_password)');
+			$query->bindParam(":applicant_id", $uid, PDO::PARAM_INT);
+	    $query->bindParam(":applicant_first_name", $fName, PDO::PARAM_STR);
+	    $query->bindParam(":applicant_last_name", $lName, PDO::PARAM_STR);
+	    $query->bindParam(":applicant_email", $email, PDO::PARAM_STR);
+			$query->bindParam(":applicant_gpa", $gpa, PDO::PARAM_STR);
+			$query->bindParam(":applicant_major", $major, PDO::PARAM_STR);
+			$query->bindParam(":application_status", $status, PDO::PARAM_INT);
+			$query->bindParam(":applicant_password", $password, PDO::PARAM_STR);
+	    $query->execute();
+
+			  //inserts all courses
+				foreach($courses as $item) {
+
+    			$name = $item->courseType;
+					$courseNum = $item->courseNum;
+					$grade = $item->grade;
+
+
+					$query = $db->prepare('INSERT into ApplicantClasses(class_name, class_gpa, class_number, Applicants_applicant_id) values(:class_name, :class_gpa, :class_number, :Applicants_applicant_id)');
+					$query->bindParam(":class_name", $name, PDO::PARAM_STR);
+					$query->bindParam(":Applicants_applicant_id", $uid, PDO::PARAM_INT);
+					$query->bindParam(":class_gpa", $grade, PDO::PARAM_STR);
+					$query->bindParam(":class_number", $courseNum, PDO::PARAM_STR);
+					$query->execute();
+
+
+			}
+
+			//inserts all days and times the applicant can tutor
+			foreach($calander as $item) {
+
+				$day = $item->day;
+				$times = $item->times;
+
+				$query = $db->prepare('INSERT into ApplicantTimeslots(timeslot_time, day, Applicants_applicant_id) values(:timeslot_time, :day, :Applicants_applicant_id)');
+				$query->bindParam(":timeslot_time", $times, PDO::PARAM_STR);
+				$query->bindParam(":Applicants_applicant_id", $uid, PDO::PARAM_INT);
+				$query->bindParam(":day", $day, PDO::PARAM_STR);
+				$query->execute();
+
+
+		}
+
+			return $response;
+});
