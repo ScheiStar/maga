@@ -104,6 +104,11 @@ angular
         controller: 'AdmindashTutorsCtrl',
         controllerAs: 'admindashTutors'
       })
+      .state('adminDash-requests', {
+        templateUrl: 'views/adminDash/admindash-requests.html',
+        controller: 'AdmindashRequestsCtrl',
+        controllerAs: 'adminDashRequests'
+      })
       .state('/appModal', {
         templateUrl: 'views/adminDash/appmodal.html',
         controller: 'AppmodalCtrl',

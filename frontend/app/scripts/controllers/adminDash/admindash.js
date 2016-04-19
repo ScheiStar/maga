@@ -14,6 +14,10 @@ angular.module('frontendApp')
     console.log(userFactory.parseToken(userFactory.getToken()).userID);
     $scope.animationsEnabled = true;
 
+    $scope.signOut = function() {
+      userFactory.signOut();
+    };
+
     $scope.openAppModal = function (size) {
       console.log('click');
       var modalInstance = $uibModal.open({
