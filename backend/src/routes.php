@@ -447,11 +447,26 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 			return $response;
 });
 
-$app->post('/requestAddClass',function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+$app->post('/requestClass',function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+  $db = $this->createDB;
+  $data = json_decode($request->getBody());
+  $uid = $data->userID;
+  $classname = $data->className;
+  $classnum = $data->classNum;
+  $reqtype = $data->requestType;
 
-});
+  if(!isset($uid) || !isset($classname) || !isset($classnum) || !isset($reqtype)){
+    $new_response = $response->withStatus(400);
+    echo("Please send a valid JSON");
+    return $new_response;
+  }
 
-
-$app->post('/requestDropClass',function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+  $query = $db->prepare("INSERT INTO TutorRequests
+    (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type)
+    VALUES(:uid, :classname, :classnum, :reqtype)");
+  $query->bindParam(":uid", $uid, PDO::PARAM_INT);
+  $query->bindParam(":classname", $classname, PDO::PARAM_STR);
+  $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
+  $query->bindParam(":reqtype", $reqtype, PDO::PARAM_STR);
 
 });
