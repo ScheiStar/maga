@@ -20,9 +20,9 @@ USE `alecDB` ;
 -- -----------------------------------------------------
 -- Table `alecDB`.`Tutors`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alecDB`.`Tutors` ;
+DROP TABLE IF EXISTS `mydb`.`Tutors` ;
 
-CREATE TABLE IF NOT EXISTS `alecDB`.`Tutors` (
+CREATE TABLE IF NOT EXISTS `mydb`.`Tutors` (
   `tutor_id` INT NOT NULL,
   `tutor_first_name` VARCHAR(45) NULL COMMENT '	',
   `tutor_last_name` VARCHAR(45) NULL,
@@ -144,14 +144,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `alecDB`.`Users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alecDB`.`Users` ;
+DROP TABLE IF EXISTS `mydb`.`Users` ;
 
-CREATE TABLE IF NOT EXISTS `alecDB`.`Users` (
+CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
   `user_id` INT NOT NULL,
   `hash` VARCHAR(45) NULL,
+  `admin` TINYINT(1) NULL,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `alecDB`.`Admins`
