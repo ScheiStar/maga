@@ -104,17 +104,17 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`ApplicantTimeslots` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
-  `timeslot_id` INT NOT NULL,
-  `timeslot_time` VARCHAR(45) NULL,
-  `Applicants_applicant_id` INT NOT NULL,
-  `timeslot_day` VARCHAR(45) NULL,
-  PRIMARY KEY (`timeslot_id`),
-  INDEX `fk_ApplicantTimeslots_Applicants1_idx` (`Applicants_applicant_id` ASC),
-  CONSTRAINT `fk_ApplicantTimeslots_Applicants1`
-    FOREIGN KEY (`Applicants_applicant_id`)
-    REFERENCES `alecDB`.`Applicants` (`applicant_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
+  `timeslot_time` VARCHAR(45) NULL,
+  `day` VARCHAR(10) NULL,
+  `Applicants_applicant_id` INT NOT NULL,
+  PRIMARY KEY (`timeslot_id`),
+  INDEX `fk_ApplicantTimeslots_Applicants1_idx` (`Applicants_applicant_id` ASC),
+  CONSTRAINT `fk_ApplicantTimeslots_Applicants1`
+    FOREIGN KEY (`Applicants_applicant_id`)
+    REFERENCES `alecDB`.`Applicants` (`applicant_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -196,18 +196,18 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`ApplicantClasses` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
-  `idApplicantClasses` INT NOT NULL,
-  `class_type` VARCHAR(4) NULL,
-  `class_num` VARCHAR(4) NULL,
-  `class_grade` VARCHAR(3) NULL,
-  `Applicants_applicant_id` INT NOT NULL,
-  PRIMARY KEY (`idApplicantClasses`),
-  INDEX `fk_ApplicantClasses_Applicants1_idx` (`Applicants_applicant_id` ASC),
-  CONSTRAINT `fk_ApplicantClasses_Applicants1`
-    FOREIGN KEY (`Applicants_applicant_id`)
-    REFERENCES `alecDB`.`Applicants` (`applicant_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `idApplicantClasses` INT NOT NULL AUTO_INCREMENT,
+  `class_name` VARCHAR(45) NULL,
+  `class_gpa` VARCHAR(2) NULL,
+  `class_number` VARCHAR(4) NULL,
+  `Applicants_applicant_id` INT NOT NULL,
+  PRIMARY KEY (`idApplicantClasses`),
+  INDEX `fk_ApplicantClasses_Applicants1_idx` (`Applicants_applicant_id` ASC),
+  CONSTRAINT `fk_ApplicantClasses_Applicants1`
+    FOREIGN KEY (`Applicants_applicant_id`)
+    REFERENCES `alecDB`.`Applicants` (`applicant_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
