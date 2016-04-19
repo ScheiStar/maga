@@ -141,30 +141,67 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
 $app->get('/getApplications', function($request, $response, $args) {
 
 
-	  $db = $this->createDB;
+	$db = $this->createDB;
 
-	  $query = $db->prepare('SELECT * FROM Applicants');
-	  $query->execute();
+	$query = $db->prepare('SELECT * FROM Applicants');
+	$query->execute();
 
-	  $temp = array();
+	$applicants = array();
 
-	while($row = $query->fetch(PDO::FETCH_OBJ)){
-	    //iterate over all the fields
-		$temp[] = $row;
+	while($user = $query->fetch(PDO::FETCH_OBJ)){
+		//iterate over all the fields
+
+		$uid = $user->applicant_id;
+		//gets the classes
+		$query2 = $db->prepare('SELECT * from ApplicantClasses WHERE Applicants_applicant_id = :uid');
+		$query2->bindParam(':uid', $uid, PDO::PARAM_INT);
+		$query2->execute();
+
+		$courses = array();
+
+		//puts info in an array
+		while($row = $query2->fetch(PDO::FETCH_OBJ)){
+			//iterate over all the fields
+			$courses[] = $row;
+		}
+
+		//gets the timeslots
+		$query3 = $db->prepare('SELECT * from ApplicantTimeslots WHERE Applicants_applicant_id = :uid');
+		$query3->bindParam(':uid', $uid, PDO::PARAM_INT);
+		$query3->execute();
+
+		$cal = array();
+
+		while($row = $query3->fetch(PDO::FETCH_OBJ)){
+			//iterate over all the fields
+			$cal[] = $row;
+
+		}
+
+		//json object with all the info of an applicant
+		$tempApplicant = array(
+			'calArray' => $cal,
+			'courseDictArray' => $courses,
+			'applicantInfo' => $user
+		);
+
+
+		$applicants[] = $tempApplicant;
+
 	}
 
-	  if($temp){
+	if($applicants){
 
-	      echo( json_encode($temp));
-		  return $response;
+		echo( json_encode($applicants));
+		return $response;
 
-	  }else{
+	}else{
 
-	    $new_response = $response->withStatus(204);
+		$new_response = $response->withStatus(204);
 
 		return $new_response;
 
-	  }
+	}
 
 });
 
