@@ -376,7 +376,7 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$major = $data->applicant_major;
 	$password = $data->applicant_hash;
 	$uid = $data->applicant_id;
-	$calander = $data->cal;
+	$calander = $data->calArray;
 	$courses = $data->courseDictArray;
   $email = $data->applicant_email;
   $gpa=$data->applicant_gpa;
