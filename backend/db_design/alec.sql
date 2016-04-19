@@ -103,8 +103,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`ApplicantTimeslots` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
-  `timeslot_id` INT NOT NULL,
+  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
   `timeslot_time` VARCHAR(45) NULL,
+  `day` VARCHAR(10) NULL,
   `Applicants_applicant_id` INT NOT NULL,
   PRIMARY KEY (`timeslot_id`),
   INDEX `fk_ApplicantTimeslots_Applicants1_idx` (`Applicants_applicant_id` ASC),
@@ -192,9 +193,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`ApplicantClasses` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
-  `idApplicantClasses` INT NOT NULL,
+  `idApplicantClasses` INT NOT NULL AUTO_INCREMENT,
   `class_name` VARCHAR(45) NULL,
-  `class_gpa` DECIMAL(3) NULL,
+  `class_gpa` VARCHAR(2) NULL,
+  `class_number` VARCHAR(4) NULL,
   `Applicants_applicant_id` INT NOT NULL,
   PRIMARY KEY (`idApplicantClasses`),
   INDEX `fk_ApplicantClasses_Applicants1_idx` (`Applicants_applicant_id` ASC),
