@@ -20,7 +20,7 @@
 		        <li class="active" style="cursor: pointer;"><a ui-sref="tutorQuit">Quit Tutor<span class="sr-only">(current)</span></a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-			      <li><button type="button" class="btn btn-default navbar-btn">Sign Out</button></li>
+			      <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
 			  </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -34,5 +34,5 @@
   <label>Message:</label>
   <textarea class="form-control" ng-model="user.message" rows="5"></textarea>
   <br>
-  <button class="btn btn-md btn-info btn-block" ng-click="submitMessage(user)">Submit</button>
+  <button class="btn btn-md btn-danger btn-block" ng-click="submitMessage(user)">Submit</button>
 </div>

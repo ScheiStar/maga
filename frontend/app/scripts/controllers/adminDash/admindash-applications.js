@@ -8,8 +8,13 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AdmindashApplicationsCtrl', function ($scope, $uibModal, contactAdminFactory) {
+  .controller('AdmindashApplicationsCtrl', function ($scope, $uibModal, contactAdminFactory, userFactory) {
     console.log('come on');
+
+    $scope.signOut = function() {
+      userFactory.signOut();
+    };
+
     $scope.ugh = new Array();
     $scope.applicationData = new Array();
     var user = {};

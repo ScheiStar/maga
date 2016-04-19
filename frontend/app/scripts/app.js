@@ -116,12 +116,12 @@ angular
       })
 
       .state('contactAdmin', {
-            templateUrl: 'views/contactadmin.html',
+            templateUrl: 'views/userDash/contactadmin.html',
             controller: 'ContactadminCtrl',
             controllerAs: 'contactAdmin'
       })
       .state('tutorQuit', {
-      templateUrl: 'views/tutorquit.html',
+      templateUrl: 'views/userDash/tutorquit.html',
       controller: 'TutorquitCtrl',
       controllerAs: 'tutorQuit'
       })

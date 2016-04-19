@@ -8,10 +8,9 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AdmindashRequestsCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AdmindashRequestsCtrl', function ($scope, userFactory) {
+
+    $scope.signOut = function() {
+      userFactory.signOut();
+    };
   });
