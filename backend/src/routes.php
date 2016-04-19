@@ -338,6 +338,12 @@ $app->post('/setApplicationStatus',function (ServerRequestInterface $request, Re
     $query2->bindParam(':id', $id, PDO::PARAM_INT);
     $query2->execute();
 
+    $query2_1 - $db->prepare("INSERT INTO Users (admin)
+    VALUES(0)
+    WHERE applicant_id = :id");
+    $query2_1->bindParam(':id', $id, PDO::PARAM_INT);
+    $query2_1->execute();
+
     $query3 = $db->prepare("INSERT INTO TutorClasses
       SELECT * FROM ApplicantClasses
       WHERE applicant_id = :id");
