@@ -16,7 +16,7 @@ angular.module('frontendApp')
             var userToken = data.data;
             localStorage.setItem("token", userToken);
             var remember = auth;
-            $state.go("adminDash");
+            //$state.go("adminDash");
             return data;
         }, function errorCallback(response) {
           console.log("Failure!");
