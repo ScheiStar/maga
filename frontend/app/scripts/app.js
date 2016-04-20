@@ -125,4 +125,9 @@ angular
       controller: 'TutorquitCtrl',
       controllerAs: 'tutorQuit'
       })
+      .state('testTablw', {
+        templateUrl: 'views/testtablw.html',
+        controller: 'TesttablwCtrl',
+        controllerAs: 'testTablw'
+      })
     });

@@ -36,11 +36,11 @@ angular.module('frontendApp')
         }).then(function(data){
           console.log("Successfully recieved applications.");
           for (var i = 0; i < data.data.length; i++) {
-            user.lastName = data.data[i].applicant_first_name;
-            user.appID = data.data[i].applicant_id;
-            user.firstName = data.data[i].applicant_last_name;
-            user.major = data.data[i].applicant_major;
-            user.appStatus = data.data[i].application_status;
+            user.lastName = data.data[i].applicantInfo.applicant_first_name;
+            user.appID = data.data[i].applicantInfo.applicant_id;
+            user.firstName = data.data[i].applicantInfo.applicant_last_name;
+            user.major = data.data[i].applicantInfo.applicant_major;
+            user.appStatus = data.data[i].applicantInfo.application_status;
             userArray.push(user);
             user = {};
           }
