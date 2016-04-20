@@ -462,8 +462,8 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   }
 
   $query = $db->prepare("INSERT INTO TutorRequests
-    (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type)
-    VALUES(:uid, :classname, :classnum, :reqtype)");
+    (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type, Tutors_tutor_id)
+    VALUES(:uid, :classname, :classnum, :reqtype, :uid)");
   $query->bindParam(":uid", $uid, PDO::PARAM_INT);
   $query->bindParam(":classname", $classname, PDO::PARAM_STR);
   $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
@@ -471,7 +471,7 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $query->execute();
 });
 
-$app->get('/listRequests', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
+$app->get('/getTutorRequests', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
   $db = $this->createDB;
 
   $query = $db->prepare("SELECT tr_tutor_id, tr_classtype, tr_classnum, tr_request_type
