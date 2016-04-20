@@ -468,5 +468,21 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $query->bindParam(":classname", $classname, PDO::PARAM_STR);
   $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
   $query->bindParam(":reqtype", $reqtype, PDO::PARAM_STR);
+  $query->execute();
+});
+
+$app->get('/listRequests', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
+  $db = $this->createDB;
+
+  $query = $db->prepare("SELECT tr_tutor_id, tr_classtype, tr_classnum, tr_request_type
+    FROM TutorRequests");
+  $query->execute();
+
+  $temp = array();
+  while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+    $temp[] = $row;
+  }
+
+  echo json_encode($temp);
 
 });
