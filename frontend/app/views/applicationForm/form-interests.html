@@ -50,7 +50,7 @@
 					</datalist>
             </div>
         </div>
-    
+
         <div class="form-group row">
             <label for="class2" class="col-xs-1 form-control-label">Course 2</label>
             <div class="col-xs-3">
@@ -63,7 +63,7 @@
                 <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[5]" required>
             </div>
         </div>
-    
+
         <div class="form-group row">
             <label for="class3" class="col-xs-1 form-control-label">Course 3</label>
             <div class="col-xs-3">
@@ -93,75 +93,74 @@
   <tbody>
     <tr>
       <th scope="row">2:00 - 3:00</th>
-      <td ng-click="addTime('sun', 2)"></td>
-      <td ng-click="addTime('mon', 2)"></td>
-      <td ng-click="addTime('tue', 2)"></td>
-      <td ng-click="addTime('wed', 2)"></td>
-      <td ng-click="addTime('thu', 2)"></td>
-      <td ng-click="addTime('fri', 2)"></td>
-    </tr>   
+      <td ng-click="addRealTime(0, 'Sun')"></td>
+      <td ng-click="addRealTime(0, 'Mon')"></td>
+      <td ng-click="addRealTime(0, 'Tues')"></td>
+      <td ng-click="addRealTime(0, 'Wed')"></td>
+      <td ng-click="addRealTime(0, 'Thurs')"></td>
+      <td ng-click="addRealTime(0, 'Fri')"></td>
+    </tr>
     <tr>
       <th scope="row">3:00 - 4:00</th>
-      <td ng-click="addTime('sun', 3)"></td>
-      <td ng-click="addTime('mon', 3)"></td>
-      <td ng-click="addTime('tue', 3)"></td>
-      <td ng-click="addTime('wed', 3)"></td>
-      <td ng-click="addTime('thu', 3)"></td>
-      <td ng-click="addTime('fri', 3)"></td>
+      <td ng-click="addRealTime(1, 'Sun')"></td>
+      <td ng-click="addRealTime(1, 'Mon')"></td>
+      <td ng-click="addRealTime(1, 'Tues')"></td>
+      <td ng-click="addRealTime(1, 'Wed')"></td>
+      <td ng-click="addRealTime(1, 'Thurs')"></td>
+      <td ng-click="addRealTime(1, 'Fri')"></td>
     </tr>
     <tr>
       <th scope="row">4:00 - 5:00</th>
-      <td ng-click="addTime('sun', 4)"></td>
-      <td ng-click="addTime('mon', 4)"></td>
-      <td ng-click="addTime('tue', 4)"></td>
-      <td ng-click="addTime('wed', 4)"></td>
-      <td ng-click="addTime('thu', 4)"></td>
-      <td ng-click="addTime('fri', 4)"></td>
+      <td ng-click="addRealTime(2, 'Sun')"></td>
+      <td ng-click="addRealTime(2, 'Mon')"></td>
+      <td ng-click="addRealTime(2, 'Tues')"></td>
+      <td ng-click="addRealTime(2, 'Wed')"></td>
+      <td ng-click="addRealTime(2, 'Thurs')"></td>
+      <td ng-click="addRealTime(2, 'Fri')"></td>
     </tr>
     <tr>
       <th scope="row">5:00 - 6:00</th>
-      <td ng-click="addTime('sun', 5)"></td>
-      <td ng-click="addTime('mon', 5)"></td>
-      <td ng-click="addTime('tue', 5)"></td>
-      <td ng-click="addTime('wed', 5)"></td>
-      <td ng-click="addTime('thu', 5)"></td>
-      <td ng-click="addTime('fri', 5)"></td>
-    </tr>
+      <td ng-click="addRealTime(3, 'Sun')"></td>
+      <td ng-click="addRealTime(3, 'Mon')"></td>
+      <td ng-click="addRealTime(3, 'Tues')"></td>
+      <td ng-click="addRealTime(3, 'Wed')"></td>
+      <td ng-click="addRealTime(3, 'Thurs')"></td>
+      <td ng-click="addRealTime(3, 'Fri')"></td>
     <tr>
       <th scope="row">6:00 - 7:00</th>
-      <td ng-click="addTime('sun', 6)"></td>
-      <td ng-click="addTime('mon', 6)"></td>
-      <td ng-click="addTime('tue', 6)"></td>
-      <td ng-click="addTime('wed', 6)"></td>
-      <td ng-click="addTime('thu', 6)"></td>
-      <td ng-click="addTime('fri', 6)"></td>
+      <td ng-click="addRealTime(4, 'Sun')"></td>
+      <td ng-click="addRealTime(4, 'Mon')"></td>
+      <td ng-click="addRealTime(4, 'Tues')"></td>
+      <td ng-click="addRealTime(4, 'Wed')"></td>
+      <td ng-click="addRealTime(4, 'Thurs')"></td>
+      <td ng-click="addRealTime(4, 'Fri')"></td>
     </tr>
     <tr>
       <th scope="row">7:00 - 8:00</th>
-      <td ng-click="addTime('sun', 7)"></td>
-      <td ng-click="addTime('mon', 7)"></td>
-      <td ng-click="addTime('tue', 7)"></td>
-      <td ng-click="addTime('wed', 7)"></td>
-      <td ng-click="addTime('thu', 7)"></td>
-      <td ng-click="addTime('fri', 7)"></td>
+      <td ng-click="addRealTime(5, 'Sun')"></td>
+      <td ng-click="addRealTime(5, 'Mon')"></td>
+      <td ng-click="addRealTime(5, 'Tues')"></td>
+      <td ng-click="addRealTime(5, 'Wed')"></td>
+      <td ng-click="addRealTime(5, 'Thurs')"></td>
+      <td ng-click="addRealTime(5, 'Fri')"></td>
     </tr>
     <tr>
       <th scope="row">8:00 - 9:00</th>
-      <td ng-click="addTime('sun', 8)"></td>
-      <td ng-click="addTime('mon', 8)"></td>
-      <td ng-click="addTime('tue', 8)"></td>
-      <td ng-click="addTime('wed', 8)"></td>
-      <td ng-click="addTime('thu', 8)"></td>
-      <td ng-click="addTime('fri', 8)"></td>
+      <td ng-click="addRealTime(6, 'Sun')"></td>
+      <td ng-click="addRealTime(6, 'Mon')"></td>
+      <td ng-click="addRealTime(6, 'Tues')"></td>
+      <td ng-click="addRealTime(6, 'Wed')"></td>
+      <td ng-click="addRealTime(6, 'Thurs')"></td>
+      <td ng-click="addRealTime(6, 'Fri')"></td>
     </tr>
     <tr>
       <th scope="row">9:00 - 10:00</th>
-      <td ng-click="addTime('sun', 9)"></td>
-      <td ng-click="addTime('mon', 9)"></td>
-      <td ng-click="addTime('tue', 9)"></td>
-      <td ng-click="addTime('wed', 9)"></td>
-      <td ng-click="addTime('thu', 9)"></td>
-      <td ng-click="addTime('fri', 9)"></td>
+      <td ng-click="addRealTime(7, 'Sun')"></td>
+      <td ng-click="addRealTime(7, 'Mon')"></td>
+      <td ng-click="addRealTime(7, 'Tues')"></td>
+      <td ng-click="addRealTime(7, 'Wed')"></td>
+      <td ng-click="addRealTime(7, 'Thurs')"></td>
+      <td ng-click="addRealTime(7, 'Fri')"></td>
     </tr>
   </tbody>
 </table>
