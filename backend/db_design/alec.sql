@@ -40,10 +40,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`Timeslots` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
-  `timeslot_id` INT NOT NULL,
-  `timeslot_time` VARCHAR(45) NULL,
+  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
+  `timeslot_time` INT NOT NULL,
   `Tutors_tutor_id` INT NOT NULL,
-  `timeslot_day` VARCHAR(45) NULL,
+  `timeslot_day` INT NOT NULL,
   PRIMARY KEY (`timeslot_id`),
   INDEX `fk_Timeslots_Tutors1_idx` (`Tutors_tutor_id` ASC),
   CONSTRAINT `fk_Timeslots_Tutors1`
@@ -104,10 +104,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`ApplicantTimeslots` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
-  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
-  `timeslot_time` VARCHAR(45) NULL,
-  `day` VARCHAR(10) NULL,
-  `Applicants_applicant_id` INT NOT NULL,
+  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
+  `timeslot_time` INT NOT NULL,
+  `Applicant_applicant_id` INT NOT NULL,
+  `timeslot_day` INT NOT NULL,
   PRIMARY KEY (`timeslot_id`),
   INDEX `fk_ApplicantTimeslots_Applicants1_idx` (`Applicants_applicant_id` ASC),
   CONSTRAINT `fk_ApplicantTimeslots_Applicants1`
