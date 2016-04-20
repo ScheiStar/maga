@@ -64,10 +64,18 @@ angular.module('frontendApp')
         $state.go('login');
 
     };
-    //int for $time version
-    var initialTimes = {"data":[{"Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },{"Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },{"Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },{"Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },{"Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },{"Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },{"Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },{"Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]};
+
+    var initialTimes = JSON.stringify({"data":
+    [{"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]});
     //console.log('about to show some shit');
-    //console.log(initialTimes);
+    console.log(initialTimes);
     $scope.addRealTime = function($index, $day) {
       if($day == 'Sun')
         initialTimes.data[$index].Sun = true;
