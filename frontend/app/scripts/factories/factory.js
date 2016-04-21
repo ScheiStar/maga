@@ -14,10 +14,13 @@ angular.module('frontendApp')
           data: user_json
         }).then(function(data){
             var userToken = data.data;
+            console.log('setting token');
+            console.log(userToken);
             localStorage.setItem("token", userToken);
+            //console.log(userToken);
             var remember = auth;
-            $state.go("adminDash");
-            return data;
+            //$state.go("adminDash");
+            return;
         }, function errorCallback(response) {
           console.log("Failure!");
               console.log(response);

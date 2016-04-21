@@ -9,11 +9,6 @@
  */
 angular.module('frontendApp')
   .controller('AppmodalCtrl', function (contactAdminFactory) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
     console.log(contactAdminFactory.getAppID());
 

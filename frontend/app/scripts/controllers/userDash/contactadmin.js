@@ -1,7 +1,9 @@
-'use strict';
-
-angular.module('frontendApp').controller('ContactAdminModalInstanceCtrl', function ($state, contactAdminFactory, userFactory, $scope, $uibModalInstance, items) {
+angular.module('frontendApp').controller('ContactadminCtrl', function ($state, contactAdminFactory, userFactory, $scope) {
   console.log('in contact admin dash');
+
+  $scope.signOut = function() {
+    userFactory.signOut();
+  };
 
   $scope.submitMessage = function(user) {
     if(user && user.message!=''){
@@ -29,8 +31,6 @@ angular.module('frontendApp').controller('ContactAdminModalInstanceCtrl', functi
     //TODO: Log values in database and do something with them
 
     //TODO: Get request for python script
-
-    $uibModalInstance.dismiss('cancel');
   }
 
 

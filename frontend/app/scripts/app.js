@@ -67,6 +67,12 @@ angular
 
       .state('userDash', {
         url: '/userDash',
+        templateUrl: 'views/userDash/userdash-home.html',
+        controller: 'UserdashCtrl',
+        controllerAs: 'userDash'
+      })
+      .state('userDashClass', {
+        url: '/userDashClass',
         templateUrl: 'views/userDash/userdash-classes.html',
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
@@ -98,9 +104,30 @@ angular
         controller: 'AdmindashTutorsCtrl',
         controllerAs: 'admindashTutors'
       })
+      .state('adminDash-requests', {
+        templateUrl: 'views/adminDash/admindash-requests.html',
+        controller: 'AdmindashRequestsCtrl',
+        controllerAs: 'adminDashRequests'
+      })
       .state('/appModal', {
         templateUrl: 'views/adminDash/appmodal.html',
         controller: 'AppmodalCtrl',
         controllerAs: 'appModal'
+      })
+
+      .state('contactAdmin', {
+            templateUrl: 'views/userDash/contactadmin.html',
+            controller: 'ContactadminCtrl',
+            controllerAs: 'contactAdmin'
+      })
+      .state('tutorQuit', {
+      templateUrl: 'views/userDash/tutorquit.html',
+      controller: 'TutorquitCtrl',
+      controllerAs: 'tutorQuit'
+      })
+      .state('testTablw', {
+        templateUrl: 'views/testtablw.html',
+        controller: 'TesttablwCtrl',
+        controllerAs: 'testTablw'
       })
     });

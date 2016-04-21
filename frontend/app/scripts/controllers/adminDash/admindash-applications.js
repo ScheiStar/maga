@@ -8,8 +8,13 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AdmindashApplicationsCtrl', function ($scope, $uibModal, contactAdminFactory) {
+  .controller('AdmindashApplicationsCtrl', function ($scope, $uibModal, contactAdminFactory, userFactory, $filter) {
     console.log('come on');
+
+    $scope.signOut = function() {
+      userFactory.signOut();
+    };
+
     $scope.ugh = new Array();
     $scope.applicationData = new Array();
     var user = {};
@@ -19,6 +24,12 @@ angular.module('frontendApp')
     });
 
     $scope.animationsEnabled = true;
+
+    var orderBy = $filter('orderBy');
+    $scope.order = function(predicate) {
+      $scope.predicate = predicate;
+      $scope.ugh = orderBy($scope.ugh, predicate);
+    };
 
     $scope.openAppModal = function (size, appID) {
 

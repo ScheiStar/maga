@@ -2,20 +2,22 @@
 
 /**
  * @ngdoc function
- * @name frontendApp.controller:AdmindashTutorsCtrl
+ * @name frontendApp.controller:AdmindashRequestsCtrl
  * @description
- * # AdmindashTutorsCtrl
+ * # AdmindashRequestsCtrl
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AdmindashTutorsCtrl', function ($scope, contactAdminFactory, userFactory, $filter) {
-    console.log('come on');
+  .controller('AdmindashRequestsCtrl', function ($scope, userFactory, $filter, contactAdminFactory) {
 
-    $scope.ugh = new Array();
+
+    $scope.tutorRequests = new Array();
     var user = {};
     console.log('before');
-    contactAdminFactory.getTutors().then(function(data){
-      $scope.ugh = data;
+    contactAdminFactory.getTutorRequests().then(function(data){
+      console.log('im back');
+      console.log(data.data[0].tr_classnum);
+      $scope.tutorRequests = data.data;
     });
 
     var orderBy = $filter('orderBy');
@@ -27,5 +29,4 @@ angular.module('frontendApp')
     $scope.signOut = function() {
       userFactory.signOut();
     };
-
   });

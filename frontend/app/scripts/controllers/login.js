@@ -29,7 +29,18 @@ angular.module('frontendApp')
 
       //console.log(user_data);
 
-      userFactory.signIn(user_data, user.auth);
+      console.log('before');
+      userFactory.signIn(user_data, user.auth).then(function(data){
+        console.log('i fixed it');
+        if(userFactory.isAuthed()) {
+          if(userFactory.parseToken(userFactory.getToken()).admin == 0) {
+              $state.go('userDash');
+            } else {
+              $state.go('adminDash');  
+              }
+        }
+          console.log(userFactory.parseToken(userFactory.getToken()));
+      });
     },
 
     $scope.recoverPass = function() {

@@ -4,14 +4,43 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="userdash-home.html">adminName</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a ui-sref="adminDash">Home<span class="sr-only">(current)</span></a></li>
+        <li><a ui-sref="adminDash-requests">Add/Drop Requests</a></li>
+        <li><a ui-sref="admindash-tutors">Tutors</a></li>
+        <li class="active"><a ui-sref="admindash-applications">Applications</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
+    </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 <table class="table">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Major</th>
-      <th>Status</th>
+      <th ng-click="order('appID')">ID</th>
+      <th ng-click="order('firstName')">First Name</th>
+      <th ng-click="order('lastName')">Last Name</th>
+      <th ng-click="order('major')">Major</th>
+      <th ng-click="order('appStatus')">Status</th>
       <th>View</th>
     </tr>
   </thead>
@@ -21,9 +50,9 @@
       <td ng-bind="x.firstName"></td>
       <td ng-bind="x.lastName"></td>
       <td ng-bind="x.major"></td>
-      <td class="label label label-primary" ng-bind="x.appStatus"></td>
+      <td> <h5> <span class="label label label-info" ng-bind="x.appStatus"></span></h5></td>
       <td>
-        <button ng-click="openAppModal('lg', x.appID)">View</a>
+        <button type="button" class="btn btn-info-outline btn-sm" ng-click="openAppModal('lg', x.appID)">View</button>
       </td>
     </tr>
   </tbody>

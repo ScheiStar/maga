@@ -60,30 +60,56 @@ angular.module('frontendApp')
 //              console.log(response);
 //              alert("Log In Unsuccessful");
 //    });
-        
-        
-        
+
+
+
         alert('Thanks for Applying!');
-//        $state.go('login');
-        }//end if isValid
-    else
-        alert('Invalid form!!!!');
+        $state.go('login');
+
     };
-    //int for $time version
-    $scope.addTime = function($day,$time) {
-        if (angular.isDefined($scope.formData.cal[$day])){
-            if($scope.formData.cal[$day].indexOf($time) != -1)
-                $scope.formData.cal[$day].splice($scope.formData.cal[$day].indexOf($time), 1); //splice removes the element without leaving holes
-            else
-                $scope.formData.cal[$day].push($time);
-        }
-        else{
-            $scope.formData.cal[$day] = [];
-            $scope.formData.cal[$day].push($time);
-        }
-        $scope.formData.cal[$day].sort();
-    };
-    
+
+    var initialTimes = JSON.stringify({"data":
+    [{"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]});
+    //console.log('about to show some shit');
+    console.log(initialTimes);
+    $scope.addRealTime = function($index, $day) {
+      if($day == 'Sun')
+        initialTimes.data[$index].Sun = true;
+      else if($day == 'Mon')
+        initialTimes.data[$index].Mon = true;
+      else if($day == 'Tues')
+        initialTimes.data[$index].Tues = true;
+      else if($day == 'Wed')
+        initialTimes.data[$index].Wed = true;
+      else if($day == 'Thurs')
+        initialTimes.data[$index].Thurs = true;
+      else
+        initialTimes.data[$index].Fri = true;
+
+      //console.log(initialTimes);
+    }
+    // $scope.addTime = function($day,$time) {
+    //     if (angular.isDefined($scope.formData.cal[$day])){
+    //         if($scope.formData.cal[$day].indexOf($time) != -1)
+    //             $scope.formData.cal[$day].splice($scope.formData.cal[$day].indexOf($time), 1); //splice removes the element without leaving holes
+    //         else
+    //             $scope.formData.cal[$day].push($time);
+    //     }
+    //     else{
+    //         $scope.formData.cal[$day] = [];
+    //         $scope.formData.cal[$day].push($time);
+    //     }
+    //     $scope.formData.cal[$day].sort();
+    // };
+});
+
     $scope.goFormTwo = function(){
         console.log('blalalal');
         if ($scope.tutorForm.$valid){
@@ -93,9 +119,5 @@ angular.module('frontendApp')
         else
             alert('Invalid Form... :(');
     };
-    
-    
-});
-
 
     

@@ -1,3 +1,8 @@
+.jumbotron {
+	background: url(../images/logo.png) no-repeat center center;
+    background-size: cover;
+	height: 10%;
+}
 #show-classes{
 	padding: 5px;
 	text-align: center;
@@ -5,6 +10,7 @@
 
 p{
 	text-align: center;
+	padding-left: 6%;
 }
 h1{
 	text-align: center;
@@ -14,6 +20,3 @@ td{
 	text-align: left;
 }
 
-button{
-	margin: auto;
-}

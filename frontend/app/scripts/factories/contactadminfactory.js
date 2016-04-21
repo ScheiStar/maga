@@ -36,11 +36,11 @@ angular.module('frontendApp')
         }).then(function(data){
           console.log("Successfully recieved applications.");
           for (var i = 0; i < data.data.length; i++) {
-            user.lastName = data.data[i].applicant_first_name;
-            user.appID = data.data[i].applicant_id;
-            user.firstName = data.data[i].applicant_last_name;
-            user.major = data.data[i].applicant_major;
-            user.appStatus = data.data[i].application_status;
+            user.lastName = data.data[i].applicantInfo.applicant_first_name;
+            user.appID = data.data[i].applicantInfo.applicant_id;
+            user.firstName = data.data[i].applicantInfo.applicant_last_name;
+            user.major = data.data[i].applicantInfo.applicant_major;
+            user.appStatus = data.data[i].applicantInfo.application_status;
             userArray.push(user);
             user = {};
           }
@@ -91,6 +91,35 @@ angular.module('frontendApp')
 
     getAppID: function(){
       return localStorage.getItem("currentAppID");
+    },
+
+    getTutorRequests: function(){
+      var requestArray = new Array();
+      var user = {};
+      return $http({
+        method: 'GET',
+        url: 'http://54.86.70.62/getTutorRequests'
+      }).then(function(data){
+        console.log("Successfully recieved requests.");
+        // for (var i = 0; i < data.data.length; i++) {
+        //   user.userID = data.data[i].tutor_id;
+        //   user.lastName = data.data[i].tutor_first_name;
+        //   user.firstName = data.data[i].tutor_last_name;
+        //   user.classType = data.data[i].tr_classtype;
+        //   user.classNum = data.data[i].tr_classnum;
+        //   user.requestType = data.data[i].tr_request_type;
+        //   requestArray.push(user);
+        //   user = {};
+        // }
+        console.log('request shit inside factory');
+        console.log(data);
+        console.log('returning requests');
+        console.log(requestArray);
+        return data;
+      }, function errorCallback(response) {
+         console.log("We fucked up on the tutor requests retrieval.");
+         return false;
+    });
     }
     //
     // getIndApp: function(userID) {
