@@ -12,8 +12,35 @@
   // 	return{classes: {}};
   // })
 angular.module('frontendApp')
+  .controller('TesttablwCtrl', function ($scope) {
+    $scope.ugh = new Array();
+    $scope.real = new Array();
+    var shitData = {"data":
+    [{"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": true ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": true, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": true ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": true ,"Thurs": false ,"Fri": false },
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
+    {"Sun": true, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]};
+
+    $scope.ugh = shitData.data;
+    var start = 2;
+    var end = 3;
+    for (var x = 0; x<$scope.ugh.length; x++) {
+      $scope.ugh[x].time = start + ':00 - ' + end + ':00';
+      start++;
+      end++;
+    }
+    console.log('ugh');
+    console.log($scope.ugh);
+    //$scope.real = $scope.ugh[0];
+
+  })
   .controller('UserdashCtrl', function ($state, $scope, $http, contactAdminFactory, userFactory, $window, $uibModal, $log, $filter) {
 
+    console.log('other one');
 
     $scope.add = {};//stores class into json
 
@@ -39,7 +66,7 @@ angular.module('frontendApp')
         $scope.foo = newFoo;
     };
 
-    console.log("in userDash now");
+    console.log("in userDash nol;akdflksdjw");
     console.log('authed?');
     console.log(userFactory.isAuthed());
     //if(!userFactory.isAuthed()) $state.go('login');
@@ -72,9 +99,9 @@ angular.module('frontendApp')
     $scope.myText = "";//takes input
 
     $scope.classArr2 = {
-      classType: ['1','2'],
-      classNumber: ['1','2'],
-      classGrade: ['1','2']
+      classType: [],
+      classNumber: [],
+      classGrade: []
     };
 
     //These variables are used to help push inputs into classArr
@@ -145,26 +172,46 @@ angular.module('frontendApp')
           console.log($scope.flag);
           //alert
           alert("Class Successfully Added");
+          
           //store class info in array for visual
-          $scope.classArr.classType.push(this.myClassType);
-          $scope.classArr.classNumber.push(this.myText);
-          $scope.classArr.classGrade.push(this.myClassGrade);
+          $scope.classArr2.classType.push(this.myClassType);
+          $scope.classArr2.classNumber.push(this.myText);
+          $scope.classArr2.classGrade.push(this.myClassGrade);
+
+          var classArray = new Array();
+          var classData = {};
+
+          for(var i = 0; i < $scope.classArr2.classType.length; i++) {
+            classData.classType = $scope.classArr2.classType[i];
+            classData.classNumber = $scope.classArr2.classNumber[i];
+            classData.classGrade = $scope.classArr2.classGrade[i];
+            classArray.push(classData);
+            classData = {};
+          }
+          
           //get info from class array and store in json
-          var addclass_data = {
-            'userID': $scope.user,
-            'classType': $scope.classArr.classType,
-            'classNumber': $scope.classArr.classNumber,
-            'classGrade': ['A','B+']
-          };
           console.log(addclass_data);
+          //post
+          for(var i = 0; i < classArray.length; i++) {
+            var addclass_data = {
+              'userID': '12345678',
+              'className': classArray[i].classType,
+              'classNum': classArray[i].classNumber,
+              'classGrade': classArray[i].classGrade,
+              'requestType':'add'
+            };
+            console.log("sttt");
+            console.log(addclass_data);
+            //do post request to add class
+            $http.post("http://54.86.70.62/requestClass", addclass_data).success(function(addclass_data, status) {})
 
-          //do post request to add class
 
+          }//end
+          
           //update pending class
 
           //clear fields
           $scope.clearFields();
-          $uibModal.close();
         }
 
     }
@@ -220,13 +267,44 @@ angular.module('frontendApp')
       else {
         alert("Classes successfully dropped");
         //Store drop class data
-        var addclass_data = {
-          'userID': $scope.user,
-          'classType': $scope.dropClass.classType,
-          'classNumber': $scope.dropClass.classNumber,
-          'classGrade': $scope.dropClass.classGrade
-        };
-        $uibModal.close();
+        // var addclass_data = {
+        //   'userID': $scope.user,
+        //   'classType': $scope.dropClass.classType,
+        //   'classNumber': $scope.dropClass.classNumber,
+        //   'classGrade': $scope.dropClass.classGrade
+        // };
+
+        var classArray = new Array();
+        var classData = {};
+
+        for(var i = 0; i < $scope.dropArr.classType.length; i++) {
+          classData.classType = $scope.dropArr.classType[i];
+          classData.classNumber = $scope.dropArr.classNumber[i];
+          classData.classGrade = $scope.dropArr.classGrade[i];
+          classArray.push(classData);
+          classData = {};
+        }
+        
+        //get info from class array and store in json
+        console.log(addclass_data);
+        //post
+        for(var i = 0; i < classArray.length; i++) {
+          var addclass_data = {
+            'userID': '12345678',
+            'className': classArray[i].classType,
+            'classNum': classArray[i].classNumber,
+            'classGrade': classArray[i].classGrade,
+            'requestType':'add'
+          };
+          console.log("sttt");
+          console.log(addclass_data);
+          //do post request to add class
+          $http.post("http://54.86.70.62/requestClass", addclass_data).success(function(addclass_data, status) {})
+
+
+        }//end
+
+
       }
 
 

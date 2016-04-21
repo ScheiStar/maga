@@ -14,6 +14,7 @@
 angular.module('frontendApp')
   .controller('UserdashCtrl', function ($state, $scope, $http, contactAdminFactory, userFactory, $window, $uibModal, $log, $filter) {
 
+    console.log('Look');
   	
     $scope.add = {};//stores class into json
     
@@ -39,7 +40,7 @@ angular.module('frontendApp')
         $scope.foo = newFoo;
     }
 
-    console.log("in userDash now");
+    console.log("in userDash now fucl");
 
     // console.log(userFactory.getCurrentUser());
     // $scope.user = userFactory.getCurrentUser();
