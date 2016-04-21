@@ -33,11 +33,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `alecDB`.`Timeslots`
 -- -----------------------------------------------------
+
 DROP TABLE IF EXISTS `alecDB`.`Timeslots` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
-  `timeslot_id` INT NOT NULL,
-  `timeslot_time` VARCHAR(45) NULL,
+  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
+  `timeslot_time` INT NULL,
+  `timeslot_day` INT NULL,
   `Tutors_tutor_id` INT NOT NULL,
   PRIMARY KEY (`timeslot_id`),
   INDEX `fk_Timeslots_Tutors1_idx` (`Tutors_tutor_id` ASC),
@@ -87,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Applicants` (
   `applicant_email` VARCHAR(45) NULL,
   `applicant_gpa` DECIMAL(3) NULL,
   `applicant_major` VARCHAR(45) NULL,
-  `application_status` TINYINT(1) NULL,
+  `application_status` VARCHAR(8) NULL,
   `applicant_password` VARCHAR(45) NULL,
   PRIMARY KEY (`applicant_id`))
 ENGINE = InnoDB;
@@ -169,9 +171,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`TutorClasses` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`TutorClasses` (
-  `tutorclass_id` INT NOT NULL,
+  `tutorclass_id` INT NOT NULL AUTO_INCREMENT,
   `class_name` VARCHAR(45) NULL,
-  `class_gpa` DECIMAL(3) NULL,
+  `class_gpa` VARCHAR(2) NULL,
+  `class_number` VARCHAR(4) NULL,
   `Tutors_tutor_id` INT NOT NULL,
   PRIMARY KEY (`tutorclass_id`),
   INDEX `fk_TutorClasses_Tutors1_idx` (`Tutors_tutor_id` ASC),
@@ -202,6 +205,8 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
