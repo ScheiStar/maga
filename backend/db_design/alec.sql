@@ -10,10 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `alecDB` DEFAULT CHARACTER SET utf8 ;
 USE `alecDB` ;
 
@@ -85,7 +81,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`Applicants` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`Applicants` (
-  `applicant_id` INT NOT NULL,
+  `applicant_id` INT NULL,
   `applicant_first_name` VARCHAR(45) NULL,
   `applicant_last_name` VARCHAR(45) NULL,
   `applicant_email` VARCHAR(45) NULL,
@@ -104,8 +100,8 @@ DROP TABLE IF EXISTS `alecDB`.`ApplicantTimeslots` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
   `timeslot_id` INT NOT NULL AUTO_INCREMENT,
-  `timeslot_time` VARCHAR(45) NULL,
-  `day` VARCHAR(10) NULL,
+  `timeslot_time` INT NULL,
+  `timeslot_day` INT NULL,
   `Applicants_applicant_id` INT NOT NULL,
   PRIMARY KEY (`timeslot_id`),
   INDEX `fk_ApplicantTimeslots_Applicants1_idx` (`Applicants_applicant_id` ASC),
