@@ -11,19 +11,18 @@
     td:hover {
         background-color: ghostwhite;
     }
-    td.active{
+    .table > tbody > tr > td.active{
         background-color: red;
-    }
+    }    
 </style>
 </head>
 <body>
 <strong><label>Classes You Want to Tutor in?</label></strong>
 <div class="form-group">
         <div class="form-group row">
-            <label for="class1" class="col-xs-1 form-control-label">Course 1</label>
+            <label class="col-xs-1 form-control-label">Course 1</label>
             <div class="col-xs-3">
-<!--                <input type="text" class="form-control" id="class1" placeholder="Course Number" ng-model="formData.courseArray[0]" required>-->
-			          	<input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[0]">
+			          	<input type="text" name="courseArray0" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[0]" required>
 					  	<datalist id="classType" >
 					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH">                               <option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM">                             <option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
 						    <option value="BA"><option value="BAEX"><option value="BB"><option value="BHSC"><option value="BIOL"><option value="BL">                                   <option value="BLI"><option value="BSSN"><option value="BUSE">
@@ -34,13 +33,14 @@
 						    <option value="GEOL"><option value="GERM"><option value="GR"><option value="GUIT">
 						    <option value="HARP"><option value="HARS"><option value="HB">
 					  	</datalist>
+                <p ng-show="tutorForm.courseArray0.$invalid && !tutorForm.courseArray0.$pristine" class="help-block">Required</p>
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" placeholder="Course #" ng-model="formData.courseArray[1]">
+                <input type="text" name="courseArray1" class="form-control" placeholder="Course #" ng-model="formData.courseArray[1]" required>
+                <p ng-show="tutorForm.courseArray1.$invalid && !tutorForm.courseArray1.$pristine" class="help-block">Required</p>
             </div>
             <div class="col-xs-2">
-<!--                <input type="text" class="form-control" id="class1Grade" placeholder="Grade" ng-model="formData.courseArray[1]" required>-->
-                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[2]">
+                <input type="text" name="courseArray2" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[2]" required>
 					<datalist id="classGrade">
 			             <option value="A"><option value="A-">
 			             <option value="B+"><option value="B"><option value="B-">
@@ -48,32 +48,33 @@
 			             <option value="D+"><option value="D"><option value="D-">
 			             <option value="F">
 					</datalist>
+                <p ng-show="tutorForm.courseArray2.$invalid && !tutorForm.courseArray2.$pristine" class="help-block">Required</p>
             </div>
         </div>
     
         <div class="form-group row">
             <label for="class2" class="col-xs-1 form-control-label">Course 2</label>
             <div class="col-xs-3">
-                <input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[3]" required>
+                <input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[3]" >
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" placeholder="Course #" pattern="[0-9]{4}" ng-model="formData.courseArray[4]" required>
+                <input type="text" class="form-control" placeholder="Course #" pattern="[0-9]{4}" ng-model="formData.courseArray[4]" >
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[5]" required>
+                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[5]" >
             </div>
         </div>
     
         <div class="form-group row">
             <label for="class3" class="col-xs-1 form-control-label">Course 3</label>
             <div class="col-xs-3">
-                <input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[6]" required>
+                <input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[6]" >
             </div>
             <div class="col-xs-2">
                 <input type="text" class="form-control" placeholder="Course #" ng-model="formData.courseArray[7]">
             </div>
             <div class="col-xs-2">
-                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[8]" required>
+                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[8]" >
             </div>
         </div>
 </div>
@@ -93,8 +94,8 @@
   <tbody>
     <tr>
       <th scope="row">2:00 - 3:00</th>
-      <td ng-click="addTime('sun', 2)"></td>
-      <td ng-click="addTime('mon', 2)"></td>
+      <td ng-click="addTime('sun', 2)" id="sun2"></td>
+      <td ng-click="addTime('mon', 2)" id="mon2"></td>
       <td ng-click="addTime('tue', 2)"></td>
       <td ng-click="addTime('wed', 2)"></td>
       <td ng-click="addTime('thu', 2)"></td>
@@ -168,12 +169,13 @@
 
 <div class="form-group row">
 <div class="col-xs-6 col-xs-offset-3">
-    <a ui-sref="form.payment" class="btn btn-block btn-info">
+    <a ui-sref="form.payment" class="btn btn-block btn-info" ng-disabled="tutorForm.$invalid">
     Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
 </div>
 </div>
 </body>
+<!--            <h1>Is valid: {{tutorForm.$valid}}</h1>-->
 
 
 <!--Bits and pieces for later if we need them!-->

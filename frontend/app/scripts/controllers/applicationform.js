@@ -19,6 +19,9 @@ angular.module('frontendApp')
 
     // function to process the form
     $scope.processForm = function() {
+//        console.log($scope.formData.applicant_first_name);
+//        console.log($scope.tutorForm.$valid);   
+        if($scope.tutorForm.$valid == true){
         //processes the calendar into strings
         for (var day in $scope.formData.cal){
             $scope.formData.cal[day] = $scope.formData.cal[day].toString();
@@ -61,8 +64,10 @@ angular.module('frontendApp')
         
         
         alert('Thanks for Applying!');
-        $state.go('login');
-        
+//        $state.go('login');
+        }//end if isValid
+    else
+        alert('Invalid form!!!!');
     };
     //int for $time version
     $scope.addTime = function($day,$time) {
@@ -78,4 +83,19 @@ angular.module('frontendApp')
         }
         $scope.formData.cal[$day].sort();
     };
+    
+    $scope.goFormTwo = function(){
+        console.log('blalalal');
+        if ($scope.tutorForm.$valid){
+            console.log('blarg');
+            $state.go('form.interests');
+        }
+        else
+            alert('Invalid Form... :(');
+    };
+    
+    
 });
+
+
+    

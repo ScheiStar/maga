@@ -3,6 +3,7 @@
     <h3>Verify Your Info, Please!</h3>
     <div class="container">
         <div class="col-xs-4">
+<!--            <h1>Form Valid: {{tutorForm.$valid}}</h1>-->
         <table class="table">
             <thead>
                 <tr>
@@ -62,5 +63,6 @@
             <a ui-sref="form.interests">Click Here to Verify Tutor Times</a>
         </div>
     </div>
-    <button type="submit" class="btn btn-danger">Submit</button>
+    <button type="submit" class="btn btn-danger" ng-disabled="tutorForm.$invalid">Submit</button>
 </div>
+<!--            <h1>Is valid: {{tutorForm.$valid}}</h1>-->
