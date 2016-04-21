@@ -8,7 +8,7 @@
  * Factory in the frontendApp.
  */
 angular.module('frontendApp')
-  .factory('contactAdminFactory', function ($http, userFactory) {
+  .factory('contactAdminFactory', function ($http, userFactory, $state) {
 
     return {
       emailAdmin: function (user_data) {
@@ -120,7 +120,25 @@ angular.module('frontendApp')
          console.log("We fucked up on the tutor requests retrieval.");
          return false;
     });
+    },
+
+    apply: function(applicant_data) {
+      console.log(applicant_data);
+          $http({
+            method: 'POST',
+            url: 'http://54.86.70.62/applicationForm',
+            data: applicant_data
+          }).then(function(data){
+            console.log("Successfully submitted application.");
+            alert('Thank you for submitting! Please check your email.')
+            $state.go('login');
+            return true;
+          }, function errorCallback(response) {
+            console.log("Did not submit application.");
+             return false;
+      });
     }
+
     //
     // getIndApp: function(userID) {
     //   var userArray = new Array();

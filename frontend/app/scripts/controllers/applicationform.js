@@ -20,10 +20,11 @@ angular.module('frontendApp')
     // function to process the form
     $scope.processForm = function() {
         //processes the calendar into strings
-        for (var day in $scope.formData.cal){
-            $scope.formData.cal[day] = $scope.formData.cal[day].toString();
-            $scope.formData.calArray.push({'day':day, 'times':$scope.formData.cal[day]});
-        }
+        // for (var day in $scope.formData.cal){
+        //     $scope.formData.cal[day] = $scope.formData.cal[day].toString();
+        //     $scope.formData.calArray.push({'day':day, 'times':$scope.formData.cal[day]});
+        // }
+        $scope.formData.calArray = initialTimes.data;
         //processes the input courses into array of dictionaries where 'courseNum':"CSE2341",'grade':"A"
         for(var i = 0; i < (Object.keys($scope.formData.courseArray).length); i++){
             console.log((Object.keys($scope.formData.courseArray).length));
@@ -34,12 +35,23 @@ angular.module('frontendApp')
         delete $scope.formData.courseArray; //delete because its not needed in formData anymore!
         delete $scope.formData.cal;
         console.log("FORM_DATA: ", $scope.formData);
+        console.log($scope.formData.applicant_gpa);
 //        console.log($scope.formData.email);
+        console.log('LOOK');
+        console.log($scope.formData.applicant_email);
         var user_data = {
-          'email': $scope.formData.email,
+          'email': $scope.formData.applicant_email,
           'message': '',
           'type': "appConfirm"
         };
+
+        contactAdminFactory.emailAdmin(user_data);
+
+        contactAdminFactory.apply($scope.formData);
+
+
+        console.log('DATA');
+        //console.log(formData);
 //        contactAdminFactory.emailAdmin(user_data);
 //        //work on hooking this up to database
 //        return $http({
@@ -60,12 +72,12 @@ angular.module('frontendApp')
 
 
 
-        alert('Thanks for Applying!');
-        $state.go('login');
+        //alert('Thanks for Applying!');
+        //$state.go('login');
 
     };
 
-    var initialTimes = JSON.stringify({"data":
+    var initialTimes = {"data":
     [{"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
     {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
     {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
@@ -73,7 +85,7 @@ angular.module('frontendApp')
     {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
     {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
     {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]});
+    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]};
     //console.log('about to show some shit');
     console.log(initialTimes);
     $scope.addRealTime = function($index, $day) {

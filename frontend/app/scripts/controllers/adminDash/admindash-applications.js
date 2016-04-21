@@ -20,6 +20,7 @@ angular.module('frontendApp')
     var user = {};
 
     contactAdminFactory.getApplicants().then(function(data){
+
       $scope.ugh = data;
     });
 
