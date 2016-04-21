@@ -8,12 +8,8 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AdmindashTutorsCtrl', function ($scope, contactAdminFactory, userFactory) {
+  .controller('AdmindashTutorsCtrl', function ($scope, contactAdminFactory, userFactory, $filter) {
     console.log('come on');
-
-    $scope.signOut = function() {
-      userFactory.signOut();
-    };
 
     $scope.ugh = new Array();
     var user = {};
@@ -21,4 +17,15 @@ angular.module('frontendApp')
     contactAdminFactory.getTutors().then(function(data){
       $scope.ugh = data;
     });
+
+    var orderBy = $filter('orderBy');
+    $scope.order = function(predicate) {
+      $scope.predicate = predicate;
+      $scope.ugh = orderBy($scope.ugh, predicate);
+    };
+
+    $scope.signOut = function() {
+      userFactory.signOut();
+    };
+
   });
