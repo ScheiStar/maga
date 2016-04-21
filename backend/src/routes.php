@@ -82,72 +82,67 @@ $app->get('/getApplication/{id}', function ($request, $response, $args) {
 	$query->execute();
 
 	$cal = array();
-	$temptimes = array();
+	$times = array();
 	$tempdays = array();
 
 	while($row = $query->fetch(PDO::FETCH_OBJ)){
 		//iterate over all the fields
 		$result = json_encode($row);
 		$data = json_decode($result);
-		$temptimes[] = $data->timeslot_time;
+		$times[] = $data->timeslot_time;
 		$tempdays[] = $data->timeslot_day;
 	}
 
 
+		$days = array(
+				"Mon" => False,
+				"Tues" => False,
+				"Wed"   => False,
+				"Thurs"  => False,
+				"Fri" => False
+			);
 
-$times = array_pad($temptimes, 8, -1);
+			for ($x = 0; $x <=7; $x++){
 
-$days = array(
-			"Mon" => False,
-			"Tues" => False,
-			"Wed"   => False,
-			"Thurs"  => False,
-			"Fri" => False
-	);
-
-for ($x = 0; $x <=7; $x++){
-
-	$cal [] = $days;
-
-}
-
-
-for ($x = 0; $x <=7; $x++){
-
-		for ($y = 0; $y <=7; $y++){
-
-			if ($times[$y] == $x){
-
-				$cal[$times[$y]] = 	calculateDays($cal[$times[$y]],$tempdays[$y]);
+				$cal [] = $days;
 
 			}
+
+
+			$max = sizeof($times);
+
+			for ($y = 0; $y < $max; $y++){
+
+				if ($times[$y] == 0 || $times[$y] == 1 || $times[$y] == 2 || $times[$y] == 3 || $times[$y] == 4 || $times[$y] == 5 || $times[$y] == 6 || $times[$y] == 7){
+
+					$cal[$times[$y]] = 	calculateDays($cal[$times[$y]],$tempdays[$y]);
+
+				}
+
 		}
 
 
-}
+		//json object with all the info of an applicant
+		$tempApplicant = array(
+			'calArray' => $cal,
+			'courseDictArray' => $courses,
+			'applicantInfo' => $user
+		);
 
-
-	//json object with all the info of an applicant
-	$tempApplicant = array(
-		'calArray' => $cal,
-		'courseDictArray' => $courses,
-		'applicantInfo' => $user
-	);
-
-	//converts it to json
-	$applicant = json_encode($tempApplicant);
+		//converts it to json
+		$applicant = json_encode($tempApplicant);
 
 	//if there is an applicant then respond with 200 else respond with 403
-	if($user){
+		if($user){
 
-		echo($applicant);
-		return $response;
+			echo($applicant);
+			return $response;
 
-	}else{
-		$new_response = $response->withStatus(204);
-		return $new_response;
+		} else{
+			$new_response = $response->withStatus(204);
+			return $new_response;
 		// echo('No Applicant Found');
-	}
+		}
 
 
 	return $response; //returns the response
@@ -196,7 +191,6 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
   return $new_response;
 });
 
-
 $app->get('/getApplications', function($request, $response, $args) {
 
 
@@ -230,49 +224,44 @@ $app->get('/getApplications', function($request, $response, $args) {
 		$query3->execute();
 
 		$cal = array();
-		$temptimes = array();
+		$times = array();
 		$tempdays = array();
 
-		while($row = $query3->fetch(PDO::FETCH_OBJ)){
+		while($row = $query->fetch(PDO::FETCH_OBJ)){
 			//iterate over all the fields
 			$result = json_encode($row);
 			$data = json_decode($result);
-			$temptimes[] = $data->timeslot_time;
+			$times[] = $data->timeslot_time;
 			$tempdays[] = $data->timeslot_day;
 		}
 
 
+			$days = array(
+					"Mon" => False,
+					"Tues" => False,
+					"Wed"   => False,
+					"Thurs"  => False,
+					"Fri" => False
+				);
 
-	$times = array_pad($temptimes, 8, -1);
+				for ($x = 0; $x <=7; $x++){
 
-	$days = array(
-				"Mon" => False,
-				"Tues" => False,
-				"Wed"   => False,
-				"Thurs"  => False,
-				"Fri" => False
-		);
-
-	for ($x = 0; $x <=7; $x++){
-
-		$cal [] = $days;
-
-	}
-
-
-	for ($x = 0; $x <=7; $x++){
-
-			for ($y = 0; $y <=7; $y++){
-
-				if ($times[$y] == $x){
-
-					$cal[$times[$y]] = 	calculateDays($cal[$times[$y]],$tempdays[$y]);
+					$cal [] = $days;
 
 				}
+
+
+				$max = sizeof($times);
+
+				for ($y = 0; $y < $max; $y++){
+
+					if ($times[$y] == 0 || $times[$y] == 1 || $times[$y] == 2 || $times[$y] == 3 || $times[$y] == 4 || $times[$y] == 5 || $times[$y] == 6 || $times[$y] == 7){
+
+						$cal[$times[$y]] = 	calculateDays($cal[$times[$y]],$tempdays[$y]);
+
+					}
+
 			}
-
-
-	}
 
 		//json object with all the info of an applicant
 		$tempApplicant = array(
@@ -300,40 +289,213 @@ $app->get('/getApplications', function($request, $response, $args) {
 	}
 
 });
-$app->get('/admin/getTutors',function($request,$response,$args){
-  //$query = mysql_query("SELECT * FROM Tutors");
-      $db = $this->createDB;
-         $result=$db->query('select * from Tutors');
-         $temp = array();
-         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-           $temp[] = $row;
-         }
-echo json_encode($temp);
-// In case any of o
+
+$app->get('/getTutors', function($request, $response, $args) {
+
+
+	$db = $this->createDB;
+
+	$query = $db->prepare('SELECT * FROM Tutors');
+	$query->execute();
+
+	$tutors = array();
+
+	while($user = $query->fetch(PDO::FETCH_OBJ)){
+		//iterate over all the fields
+
+		$uid = $user->tutor_id;
+		//gets the classes
+		$query2 = $db->prepare('SELECT * from TutorClasses WHERE Tutors_tutor_id = :uid');
+		$query2->bindParam(':uid', $uid, PDO::PARAM_INT);
+		$query2->execute();
+
+		$courses = array();
+
+		//puts info in an array
+		while($row = $query2->fetch(PDO::FETCH_OBJ)){
+			//iterate over all the fields
+			$courses[] = $row;
+		}
+
+		//gets the timeslots
+		$query3 = $db->prepare('SELECT * from Timeslots WHERE Tutors_tutor_id = :uid');
+		$query3->bindParam(':uid', $uid, PDO::PARAM_INT);
+		$query3->execute();
+
+		$cal = array();
+		$times = array();
+		$tempdays = array();
+
+		while($row = $query3->fetch(PDO::FETCH_OBJ)){
+			//iterate over all the fields
+			$result = json_encode($row);
+			$data = json_decode($result);
+			$times[] = $data->timeslot_time;
+			$tempdays[] = $data->timeslot_day;
+
+		}
+
+
+	$days = array(
+				"Mon" => False,
+				"Tues" => False,
+				"Wed"   => False,
+				"Thurs"  => False,
+				"Fri" => False
+		);
+
+	for ($x = 0; $x <= 7; $x++){
+
+		$cal [] = $days;
+
+	}
+
+	$max = sizeof($times);
+
+		for ($y = 0; $y < $max; $y++){
+
+				if ($times[$y] == 0 || $times[$y] == 1 || $times[$y] == 2 || $times[$y] == 3 || $times[$y] == 4 || $times[$y] == 5 || $times[$y] == 6 || $times[$y] == 7){
+
+					$cal[$times[$y]] = 	calculateDays($cal[$times[$y]],$tempdays[$y]);
+
+				}
+
+	}
+
+		//json object with all the info of an applicant
+		$tempTutor = array(
+			'calArray' => $cal,
+			'courseDictArray' => $courses,
+			'applicantInfo' => $user
+		);
+
+
+		$tutors[] = $tempTutor;
+
+	}
+
+	if($tutors){
+
+		echo( json_encode($tutors));
+		return $response;
+
+	}else{
+
+		$new_response = $response->withStatus(204);
+
+		return $new_response;
+
+	}
+
 });
 
-$app->get('/admin/getTutors/{id}',function($request,$response,$args){
-  //$query = mysql_query("SELECT * FROM Tutor");
-        $id=$args['id'];
-        if(!isset($id))
-        {
-          $new_response=$response->withStatus(400);
-          echo "please provide a user id";
-          return $new_response;
-        }
+$app->get('/getTutor/{id}', function($request, $response, $args) {
 
-        $db = $this->createDB;
-         $result=$db->query('select * from Tutors where tutor_id='.$id);
-         $user=$result->fetch(PDO::FETCH_OBJ);
-         if ($user){
-           echo json_encode($user);
-           return $response;
-         }
-         else{
-           $new_response=$response->withStatus(204);
-           echo "user not found";
-           return $new_response;
-         }
+	$db = $this->createDB; //gets the database
+	$uid = $args['id']; //get the id from the url parameter
+
+	//checks to see if there is an id
+	if(!isset($uid)){
+		$new_response = $response->withStatus(418);
+		echo("Please Provide a User ID");
+		return $new_response;
+	}
+
+
+	// creates, prepares and executes sql query
+	$query = $db->prepare('SELECT * FROM Tutors WHERE tutor_id = :uid');
+	$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+	$query->execute();
+
+	//gets the user and applicant
+	$user = $query->fetch(PDO::FETCH_OBJ);
+
+	//gets the classes
+	$query = $db->prepare('SELECT * from TutorClasses WHERE Tutors_tutor_id = :uid');
+	$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+	$query->execute();
+
+	$courses = array();
+
+	//puts info in an array
+	while($row = $query->fetch(PDO::FETCH_OBJ)){
+		//iterate over all the fields
+		$courses[] = $row;
+	}
+
+
+	//gets the timeslots
+	$query = $db->prepare('SELECT * from Timeslots WHERE Tutors_tutor_id = :uid');
+	$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+	$query->execute();
+
+	$cal = array();
+	$times = array();
+	$tempdays = array();
+
+	while($row = $query->fetch(PDO::FETCH_OBJ)){
+		//iterate over all the fields
+		$result = json_encode($row);
+		$data = json_decode($result);
+		$times[] = $data->timeslot_time;
+		$tempdays[] = $data->timeslot_day;
+
+	}
+
+
+		$days = array(
+			"Mon" => False,
+			"Tues" => False,
+			"Wed"   => False,
+			"Thurs"  => False,
+			"Fri" => False
+		);
+
+		for ($x = 0; $x <=7; $x++){
+
+			$cal [] = $days;
+
+		}
+
+
+		$max = sizeof($times);
+
+		for ($y = 0; $y < $max; $y++){
+
+			if ($times[$y] == 0 || $times[$y] == 1 || $times[$y] == 2 || $times[$y] == 3 || $times[$y] == 4 || $times[$y] == 5 || $times[$y] == 6 || $times[$y] == 7){
+
+					$cal[$times[$y]] = 	calculateDays($cal[$times[$y]],$tempdays[$y]);
+
+				}
+
+		}
+
+
+	//json object with all the info of an applicant
+	$tempTutor = array(
+		'calArray' => $cal,
+		'courseDictArray' => $courses,
+		'tutorInfo' => $user
+		);
+
+	//converts it to json
+	$tutor = json_encode($tempTutor);
+
+	//if there is an applicant then respond with 200 else respond with 403
+	if($user){
+
+		echo($tutor);
+		return $response;
+
+	}else{
+
+		$new_response = $response->withStatus(204);
+		return $new_response;
+		// echo('No Applicant Found');
+	}
+
+
+	return $response; //returns the response
 
 });
 
@@ -551,7 +713,7 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$courses = $data->courseDictArray;
 	$email = $data->applicant_email;
 	$gpa=$data->applicant_gpa;
-	$status = 0;
+	$status = "Pending";
 
 
 
@@ -584,7 +746,7 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$query->bindParam(":applicant_email", $email, PDO::PARAM_STR);
 	$query->bindParam(":applicant_gpa", $gpa, PDO::PARAM_STR);
 	$query->bindParam(":applicant_major", $major, PDO::PARAM_STR);
-	$query->bindParam(":application_status", $status, PDO::PARAM_INT);
+	$query->bindParam(":application_status", $status, PDO::PARAM_STR);
 	$query->bindParam(":applicant_password", $password, PDO::PARAM_STR);
 	$query->execute();
 
