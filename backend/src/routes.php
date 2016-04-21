@@ -227,7 +227,7 @@ $app->get('/getApplications', function($request, $response, $args) {
 		$times = array();
 		$tempdays = array();
 
-		while($row = $query->fetch(PDO::FETCH_OBJ)){
+		while($row = $query3->fetch(PDO::FETCH_OBJ)){
 			//iterate over all the fields
 			$result = json_encode($row);
 			$data = json_decode($result);
