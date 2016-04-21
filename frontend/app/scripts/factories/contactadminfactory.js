@@ -48,7 +48,8 @@ angular.module('frontendApp')
           console.log(data);
           console.log(userArray);
           //console.log(data);
-          return userArray;
+          var allData = [userArray, data];
+          return allData;
         }, function errorCallback(response) {
            console.log("We fucked up on the application retrieval.");
            return false;
@@ -91,6 +92,19 @@ angular.module('frontendApp')
 
     getAppID: function(){
       return localStorage.getItem("currentAppID");
+    },
+        
+    storeModalData: function(data){
+        console.log('storing');
+        console.log(data);
+        localStorage.setItem("modalData", data);
+        return;
+    },
+        
+    getModalData: function(){
+      console.log('getting');
+        console.log(localStorage.getItem("modalData").applicantInfo.applicant_id);
+      return localStorage.getItem("modalData");
     },
 
     getTutorRequests: function(){
