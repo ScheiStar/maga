@@ -44,9 +44,9 @@ angular.module('frontendApp')
             userArray.push(user);
             user = {};
           }
-          console.log('printing shit');
-          console.log(data);
-          console.log(userArray);
+          //console.log('printing shit');
+          //console.log(data);
+          //console.log(userArray);
           //console.log(data);
           var allData = [userArray, data];
           return allData;
@@ -93,17 +93,16 @@ angular.module('frontendApp')
     getAppID: function(){
       return localStorage.getItem("currentAppID");
     },
-        
+
     storeModalData: function(data){
         console.log('storing');
         console.log(data);
-        localStorage.setItem("modalData", data);
+        localStorage.setItem("modalData", JSON.stringify(data));
         return;
     },
-        
+
     getModalData: function(){
       console.log('getting');
-        console.log(localStorage.getItem("modalData").applicantInfo.applicant_id);
       return localStorage.getItem("modalData");
     },
 
@@ -152,21 +151,5 @@ angular.module('frontendApp')
              return false;
       });
     }
-
-    //
-    // getIndApp: function(userID) {
-    //   var userArray = new Array();
-    //   var user = {};
-    //   return $http({
-    //     method: 'GET',
-    //     url: 'http://54.86.70.62/admin/getApplicant',
-    //     params: {id: userID}
-    //   }).then(function(data){
-    //     console.log("Successfully recieved tutors.");
-    //   }, function errorCallback(response) {
-    //      console.log("We fucked up on the application retrieval.");
-    //      return false;
-    // });
-    // }
    }
  });
