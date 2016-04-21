@@ -230,12 +230,49 @@ $app->get('/getApplications', function($request, $response, $args) {
 		$query3->execute();
 
 		$cal = array();
+		$temptimes = array();
+		$tempdays = array();
 
 		while($row = $query3->fetch(PDO::FETCH_OBJ)){
 			//iterate over all the fields
-			$cal[] = $row;
-
+			$result = json_encode($row);
+			$data = json_decode($result);
+			$temptimes[] = $data->timeslot_time;
+			$tempdays[] = $data->timeslot_day;
 		}
+
+
+
+	$times = array_pad($temptimes, 8, -1);
+
+	$days = array(
+				"Mon" => False,
+				"Tues" => False,
+				"Wed"   => False,
+				"Thurs"  => False,
+				"Fri" => False
+		);
+
+	for ($x = 0; $x <=7; $x++){
+
+		$cal [] = $days;
+
+	}
+
+
+	for ($x = 0; $x <=7; $x++){
+
+			for ($y = 0; $y <=7; $y++){
+
+				if ($times[$y] == $x){
+
+					$cal[$times[$y]] = 	calculateDays($cal[$times[$y]],$tempdays[$y]);
+
+				}
+			}
+
+
+	}
 
 		//json object with all the info of an applicant
 		$tempApplicant = array(
@@ -263,7 +300,6 @@ $app->get('/getApplications', function($request, $response, $args) {
 	}
 
 });
-
 $app->get('/admin/getTutors',function($request,$response,$args){
   //$query = mysql_query("SELECT * FROM Tutors");
       $db = $this->createDB;
