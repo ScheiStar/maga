@@ -66,7 +66,8 @@ angular.module('frontendApp')
         alert('Thanks for Applying!');
         $state.go('login');
 
-    };
+        };
+    }
 
     var initialTimes = JSON.stringify({"data":
     [{"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
@@ -95,7 +96,7 @@ angular.module('frontendApp')
 
       //console.log(initialTimes);
     }
-    // $scope.addTime = function($day,$time) {
+    // $scope.addsTime = function($day,$time) {
     //     if (angular.isDefined($scope.formData.cal[$day])){
     //         if($scope.formData.cal[$day].indexOf($time) != -1)
     //             $scope.formData.cal[$day].splice($scope.formData.cal[$day].indexOf($time), 1); //splice removes the element without leaving holes
@@ -108,8 +109,6 @@ angular.module('frontendApp')
     //     }
     //     $scope.formData.cal[$day].sort();
     // };
-});
-
     $scope.goFormTwo = function(){
         console.log('blalalal');
         if ($scope.tutorForm.$valid){
@@ -119,5 +118,5 @@ angular.module('frontendApp')
         else
             alert('Invalid Form... :(');
     };
+});
 
-    

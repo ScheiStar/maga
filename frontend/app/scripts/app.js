@@ -111,7 +111,7 @@ angular
       })
       .state('/appModal', {
         templateUrl: 'views/adminDash/appmodal.html',
-        controller: 'AppmodalCtrl',
+        controller: 'AdmindashApplicationsCtrl',
         controllerAs: 'appModal'
       })
 
