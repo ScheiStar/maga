@@ -16,15 +16,23 @@ angular.module('frontendApp')
       userFactory.signOut();
     };
 
+
+    console.log('Checking data');
+    // if(contactAdminFactory.getModalData()){
+    //   console.log('TRUEDAT');
+    //   $scope.modalDataYo = JSON.parse(contactAdminFactory.getModalData());
+    // } else {
+    //   console.log('NO DATA');
+    // }
     $scope.ugh = new Array();
     $scope.applicationData = new Array();
     $scope.modalData = new Array();
-    $scope.modalDataYo = new Array();
     var user = {};
 
     contactAdminFactory.getApplicants().then(function(data){
       $scope.ugh = data[0];
       $scope.applicants = data[1];
+      $scope.test = 'test';
 //      $scope.applicants =
       //console.log("ugh", $scope.ugh);
       //console.log("applicants", $scope.applicants);
@@ -40,7 +48,6 @@ angular.module('frontendApp')
     };
 
 
-
     $scope.openAppModal = function (size, appID) {
       console.log('opening modal');
       console.log(appID);
@@ -54,7 +61,7 @@ angular.module('frontendApp')
 //        console.log("MODAL DATA: ", contactAdminFactory.getModalData());
         $scope.modalDataYo = JSON.parse(contactAdminFactory.getModalData());
 //        console.log("modalData: ", $scope.modalDataYo.applicantInfo);
-        console.log("modalData: ", $scope.modalDataYo.applicantInfo.applicant_id);
+        //console.log("modalData: ", $scope.modalDataYo.applicantInfo.applicant_id);
 
 
 
@@ -62,7 +69,7 @@ angular.module('frontendApp')
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/adminDash/appmodal.html',
-        controller: 'AdmindashApplicationsCtrl',
+        controller: 'AppmodalCtrl',
         size: size,
         resolve: {
           items: function () {
@@ -73,7 +80,7 @@ angular.module('frontendApp')
     };
 
     $scope.work = function() {
-        console.log(contactAdminFactory.getModalData());
+        console.log(JSON.parse(contactAdminFactory.getModalData()));
     }
 
   });

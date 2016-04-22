@@ -96,14 +96,23 @@ angular.module('frontendApp')
 
     storeModalData: function(data){
         console.log('storing');
-        console.log(data);
+        //console.log(data);
         localStorage.setItem("modalData", JSON.stringify(data));
         return;
     },
 
     getModalData: function(){
       console.log('getting');
-      return localStorage.getItem("modalData");
+      if(localStorage.getItem("modalData") == null){
+        console.log('Null')
+        //console.log(localStorage.getItem("modalData"));
+        return false
+      }
+      else{
+        console.log('NOT NULL');
+        console.log(localStorage.getItem("modalData"));
+        return localStorage.getItem("modalData");
+      }
     },
 
     getTutorRequests: function(){
