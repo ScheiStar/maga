@@ -1,3 +1,7 @@
+.container {
+    position: relative;
+}
+
 .norm {
   color: white;
 }
@@ -6,3 +10,35 @@
   color: #0099FF;
   background-color: #0099FF;
 }
+
+/*
+#submitButton {
+    position: absolute;
+    float: right;
+}
+*/
+/*
+.modal-button {
+    font-size: 1 rem;
+    position: absolute;
+    float: right;
+}
+*/
+
+.btn-success {
+    font-size: 20rem;
+    
+}
+table {
+    background-color: pink;
+}
+
+h4 {
+    color: blue;
+}
+
+/*
+.modal-button {
+    background-color:antiquewhite;
+}
+*/
