@@ -19,6 +19,7 @@ angular.module('frontendApp')
     $scope.ugh = new Array();
     $scope.applicationData = new Array();
     $scope.modalData = new Array();
+    $scope.modalDataYo = new Array();
     var user = {};
 
     contactAdminFactory.getApplicants().then(function(data){
@@ -50,8 +51,10 @@ angular.module('frontendApp')
             if (contactAdminFactory.getAppID() == $scope.applicants.data[i].applicantInfo.applicant_id)
                 contactAdminFactory.storeModalData($scope.applicants.data[i]);
         }
-        //console.log("MODAL DATA: ", $scope.modalData);
-
+//        console.log("MODAL DATA: ", contactAdminFactory.getModalData());
+        $scope.modalDataYo = JSON.parse(contactAdminFactory.getModalData());
+//        console.log("modalData: ", $scope.modalDataYo.applicantInfo);
+        console.log("modalData: ", $scope.modalDataYo.applicantInfo.applicant_id);
 
 
 

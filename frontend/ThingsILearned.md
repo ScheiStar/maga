@@ -12,18 +12,18 @@
 
 ## Nested States
 - Nested states are the bomb, just make sure that the parent [.state] name matches the child [.state] name. If you have the following example it won't work because the parent name is different from the child name:
-```javascript
-    .state('applicationForm', {
-        url: '/applicationForm',
-        templateUrl: 'views/applicationForm/form.html',
-        controller: 'formController',
-        controllerAs: 'applicationForm'
-    })
-    .state('form.profile', {
-        url: '/profile',
-        templateUrl: 'views/applicationForm/form-profile.html'
-    })
-    ```
+
+.state('applicationForm', {
+url: '/applicationForm',
+templateUrl: 'views/applicationForm/form.html',
+controller: 'formController',
+controllerAs: 'applicationForm'
+})
+.state('form.profile', {
+url: '/profile',
+templateUrl: 'views/applicationForm/form-profile.html'
+})
+    
 
     
 The following code will not recognize the states as linked:
@@ -33,3 +33,15 @@ The following code will not recognize the states as linked:
         <a ui-sref-active="active" ui-sref=".interests"><span>2</span> Classes & Times</a>
         <a ui-sref-active="active" ui-sref=".payment"><span>3</span> Verify Info</a>
     </div>
+    
+Use "abstract: true" to make sure that you don't navigate to the abstract state
+      
+      .state('form', {
+          url: '/form',
+          templateUrl: 'views/applicationForm/form.html',
+          controller: 'formController',
+          abstract: true
+      })
+## Styling
+- If you don't know how to acess an html element to style it in css, right click it and inspect it to see exactly what to call it. I learned this from trying to style the calendar a different color.
+      
