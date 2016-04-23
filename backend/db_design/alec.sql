@@ -146,7 +146,7 @@ DROP TABLE IF EXISTS `alecDB`.`Users` ;
 CREATE TABLE IF NOT EXISTS `alecDB`.`Users` (
   `user_id` INT NOT NULL,
   `hash` VARCHAR(60) NULL,
-  `admin` TINYINT(1) NULL DEFAULT 0, 
+  `admin` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 

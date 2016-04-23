@@ -848,7 +848,6 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $classname = $data->className;
   $classnum = $data->classNum;
   $reqtype = $data->requestType;
-  $uid2 = $uid;
 
   echo $uid;
   echo $classname;
@@ -863,13 +862,12 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   }
 
   $query = $db->prepare("INSERT INTO TutorRequests
-    (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type, Tutors_tutor_id)
-    VALUES(:uid, :classname, :classnum, :reqtype, :uid2)");
+    (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type)
+    VALUES(:uid, :classname, :classnum, :reqtype,)");
   $query->bindParam(":uid", $uid, PDO::PARAM_INT);
   $query->bindParam(":classname", $classname, PDO::PARAM_STR);
   $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
   $query->bindParam(":reqtype", $reqtype, PDO::PARAM_STR);
-  $query->bindParam(":uid2", $uid2, PDO::PARAM_INT);
   $query->execute();
   print_r ($query->errorInfo());
 });
