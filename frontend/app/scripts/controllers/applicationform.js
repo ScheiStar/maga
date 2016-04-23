@@ -35,6 +35,7 @@ angular.module('frontendApp')
             $scope.formData.courseDictArray.push({'courseType':$scope.formData.courseArray[i], 'courseNum':$scope.formData.courseArray[i+1], 'grade':$scope.formData.courseArray[i+2]});
             i = i+2;
         }
+        $scope.formData.applicant_gpa = String($scope.formData.applicant_gpa);
         delete $scope.formData.courseArray; //delete because its not needed in formData anymore!
         delete $scope.formData.cal;
         console.log("FORM_DATA: ", $scope.formData);
@@ -51,32 +52,7 @@ angular.module('frontendApp')
         contactAdminFactory.emailAdmin(user_data);
 
         contactAdminFactory.apply($scope.formData);
-
-
         console.log('DATA');
-        //console.log(formData);
-//        contactAdminFactory.emailAdmin(user_data);
-//        //work on hooking this up to database
-//        return $http({
-//          method: 'POST',
-//          url: 'http://54.86.70.62/login',
-//          data: user_json
-//        }).then(function(data){
-//            var userToken = data.data;
-//            localStorage.setItem("token", userToken);
-//            var remember = auth;
-//            $state.go("userDash");
-//            return data;
-//        }, function errorCallback(response) {
-//          console.log("Failure!");
-//              console.log(response);
-//              alert("Log In Unsuccessful");
-//    });
-
-
-
-        //alert('Thanks for Applying!');
-        //$state.go('login');
 
         };
     }
