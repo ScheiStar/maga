@@ -849,6 +849,8 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $classnum = $data->classNum;
   $reqtype = $data->requestType;
 
+  echo $data;
+
   if(!isset($uid) || !isset($classname) || !isset($classnum) || !isset($reqtype)){
     $new_response = $response->withStatus(400);
     echo("Please send a valid JSON");
