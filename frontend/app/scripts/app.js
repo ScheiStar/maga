@@ -130,4 +130,9 @@ angular
         controller: 'TesttablwCtrl',
         controllerAs: 'testTablw'
       })
+      .state('addClassModal', {
+        templateUrl: 'views/userDash/addclassmodal.html',
+        controller: 'AddclassmodalCtrl',
+        controllerAs: 'addClassModal'
+      })
     });

@@ -11,7 +11,7 @@ angular.module('frontendApp')
   .controller('AdmindashCtrl', function ($scope, $uibModal, contactAdminFactory, userFactory) {
 
 
-    console.log(userFactory.parseToken(userFactory.getToken()).userID);
+    //console.log(userFactory.parseToken(userFactory.getToken()).userID);
     $scope.animationsEnabled = true;
 
     $scope.signOut = function() {

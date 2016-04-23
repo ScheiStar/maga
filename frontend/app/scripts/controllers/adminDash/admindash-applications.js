@@ -20,7 +20,9 @@ angular.module('frontendApp')
     var user = {};
 
     contactAdminFactory.getApplicants().then(function(data){
+      console.log('LOOK');
       $scope.ugh = data;
+      console.log(JSON.stringify($scope.ugh));
     });
 
     $scope.animationsEnabled = true;
