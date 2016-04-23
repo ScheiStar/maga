@@ -26,10 +26,17 @@ angular.module('frontendApp')
       $state.go('userDash.home');
     }
 
-    $scope.submitDrop = function() {
+    $scope.submitDrop = function(classInfo) {
       console.log('dropping shit');
-      // TODO: post request to drop class
-
+      //console.log(classInfo.type);
+      var request_data = {
+        'userID': '12345678',
+        'className': JSON.parse(userFactory.getClassInfo()).type,
+        'classNum': JSON.parse(userFactory.getClassInfo()).number,
+        'requestType': 'Drop'
+      }
+      userFactory.tutorRequest(request_data);
+      $state.go("userDashClass");
     }
 
     $scope.cancel = function() {
@@ -61,7 +68,10 @@ angular.module('frontendApp')
     };
 
     //Important to allow confirm drop class modal to appear on screen
-    $scope.confirmDrop = function(size){
+    $scope.confirmDrop = function(size, classInfo){
+      console.log('finna store');
+      console.log(classInfo);
+      userFactory.storeClassInfo(classInfo);
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'dropConfirmModal.html',

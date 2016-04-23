@@ -92,12 +92,24 @@ angular.module('frontendApp')
           data: request_json
         }).then(function(data){
             alert('Successfully submitted!')
+            $state.go('userDashClass');
             return;
         }, function errorCallback(response) {
           console.log("Failure!");
               console.log(response);
               alert("Log In Unsuccessful");
     });
-      }
+  },
+
+  storeClassInfo: function(classInfo) {
+    localStorage.setItem("classInfo", JSON.stringify(classInfo));
+    return;
+
+  },
+
+  getClassInfo: function() {
+    return localStorage.getItem("classInfo");
+
+  }
 }
 });
