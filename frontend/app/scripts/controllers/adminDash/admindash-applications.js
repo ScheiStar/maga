@@ -33,10 +33,9 @@ angular.module('frontendApp')
       $scope.ugh = data[0];
       $scope.applicants = data[1];
       $scope.test = 'test';
-//      $scope.applicants =
-      //console.log("ugh", $scope.ugh);
-      //console.log("applicants", $scope.applicants);
-//        console.log("data",data);
+      console.log('LOOK');
+      $scope.ugh = data;
+      console.log(JSON.stringify($scope.ugh));
     });
 
     $scope.animationsEnabled = true;

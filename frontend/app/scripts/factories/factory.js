@@ -20,7 +20,7 @@ angular.module('frontendApp')
             //console.log(userToken);
             var remember = auth;
             //$state.go("adminDash");
-            return;
+            return data;
         }, function errorCallback(response) {
           console.log("Failure!");
               console.log(response);
