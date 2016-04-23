@@ -863,6 +863,9 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
   $query->bindParam(":reqtype", $reqtype, PDO::PARAM_STR);
   $query->execute();
+  if(!$query){
+    echo ($query->errorInfo());
+  }
 });
 
 $app->get('/getTutorRequests', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
