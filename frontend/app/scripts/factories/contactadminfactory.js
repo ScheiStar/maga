@@ -77,7 +77,8 @@ angular.module('frontendApp')
           console.log('tutor shit inside factory');
           console.log(data);
           console.log('returning');
-          console.log(userArray);
+          //console.log(userArray);
+          //var allData = [userArray, data];
           return data;
         }, function errorCallback(response) {
            console.log("We fucked up on the application retrieval.");
@@ -101,6 +102,26 @@ angular.module('frontendApp')
         return;
     },
 
+    getTutorID: function(){
+      return localStorage.getItem("currentTutorID");
+    },
+
+    storeTutorID: function(data){
+        localStorage.setItem("currentTutorID", data);
+        return;
+    },
+
+    getTutorData: function(){
+      return localStorage.getItem("currentTutorData");
+    },
+
+    storeTutorData: function(data){
+        console.log('storing tutor data');
+        //console.log(data);
+        localStorage.setItem("currentTutorData", JSON.stringify(data));
+        return;
+    },
+
     getModalData: function(){
       console.log('getting');
       if(localStorage.getItem("modalData") == null){
@@ -110,7 +131,7 @@ angular.module('frontendApp')
       }
       else{
         console.log('NOT NULL');
-        console.log(localStorage.getItem("modalData"));
+        //console.log(localStorage.getItem("modalData"));
         return localStorage.getItem("modalData");
       }
     },
