@@ -46,11 +46,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
   `timeslot_day` INT NOT NULL,
   PRIMARY KEY (`timeslot_id`),
   INDEX `fk_Timeslots_Tutors1_idx` (`Tutors_tutor_id` ASC),
-  CONSTRAINT `fk_Timeslots_Tutors1`
-    FOREIGN KEY (`Tutors_tutor_id`)
-    REFERENCES `alecDB`.`Tutors` (`tutor_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+)
 ENGINE = InnoDB;
 
 
@@ -72,11 +68,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Sessions` (
   `student_last_name` VARCHAR(45) NULL,
   PRIMARY KEY (`session_id`),
   INDEX `fk_Sessions_Tutors_idx` (`Tutors_tutor_id` ASC),
-  CONSTRAINT `fk_Sessions_Tutors`
-    FOREIGN KEY (`Tutors_tutor_id`)
-    REFERENCES `alecDB`.`Tutors` (`tutor_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+)
 ENGINE = InnoDB;
 
 
@@ -110,11 +102,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
   `timeslot_day` INT NOT NULL,
   PRIMARY KEY (`timeslot_id`),
   INDEX `fk_ApplicantTimeslots_Applicants1_idx` (`Applicants_applicant_id` ASC),
-  CONSTRAINT `fk_ApplicantTimeslots_Applicants1`
-    FOREIGN KEY (`Applicants_applicant_id`)
-    REFERENCES `alecDB`.`Applicants` (`applicant_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+)
 ENGINE = InnoDB;
 
 
@@ -133,11 +121,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Reviews` (
   `review_comments` VARCHAR(500) NULL,
   PRIMARY KEY (`review_id`),
   INDEX `fk_Reviews_Sessions1_idx` (`Sessions_session_id` ASC),
-  CONSTRAINT `fk_Reviews_Sessions1`
-    FOREIGN KEY (`Sessions_session_id`)
-    REFERENCES `alecDB`.`Sessions` (`session_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+)
 ENGINE = InnoDB;
 
 
@@ -181,12 +165,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`TutorClasses` (
   `class_grade` VARCHAR(3) NULL,
   `Tutors_tutor_id` INT NOT NULL,
   PRIMARY KEY (`tutorclass_id`),
-  INDEX `fk_TutorClasses_Tutors1_idx` (`Tutors_tutor_id` ASC),
-  CONSTRAINT `fk_TutorClasses_Tutors1`
-    FOREIGN KEY (`Tutors_tutor_id`)
-    REFERENCES `alecDB`.`Tutors` (`tutor_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+)
 ENGINE = InnoDB;
 
 
@@ -203,11 +182,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
   `Applicants_applicant_id` INT NOT NULL,
   PRIMARY KEY (`idApplicantClasses`),
   INDEX `fk_ApplicantClasses_Applicants1_idx` (`Applicants_applicant_id` ASC),
-  CONSTRAINT `fk_ApplicantClasses_Applicants1`
-    FOREIGN KEY (`Applicants_applicant_id`)
-    REFERENCES `alecDB`.`Applicants` (`applicant_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+)
 ENGINE = InnoDB;
 
 
@@ -225,11 +200,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`TutorRequests` (
   `tr_request_type` VARCHAR(4) NULL,
   PRIMARY KEY (`tr_id`),
   INDEX `fk_TutorRequests_Tutors1_idx` (`Tutors_tutor_id` ASC),
-  CONSTRAINT `fk_TutorRequests_Tutors1`
-    FOREIGN KEY (`Tutors_tutor_id`)
-    REFERENCES `alecDB`.`Tutors` (`tutor_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+)
 ENGINE = InnoDB;
 
 
