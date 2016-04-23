@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="col-xs-5">
-        <h1><span ng-bind="tits.applicantInfo.applicant_first_name"></span> <span ng-bind="tits.applicantInfo.applicant_last_name"></span></h1>
+        <h1><span ng-bind="tits.applicantInfo.tutor_first_name"></span> <span ng-bind="tits.applicantInfo.tutor_last_name"></span></h1>
         <h4>Would like to start tutoring for:</h4>
 <!--        Work on being able to hide the classes that are empty!!-->
         <h4><span ng-bind="tits.courseDictArray[0].class_name"></span><span ng-bind="tits.courseDictArray[0].class_number"></span>  (<span ng-bind="tits.courseDictArray[0].class_gpa"></span>)</h4>
@@ -18,10 +18,10 @@
     </div>
     <div class="col-xs-7">
         <h1><u>Profile:</u></h1>
-        <h3>SMU ID: <span ng-bind="tits.applicantInfo.applicant_id"></span></h3>
-        <h3>Major: <span ng-bind="tits.applicantInfo.applicant_major"></span></h3>
-        <h3>GPA: <span ng-bind="tits.applicantInfo.applicant_gpa"></span></h3>
-        <h3>Email: <span ng-bind="tits.applicantInfo.applicant_email"></span></h3>
+        <h3>SMU ID: <span ng-bind="tits.applicantInfo.tutor_id"></span></h3>
+        <h3>Major: <span ng-bind="tits.applicantInfo.tutor_major"></span></h3>
+        <h3>GPA: <span ng-bind="tits.applicantInfo.tutor_gpa"></span></h3>
+        <h3>Email: <span ng-bind="tits.applicantInfo.tutor_email"></span></h3>
     </div>
     <div class="col-xs-9">
         <table class="table table-bordered">
