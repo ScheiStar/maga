@@ -21,14 +21,13 @@
         <h3>SMU ID: <span ng-bind="tits.applicantInfo.applicant_id"></span></h3>
         <h3>Major: <span ng-bind="tits.applicantInfo.applicant_major"></span></h3>
         <h3>GPA: <span ng-bind="tits.applicantInfo.applicant_gpa"></span></h3>
-        <h3>Email: <span ng-bind="tits.applicantInfo.applicant_email"></span></h3>  
+        <h3>Email: <span ng-bind="tits.applicantInfo.applicant_email"></span></h3>
     </div>
     <div class="col-xs-10">
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Time</th>
-                    <th>Sun</th>
                     <th>Mon</th>
                     <th>Tue</th>
                     <th>Wed</th>
@@ -38,13 +37,12 @@
             </thead>
             <tbody>
                 <tr ng-repeat="x in ugh track by $index">
-                    <th scope="row" ng-bind="x.time"></th>
-                    <td class = "norm" ng-bind="x.Sun" ng-class="{ 'yeah': x.Sun}"></td>
-                    <td class = "norm" ng-bind="x.Mon" ng-class="{ 'yeah': x.Mon}"></td>
-                    <td class = "norm" ng-bind="x.Tues" ng-class="{ 'yeah': x.Tues}"></td>
-                    <td class = "norm" ng-bind="x.Wed" ng-class="{ 'yeah': x.Wed}"></td>
-                    <td class = "norm" ng-bind="x.Thurs" ng-class="{ 'yeah': x.Thurs}"></td>
-                    <td class = "norm" ßng-bind="x.Fri" ng-class="{ 'yeah': x.Fri}"></td>
+                    <th scope="row" class="col-md-1" ng-bind="x.time"></th>
+                    <td class = "norm col-md-1" ng-bind="x.Mon" ng-class="{ 'yeah': x.Mon}"></td>
+                    <td class = "norm col-md-1" ng-bind="x.Tues" ng-class="{ 'yeah': x.Tues}"></td>
+                    <td class = "norm col-md-1" ng-bind="x.Wed" ng-class="{ 'yeah': x.Wed}"></td>
+                    <td class = "norm col-md-1" ng-bind="x.Thurs" ng-class="{ 'yeah': x.Thurs}"></td>
+                    <td class = "norm col-md-1" ßng-bind="x.Fri" ng-class="{ 'yeah': x.Fri}"></td>
                 </tr>
             </tbody>
         </table>
