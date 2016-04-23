@@ -83,6 +83,21 @@ angular.module('frontendApp')
         else {
           return;
         }
+      },
+
+      tutorRequest: function(request_json) {
+        return $http({
+          method: 'POST',
+          url: 'http://54.86.70.62/requestClass',
+          data: request_json
+        }).then(function(data){
+            alert('Successfully submitted!')
+            return;
+        }, function errorCallback(response) {
+          console.log("Failure!");
+              console.log(response);
+              alert("Log In Unsuccessful");
+    });
       }
 }
 });
