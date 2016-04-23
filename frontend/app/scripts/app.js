@@ -22,7 +22,11 @@ angular
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
     $stateProvider
-
+      .state('/tutorModal', {
+        templateUrl: 'views/adminDash/tutormodal.html',
+        controller: 'TutormodalCtrl',
+        controllerAs: 'tutorModal'
+      })
       .state('state1', {
         url: '/',
         templateUrl: 'views/main.html',

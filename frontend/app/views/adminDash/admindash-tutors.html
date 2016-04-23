@@ -54,6 +54,9 @@
           <td ng-bind="x.applicantInfo.tutor_last_name"></td>
           <td ng-bind="x.applicantInfo.tutor_email"></td>
           <td ng-bind="x.applicantInfo.tutor_major"></td>
+          <td>
+              <button type="button" class="btn btn-info-outline btn-sm" ng-click="openTutorModal('lg', x.appID)">View</button>
+          </td>
         </tr>
       </tbody>
     </table>
