@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Tutors` (
   `tutor_last_name` VARCHAR(45) NULL,
   `tutor_email` VARCHAR(45) NULL,
   `tutor_phone` VARCHAR(45) NULL,
-  `tutor_gpa` DECIMAL(3) NULL,
+  `tutor_gpa` VARCHAR(5) NULL,
   `tutor_major` VARCHAR(45) NULL,
   PRIMARY KEY (`tutor_id`))
 ENGINE = InnoDB;
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Applicants` (
   `applicant_first_name` VARCHAR(45) NULL,
   `applicant_last_name` VARCHAR(45) NULL,
   `applicant_email` VARCHAR(45) NULL,
-  `applicant_gpa` DECIMAL(3) NULL,
+  `applicant_gpa` VARCHAR(5) NULL,
   `applicant_major` VARCHAR(45) NULL,
   `application_status` VARCHAR(45) NULL,
   `applicant_hash` VARCHAR(60) NULL,
