@@ -863,7 +863,7 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
 
   $query = $db->prepare("INSERT INTO TutorRequests
     (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type)
-    VALUES(:uid, :classname, :classnum, :reqtype,)");
+    VALUES(:uid, :classname, :classnum, :reqtype)");
   $query->bindParam(":uid", $uid, PDO::PARAM_INT);
   $query->bindParam(":classname", $classname, PDO::PARAM_STR);
   $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
