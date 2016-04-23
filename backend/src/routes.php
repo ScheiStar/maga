@@ -849,7 +849,11 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $classnum = $data->classNum;
   $reqtype = $data->requestType;
 
-  echo $data->userID;
+  echo $uid;
+  echo $classname;
+  echo $classnum;
+  echo $reqtype;
+
 
   if(!isset($uid) || !isset($classname) || !isset($classnum) || !isset($reqtype)){
     $new_response = $response->withStatus(400);
