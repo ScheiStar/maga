@@ -11,6 +11,9 @@
 // app.factory('classesData', function(){
   // 	return{classes: {}};
   // })
+
+//GET TUTOR REQUEST -- getTutorRequest
+
 angular.module('frontendApp')
   .controller('TesttablwCtrl', function ($scope) {
     $scope.ugh = new Array();
@@ -37,6 +40,11 @@ angular.module('frontendApp')
     console.log($scope.ugh);
     //$scope.real = $scope.ugh[0];
 
+  })
+  .controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+    $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
   })
   .controller('UserdashCtrl', function ($state, $scope, $http, contactAdminFactory, userFactory, $window, $uibModal, $log, $filter) {
 
@@ -215,34 +223,20 @@ angular.module('frontendApp')
         }
 
     }
-
+    //clears field after submission of adding a new class
     $scope.clearFields = function() {
       $scope.myClassType = null;
       $scope.myClassGrade = null;
       $scope.myText = null;
 // >>>>>>> userDash
     }
-
-    // $scope.showConfirm = function(ev) {
-    //   // Appending dialog to document.body to cover sidenav in docs app
-    //   var confirm = $mdDialog.confirm()
-    //         .title('Would you like to delete your debt?')
-    //         .textContent('All of the banks have agreed to forgive you your debts.')
-    //         .ariaLabel('Lucky day')
-    //         .targetEvent(ev)
-    //         .ok('Please do it!')
-    //         .cancel('Sounds like a scam');
-    //   $mdDialog.show(confirm).then(function() {
-    //     $scope.status = 'You decided to get rid of your debt.';
-    //   }, function() {
-    //     $scope.status = 'You decided to keep your debt.';
-    //   });
-    // };
+    //important to see classes dropped
     $scope.dropArr = {
       classType: [],
       classNumber: [],
       classGrade: []
     }
+    //allows user to visually see class dropped -- temporary
     $scope.dropClass = function(index) {
       console.log(index);
       $scope.dropArr.classType.push($scope.classArr.classType[index])
@@ -252,6 +246,7 @@ angular.module('frontendApp')
       $scope.classArr.classNumber.splice(index, 1);
       $scope.classArr.classGrade.splice(index, 1);
     }
+    //allows user to visually see class undo -- temporary
     $scope.undoDrop = function(index) {
       $scope.classArr.classType.push($scope.dropArr.classType[index])
       $scope.classArr.classNumber.push($scope.dropArr.classNumber[index])
@@ -260,12 +255,56 @@ angular.module('frontendApp')
       $scope.dropArr.classNumber.splice(index, 1);
       $scope.dropArr.classGrade.splice(index, 1);
     }
+    $scope.arrayChecker = function(index) {
+      console.log("classArr");
+      console.log($scope.classArr);
+      console.log($scope.classArr.classType.length);
+      console.log("dropArr");
+      console.log($scope.dropArr);
+    }
+    //Submit drop is not working because it is creating another drop/classArr instance
+    //inside of script tag
+    //Function important for submitting drop class
     $scope.submitDrop = function() {
       if($scope.dropArr.classType.length == 0 || $scope.dropArr.classNumber.length == 0 || $scope.dropArr.classGrade.length == 0) {
         alert("You did not drop any classes");
+        console.log("You did not drop any classes");
+        console.log($scope.dropArr);
+        $scope.arrayChecker();
       }
+      // else if(trigger == 1) {
+      //   alert("Undo class successful");
+      //   var classArray = new Array();
+      //   var classData = {};
+
+      //   for(var i = 0; i < $scope.dropArr.classType.length; i++) {
+      //     classData.classType = $scope.dropArr.classType[i];
+      //     classData.classNumber = $scope.dropArr.classNumber[i];
+      //     classData.classGrade = $scope.dropArr.classGrade[i];
+      //     classArray.push(classData);
+      //     classData = {};
+      //   }
+        
+      //   //get info from class array and store in json
+      //   console.log(addclass_data);
+      //   //post
+      //   for(var i = 0; i < classArray.length; i++) {
+      //     var addclass_data = {
+      //       'userID': '12345678',
+      //       'className': classArray[i].classType,
+      //       'classNum': classArray[i].classNumber,
+      //       'classGrade': classArray[i].classGrade,
+      //       'requestType':'add'
+      //     };
+      //     console.log("sttt");
+      //     console.log(addclass_data);
+      //     //do post request to add class
+      //     $http.post("http://54.86.70.62/requestClass", addclass_data).success(function(addclass_data, status) {})
+      //   }
+      // }
       else {
         alert("Classes successfully dropped");
+        console.log($scope.dropArr);
         //Store drop class data
         // var addclass_data = {
         //   'userID': $scope.user,
@@ -287,7 +326,7 @@ angular.module('frontendApp')
         
         //get info from class array and store in json
         console.log(addclass_data);
-        //post
+        //post -- for dropping class
         for(var i = 0; i < classArray.length; i++) {
           var addclass_data = {
             'userID': '12345678',
@@ -300,16 +339,10 @@ angular.module('frontendApp')
           console.log(addclass_data);
           //do post request to add class
           $http.post("http://54.86.70.62/requestClass", addclass_data).success(function(addclass_data, status) {})
-
-
-        }//end
-
+        }
+        //need post request for updating current classes
 
       }
-
-
-      //post request to drop classess in drop arr
-
     }
 
     //Used to remove items from the array
@@ -346,7 +379,6 @@ angular.module('frontendApp')
           }
         }
       });
-
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
       }, function () {
@@ -367,49 +399,56 @@ angular.module('frontendApp')
           }
         }
       });
-
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-
     };
-
+    //Important to allow confirm drop class modal to appear on screen
+    $scope.confirmDrop = function(size){
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'dropConfirmModal.html',
+        controller: 'UserdashCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+    //Important to allow undo class modal to appear on screen
+    $scope.undoConfirm = function(size){
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'undoConfirmModal.html',
+        controller: 'UserdashCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
 
     $scope.toggleAnimation = function () {
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
 
-
-    $scope.ok = function () {
-      $uibModal.close($scope.selected.item);
-    };
-
-    $scope.cancel = function () {
-      $uibModal.dismiss('cancel');
-    };
-
-
-
-
-
-
-
-
-
-    //------------------------------------------------------------------------
-
-    $scope.addClass = function(){
-      console.log("Sent classes");
-
-      // $http({
-      //   method: 'POST',
-      //   url: 'http://54.86.70.62/admin/addClass/',
-      //   data: classData
-      // });
-    }
-
+    //----------------------------------------------------------------
     //--------------------End of Modal Code---------------------------
 
 
@@ -489,13 +528,6 @@ angular.module('frontendApp')
 
     };
 
-    $scope.removeCalendar = function() {
-
-    }
-
-
-
-
 
     //--------------------CALENDAR CODE END---------------------------
     //GET request retreives current user id and displays it to pages
@@ -530,6 +562,17 @@ angular.module('frontendApp')
       }, function errorCallback(response) {
         console.log('fail');
       });
+    //NEED GET REQUEST FOR SHOWING CURRENT CLASSES AND PENDING CLASSES
+    ///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
+
+
 
     $window.onbeforeunload = function(){
       alert('shit');
@@ -542,16 +585,9 @@ angular.module('frontendApp')
     //$window.onbeforeunload =  userFactory.onExit();
 
     $scope.getUser = function() {
-
-
     //Interesting: $http request is always last
     console.log("i");
     // console.log(UserData.info[2]);
     // console.log($scope.getUserTest.data);
-
-
     }
-
-
-
   });
