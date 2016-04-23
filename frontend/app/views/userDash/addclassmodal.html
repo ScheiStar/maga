@@ -9,7 +9,7 @@ Adding a class to tutor in requires admin approval.
   <form name="myForm">
       <div class="col-xs-12 col-md-4">
           <h4>Class Type</h4>
-          <input list="classType" name="myClassType" ng-model="myClassType" required>
+          <input list="classType" name="myClassType" ng-model="classInfo.myClassType" required>
       <datalist id="classType" >
         <option value="ACCT"><option value="CSE"><option value="HIST"><option value="MATH"><option value="BIOL">
       </datalist>
@@ -18,7 +18,7 @@ Adding a class to tutor in requires admin approval.
   </div>
     <div class="col-xs-12 col-md-4">
         <h4>Class Number</h4>
-          <input type="text" name="myText" ng-model="myText" value="" required>
+          <input type="text" name="myText" ng-model="classInfo.myText" value="" required>
           <br>
           <span style="color:red" ng-show="myForm.myText.$dirty && myForm.myText.$invalid">
 
@@ -40,8 +40,6 @@ Adding a class to tutor in requires admin approval.
   </div>
   <br>
   <br>
-    <input class="btn btn-primary" type="submit" id="submit" ng-click="addClass()" ng-disabled="myForm.myClassGrade.$dirty && myForm.myClassGrade.$invalid ||
-    myForm.myText.$dirty && myForm.myText.$invalid ||
-    myForm.myClassType.$dirty && myForm.myClassType.$invalid">
+    <input class="btn btn-primary" type="submit" id="submit" ng-click="addClass(classInfo)">
   <form>
 </div>
