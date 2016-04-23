@@ -4,6 +4,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,11 +36,11 @@
 <table class="table">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Major</th>
-      <th>Status</th>
+      <th ng-click="order('appID')">ID</th>
+      <th ng-click="order('firstName')">First Name</th>
+      <th ng-click="order('lastName')">Last Name</th>
+      <th ng-click="order('major')">Major</th>
+      <th ng-click="order('appStatus')">Status</th>
       <th>View</th>
     </tr>
   </thead>
@@ -49,9 +50,9 @@
       <td ng-bind="x.firstName"></td>
       <td ng-bind="x.lastName"></td>
       <td ng-bind="x.major"></td>
-      <td class="label label label-primary" ng-bind="x.appStatus"></td>
+      <td> <h5> <span class="label label label-info" ng-bind="x.appStatus"></span></h5></td>
       <td>
-        <button ng-click="openAppModal('lg', x.appID)">View</a>
+        <button type="button" class="btn btn-info-outline btn-sm" ng-click="openAppModal('lg', x.appID)">View</button>
       </td>
     </tr>
   </tbody>

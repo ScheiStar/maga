@@ -42,19 +42,23 @@ html>
           <th>ID</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Type</th>
-          <th>Class Type</th>
+          <th>Class Name</th>
           <th>Class Number</th>
+          <th>Type</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="x in ugh track by $index">
-          <td ng-bind="x.userID"></td>
-          <td ng-bind="x.firstName"></td>
-          <td ng-bind="x.lastName"></td>
-          <td ng-bind="x.email"></td>
-          <td ng-bind="x.major"></td>
-          <td ng-bind="x.gpa"></td>
+        <tr ng-repeat="x in tutorRequests track by $index">
+          <td ng-bind="x.tutor_id"></td>
+          <td ng-bind="x.tutor_first_name"></td>
+          <td ng-bind="x.tutor_last_name"></td>
+          <td ng-bind="x.tr_classtype"></td>
+          <td ng-bind="x.tr_classnum"></td>
+          <td ng-bind="x.tr_request_type"></td>
+          <td>
+            <button type="button" class="btn btn-info-outline btn-sm" ng-click="">View</button>
+          </td>
         </tr>
       </tbody>
     </table>

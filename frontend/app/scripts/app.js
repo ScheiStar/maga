@@ -45,7 +45,8 @@ angular
       .state('form', {
           url: '/form',
           templateUrl: 'views/applicationForm/form.html',
-          controller: 'formController'
+          controller: 'formController',
+          abstract: true
       })
       // nested states
       // each of these sections will have their own view
