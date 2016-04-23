@@ -848,12 +848,12 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $classname = $data->className;
   $classnum = $data->classNum;
   $reqtype = $data->requestType;
+  $uid2 = $uid;
 
   echo $uid;
   echo $classname;
   echo $classnum;
   echo $reqtype;
-
 
   if(!isset($uid) || !isset($classname) || !isset($classnum) || !isset($reqtype)){
     $new_response = $response->withStatus(400);
@@ -863,11 +863,12 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
 
   $query = $db->prepare("INSERT INTO TutorRequests
     (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type, Tutors_tutor_id)
-    VALUES(:uid, :classname, :classnum, :reqtype, :uid)");
+    VALUES(:uid, :classname, :classnum, :reqtype, :uid2)");
   $query->bindParam(":uid", $uid, PDO::PARAM_INT);
   $query->bindParam(":classname", $classname, PDO::PARAM_STR);
   $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
   $query->bindParam(":reqtype", $reqtype, PDO::PARAM_STR);
+  $query->bindParam(":uid2", $uid2, PDO::PARAM_INT);
   $query->execute();
   if(!$query){
     echo ($query->errorInfo());
