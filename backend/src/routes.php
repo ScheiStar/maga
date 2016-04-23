@@ -6,7 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 
 
 $app->get('/', function($request, $response, $args){
-  return $response->withRedirect('/app/index');
+  return $response->withRedirect('/app/index.html');
 });
 
 
