@@ -15,7 +15,11 @@ angular.module('frontendApp')
     var user = {};
     console.log('before');
     contactAdminFactory.getTutors().then(function(data){
-      $scope.ugh = data;
+      $scope.ugh = data.data;
+
+      console.log('TUTOR INFO');
+      //console.log($scope.ugh[0].applicantInfo.user_)
+      console.log($scope.ugh);
     });
 
     var orderBy = $filter('orderBy');

@@ -61,7 +61,7 @@ angular.module('frontendApp')
         var user = {};
         return $http({
           method: 'GET',
-          url: 'http://54.86.70.62/admin/getTutors'
+          url: 'http://54.86.70.62/getTutors'
         }).then(function(data){
           console.log("Successfully recieved tutors.");
           for (var i = 0; i < data.data.length; i++) {
@@ -78,7 +78,7 @@ angular.module('frontendApp')
           console.log(data);
           console.log('returning');
           console.log(userArray);
-          return userArray;
+          return data;
         }, function errorCallback(response) {
            console.log("We fucked up on the application retrieval.");
            return false;

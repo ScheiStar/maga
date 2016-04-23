@@ -39,22 +39,21 @@
     <table class="table table-striped">
       <thead class="thead-inverse">
         <tr>
-          <th ng-click="order('userID')">ID</th>
-          <th ng-click="order('firstName')">First Name</th>
-          <th ng-click="order('lastName')">Last Name</th>
-          <th ng-click="order('email')">Email</th>
-          <th ng-click="order('major')">Major</th>
-          <th ng-click="order('gpa')">GPA</th>
+          <th ng-click="order('tutor_id')">ID</th>
+          <th ng-click="order('tutor_first_name')">First Name</th>
+          <th ng-click="order('tutor_last_name')">Last Name</th>
+          <th ng-click="order('tutor_email')">Email</th>
+          <th ng-click="order('tutor_major')">Major</th>
+          <th>View</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="x in ugh track by $index">
-          <td ng-bind="x.userID"></td>
-          <td ng-bind="x.firstName"></td>
-          <td ng-bind="x.lastName"></td>
-          <td ng-bind="x.email"></td>
-          <td ng-bind="x.major"></td>
-          <td ng-bind="x.gpa"></td>
+          <td ng-bind="x.applicantInfo.tutor_id"></td>
+          <td ng-bind="x.applicantInfo.tutor_first_name"></td>
+          <td ng-bind="x.applicantInfo.tutor_last_name"></td>
+          <td ng-bind="x.applicantInfo.tutor_email"></td>
+          <td ng-bind="x.applicantInfo.tutor_major"></td>
         </tr>
       </tbody>
     </table>

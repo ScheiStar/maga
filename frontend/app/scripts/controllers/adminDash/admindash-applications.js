@@ -32,10 +32,10 @@ angular.module('frontendApp')
     contactAdminFactory.getApplicants().then(function(data){
       $scope.ugh = data[0];
       $scope.applicants = data[1];
-      $scope.test = 'test';
-      console.log('LOOK');
-      $scope.ugh = data;
-      console.log(JSON.stringify($scope.ugh));
+      // $scope.test = 'test';
+      // console.log('LOOK');
+      // $scope.ugh = data;
+      // console.log(JSON.stringify($scope.ugh));
     });
 
     $scope.animationsEnabled = true;
