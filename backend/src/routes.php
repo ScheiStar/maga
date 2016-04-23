@@ -854,6 +854,7 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   echo $classname;
   echo $classnum;
   echo $reqtype;
+  echo '\n';
 
   if(!isset($uid) || !isset($classname) || !isset($classnum) || !isset($reqtype)){
     $new_response = $response->withStatus(400);
@@ -870,7 +871,7 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $query->bindParam(":reqtype", $reqtype, PDO::PARAM_STR);
   $query->bindParam(":uid2", $uid2, PDO::PARAM_INT);
   $query->execute();
-  echo ($query->errorInfo());
+  print_r ($query->errorInfo());
 });
 
 $app->get('/getTutorRequests', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
