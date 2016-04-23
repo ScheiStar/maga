@@ -1,0 +1,26 @@
+<link href="views/testStyle.css" rel="stylesheet" type="text/css">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Sun</th>
+      <th>Mon</th>
+      <th>Tue</th>
+      <th>Wed</th>
+      <th>Thu</th>
+      <th>Fri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in ugh track by $index">
+      <th scope="row" ng-bind="x.time"></th>
+      <td class = "norm" ng-bind="x.Sun" ng-class="{ 'yeah': x.Sun}"></td>
+      <td class = "norm" ng-bind="x.Mon" ng-class="{ 'yeah': x.Mon}"></td>
+      <td class = "norm" ng-bind="x.Tues" ng-class="{ 'yeah': x.Tues}"></td>
+      <td class = "norm" ng-bind="x.Wed" ng-class="{ 'yeah': x.Wed}"></td>
+      <td class = "norm" ng-bind="x.Thurs" ng-class="{ 'yeah': x.Thurs}"></td>
+      <td class = "norm" ßng-bind="x.Fri" ng-class="{ 'yeah': x.Fri}"></td>
+    </tr>
+  </tbody>
+</table>

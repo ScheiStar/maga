@@ -73,7 +73,7 @@ angular
       })
       .state('userDashClass', {
         url: '/userDashClass',
-        templateUrl: 'views/userDash/userdash-classes.html',
+        templateUrl: 'views/userDash/userdash-temp.html',
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
@@ -124,5 +124,10 @@ angular
       templateUrl: 'views/userDash/tutorquit.html',
       controller: 'TutorquitCtrl',
       controllerAs: 'tutorQuit'
+      })
+      .state('testTablw', {
+        templateUrl: 'views/testtablw.html',
+        controller: 'TesttablwCtrl',
+        controllerAs: 'testTablw'
       })
     });

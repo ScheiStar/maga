@@ -1,8 +1,9 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="../../styles/userDash.css">
+		<link href="views/testStyle.css" rel="stylesheet" type="text/css">
 	</head>
-	<body ng-app="frontendApp" ng-controller="UserdashCtrl">
+	<body ng-app="frontendApp" ng-controller="TesttablwCtrl" >
 		<nav class="navbar navbar-default navbar-static-top">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,8 +39,8 @@
 			</div>
 		</div>
 
-		<label>You Schedule</label>
-		<table class="table table-bordered table-hover">
+		<label ng-click="eee()">You Schedule</label>
+		<table class="table table-bordered">
 		  <thead>
 		    <tr>
 		      <th>Time</th>
@@ -52,81 +53,17 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
-		      <th scope="row">2:00 - 3:00</th>
-		      <td ng-click="addTime('sun', 2)"></td>
-		      <td ng-click="addTime('mon', 2)"></td>
-		      <td ng-click="addTime('tue', 2)"></td>
-		      <td ng-click="addTime('wed', 2)"></td>
-		      <td ng-click="addTime('thu', 2)"></td>
-		      <td ng-click="addTime('fri', 2)"></td>
-		    </tr>   
-		    <tr>
-		      <th scope="row">3:00 - 4:00</th>
-		      <td ng-click="addTime('sun', 3)"></td>
-		      <td ng-click="addTime('mon', 3)"></td>
-		      <td ng-click="addTime('tue', 3)"></td>
-		      <td ng-click="addTime('wed', 3)"></td>
-		      <td ng-click="addTime('thu', 3)"></td>
-		      <td ng-click="addTime('fri', 3)"></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">4:00 - 5:00</th>
-		      <td ng-click="addTime('sun', 4)"></td>
-		      <td ng-click="addTime('mon', 4)"></td>
-		      <td ng-click="addTime('tue', 4)"></td>
-		      <td ng-click="addTime('wed', 4)"></td>
-		      <td ng-click="addTime('thu', 4)"></td>
-		      <td ng-click="addTime('fri', 4)"></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">5:00 - 6:00</th>
-		      <td ng-click="addTime('sun', 5)"></td>
-		      <td ng-click="addTime('mon', 5)"></td>
-		      <td ng-click="addTime('tue', 5)"></td>
-		      <td ng-click="addTime('wed', 5)"></td>
-		      <td ng-click="addTime('thu', 5)"></td>
-		      <td ng-click="addTime('fri', 5)"></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">6:00 - 7:00</th>
-		      <td ng-click="addTime('sun', 6)"></td>
-		      <td ng-click="addTime('mon', 6)"></td>
-		      <td ng-click="addTime('tue', 6)"></td>
-		      <td ng-click="addTime('wed', 6)"></td>
-		      <td ng-click="addTime('thu', 6)"></td>
-		      <td ng-click="addTime('fri', 6)"></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">7:00 - 8:00</th>
-		      <td ng-click="addTime('sun', 7)"></td>
-		      <td ng-click="addTime('mon', 7)"></td>
-		      <td ng-click="addTime('tue', 7)"></td>
-		      <td ng-click="addTime('wed', 7)"></td>
-		      <td ng-click="addTime('thu', 7)"></td>
-		      <td ng-click="addTime('fri', 7)"></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">8:00 - 9:00</th>
-		      <td ng-click="addTime('sun', 8)"></td>
-		      <td ng-click="addTime('mon', 8)"></td>
-		      <td ng-click="addTime('tue', 8)"></td>
-		      <td ng-click="addTime('wed', 8)"></td>
-		      <td ng-click="addTime('thu', 8)"></td>
-		      <td ng-click="addTime('fri', 8)"></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">9:00 - 10:00</th>
-		      <td ng-click="addTime('sun', 9)"></td>
-		      <td ng-click="addTime('mon', 9)"></td>
-		      <td ng-click="addTime('tue', 9)"></td>
-		      <td ng-click="addTime('wed', 9)"></td>
-		      <td ng-click="addTime('thu', 9)"></td>
-		      <td ng-click="addTime('fri', 9)"></td>
+		    <tr ng-repeat="x in ugh track by $index" >
+		      <th scope="row" ng-bind="x.time"></th>
+		      <td class = "norm" ng-bind="x.Sun" ng-class="{ 'yeah': x.Sun}"></td>
+		      <td class = "norm" ng-bind="x.Mon" ng-class="{ 'yeah': x.Mon}"></td>
+		      <td class = "norm" ng-bind="x.Tues" ng-class="{ 'yeah': x.Tues}"></td>
+		      <td class = "norm" ng-bind="x.Wed" ng-class="{ 'yeah': x.Wed}"></td>
+		      <td class = "norm" ng-bind="x.Thurs" ng-class="{ 'yeah': x.Thurs}"></td>
+		      <td class = "norm" ng-bind="x.Fri" ng-class="{ 'yeah': x.Fri}"></td>
 		    </tr>
 		  </tbody>
 		</table>
-
 
 	</body>
 </html>
