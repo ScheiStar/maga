@@ -3,9 +3,9 @@
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+-- SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+-- SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+-- SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema alecDB
@@ -24,14 +24,13 @@ DROP TABLE IF EXISTS `alecDB`.`Tutors` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`Tutors` (
   `tutor_id` INT NOT NULL,
-  `tutor_first_name` VARCHAR(45) NULL COMMENT '	',
+  `tutor_first_name` VARCHAR(45) NULL,
   `tutor_last_name` VARCHAR(45) NULL,
   `tutor_email` VARCHAR(45) NULL,
   `tutor_phone` VARCHAR(45) NULL,
   `tutor_gpa` VARCHAR(5) NULL,
   `tutor_major` VARCHAR(45) NULL,
-  PRIMARY KEY (`tutor_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`tutor_id`));
 
 
 -- -----------------------------------------------------
@@ -44,9 +43,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
   `timeslot_time` INT NOT NULL,
   `Tutors_tutor_id` INT NOT NULL,
   `timeslot_day` INT NOT NULL,
-  PRIMARY KEY (`timeslot_id`)
-)
-ENGINE = InnoDB;
+  PRIMARY KEY (`timeslot_id`));
 
 
 -- -----------------------------------------------------
@@ -55,7 +52,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`Sessions` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`Sessions` (
-  `session_id` INT NOT NULL,
+  `session_id` INT NOT NULL AUTO_INCREMENT,
   `session_date` DATE NULL,
   `session_time` VARCHAR(45) NULL,
   `Tutors_tutor_id` INT NOT NULL,
@@ -65,9 +62,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Sessions` (
   `session_end_time` VARCHAR(45) NULL,
   `student_first_name` VARCHAR(45) NULL,
   `student_last_name` VARCHAR(45) NULL,
-  PRIMARY KEY (`session_id`)
-)
-ENGINE = InnoDB;
+  PRIMARY KEY (`session_id`));
 
 
 -- -----------------------------------------------------
@@ -84,8 +79,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Applicants` (
   `applicant_major` VARCHAR(45) NULL,
   `application_status` VARCHAR(45) NULL,
   `applicant_hash` VARCHAR(60) NULL,
-  PRIMARY KEY (`applicant_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`applicant_id`));
 
 
 -- -----------------------------------------------------
@@ -98,9 +92,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
   `timeslot_time` INT NOT NULL,
   `Applicant_applicant_id` INT NOT NULL,
   `timeslot_day` INT NOT NULL,
-  PRIMARY KEY (`timeslot_id`)
-)
-ENGINE = InnoDB;
+  PRIMARY KEY (`timeslot_id`));
 
 
 -- -----------------------------------------------------
@@ -109,16 +101,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`Reviews` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`Reviews` (
-  `review_id` INT NOT NULL,
+  `review_id` INT NOT NULL AUTO_INCREMENT,
   `score_helpfulness` INT NULL,
   `score_clarity` INT NULL,
   `score_friendlynes` INT NULL,
   `Sessions_session_id` INT NOT NULL,
   `score_avg` INT NULL,
   `review_comments` VARCHAR(500) NULL,
-  PRIMARY KEY (`review_id`)
-)
-ENGINE = InnoDB;
+  PRIMARY KEY (`review_id`));
 
 
 -- -----------------------------------------------------
@@ -130,8 +120,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Users` (
   `user_id` INT NOT NULL,
   `hash` VARCHAR(60) NULL,
   `admin` TINYINT(1) NULL DEFAULT 0,
-  PRIMARY KEY (`user_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`user_id`));
 
 
 -- -----------------------------------------------------
@@ -145,8 +134,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Admins` (
   `admin_last_name` VARCHAR(45) NULL,
   `admin_email` VARCHAR(45) NULL,
   `admin_phone` VARCHAR(45) NULL,
-  PRIMARY KEY (`admin_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`admin_id`));
 
 
 -- -----------------------------------------------------
@@ -155,14 +143,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `alecDB`.`TutorClasses` ;
 
 CREATE TABLE IF NOT EXISTS `alecDB`.`TutorClasses` (
-  `tutorclass_id` INT NOT NULL,
+  `tutorclass_id` INT NOT NULL AUTO_INCREMENT,
   `class_type` VARCHAR(4) NULL,
   `class_num` VARCHAR(4) NULL,
   `class_grade` VARCHAR(3) NULL,
   `Tutors_tutor_id` INT NOT NULL,
-  PRIMARY KEY (`tutorclass_id`)
-)
-ENGINE = InnoDB;
+  PRIMARY KEY (`tutorclass_id`));
 
 
 -- -----------------------------------------------------
@@ -176,9 +162,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
   `class_gpa` VARCHAR(2) NULL,
   `class_number` VARCHAR(4) NULL,
   `Applicants_applicant_id` INT NOT NULL,
-  PRIMARY KEY (`idApplicantClasses`)
-)
-ENGINE = InnoDB;
+  PRIMARY KEY (`idApplicantClasses`));
 
 
 -- -----------------------------------------------------
@@ -193,11 +177,9 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`TutorRequests` (
   `tr_classnum` VARCHAR(4) NULL,
   `Tutors_tutor_id` INT NOT NULL,
   `tr_request_type` VARCHAR(4) NULL,
-  PRIMARY KEY (`tr_id`)
-)
-ENGINE = InnoDB;
+  PRIMARY KEY (`tr_id`));
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- SET SQL_MODE=@OLD_SQL_MODE;
+-- SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+-- SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
