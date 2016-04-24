@@ -14,7 +14,7 @@
 -- -----------------------------------------------------
 -- Schema alecDB
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `alecDB` DEFAULT CHARACTER SET utf8 ;
+DROP DATABASE `alecDB`;
 USE `alecDB` ;
 
 -- -----------------------------------------------------
