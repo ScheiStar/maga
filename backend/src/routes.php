@@ -725,10 +725,10 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$applicant = $query->fetch(PDO::FETCH_OBJ);
 
 	// gets tutor
-	$query2 = $db->prepare('SELECT * FROM Tutors WHERE applicant_id = :uid');
+	$query2 = $db->prepare('SELECT * FROM Tutors WHERE tutor_id = :uid');
 	$query2->bindParam(':uid', $uid, PDO::PARAM_INT);
 	$query2->execute();
-	$tutor = $query->fetch(PDO::FETCH_OBJ);
+	$tutor = $query2->fetch(PDO::FETCH_OBJ);
 
 	//checks to see if a tutor or applicant already exists with that id
 	if($tutor || $applicant){
