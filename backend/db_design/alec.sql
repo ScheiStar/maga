@@ -86,7 +86,7 @@ CREATE TABLE  'alecDB'.'Applicants' (
 CREATE TABLE  'alecDB'.'ApplicantTimeslots' (
   'timeslot_id' INT NOT NULL AUTO_INCREMENT,
   'timeslot_time' INT NOT NULL,
-  'Applicant_applicant_id' INT NOT NULL,
+  'applicant_id' INT NOT NULL,
   'timeslot_day' INT NOT NULL,
   PRIMARY KEY ('timeslot_id'));
 
@@ -100,7 +100,7 @@ CREATE TABLE  'alecDB'.'Reviews' (
   'score_helpfulness' INT NULL,
   'score_clarity' INT NULL,
   'score_friendlynes' INT NULL,
-  'Sessions_session_id' INT NOT NULL,
+  'session_id' INT NOT NULL,
   'score_avg' INT NULL,
   'review_comments' VARCHAR(500) NULL,
   PRIMARY KEY ('review_id'));
@@ -138,7 +138,7 @@ CREATE TABLE  'alecDB'.'TutorClasses' (
   'class_type' VARCHAR(4) NULL,
   'class_num' VARCHAR(4) NULL,
   'class_grade' VARCHAR(3) NULL,
-  'Tutors_tutor_id' INT NOT NULL,
+  'tutor_id' INT NOT NULL,
   PRIMARY KEY ('tutorclass_id'));
 
 
@@ -151,7 +151,7 @@ CREATE TABLE  'alecDB'.'ApplicantClasses' (
   'class_name' VARCHAR(45) NULL,
   'class_gpa' VARCHAR(2) NULL,
   'class_number' VARCHAR(4) NULL,
-  'Applicants_applicant_id' INT NOT NULL,
+  'applicant_id' INT NOT NULL,
   PRIMARY KEY ('idApplicantClasses'));
 
 
@@ -164,7 +164,6 @@ CREATE TABLE  'alecDB'.'TutorRequests' (
   'tr_tutor_id' INT NULL,
   'tr_classtype' VARCHAR(4) NULL,
   'tr_classnum' VARCHAR(4) NULL,
-  'Tutors_tutor_id' INT NOT NULL,
   'tr_request_type' VARCHAR(4) NULL,
   PRIMARY KEY ('tr_id'));
 
