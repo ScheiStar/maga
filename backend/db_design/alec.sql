@@ -64,11 +64,11 @@ CREATE TABLE Applicants (
 -- -----------------------------------------------------
 
 CREATE TABLE ApplicantTimeslots (
-  timeslot_id INT NOT NULL AUTO_INCREMENT,
-  timeslot_time INT,
+  a_timeslot_id INT NOT NULL AUTO_INCREMENT,
+  a_timeslot_time INT,
   applicant_id INT,
-  timeslot_day INT,
-  PRIMARY KEY (timeslot_id));
+  a_timeslot_day INT,
+  PRIMARY KEY (a_timeslot_id));
 
 
 -- -----------------------------------------------------
