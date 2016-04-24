@@ -901,6 +901,8 @@ $app->get('/getTutorRequest/{id}', function(ServerRequestInterface $request, Res
   $query->bindParam(':uid', $uid, PDO::PARAM_INT);
   $query->execute();
 
+  echo(json_encode($query->fetch(PDO::FETCH_ASSOC)));
+
   $temp = array();
   while($row = $query->fetch(PDO::FETCH_ASSOC)) {
     $temp[] = $row;
