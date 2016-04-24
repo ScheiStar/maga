@@ -146,8 +146,3 @@ CREATE TABLE TutorRequests (
   'tr_classnum' VARCHAR(4) ,
   'tr_request_type' VARCHAR(4) ,
   PRIMARY KEY ('tr_id'));
-
-
--- SET SQL_MODE=@OLD_SQL_MODE;
--- SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
--- SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
