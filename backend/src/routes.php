@@ -878,14 +878,16 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
 $app->get('/getTutorRequests', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
   $db = $this->createDB;
 
-  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type FROM Tutors, TutorRequests)";
-    //WHERE  Tutors.tutor_id = TutorRequests.tr_tutor_id;");
+  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type
+    FROM Tutors, TutorRequests
+    WHERE  Tutors.tutor_id = TutorRequests.tr_tutor_id;");
   $query->execute();
 
   $temp = array();
   while($row = $query->fetch(PDO::FETCH_ASSOC)) {
     $temp[] = $row;
   }
+  print_r($temp);
 
   print_r ($query->errorInfo());
   echo json_encode($temp);
