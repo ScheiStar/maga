@@ -10,7 +10,7 @@ CREATE TABLE Tutors (
   'tutor_phone' VARCHAR(45),
   'tutor_gpa' VARCHAR(5),
   'tutor_major' VARCHAR(45),
-  PRIMARY KEY ('tutor_id'));
+  PRIMARY KEY (tutor_id));
 
 
 -- -----------------------------------------------------
@@ -22,7 +22,7 @@ CREATE TABLE Timeslots (
   'timeslot_time' INT,
   'Tutors_tutor_id' INT,
   'timeslot_day' INT,
-  PRIMARY KEY ('timeslot_id'));
+  PRIMARY KEY (timeslot_id));
 
 
 -- -----------------------------------------------------
@@ -40,7 +40,7 @@ CREATE TABLE Timeslots (
 --   'session_end_time' VARCHAR(45),
 --   'student_first_name' VARCHAR(45),
 --   'student_last_name' VARCHAR(45),
---   PRIMARY KEY ('session_id'));
+--   PRIMARY KEY (session_id));
 
 
 -- -----------------------------------------------------
@@ -56,7 +56,7 @@ CREATE TABLE Applicants (
   'applicant_major' VARCHAR(45),
   'application_status' VARCHAR(45),
   'applicant_hash' VARCHAR(60),
-  PRIMARY KEY ('applicant_id'));
+  PRIMARY KEY (applicant_id));
 
 
 -- -----------------------------------------------------
@@ -68,7 +68,7 @@ CREATE TABLE ApplicantTimeslots (
   'timeslot_time' INT,
   'applicant_id' INT,
   'timeslot_day' INT,
-  PRIMARY KEY ('timeslot_id'));
+  PRIMARY KEY (timeslot_id));
 
 
 -- -----------------------------------------------------
@@ -83,7 +83,7 @@ CREATE TABLE ApplicantTimeslots (
 --   'session_id' INT,
 --   'score_avg' INT,
 --   'review_comments' VARCHAR(500),
---   PRIMARY KEY ('review_id'));
+--   PRIMARY KEY (review_id));
 
 
 -- -----------------------------------------------------
@@ -94,7 +94,7 @@ CREATE TABLE Users (
   'user_id' INT,
   'hash' VARCHAR(60),
   'admin' TINYINT(1)  DEFAULT 0,
-  PRIMARY KEY ('user_id'));
+  PRIMARY KEY (user_id));
 
 
 -- -----------------------------------------------------
@@ -106,7 +106,7 @@ CREATE TABLE Users (
 --   'admin_last_name' VARCHAR(45),
 --   'admin_email' VARCHAR(45),
 --   'admin_phone' VARCHAR(45),
---   PRIMARY KEY ('admin_id'));
+--   PRIMARY KEY (admin_id));
 
 
 -- -----------------------------------------------------
@@ -119,7 +119,7 @@ CREATE TABLE TutorClasses (
   'class_num' VARCHAR(4),
   'class_grade' VARCHAR(3),
   'tutor_id' INT NOT NULL,
-  PRIMARY KEY ('tutorclass_id'));
+  PRIMARY KEY (tutorclass_id));
 
 
 -- -----------------------------------------------------
@@ -132,7 +132,7 @@ CREATE TABLE ApplicantClasses (
   'class_gpa' VARCHAR(2),
   'class_number' VARCHAR(4),
   'applicant_id' INT,
-  PRIMARY KEY ('idApplicantClasses'));
+  PRIMARY KEY (idApplicantClasses));
 
 
 -- -----------------------------------------------------
@@ -145,4 +145,4 @@ CREATE TABLE TutorRequests (
   'tr_classtype' VARCHAR(4),
   'tr_classnum' VARCHAR(4),
   'tr_request_type' VARCHAR(4),
-  PRIMARY KEY ('tr_id'));
+  PRIMARY KEY (tr_id));
