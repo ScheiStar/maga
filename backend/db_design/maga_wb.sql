@@ -8,24 +8,24 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema alecDB
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
+DROP SCHEMA IF EXISTS `alecDB` ;
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema alecDB
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `alecDB` DEFAULT CHARACTER SET utf8 ;
 SHOW WARNINGS;
-USE `mydb` ;
+USE `alecDB` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Tutors`
+-- Table `alecDB`.`Tutors`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Tutors` ;
+DROP TABLE IF EXISTS `alecDB`.`Tutors` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`Tutors` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Tutors` (
   `tutor_id` INT NOT NULL,
   `tutor_first_name` VARCHAR(45) NULL COMMENT '	',
   `tutor_last_name` VARCHAR(45) NULL,
@@ -39,12 +39,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Timeslots`
+-- Table `alecDB`.`Timeslots`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Timeslots` ;
+DROP TABLE IF EXISTS `alecDB`.`Timeslots` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`Timeslots` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
   `timeslot_id` INT NOT NULL,
   `timeslot_time` VARCHAR(45) NULL,
   `Tutors_tutor_id` INT NOT NULL,
@@ -55,12 +55,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Sessions`
+-- Table `alecDB`.`Sessions`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Sessions` ;
+DROP TABLE IF EXISTS `alecDB`.`Sessions` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`Sessions` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Sessions` (
   `session_id` INT NOT NULL,
   `session_date` DATE NULL,
   `session_time` VARCHAR(45) NULL,
@@ -77,12 +77,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Applicants`
+-- Table `alecDB`.`Applicants`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Applicants` ;
+DROP TABLE IF EXISTS `alecDB`.`Applicants` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`Applicants` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Applicants` (
   `applicant_id` INT NOT NULL,
   `applicant_first_name` VARCHAR(45) NULL,
   `applicant_last_name` VARCHAR(45) NULL,
@@ -97,12 +97,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`ApplicantTimeslots`
+-- Table `alecDB`.`ApplicantTimeslots`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ApplicantTimeslots` ;
+DROP TABLE IF EXISTS `alecDB`.`ApplicantTimeslots` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`ApplicantTimeslots` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
   `timeslot_id` INT NOT NULL,
   `timeslot_time` VARCHAR(45) NULL,
   `Applicants_applicant_id` INT NOT NULL,
@@ -113,12 +113,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Reviews`
+-- Table `alecDB`.`Reviews`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Reviews` ;
+DROP TABLE IF EXISTS `alecDB`.`Reviews` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`Reviews` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Reviews` (
   `review_id` INT NOT NULL,
   `score_helpfulness` INT NULL,
   `score_clarity` INT NULL,
@@ -132,12 +132,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Users`
+-- Table `alecDB`.`Users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Users` ;
+DROP TABLE IF EXISTS `alecDB`.`Users` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Users` (
   `user_id` INT NOT NULL,
   `hash` VARCHAR(60) NULL,
   `admin` TINYINT(1) NULL DEFAULT 0,
@@ -147,12 +147,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Admins`
+-- Table `alecDB`.`Admins`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Admins` ;
+DROP TABLE IF EXISTS `alecDB`.`Admins` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`Admins` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`Admins` (
   `admin_id` INT NOT NULL,
   `admin_first_name` VARCHAR(45) NULL,
   `admin_last_name` VARCHAR(45) NULL,
@@ -164,12 +164,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`TutorClasses`
+-- Table `alecDB`.`TutorClasses`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`TutorClasses` ;
+DROP TABLE IF EXISTS `alecDB`.`TutorClasses` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`TutorClasses` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`TutorClasses` (
   `tutorclass_id` INT NOT NULL,
   `class_type` VARCHAR(4) NULL,
   `class_num` VARCHAR(4) NULL,
@@ -181,12 +181,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`ApplicantClasses`
+-- Table `alecDB`.`ApplicantClasses`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ApplicantClasses` ;
+DROP TABLE IF EXISTS `alecDB`.`ApplicantClasses` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`ApplicantClasses` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
   `idApplicantClasses` INT NOT NULL,
   `class_type` VARCHAR(4) NULL,
   `class_num` VARCHAR(4) NULL,
@@ -198,12 +198,12 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`TutorRequests`
+-- Table `alecDB`.`TutorRequests`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`TutorRequests` ;
+DROP TABLE IF EXISTS `alecDB`.`TutorRequests` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `mydb`.`TutorRequests` (
+CREATE TABLE IF NOT EXISTS `alecDB`.`TutorRequests` (
   `tr_id` INT NOT NULL AUTO_INCREMENT,
   `tr_tutor_id` INT NULL,
   `tr_classtype` VARCHAR(4) NULL,
