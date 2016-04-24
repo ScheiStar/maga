@@ -897,7 +897,7 @@ $app->get('/getTutorRequest/{id}', function(ServerRequestInterface $request, Res
   $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type
     FROM Tutors, TutorRequests
     WHERE  :id = TutorRequests.tr_tutor_id
-    AND :id = Tutors.tutor_id");
+    AND TutorRequests.tr_tutor_id = Tutors.tutor_id");
   $query->execute();
 
   $temp = array();
