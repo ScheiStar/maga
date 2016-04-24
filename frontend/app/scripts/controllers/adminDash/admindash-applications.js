@@ -61,7 +61,7 @@ angular.module('frontendApp')
 
 
 
-      var modalInstance = $uibModal.open({
+      var modalInstance = $uibModal.open({ 
         animation: $scope.animationsEnabled,
         templateUrl: 'views/adminDash/appmodal.html',
         controller: 'AppmodalCtrl',
@@ -72,6 +72,13 @@ angular.module('frontendApp')
           }
         }
       });
+            modalInstance.result.then(function () {
+//              alert('Modal success at:' + new Date());
+                console.log("UIBModalInstance Success");
+            }, function () {
+                console.log("UIBModalInstance Dismiss");
+//              alert('Modal dismissed at: ' + new Date());
+            }); 
     };
 
     $scope.work = function() {

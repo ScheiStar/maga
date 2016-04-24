@@ -3,7 +3,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link href="views/testStyle.css" rel="stylesheet" type="text/css">
+<!--<link href="../../views/testStyle.css" rel="stylesheet" type="text/css">-->
+<link href="../../styles/appmodal.css" rel="stylesheet" type="text/css">
+            
+
+<div class="container">
+    <div class="col-xs-9"></div>
+    <div class="col-xs-1">
+        <h2><span class="cancel" ng-click="cancel()">x</span></h2>
+    </div>
+</div>
 
 
 <div class="container">
@@ -52,10 +61,10 @@
 <div class="container">
     <div class="col-xs-7"></div>
     <div class="col-xs-1">
-        <button type="submit" class="btn btn-danger">Deny!</button>
+        <button type="submit" class="btn btn-danger" ng-click="cancel()">Deny!</button>
     </div>
     <div class="col-xs-2" id="submitButton">
-        <button type="submit" class="btn btn-success">Approve!</button>
+        <button type="submit" class="btn btn-success" ng-click="ok()">Approve!</button>
     </div>
 </div>
 
