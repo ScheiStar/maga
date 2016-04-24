@@ -3,7 +3,7 @@ CREATE DATABASE alecDB;
 USE alecDB ;
 
 CREATE TABLE Tutors (
-  'tutor_id' INT,
+  'tutor_id' INT NOT NULL AUTO_INCREMENT,
   'tutor_first_name' VARCHAR(45) ,
   'tutor_last_name' VARCHAR(45) ,
   'tutor_email' VARCHAR(45) ,
@@ -118,7 +118,7 @@ CREATE TABLE TutorClasses (
   'class_type' VARCHAR(4) ,
   'class_num' VARCHAR(4) ,
   'class_grade' VARCHAR(3) ,
-  'tutor_id' INT,
+  'tutor_id' INT NOT NULL,
   PRIMARY KEY ('tutorclass_id'));
 
 
