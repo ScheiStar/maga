@@ -45,7 +45,7 @@ DROP TABLE IF EXISTS `alecDB`.`Timeslots` ;
 
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
-  `timeslot_id` INT NOT NULL,
+  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
   `timeslot_time` VARCHAR(45) NULL,
   `Tutors_tutor_id` INT NOT NULL,
   `timeslot_day` VARCHAR(45) NULL,
@@ -103,7 +103,7 @@ DROP TABLE IF EXISTS `alecDB`.`ApplicantTimeslots` ;
 
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
-  `timeslot_id` INT NOT NULL,
+  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
   `timeslot_time` VARCHAR(45) NULL,
   `Applicants_applicant_id` INT NOT NULL,
   `timeslot_day` VARCHAR(45) NULL,
@@ -170,7 +170,7 @@ DROP TABLE IF EXISTS `alecDB`.`TutorClasses` ;
 
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `alecDB`.`TutorClasses` (
-  `tutorclass_id` INT NOT NULL,
+  `tutorclass_id` INT NOT NULL AUTO_INCREMENT,
   `class_type` VARCHAR(4) NULL,
   `class_num` VARCHAR(4) NULL,
   `class_grade` VARCHAR(3) NULL,
@@ -187,7 +187,7 @@ DROP TABLE IF EXISTS `alecDB`.`ApplicantClasses` ;
 
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
-  `idApplicantClasses` INT NOT NULL,
+  `idApplicantClasses` INT NOT NULL AUTO_INCREMENT,
   `class_type` VARCHAR(4) NULL,
   `class_num` VARCHAR(4) NULL,
   `class_grade` VARCHAR(3) NULL,
