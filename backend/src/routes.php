@@ -894,17 +894,13 @@ $app->get('/getTutorRequest/{id}', function(ServerRequestInterface $request, Res
   $db = $this->createDB;
   $uid = $args['id'];
 
-  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type
-    FROM Tutors, TutorRequests
-    WHERE  :uid = TutorRequests.tr_tutor_id
-    AND TutorRequests.tr_tutor_id = Tutors.tutor_id");
+  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type FROM Tutors, TutorRequests WHERE  11111111 = TutorRequests.tr_tutor_id AND TutorRequests.tr_tutor_id = Tutors.tutor_id");
   $query->bindParam(':uid', $uid, PDO::PARAM_INT);
   $query->execute();
 
   $temp = array();
   while($row = $query->fetch(PDO::FETCH_ASSOC)) {
     $temp[] = $row;
-    print_r($row);
   }
   echo json_encode($temp);
 
