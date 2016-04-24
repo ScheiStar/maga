@@ -967,29 +967,9 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 
 		}
 
-
-		//gets the timeslots
 		$query = $db->prepare('SELECT * from ApplicantTimeslots WHERE Applicants_applicant_id = :uid');
 		$query->bindParam(':uid', $uid, PDO::PARAM_INT);
 		$query->execute();
-
-
-		$query = $db->prepare('DELETE from Applicants WHERE applicant_id=:id');
-		$query->bindParam(':id', $id, PDO::PARAM_INT);
-		$query->execute();
-
-
-		//deletes the classes
-		$query2 = $db->prepare('DELETE FROM ApplicantClasses WHERE Applicants_applicant_id=:id');
-		$query2->bindParam(':id', $id, PDO::PARAM_INT);
-		$query2->execute();
-
-
-		//gets the timeslots
-		$query3 = $db->prepare('DELETE FROM ApplicantTimeslots WHERE Applicants_applicant_id=:id');
-		$query3->bindParam(':id', $id, PDO::PARAM_INT);
-		$query3->execute();
-
 
 
 		while($row = $query->fetch(PDO::FETCH_OBJ)){
@@ -998,7 +978,7 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 			$time = $row->timeslot_time;
 			$day = $row->timeslot_day;
 
-			$query3 = $db->prepare('INSERT into Timeslots(timeslot_time, Tutors_tutor_id, timeslot_day) values(:timeslot_time, :timeslot_day, :Tutors_tutor_id)');
+			$query3 = $db->prepare('INSERT into Timeslots(timeslot_time, Tutors_tutor_id, timeslot_day) values(:timeslot_time, :Tutors_tutor_id, :timeslot_day)');
 			$query3->bindParam(':Tutors_tutor_id', $uid, PDO::PARAM_INT);
 			$query3->bindParam(':timeslot_time', $time, PDO::PARAM_INT);
 			$query3->bindParam(':timeslot_day', $day, PDO::PARAM_INT);
@@ -1006,7 +986,24 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 
 		}
 
+
+
 		//delete data from the Applicant tables
+		$query = $db->prepare('DELETE from Applicants WHERE applicant_id=:id');
+		$query->bindParam(':id', $uid, PDO::PARAM_INT);
+		$query->execute();
+
+
+		//deletes the classes
+		$query2 = $db->prepare('DELETE FROM ApplicantClasses WHERE Applicants_applicant_id=:id');
+		$query2->bindParam(':id', $uid, PDO::PARAM_INT);
+		$query2->execute();
+
+
+		//gets the timeslots
+		$query3 = $db->prepare('DELETE FROM ApplicantTimeslots WHERE Applicants_applicant_id=:id');
+		$query3->bindParam(':id', $uid, PDO::PARAM_INT);
+		$query3->execute();
 
 
 
