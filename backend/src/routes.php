@@ -890,7 +890,7 @@ $app->get('/getTutorRequests', function(ServerRequestInterface $request, Respons
   echo json_encode($temp);
 });
 
-$app->get('/getTutorRequest/{id}', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
+$app->get('/getTutorRequest/{id}', function($request, $response, $args) use($app) {
   $db = $this->createDB;
   $uid = $args['id'];
   if(!isset($uid)){
