@@ -64,7 +64,7 @@ CREATE TABLE Applicants (
 -- -----------------------------------------------------
 
 CREATE TABLE ApplicantTimeslots (
-  `timeslot_id` INT AUTO_INCREMENT,
+  `timeslot_id` INT NOT NULL AUTO_INCREMENT,
   `timeslot_time` INT,
   `applicant_id` INT,
   `timeslot_day` INT,
