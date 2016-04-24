@@ -888,6 +888,7 @@ $app->get('/getTutorRequests', function(ServerRequestInterface $request, Respons
     $temp[] = $row;
   }
 
+  print_r ($query->errorInfo());
   echo json_encode($temp);
 
 });
@@ -1070,5 +1071,3 @@ $app->delete('/deleteTutor/{id}', function($request, $response, $args){
 		return $response;
 
 });
-
-
