@@ -48,19 +48,19 @@ CREATE TABLE  'alecDB'.'Timeslots' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Sessions'
 -- -----------------------------------------------------
-
-CREATE TABLE  'alecDB'.'Sessions' (
-  'session_id' INT NOT NULL AUTO_INCREMENT,
-  'session_date' DATE NULL,
-  'session_time' VARCHAR(45) NULL,
-  'Tutors_tutor_id' INT NOT NULL,
-  'student_id' VARCHAR(45) NULL,
-  'student_email' VARCHAR(45) NULL,
-  'session_start_time' VARCHAR(45) NULL,
-  'session_end_time' VARCHAR(45) NULL,
-  'student_first_name' VARCHAR(45) NULL,
-  'student_last_name' VARCHAR(45) NULL,
-  PRIMARY KEY ('session_id'));
+--
+-- CREATE TABLE  'alecDB'.'Sessions' (
+--   'session_id' INT NOT NULL AUTO_INCREMENT,
+--   'session_date' DATE NULL,
+--   'session_time' VARCHAR(45) NULL,
+--   'Tutors_tutor_id' INT NOT NULL,
+--   'student_id' VARCHAR(45) NULL,
+--   'student_email' VARCHAR(45) NULL,
+--   'session_start_time' VARCHAR(45) NULL,
+--   'session_end_time' VARCHAR(45) NULL,
+--   'student_first_name' VARCHAR(45) NULL,
+--   'student_last_name' VARCHAR(45) NULL,
+--   PRIMARY KEY ('session_id'));
 
 
 -- -----------------------------------------------------
@@ -95,15 +95,15 @@ CREATE TABLE  'alecDB'.'ApplicantTimeslots' (
 -- Table 'alecDB'.'Reviews'
 -- -----------------------------------------------------
 
-CREATE TABLE  'alecDB'.'Reviews' (
-  'review_id' INT NOT NULL AUTO_INCREMENT,
-  'score_helpfulness' INT NULL,
-  'score_clarity' INT NULL,
-  'score_friendlynes' INT NULL,
-  'session_id' INT NOT NULL,
-  'score_avg' INT NULL,
-  'review_comments' VARCHAR(500) NULL,
-  PRIMARY KEY ('review_id'));
+-- CREATE TABLE  'alecDB'.'Reviews' (
+--   'review_id' INT NOT NULL AUTO_INCREMENT,
+--   'score_helpfulness' INT NULL,
+--   'score_clarity' INT NULL,
+--   'score_friendlynes' INT NULL,
+--   'session_id' INT NOT NULL,
+--   'score_avg' INT NULL,
+--   'review_comments' VARCHAR(500) NULL,
+--   PRIMARY KEY ('review_id'));
 
 
 -- -----------------------------------------------------
@@ -120,13 +120,13 @@ CREATE TABLE  'alecDB'.'Users' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Admins'
 -- -----------------------------------------------------
-CREATE TABLE  'alecDB'.'Admins' (
-  'admin_id' INT NOT NULL,
-  'admin_first_name' VARCHAR(45) NULL,
-  'admin_last_name' VARCHAR(45) NULL,
-  'admin_email' VARCHAR(45) NULL,
-  'admin_phone' VARCHAR(45) NULL,
-  PRIMARY KEY ('admin_id'));
+-- CREATE TABLE  'alecDB'.'Admins' (
+--   'admin_id' INT NOT NULL,
+--   'admin_first_name' VARCHAR(45) NULL,
+--   'admin_last_name' VARCHAR(45) NULL,
+--   'admin_email' VARCHAR(45) NULL,
+--   'admin_phone' VARCHAR(45) NULL,
+--   PRIMARY KEY ('admin_id'));
 
 
 -- -----------------------------------------------------
