@@ -520,49 +520,21 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 	//if there is an applicant then respond with 200 else respond with 403
 	if($user){
 
-		$query = $db->prepare('DELETE from Applicants WHERE applicant_id = :id');
+		$query = $db->prepare('DELETE from Applicants WHERE applicant_id=:id');
 		$query->bindParam(':id', $id, PDO::PARAM_INT);
-
-		
-		if($query->execute()){
-
-			return $response;
-
-		} else {
-
-			echo "Failed Deleting Applicant";
-			print_r($query->errorInfo());
-		}
+		$query->execute();
 
 
-		//gets the classes
-		$query2 = $db->prepare('DELETE FROM ApplicantClasses WHERE Applicants_applicant_id = :id');
+		//deletes the classes
+		$query2 = $db->prepare('DELETE FROM ApplicantClasses WHERE Applicants_applicant_id=:id');
 		$query2->bindParam(':id', $id, PDO::PARAM_INT);
+		$query2->execute();
 
-
-		if($query2->execute()){
-
-			return $response;
-
-		} else {
-
-			echo "Failed Deleting Applicant Courses";
-
-		}
 
 		//gets the timeslots
-		$query3 = $db->prepare('DELETE FROM ApplicantTimeslots WHERE Applicants_applicant_id = :id');
+		$query3 = $db->prepare('DELETE FROM ApplicantTimeslots WHERE Applicants_applicant_id=:id');
 		$query3->bindParam(':id', $id, PDO::PARAM_INT);
-
-		if($query3->execute()){
-
-			return $response;
-
-		} else {
-
-			echo "Failed Deleting Applicant Courses";
-
-		}
+		$query3->execute();
 
 
 	} else {
@@ -573,6 +545,7 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 
 	return $response;
 });
+
 $app->post('/sendEmail', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
   $json = $request->getBody();
   $data = json_decode($json);
@@ -936,6 +909,7 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 	$user = $query->fetch(PDO::FETCH_OBJ);
 
 
+
 	if ($user){
 
 		$tid = $user->applicant_id;
@@ -944,11 +918,11 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 		$email = $user->applicant_email;
 		$gpa = $user->applicant_gpa;
 		$major = $user->applicant_major;
-		$password = $user->applicant_password;
+		$password = $user->applicant_hash;
 
 
 
-		/*$query = $db->prepare('INSERT into Tutors(tutor_id, tutor_first_name, tutor_last_name, tutor_email, tutor_gpa, tutor_major) values(:tutor_id,:tutor_first_name,:tutor_last_name, :tutor_email, :tutor_gpa, :tutor_major)');
+		$query = $db->prepare('INSERT into Tutors(tutor_id, tutor_first_name, tutor_last_name, tutor_email, tutor_gpa, tutor_major) values(:tutor_id,:tutor_first_name,:tutor_last_name, :tutor_email, :tutor_gpa, :tutor_major)');
 		$query->bindParam(":tutor_id", $uid, PDO::PARAM_INT);
 		$query->bindParam(":tutor_first_name", $fName, PDO::PARAM_STR);
 		$query->bindParam(":tutor_last_name", $lName, PDO::PARAM_STR);
@@ -957,7 +931,7 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 		$query->bindParam(":tutor_major", $major, PDO::PARAM_STR);
 		$query->execute();
 
-		print_r($query->errorInfo());*/
+
 
 
 		$query = $db->prepare('INSERT into Users(user_id, hash) values(:user_id, :hash)');
@@ -976,18 +950,16 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 		//puts info into the new table TutorClasses Table
 		while($row = $query->fetch(PDO::FETCH_OBJ)){
 
-			$cName = $row->class_name;
-			$gpa = $row->class_gpa;
-			$cNumber = $row->class_number;
+			$cName = $row->class_type;
+			$gpa = $row->class_grade;
+			$cNumber = $row->class_num;
 
-			$query2 = $db->prepare('INSERT into TutorClasses(class_name, class_gpa, class_number, Tutors_tutor_id)  values(:class_name, :class_gpa, :class_number, :Tutors_tutor_id)');
+			$query2 = $db->prepare('INSERT into TutorClasses(class_type, class_grade, class_num, Tutors_tutor_id)  values(:class_name, :class_gpa, :class_number, :Tutors_tutor_id)');
 			$query2->bindParam(':Tutors_tutor_id', $uid, PDO::PARAM_INT);
 			$query2->bindParam(':class_name', $cName, PDO::PARAM_STR);
 			$query2->bindParam(':class_number', $cNumber, PDO::PARAM_STR);
 			$query2->bindParam(':class_gpa', $gpa, PDO::PARAM_STR);
 			$query2->execute();
-
-
 
 		}
 
@@ -996,6 +968,25 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 		$query = $db->prepare('SELECT * from ApplicantTimeslots WHERE Applicants_applicant_id = :uid');
 		$query->bindParam(':uid', $uid, PDO::PARAM_INT);
 		$query->execute();
+
+
+		$query = $db->prepare('DELETE from Applicants WHERE applicant_id=:id');
+		$query->bindParam(':id', $id, PDO::PARAM_INT);
+		$query->execute();
+
+
+		//deletes the classes
+		$query2 = $db->prepare('DELETE FROM ApplicantClasses WHERE Applicants_applicant_id=:id');
+		$query2->bindParam(':id', $id, PDO::PARAM_INT);
+		$query2->execute();
+
+
+		//gets the timeslots
+		$query3 = $db->prepare('DELETE FROM ApplicantTimeslots WHERE Applicants_applicant_id=:id');
+		$query3->bindParam(':id', $id, PDO::PARAM_INT);
+		$query3->execute();
+
+
 
 		while($row = $query->fetch(PDO::FETCH_OBJ)){
 			//iterate over all the fields
@@ -1024,4 +1015,5 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 
 
 });
+
 
