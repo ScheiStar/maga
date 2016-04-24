@@ -12,7 +12,7 @@
       <th>Fri</th>
     </tr>
   </thead>
-  <tbody>
+  <!-- <tbody>
     <tr ng-repeat="x in ugh track by $index">
       <th scope="row" ng-bind="x.time"></th>
       <td class = "norm" ng-bind="x.Sun" ng-class="{ 'yeah': x.Sun}"></td>
@@ -20,7 +20,18 @@
       <td class = "norm" ng-bind="x.Tues" ng-class="{ 'yeah': x.Tues}"></td>
       <td class = "norm" ng-bind="x.Wed" ng-class="{ 'yeah': x.Wed}"></td>
       <td class = "norm" ng-bind="x.Thurs" ng-class="{ 'yeah': x.Thurs}"></td>
-      <td class = "norm" ßng-bind="x.Fri" ng-class="{ 'yeah': x.Fri}"></td>
+      <td class = "norm" ng-bind="x.Fri" ng-class="{ 'yeah': x.Fri}"></td>
+    </tr>
+  </tbody> -->
+  <tbody>
+    <tr ng-repeat="x in ugh track by $index">
+      <th scope="row" ng-bind="x.time"></th>
+      <td class = "norm" ng-bind="x.Sun"></td>
+      <td class = "norm" ng-bind="x.Mon"></td>
+      <td class = "norm" ng-bind="x.Tues"></td>
+      <td class = "norm" ng-bind="x.Wed"></td>
+      <td class = "norm" ng-bind="x.Thurs"></td>
+      <td class = "norm" ng-bind="x.Fri"></td>
     </tr>
   </tbody>
 </table>
