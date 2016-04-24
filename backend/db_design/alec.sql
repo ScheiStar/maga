@@ -1,9 +1,9 @@
 DROP DATABASE alecDB;
 CREATE DATABASE alecDB;
-USE alecDB ;
+USE alecDB;
 
 CREATE TABLE Tutors (
-  `tutor_id` INT NOT NULL AUTO_INCREMENT,
+  `tutor_id` INT AUTO_INCREMENT,
   `tutor_first_name` VARCHAR(45),
   `tutor_last_name` VARCHAR(45),
   `tutor_email` VARCHAR(45),
