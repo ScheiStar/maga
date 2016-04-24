@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Tutors` (
   `tutor_last_name` VARCHAR(45) NULL,
   `tutor_email` VARCHAR(45) NULL,
   `tutor_phone` VARCHAR(45) NULL,
-  `tutor_gpa` DECIMAL(3) NULL,
+  `tutor_gpa` VARCHAR(5) NULL,
   `tutor_major` VARCHAR(45) NULL,
   PRIMARY KEY (`tutor_id`))
 ENGINE = InnoDB;
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Applicants` (
   `applicant_first_name` VARCHAR(45) NULL,
   `applicant_last_name` VARCHAR(45) NULL,
   `applicant_email` VARCHAR(45) NULL,
-  `applicant_gpa` DECIMAL(3) NULL,
+  `applicant_gpa` VARCHAR(5) NULL,
   `applicant_major` VARCHAR(45) NULL,
   `application_status` VARCHAR(45) NULL,
   `applicant_hash` VARCHAR(60) NULL,
@@ -139,7 +139,7 @@ DROP TABLE IF EXISTS `mydb`.`Users` ;
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
   `user_id` INT NOT NULL,
-  `hash` VARCHAR(45) NULL,
+  `hash` VARCHAR(60) NULL,
   `admin` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
