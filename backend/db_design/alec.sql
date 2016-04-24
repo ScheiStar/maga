@@ -44,8 +44,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
   `timeslot_time` INT NOT NULL,
   `Tutors_tutor_id` INT NOT NULL,
   `timeslot_day` INT NOT NULL,
-  PRIMARY KEY (`timeslot_id`),
-  INDEX `fk_Timeslots_Tutors1_idx` (`Tutors_tutor_id` ASC),
+  PRIMARY KEY (`timeslot_id`)
 )
 ENGINE = InnoDB;
 
@@ -66,8 +65,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Sessions` (
   `session_end_time` VARCHAR(45) NULL,
   `student_first_name` VARCHAR(45) NULL,
   `student_last_name` VARCHAR(45) NULL,
-  PRIMARY KEY (`session_id`),
-  INDEX `fk_Sessions_Tutors_idx` (`Tutors_tutor_id` ASC),
+  PRIMARY KEY (`session_id`)
 )
 ENGINE = InnoDB;
 
@@ -100,8 +98,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
   `timeslot_time` INT NOT NULL,
   `Applicant_applicant_id` INT NOT NULL,
   `timeslot_day` INT NOT NULL,
-  PRIMARY KEY (`timeslot_id`),
-  INDEX `fk_ApplicantTimeslots_Applicants1_idx` (`Applicants_applicant_id` ASC),
+  PRIMARY KEY (`timeslot_id`)
 )
 ENGINE = InnoDB;
 
@@ -119,8 +116,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`Reviews` (
   `Sessions_session_id` INT NOT NULL,
   `score_avg` INT NULL,
   `review_comments` VARCHAR(500) NULL,
-  PRIMARY KEY (`review_id`),
-  INDEX `fk_Reviews_Sessions1_idx` (`Sessions_session_id` ASC),
+  PRIMARY KEY (`review_id`)
 )
 ENGINE = InnoDB;
 
@@ -164,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`TutorClasses` (
   `class_num` VARCHAR(4) NULL,
   `class_grade` VARCHAR(3) NULL,
   `Tutors_tutor_id` INT NOT NULL,
-  PRIMARY KEY (`tutorclass_id`),
+  PRIMARY KEY (`tutorclass_id`)
 )
 ENGINE = InnoDB;
 
@@ -180,8 +176,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantClasses` (
   `class_gpa` VARCHAR(2) NULL,
   `class_number` VARCHAR(4) NULL,
   `Applicants_applicant_id` INT NOT NULL,
-  PRIMARY KEY (`idApplicantClasses`),
-  INDEX `fk_ApplicantClasses_Applicants1_idx` (`Applicants_applicant_id` ASC),
+  PRIMARY KEY (`idApplicantClasses`)
 )
 ENGINE = InnoDB;
 
@@ -198,8 +193,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`TutorRequests` (
   `tr_classnum` VARCHAR(4) NULL,
   `Tutors_tutor_id` INT NOT NULL,
   `tr_request_type` VARCHAR(4) NULL,
-  PRIMARY KEY (`tr_id`),
-  INDEX `fk_TutorRequests_Tutors1_idx` (`Tutors_tutor_id` ASC),
+  PRIMARY KEY (`tr_id`)
 )
 ENGINE = InnoDB;
 
