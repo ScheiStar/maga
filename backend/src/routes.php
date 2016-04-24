@@ -893,7 +893,10 @@ $app->get('/getTutorRequests', function(ServerRequestInterface $request, Respons
 $app->get('/getTutorRequest/{id}', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
   $db = $this->createDB;
   $uid = $args['id'];
-  echo ($uid);
+  if(!isset($uid)){
+    echo "please provide a user ID";
+    return $response->withStatus(400);
+  }
 
   $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type FROM Tutors, TutorRequests WHERE  TutorRequests.tr_tutor_id = :uid AND TutorRequests.tr_tutor_id = Tutors.tutor_id");
   $query->bindParam(':uid', $uid, PDO::PARAM_INT);
