@@ -46,9 +46,9 @@ DROP TABLE IF EXISTS `alecDB`.`Timeslots` ;
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `alecDB`.`Timeslots` (
   `timeslot_id` INT NOT NULL AUTO_INCREMENT,
-  `timeslot_time` VARCHAR(45) NULL,
+  `timeslot_time` INT NULL,
   `Tutors_tutor_id` INT NOT NULL,
-  `timeslot_day` VARCHAR(45) NULL,
+  `timeslot_day` INT NULL,
   PRIMARY KEY (`timeslot_id`))
 ENGINE = InnoDB;
 
@@ -104,9 +104,9 @@ DROP TABLE IF EXISTS `alecDB`.`ApplicantTimeslots` ;
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `alecDB`.`ApplicantTimeslots` (
   `timeslot_id` INT NOT NULL AUTO_INCREMENT,
-  `timeslot_time` VARCHAR(45) NULL,
+  `timeslot_time` INT NULL,
   `Applicants_applicant_id` INT NOT NULL,
-  `timeslot_day` VARCHAR(45) NULL,
+  `timeslot_day` INT NULL,
   PRIMARY KEY (`timeslot_id`))
 ENGINE = InnoDB;
 
