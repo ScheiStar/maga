@@ -58,9 +58,6 @@ angular.module('frontendApp')
       }
       $scope.modalDataYo = JSON.parse(contactAdminFactory.getModalData());
 
-
-
-
       var modalInstance = $uibModal.open({ 
         animation: $scope.animationsEnabled,
         templateUrl: 'views/adminDash/appmodal.html',
@@ -73,10 +70,12 @@ angular.module('frontendApp')
         }
       });
             modalInstance.result.then(function () {
+                //functionality goes here I think
 //              alert('Modal success at:' + new Date());
                 console.log("UIBModalInstance Success");
             }, function () {
                 console.log("UIBModalInstance Dismiss");
+                //funcitonality goes here I think
 //              alert('Modal dismissed at: ' + new Date());
             }); 
     };
