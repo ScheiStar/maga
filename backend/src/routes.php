@@ -498,49 +498,81 @@ $app->get('/getTutor/{id}', function($request, $response, $args) {
 $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 
 
-		$db = $this->createDB;
-    $id=$args['id'];
+	$db = $this->createDB;
+	$id = $args['id'];
 
-    if(!isset($id)){
+	if(!isset($id)){
 
-      $new_response=$response->withStatus(400);
-      echo "please provide a user id";
-			return $new_response;
+		$new_response = $response->withStatus(400);
+		echo "please provide a user id";
+		return $new_response;
 
-        }
+	}
 
-		// creates, prepares and executes sql query
-		$query = $db->prepare('SELECT * FROM Applicants WHERE applicant_id = :id');
+	// creates, prepares and executes sql query
+	$query = $db->prepare('SELECT * FROM Applicants WHERE applicant_id = :id');
+	$query->bindParam(':id', $id, PDO::PARAM_INT);
+	$query->execute();
+
+	//gets the user and applicant
+	$user = $query->fetch(PDO::FETCH_OBJ);
+
+	//if there is an applicant then respond with 200 else respond with 403
+	if($user){
+
+		$query = $db->prepare('DELETE from Applicants WHERE applicant_id = :id');
 		$query->bindParam(':id', $id, PDO::PARAM_INT);
-		$query->execute();
 
-		//gets the user and applicant
-		$user = $query->fetch(PDO::FETCH_OBJ);
+		
+		if($query->execute()){
 
-	  //if there is an applicant then respond with 200 else respond with 403
-		if($user){
-
-			$query = $db->prepare('DELETE FROM Applicants WHERE applicant_id = :id');
-			$query->bindParam(':id', $id, PDO::PARAM_INT);
-			if($query->execute()){
-
-				return $response;
-
-				} else {
-
-				echo "Failed Deleting Applicant";
-
-			}
+			return $response;
 
 		} else {
-			$new_response = $response->withStatus(204);
-			return $new_response;
 
-			}
+			echo "Failed Deleting Applicant";
+			print_r($query->errorInfo());
+		}
 
-   return $response;
+
+		//gets the classes
+		$query2 = $db->prepare('DELETE FROM ApplicantClasses WHERE Applicants_applicant_id = :id');
+		$query2->bindParam(':id', $id, PDO::PARAM_INT);
+
+
+		if($query2->execute()){
+
+			return $response;
+
+		} else {
+
+			echo "Failed Deleting Applicant Courses";
+
+		}
+
+		//gets the timeslots
+		$query3 = $db->prepare('DELETE FROM ApplicantTimeslots WHERE Applicants_applicant_id = :id');
+		$query3->bindParam(':id', $id, PDO::PARAM_INT);
+
+		if($query3->execute()){
+
+			return $response;
+
+		} else {
+
+			echo "Failed Deleting Applicant Courses";
+
+		}
+
+
+	} else {
+		$new_response = $response->withStatus(204);
+		return $new_response;
+
+	}
+
+	return $response;
 });
-
 $app->post('/sendEmail', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
   $json = $request->getBody();
   $data = json_decode($json);
@@ -884,3 +916,112 @@ $app->get('/getTutorRequests', function(ServerRequestInterface $request, Respons
   echo json_encode($temp);
 
 });
+
+$app->post('/updateApplicant/{id}', function($request, $response, $args){
+
+	$db = $this->createDB;
+	$uid = $args['id'];
+
+	if(!isset($uid)){
+
+		$new_response = $response->withStatus(400);
+		echo "please provide a user id";
+		return $new_response;
+
+	}
+
+	$query = $db->prepare('SELECT * from Applicants WHERE applicant_id = :uid');
+	$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+	$query-> execute();
+	$user = $query->fetch(PDO::FETCH_OBJ);
+
+
+	if ($user){
+
+		$tid = $user->applicant_id;
+		$fName = $user->applicant_first_name;
+		$lName = $user->applicant_last_name;
+		$email = $user->applicant_email;
+		$gpa = $user->applicant_gpa;
+		$major = $user->applicant_major;
+		$password = $user->applicant_password;
+
+
+
+		/*$query = $db->prepare('INSERT into Tutors(tutor_id, tutor_first_name, tutor_last_name, tutor_email, tutor_gpa, tutor_major) values(:tutor_id,:tutor_first_name,:tutor_last_name, :tutor_email, :tutor_gpa, :tutor_major)');
+		$query->bindParam(":tutor_id", $uid, PDO::PARAM_INT);
+		$query->bindParam(":tutor_first_name", $fName, PDO::PARAM_STR);
+		$query->bindParam(":tutor_last_name", $lName, PDO::PARAM_STR);
+		$query->bindParam(":tutor_email", $email, PDO::PARAM_STR);
+		$query->bindParam(":tutor_gpa", $gpa, PDO::PARAM_STR);
+		$query->bindParam(":tutor_major", $major, PDO::PARAM_STR);
+		$query->execute();
+
+		print_r($query->errorInfo());*/
+
+
+		$query = $db->prepare('INSERT into Users(user_id, hash) values(:user_id, :hash)');
+		$query->bindParam(":user_id", $uid, PDO::PARAM_INT);
+		$query->bindParam(":hash", $password, PDO::PARAM_STR);
+		$query->execute();
+
+
+
+		//gets the classes
+		$query = $db->prepare('SELECT * from ApplicantClasses WHERE Applicants_applicant_id = :uid');
+		$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+		$query->execute();
+
+
+		//puts info into the new table TutorClasses Table
+		while($row = $query->fetch(PDO::FETCH_OBJ)){
+
+			$cName = $row->class_name;
+			$gpa = $row->class_gpa;
+			$cNumber = $row->class_number;
+
+			$query2 = $db->prepare('INSERT into TutorClasses(class_name, class_gpa, class_number, Tutors_tutor_id)  values(:class_name, :class_gpa, :class_number, :Tutors_tutor_id)');
+			$query2->bindParam(':Tutors_tutor_id', $uid, PDO::PARAM_INT);
+			$query2->bindParam(':class_name', $cName, PDO::PARAM_STR);
+			$query2->bindParam(':class_number', $cNumber, PDO::PARAM_STR);
+			$query2->bindParam(':class_gpa', $gpa, PDO::PARAM_STR);
+			$query2->execute();
+
+
+
+		}
+
+
+		//gets the timeslots
+		$query = $db->prepare('SELECT * from ApplicantTimeslots WHERE Applicants_applicant_id = :uid');
+		$query->bindParam(':uid', $uid, PDO::PARAM_INT);
+		$query->execute();
+
+		while($row = $query->fetch(PDO::FETCH_OBJ)){
+			//iterate over all the fields
+
+			$time = $row->timeslot_time;
+			$day = $row->timeslot_day;
+
+			$query3 = $db->prepare('INSERT into Timeslots(timeslot_time, Tutors_tutor_id, timeslot_day) values(:timeslot_time, :timeslot_day, :Tutors_tutor_id)');
+			$query3->bindParam(':Tutors_tutor_id', $uid, PDO::PARAM_INT);
+			$query3->bindParam(':timeslot_time', $time, PDO::PARAM_INT);
+			$query3->bindParam(':timeslot_day', $day, PDO::PARAM_INT);
+			$query3->execute();
+
+		}
+
+		//delete data from the Applicant tables
+
+
+
+	} else {
+
+		echo "No applicant found";
+
+	}
+
+
+
+});
+
