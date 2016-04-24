@@ -3,7 +3,7 @@ CREATE DATABASE alecDB;
 USE alecDB;
 
 CREATE TABLE Tutors (
-  'tutor_id' int AUTO_INCREMENT,
+  'tutor_id' int NOT NULL AUTO_INCREMENT,
   'tutor_first_name' VARCHAR(45),
   'tutor_last_name' VARCHAR(45),
   'tutor_email' VARCHAR(45),
