@@ -21,7 +21,6 @@ USE 'alecDB' ;
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Tutors'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'Tutors' ;
 
 CREATE TABLE  'alecDB'.'Tutors' (
   'tutor_id' INT NOT NULL,
@@ -37,7 +36,6 @@ CREATE TABLE  'alecDB'.'Tutors' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Timeslots'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'Timeslots' ;
 
 CREATE TABLE  'alecDB'.'Timeslots' (
   'timeslot_id' INT NOT NULL AUTO_INCREMENT,
@@ -50,7 +48,6 @@ CREATE TABLE  'alecDB'.'Timeslots' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Sessions'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'Sessions' ;
 
 CREATE TABLE  'alecDB'.'Sessions' (
   'session_id' INT NOT NULL AUTO_INCREMENT,
@@ -69,7 +66,6 @@ CREATE TABLE  'alecDB'.'Sessions' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Applicants'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'Applicants' ;
 
 CREATE TABLE  'alecDB'.'Applicants' (
   'applicant_id' INT NOT NULL,
@@ -86,7 +82,6 @@ CREATE TABLE  'alecDB'.'Applicants' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'ApplicantTimeslots'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'ApplicantTimeslots' ;
 
 CREATE TABLE  'alecDB'.'ApplicantTimeslots' (
   'timeslot_id' INT NOT NULL AUTO_INCREMENT,
@@ -99,7 +94,6 @@ CREATE TABLE  'alecDB'.'ApplicantTimeslots' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Reviews'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'Reviews' ;
 
 CREATE TABLE  'alecDB'.'Reviews' (
   'review_id' INT NOT NULL AUTO_INCREMENT,
@@ -115,7 +109,6 @@ CREATE TABLE  'alecDB'.'Reviews' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Users'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'Users' ;
 
 CREATE TABLE  'alecDB'.'Users' (
   'user_id' INT NOT NULL,
@@ -127,8 +120,6 @@ CREATE TABLE  'alecDB'.'Users' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Admins'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'Admins' ;
-
 CREATE TABLE  'alecDB'.'Admins' (
   'admin_id' INT NOT NULL,
   'admin_first_name' VARCHAR(45) NULL,
@@ -141,7 +132,6 @@ CREATE TABLE  'alecDB'.'Admins' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'TutorClasses'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'TutorClasses' ;
 
 CREATE TABLE  'alecDB'.'TutorClasses' (
   'tutorclass_id' INT NOT NULL AUTO_INCREMENT,
@@ -155,7 +145,6 @@ CREATE TABLE  'alecDB'.'TutorClasses' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'ApplicantClasses'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'ApplicantClasses' ;
 
 CREATE TABLE  'alecDB'.'ApplicantClasses' (
   'idApplicantClasses' INT NOT NULL AUTO_INCREMENT,
@@ -169,7 +158,6 @@ CREATE TABLE  'alecDB'.'ApplicantClasses' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'TutorRequests'
 -- -----------------------------------------------------
-DROP TABLE  'alecDB'.'TutorRequests' ;
 
 CREATE TABLE  'alecDB'.'TutorRequests' (
   'tr_id' INT NOT NULL AUTO_INCREMENT,
