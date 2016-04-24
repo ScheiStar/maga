@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AppmodalCtrl', function (contactAdminFactory, $scope) {
+  .controller('AppmodalCtrl', function (contactAdminFactory, $scope, $uibModalInstance) {
 
     console.log(contactAdminFactory.getAppID());
 
@@ -42,5 +42,12 @@ angular.module('frontendApp')
     }
     console.log('ugh');
     console.log($scope.ugh);
+    
+    $scope.ok = function () {
+        $uibModalInstance.close();
+    }
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
     
   });

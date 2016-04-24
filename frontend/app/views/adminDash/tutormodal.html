@@ -3,27 +3,34 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link href="views/testStyle.css" rel="stylesheet" type="text/css">
+<link href="../../styles/appmodal.css" rel="stylesheet" type="text/css">
+
+<div class="container">
+    <div class="col-xs-9"></div>
+    <div class="col-xs-1">
+        <h2><span class="cancel" ng-click="cancel()">x</span></h2>
+    </div>
+</div>
 
 
 <div class="container">
     <div class="col-xs-5">
         <h1><span ng-bind="tits.applicantInfo.tutor_first_name"></span> <span ng-bind="tits.applicantInfo.tutor_last_name"></span></h1>
-        <h4>Would like to start tutoring for:</h4>
+        <h4>Is tutoring:</h4>
 <!--        Work on being able to hide the classes that are empty!!-->
-        <h4><span ng-bind="tits.courseDictArray[0].class_name"></span><span ng-bind="tits.courseDictArray[0].class_number"></span>  (<span ng-bind="tits.courseDictArray[0].class_gpa"></span>)</h4>
-        <h4><span ng-bind="tits.courseDictArray[1].class_name"></span><span ng-bind="tits.courseDictArray[1].class_number"></span>  (<span ng-bind="tits.courseDictArray[1].class_gpa"></span>)</h4>
-        <h4><span ng-bind="tits.courseDictArray[2].class_name"></span><span ng-bind="tits.courseDictArray[2].class_number"></span>  (<span ng-bind="tits.courseDictArray[2].class_gpa"></span>)</h4>
+        <h4><span ng-bind="tits.courseDictArray[0].class_name"></span><span ng-bind="tits.courseDictArray[0].class_number"></span></h4>
+        <h4><span ng-bind="tits.courseDictArray[1].class_name"></span><span ng-bind="tits.courseDictArray[1].class_number"></span></h4>
+        <h4><span ng-bind="tits.courseDictArray[2].class_name"></span><span ng-bind="tits.courseDictArray[2].class_number"></span></h4>
         <h4>At the following times:</h4>
     </div>
     <div class="col-xs-7">
         <h1><u>Profile:</u></h1>
-        <h3>SMU ID: <span ng-bind="tits.applicantInfo.tutor_id"></span></h3>
-        <h3>Major: <span ng-bind="tits.applicantInfo.tutor_major"></span></h3>
-        <h3>GPA: <span ng-bind="tits.applicantInfo.tutor_gpa"></span></h3>
-        <h3>Email: <span ng-bind="tits.applicantInfo.tutor_email"></span></h3>
+        <h4>SMU ID: <span ng-bind="tits.applicantInfo.tutor_id"></span></h4>
+        <h4>Major: <span ng-bind="tits.applicantInfo.tutor_major"></span></h4>
+        <h4>GPA: <span ng-bind="tits.applicantInfo.tutor_gpa"></span></h4>
+        <h4>Email: <span ng-bind="tits.applicantInfo.tutor_email"></span></h4>
     </div>
-    <div class="col-xs-9">
+    <div class="col-xs-8">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -49,12 +56,3 @@
     </div>
 
 </div> <!-- End Container-->
-<div class="container">
-    <div class="col-xs-7"></div>
-    <div class="col-xs-1">
-        <button type="submit" class="btn btn-danger">Deny!</button>
-    </div>
-    <div class="col-xs-2" id="submitButton">
-        <button type="submit" class="btn btn-success">Approve!</button>
-    </div>
-</div>

@@ -74,8 +74,8 @@ angular.module('frontendApp')
       userFactory.storeClassInfo(classInfo);
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
-        templateUrl: 'dropConfirmModal.html',
-        controller: 'UserdashCtrl',
+        templateUrl: 'views/userDash/dropclassmodal.html',
+        controller: 'DropclassmodalCtrl',
         size: size,
         resolve: {
           items: function () {
@@ -83,8 +83,17 @@ angular.module('frontendApp')
           }
         }
       });
-    }
-
+    
+            modalInstance.result.then(function () {
+                //functionality goes here I think
+                console.log("UIBModalInstance Success");
+                $scope.submitDrop(classInfo);
+            }, function () {
+                console.log("UIBModalInstance Dismiss");
+                //funcitonality goes here I think
+            }); 
+    }; //end confirmDrop()
+    
     $scope.toggleAnimation = function () {
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
