@@ -886,6 +886,7 @@ $app->get('/getTutorRequests', function(ServerRequestInterface $request, Respons
   $temp = array();
   while($row = $query->fetch(PDO::FETCH_ASSOC)) {
     $temp[] = $row;
+    print_r($row);
   }
   print_r($temp);
 
