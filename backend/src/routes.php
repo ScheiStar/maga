@@ -546,6 +546,23 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 	return $response;
 });
 
+$app->post('/updateTutorClasses/{id}', function($request, $response, $args){
+  $checkTutorQuery = $db->prepare('SELECT * FROM Tutors WHERE tutor_id=:id');
+  $checkTutorQuery->bindParam(':id', $id, PDO::PARAM_INT);
+  $checkTutorQuery->execute();
+
+  $tutor = $checkTutorQuery->fetch(PDO::FETCH_OBJ);
+
+  if ($tutor){
+
+    // First check    
+
+  } else {
+    
+  }
+
+});
+
 $app->post('/sendEmail', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
   $json = $request->getBody();
   $data = json_decode($json);
