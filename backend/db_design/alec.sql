@@ -14,7 +14,8 @@
 -- -----------------------------------------------------
 -- Schema alecDB
 -- -----------------------------------------------------
-DROP DATABASE `alecDB`;
+DROP DATABASE IF EXISTS`alecDB`;
+CREATE DATABASE `alecDB`;
 USE `alecDB` ;
 
 -- -----------------------------------------------------
