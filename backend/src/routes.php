@@ -890,6 +890,24 @@ $app->get('/getTutorRequests', function(ServerRequestInterface $request, Respons
   echo json_encode($temp);
 });
 
+$app->get('/getTutorRequest/{id}', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
+  $db = $this->createDB;
+  $uid = $args['id'];
+
+  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type
+    FROM Tutors, TutorRequests
+    WHERE  :id = TutorRequests.tr_tutor_id
+    AND :id = Tutors.tutor_id");
+  $query->execute();
+
+  $temp = array();
+  while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+    $temp[] = $row;
+  }
+  echo json_encode($temp);
+
+});
+
 $app->post('/updateApplicant/{id}', function($request, $response, $args){
 
 	$db = $this->createDB;
