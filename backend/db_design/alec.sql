@@ -14,16 +14,16 @@
 -- -----------------------------------------------------
 -- Schema alecDB
 -- -----------------------------------------------------
-DROP DATABASE IF EXISTS 'alecDB';
+DROP DATABASE 'alecDB';
 CREATE DATABASE 'alecDB';
 USE 'alecDB' ;
 
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Tutors'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'Tutors' ;
+DROP TABLE  'alecDB'.'Tutors' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'Tutors' (
+CREATE TABLE  'alecDB'.'Tutors' (
   'tutor_id' INT NOT NULL,
   'tutor_first_name' VARCHAR(45) NULL,
   'tutor_last_name' VARCHAR(45) NULL,
@@ -37,9 +37,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'Tutors' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Timeslots'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'Timeslots' ;
+DROP TABLE  'alecDB'.'Timeslots' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'Timeslots' (
+CREATE TABLE  'alecDB'.'Timeslots' (
   'timeslot_id' INT NOT NULL AUTO_INCREMENT,
   'timeslot_time' INT NOT NULL,
   'Tutors_tutor_id' INT NOT NULL,
@@ -50,9 +50,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'Timeslots' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Sessions'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'Sessions' ;
+DROP TABLE  'alecDB'.'Sessions' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'Sessions' (
+CREATE TABLE  'alecDB'.'Sessions' (
   'session_id' INT NOT NULL AUTO_INCREMENT,
   'session_date' DATE NULL,
   'session_time' VARCHAR(45) NULL,
@@ -69,9 +69,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'Sessions' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Applicants'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'Applicants' ;
+DROP TABLE  'alecDB'.'Applicants' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'Applicants' (
+CREATE TABLE  'alecDB'.'Applicants' (
   'applicant_id' INT NOT NULL,
   'applicant_first_name' VARCHAR(45) NULL,
   'applicant_last_name' VARCHAR(45) NULL,
@@ -86,9 +86,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'Applicants' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'ApplicantTimeslots'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'ApplicantTimeslots' ;
+DROP TABLE  'alecDB'.'ApplicantTimeslots' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'ApplicantTimeslots' (
+CREATE TABLE  'alecDB'.'ApplicantTimeslots' (
   'timeslot_id' INT NOT NULL AUTO_INCREMENT,
   'timeslot_time' INT NOT NULL,
   'Applicant_applicant_id' INT NOT NULL,
@@ -99,9 +99,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'ApplicantTimeslots' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Reviews'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'Reviews' ;
+DROP TABLE  'alecDB'.'Reviews' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'Reviews' (
+CREATE TABLE  'alecDB'.'Reviews' (
   'review_id' INT NOT NULL AUTO_INCREMENT,
   'score_helpfulness' INT NULL,
   'score_clarity' INT NULL,
@@ -115,9 +115,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'Reviews' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Users'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'Users' ;
+DROP TABLE  'alecDB'.'Users' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'Users' (
+CREATE TABLE  'alecDB'.'Users' (
   'user_id' INT NOT NULL,
   'hash' VARCHAR(60) NULL,
   'admin' TINYINT(1) NULL DEFAULT 0,
@@ -127,9 +127,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'Users' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'Admins'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'Admins' ;
+DROP TABLE  'alecDB'.'Admins' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'Admins' (
+CREATE TABLE  'alecDB'.'Admins' (
   'admin_id' INT NOT NULL,
   'admin_first_name' VARCHAR(45) NULL,
   'admin_last_name' VARCHAR(45) NULL,
@@ -141,9 +141,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'Admins' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'TutorClasses'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'TutorClasses' ;
+DROP TABLE  'alecDB'.'TutorClasses' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'TutorClasses' (
+CREATE TABLE  'alecDB'.'TutorClasses' (
   'tutorclass_id' INT NOT NULL AUTO_INCREMENT,
   'class_type' VARCHAR(4) NULL,
   'class_num' VARCHAR(4) NULL,
@@ -155,9 +155,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'TutorClasses' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'ApplicantClasses'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'ApplicantClasses' ;
+DROP TABLE  'alecDB'.'ApplicantClasses' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'ApplicantClasses' (
+CREATE TABLE  'alecDB'.'ApplicantClasses' (
   'idApplicantClasses' INT NOT NULL AUTO_INCREMENT,
   'class_name' VARCHAR(45) NULL,
   'class_gpa' VARCHAR(2) NULL,
@@ -169,9 +169,9 @@ CREATE TABLE IF NOT EXISTS 'alecDB'.'ApplicantClasses' (
 -- -----------------------------------------------------
 -- Table 'alecDB'.'TutorRequests'
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS 'alecDB'.'TutorRequests' ;
+DROP TABLE  'alecDB'.'TutorRequests' ;
 
-CREATE TABLE IF NOT EXISTS 'alecDB'.'TutorRequests' (
+CREATE TABLE  'alecDB'.'TutorRequests' (
   'tr_id' INT NOT NULL AUTO_INCREMENT,
   'tr_tutor_id' INT NULL,
   'tr_classtype' VARCHAR(4) NULL,
