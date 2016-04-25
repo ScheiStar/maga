@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
 .container {
     position: relative;
 }
@@ -30,7 +31,8 @@
 
 }
 table {
-    background-color: white;
+  background-color: white;
+  font-family: 'Lato';
 }
 
 h4 {

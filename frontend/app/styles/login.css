@@ -5,3 +5,16 @@
   float: none !important;
   max-width: 330px
 }
+
+h1{
+	color: white;
+}	
+
+.logincontainer{
+	background: url(../images/poly.jpg) no-repeat center center;
+}
+
+.padds{
+	background: black;
+	padding: 10px;
+}

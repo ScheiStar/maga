@@ -4,6 +4,7 @@
 
 h4 {
 	text-align: center;
+	color: white;
 }
 /*
 body {
@@ -99,4 +100,11 @@ body {
 }
 table {
     background-color: white;
+}
+
+.jumbotron {
+	background: url(../images/poly.jpg) no-repeat center center;
+    background-size: cover;
+	height: 10%;
+	color: white;
 }
