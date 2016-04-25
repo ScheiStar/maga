@@ -180,6 +180,38 @@ angular.module('frontendApp')
             console.log("Did not submit application.");
              return false;
       });
-    }
+    },
+
+    deny: function(tutorID) {
+      $http({
+        method: 'DELETE',
+        url: 'http://54.86.70.62/deleteApplication/' + tutorID
+      }).then(function(data){
+        console.log("Successfully deleted application.");
+        $state.go($state.current, {}, {reload: true});
+        alert('Bye bitch')
+        return true;
+      }, function errorCallback(response) {
+        console.log("Did not submit application.");
+         return false;
+       });
+     },
+
+     approveApplicant: function(tutorID) {
+       $http({
+         method: 'POST',
+         url: 'http://54.86.70.62/updateApplicant/'+tutorID
+       }).then(function(data){
+         console.log("Successfully approved application.");
+         alert('Thank you for submitting! Please check your email.')
+         $state.go($state.current, {}, {reload: true});
+         return;
+       }, function errorCallback(response) {
+         console.log("Did not submit application.");
+          return;
+   });
+     }
+
+
    }
  });

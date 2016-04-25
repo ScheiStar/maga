@@ -10,33 +10,14 @@
 angular.module('frontendApp')
   .controller('TutormodalCtrl', function (contactAdminFactory, $scope, $uibModalInstance) {
 
-    // console.log(contactAdminFactory.getAppID());
-    //
-    // console.log('In addModal');
-    //
-    // console.log(JSON.parse(contactAdminFactory.getModalData()));
-
     $scope.tits = JSON.parse(contactAdminFactory.getTutorData());
-    console.log('LOOK AT ME');
-    console.log($scope.tits);
-    console.log($scope.tits.applicantInfo);
 
     $scope.ugh = new Array();
     $scope.real = new Array();
-//    var shitData = {"data":
-//    [{"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": false, "Mon": true ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": true, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": true ,"Fri": false },
-//    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": true ,"Thurs": false ,"Fri": false },
-//    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": true, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]};
 
-  var shitData = $scope.tits.calArray;
+    var shitData = $scope.tits.calArray;
 
-   $scope.ugh = shitData;
-
+    $scope.ugh = shitData;
 
     var start = 2;
     var end = 3;
@@ -45,9 +26,6 @@ angular.module('frontendApp')
       start++;
       end++;
     }
-
-    // console.log('ugh');
-    // console.log($scope.ugh);
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };

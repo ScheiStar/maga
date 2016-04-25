@@ -9,21 +9,11 @@
  */
 angular.module('frontendApp')
   .controller('AdmindashApplicationsCtrl', function ($scope, $uibModal, contactAdminFactory, userFactory, $filter) {
-    console.log('come on');
-
 
     $scope.signOut = function() {
       userFactory.signOut();
     };
 
-
-    console.log('Checking data');
-    // if(contactAdminFactory.getModalData()){
-    //   console.log('TRUEDAT');
-    //   $scope.modalDataYo = JSON.parse(contactAdminFactory.getModalData());
-    // } else {
-    //   console.log('NO DATA');
-    // }
     $scope.ugh = new Array();
     $scope.applicationData = new Array();
     $scope.modalData = new Array();
@@ -32,10 +22,6 @@ angular.module('frontendApp')
     contactAdminFactory.getApplicants().then(function(data){
       $scope.ugh = data[0];
       $scope.applicants = data[1];
-      // $scope.test = 'test';
-      // console.log('LOOK');
-      // $scope.ugh = data;
-      // console.log(JSON.stringify($scope.ugh));
     });
 
     $scope.animationsEnabled = true;
@@ -58,7 +44,7 @@ angular.module('frontendApp')
       }
       $scope.modalDataYo = JSON.parse(contactAdminFactory.getModalData());
 
-      var modalInstance = $uibModal.open({ 
+      var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/adminDash/appmodal.html',
         controller: 'AppmodalCtrl',
@@ -77,7 +63,7 @@ angular.module('frontendApp')
                 console.log("UIBModalInstance Dismiss");
                 //funcitonality goes here I think
 //              alert('Modal dismissed at: ' + new Date());
-            }); 
+            });
     };
 
     $scope.work = function() {

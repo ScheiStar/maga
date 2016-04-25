@@ -11,15 +11,32 @@
 angular.module('frontendApp')
   .controller('UserdashCtrl', function ($state, $scope, $http, contactAdminFactory, userFactory, $window, $uibModal, $log, $filter) {
 
-    console.log('other one');
+    console.log("in userDash nol;akdflksdjw");
+    console.log('authed?');
+    console.log(userFactory.isAuthed());
+    //if(!userFactory.isAuthed()) $state.go('login');
 
-    //TODO: get request to get all the classes for both tables
+    userFactory.getThisTutor('11111111').then(function(data){
+      console.log('initial');
+      $scope.ugh = data.data;
+      $scope.calInfo = data.data.calArray;
+      $scope.courseInfo = data.data.courseDictArray;
 
-    $scope.classes = [{"type":"CSE","number":"1423","grade":"A"},{"type":"HIST","number":"1432","grade":"B"},{"type":"ACCT","number":"1929","grade":"A-"}];
-    console.log($scope.classes);
+      var start = 2;
+      var end = 3;
+      for (var x = 0; x<$scope.calInfo.length; x++) {
+        console.log('ASDAS');
+        $scope.calInfo[x].time = start + ':00 - ' + end + ':00';
+        start++;
+        end++;
+      }
+    });
 
-
-    $scope.pendingClasses = [{"className":"ACCT","classNum":"2716","requestType":"Drop"},{"className":"HIST","classNum":"6969","requestType":"Add"}];
+    userFactory.getThisTutorRequests('11111111').then(function(data){
+      $scope.pendingCourses = data.data;
+      console.log('oh yeah');
+      console.log($scope.pendingCourses);
+    });
 
     $scope.goHome = function() {
       console.log('going home');
@@ -28,25 +45,20 @@ angular.module('frontendApp')
 
     $scope.submitDrop = function(classInfo) {
       console.log('dropping shit');
-      //console.log(classInfo.type);
       var request_data = {
-        'userID': '12345678',
-        'className': JSON.parse(userFactory.getClassInfo()).type,
-        'classNum': JSON.parse(userFactory.getClassInfo()).number,
+        'userID': '11111111',
+        'className': JSON.parse(userFactory.getClassInfo()).class_type,
+        'classNum': JSON.parse(userFactory.getClassInfo()).class_num,
         'requestType': 'Drop'
       }
       userFactory.tutorRequest(request_data);
-      $state.go("userDashClass");
     }
 
     $scope.cancel = function() {
       console.log('asd');
     }
 
-    console.log("in userDash nol;akdflksdjw");
-    console.log('authed?');
-    console.log(userFactory.isAuthed());
-    //if(!userFactory.isAuthed()) $state.go('login');
+
 
     $scope.signOut = function() {
       userFactory.signOut();
@@ -83,7 +95,7 @@ angular.module('frontendApp')
           }
         }
       });
-    
+
             modalInstance.result.then(function () {
                 //functionality goes here I think
                 console.log("UIBModalInstance Success");
@@ -91,9 +103,9 @@ angular.module('frontendApp')
             }, function () {
                 console.log("UIBModalInstance Dismiss");
                 //funcitonality goes here I think
-            }); 
+            });
     }; //end confirmDrop()
-    
+
     $scope.toggleAnimation = function () {
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };

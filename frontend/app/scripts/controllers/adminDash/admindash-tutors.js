@@ -16,10 +16,6 @@ angular.module('frontendApp')
     console.log('before');
     contactAdminFactory.getTutors().then(function(data){
       $scope.ugh = data.data;
-
-      console.log('TUTOR INFO');
-      //console.log($scope.ugh[0].applicantInfo.user_)
-      console.log($scope.ugh);
     });
 
 
@@ -53,7 +49,7 @@ angular.module('frontendApp')
           console.log("UIBModalInstance Dismiss");
           //funcitonality goes here I think
 //        alert('Modal dismissed at: ' + new Date());
-      });   
+      });
     };
 
 
@@ -66,38 +62,6 @@ angular.module('frontendApp')
     $scope.signOut = function() {
       userFactory.signOut();
     };
-
-//    $scope.openTutorModal = function (size, appID) {
-//      console.log('opening tutor modal');
-//      console.log(appID);
-//      contactAdminFactory.storeAppID(appID);
-//
-//        for (var i=0; i < $scope.applicants.data.length; i++){
-//    //            console.log("applicant ID: ", $scope.applicants.data[i].applicantInfo.applicant_id);
-//            if (contactAdminFactory.getAppID() == $scope.applicants.data[i].applicantInfo.applicant_id)
-//                contactAdminFactory.storeModalData($scope.applicants.data[i]);
-//        }
-////        console.log("MODAL DATA: ", contactAdminFactory.getModalData());
-//        $scope.modalDataYo = JSON.parse(contactAdminFactory.getModalData());
-////        console.log("modalData: ", $scope.modalDataYo.applicantInfo);
-//        //console.log("modalData: ", $scope.modalDataYo.applicantInfo.applicant_id);
-//
-//
-//
-//
-//      var modalInstance = $uibModal.open({
-//        animation: $scope.animationsEnabled,
-//        templateUrl: 'views/adminDash/appmodal.html',
-//        controller: 'AppmodalCtrl',
-//        size: size,
-//        resolve: {
-//          items: function () {
-//            return $scope.items;
-//          }
-//        }
-//      });
-//    };
-
 
 
 

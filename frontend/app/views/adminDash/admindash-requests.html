@@ -39,12 +39,12 @@
     <table class="table table-striped">
       <thead class="thead-inverse">
         <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Class Name</th>
-          <th>Class Number</th>
-          <th>Type</th>
+          <th ng-click="order('tutor_id')">ID</th>
+          <th ng-click="order('tutor_first_name')">First Name</th>
+          <th ng-click="order('tutor_last_name')">Last Name</th>
+          <th ng-click="order('tr_classtype')">Class Name</th>
+          <th ng-click="order('tr_classnum')">Class Number</th>
+          <th ng-click="order('tr_request_type')">Type</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -58,7 +58,7 @@
           <td ng-bind="x.tr_request_type"></td>
           <td>
             <button type="button" class="btn btn-info-outline btn-sm" ng-click="">Approve</button>
-            <button type="button" class="btn btn-danger-outline btn-sm" ngclick="">Deny</button>  
+            <button type="button" class="btn btn-danger-outline btn-sm" ngclick="">Deny</button>
           </td>
         </tr>
       </tbody>

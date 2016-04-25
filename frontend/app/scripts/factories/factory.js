@@ -97,19 +97,51 @@ angular.module('frontendApp')
         }, function errorCallback(response) {
           console.log("Failure!");
               console.log(response);
-              alert("Log In Unsuccessful");
+              alert("Bad Tutor Request");
     });
   },
 
-  storeClassInfo: function(classInfo) {
-    localStorage.setItem("classInfo", JSON.stringify(classInfo));
-    return;
+        storeClassInfo: function(classInfo) {
+          localStorage.setItem("classInfo", JSON.stringify(classInfo));
+          return;
+        },
 
-  },
+        getClassInfo: function() {
+          return localStorage.getItem("classInfo");
+        },
 
-  getClassInfo: function() {
-    return localStorage.getItem("classInfo");
+        getThisTutor: function(tutorID) {
+          return $http({
+            method: 'GET',
+            url: 'http://54.86.70.62/getTutor/'+tutorID
+          }).then(function(data){
+            return data;
+          }, function errorCallback(response) {
+             console.log("We fucked up on the application retrieval.");
+             return false;
+        });
 
-  }
+        },
+
+        getThisTutorRequests: function(tutorID) {
+          return $http({
+            method: 'GET',
+            url: 'http://54.86.70.62/getTutorRequest/'+tutorID
+          }).then(function(data){
+            return data;
+          }, function errorCallback(response) {
+             console.log("We fucked up on the application retrieval.");
+             return false;
+        });
+        },
+
+        storeCourseInfo: function(courseInfo) {
+          localStorage.setItem("courseInfo", JSON.stringify(courseInfo));
+          return;
+        },
+
+        getCourseInfo: function() {
+          return localStorage.getItem("courseInfo");
+        }
 }
 });

@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="../../styles/userDash.css">
-		<link href="views/testStyle.css" rel="stylesheet" type="text/css">
+		<link href="../styles/userDashHome.css" rel="stylesheet" type="text/css">
 	</head>
 	<body ng-app="frontendApp" ng-controller="TesttablwCtrl" >
 		<nav class="navbar navbar-default navbar-static-top">
@@ -35,16 +35,15 @@
 		<div class="jumbotron">
 			<div class="container">
 				<!-- <img src="../app/images/logo.png" class="img-circle" alt="Maga" height="200" width="200"> -->
-		  		<h3>Welcome Matthew!</h3>
+		  		<h3 ng-bind="ugh.tutorInfo.tutor_first_name + ' ' + ugh.tutorInfo.tutor_last_name">Welcome {{ugh.tutoInfo.tutor_first_name}}!</h3>
 			</div>
 		</div>
 
 		<label ng-click="eee()">Your Schedule</label>
-		<!-- <table class="table table-bordered">
+		<table class="table table-bordered">
 		  <thead>
 		    <tr>
 		      <th>Time</th>
-		      <th>Sun</th>
 		      <th>Mon</th>
 		      <th>Tue</th>
 		      <th>Wed</th>
@@ -52,10 +51,9 @@
 		      <th>Fri</th>
 		    </tr>
 		  </thead>
-		  <tbody>
-		    <tr ng-repeat="x in ugh track by $index" >
-		      <th scope="row"></th>
-		      <td class = "norm" ng-bind="x.Sun" ng-class="{ 'yeah': x.Sun}"></td>
+			<tbody>
+		    <tr ng-repeat="x in calInfo track by $index">
+		      <th scope="row" ng-bind="x.time"></th>
 		      <td class = "norm" ng-bind="x.Mon" ng-class="{ 'yeah': x.Mon}"></td>
 		      <td class = "norm" ng-bind="x.Tues" ng-class="{ 'yeah': x.Tues}"></td>
 		      <td class = "norm" ng-bind="x.Wed" ng-class="{ 'yeah': x.Wed}"></td>
@@ -63,7 +61,7 @@
 		      <td class = "norm" ng-bind="x.Fri" ng-class="{ 'yeah': x.Fri}"></td>
 		    </tr>
 		  </tbody>
-		</table> -->
+		</table>
 
 	</body>
 </html>

@@ -23,33 +23,37 @@ angular.module('frontendApp')
     // {"Sun": false, "Mon": false ,"Tues": false ,"Wed": true ,"Thurs": false ,"Fri": false },
     // {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
     // {"Sun": true, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]};
+
+
+
+    // var shitData = {"data":
+    // [{"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
+    // {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
+    // {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
+    // {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
+    // {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
+    // {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
+    // {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
+    // {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 }]};
     //
     // $scope.ugh = shitData.data;
 
-    var shitData = {"data":
-    [{"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
-    {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
-    {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
-    {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
-    {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
-    {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
-    {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
-    {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 }]};
-
     var useMe = {};
-    contactAdminFactory.getApplicants().then(function(data){
-      $scope.testData = data[1].data;
+    contactAdminFactory.getTutors().then(function(data){
+      $scope.testData = data.data;
       console.log('LOOK AT TEST DATA');
-      useMe = data[1].data;
+      //useMe = data[1].data;
       console.log($scope.testData);
       console.log('THURSDAY');
+
+      //LOGIC TO BE USED FOR THE HEAT MAP GRAPHS
       var heatMapCals = [];
       var tutorClasses = [];
 
       for (var i = 0; i<$scope.testData.length; i++) {
         for (var j = 0; j<$scope.testData[i].courseDictArray.length; j++) {
-          if (heatMapCals.indexOf($scope.testData[i].courseDictArray[j].class_name) == -1) {
-            heatMapCals[$scope.testData[i].courseDictArray[j].class_name] = {"data":
+          if (heatMapCals.indexOf($scope.testData[i].courseDictArray[j].class_type) == -1) {
+            heatMapCals[$scope.testData[i].courseDictArray[j].class_type] = {"data":
             [{"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
             {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
             {"Sun": 0, "Mon": 0 ,"Tues": 0 ,"Wed": 0 ,"Thurs": 0 ,"Fri": 0 },
@@ -64,8 +68,8 @@ angular.module('frontendApp')
 
       for (var i = 0; i<$scope.testData.length; i++) {
         for (var j = 0; j<$scope.testData[i].courseDictArray.length; j++) {
-          if(tutorClasses.indexOf($scope.testData[i].courseDictArray[j].class_name) == -1)
-            tutorClasses.push($scope.testData[i].courseDictArray[j].class_name);
+          if(tutorClasses.indexOf($scope.testData[i].courseDictArray[j].class_type) == -1)
+            tutorClasses.push($scope.testData[i].courseDictArray[j].class_type);
         }
 
         for (var j = 0; j<$scope.testData[i].calArray.length; j++) {
@@ -85,11 +89,13 @@ angular.module('frontendApp')
         tutorClasses = [];
       }
 
+      //LOGIC TO BE USED FOR THE HEAT MAP GRAPHS
+
       console.log('HEAT');
       console.log(heatMapCals);
-      console.log(shitData.data);
+      //console.log(shitData.data);
       console.log($scope.testData[0].calArray[0].Fri);
-      $scope.ugh = shitData.data;
+      $scope.ugh = heatMapCals.ACCT.data;
 
       var start = 2;
       var end = 3;

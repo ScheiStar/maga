@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AppmodalCtrl', function (contactAdminFactory, $scope, $uibModalInstance) {
+  .controller('AppmodalCtrl', function (contactAdminFactory, $scope, $state, $uibModalInstance) {
 
     console.log(contactAdminFactory.getAppID());
 
@@ -20,19 +20,11 @@ angular.module('frontendApp')
 
     $scope.ugh = new Array();
     $scope.real = new Array();
-//    var shitData = {"data":
-//    [{"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": false, "Mon": true ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": true, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": true ,"Fri": false },
-//    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": true ,"Thurs": false ,"Fri": false },
-//    {"Sun": false, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false },
-//    {"Sun": true, "Mon": false ,"Tues": false ,"Wed": false ,"Thurs": false ,"Fri": false }]};
     var shitData = $scope.tits.calArray;
 
     $scope.ugh = shitData;
-//    $scope.ugh = shitData.data;
+
+    //this prints the calendar time slots on the table
     var start = 2;
     var end = 3;
     for (var x = 0; x<$scope.ugh.length; x++) {
@@ -42,12 +34,20 @@ angular.module('frontendApp')
     }
     console.log('ugh');
     console.log($scope.ugh);
-    
-    $scope.ok = function () {
-        $uibModalInstance.close();
+
+
+    $scope.denyApplicant = function(tutorID) {
+      contactAdminFactory.deny(tutorID);
+      console.log('make sure its here');
+      console.log(tutorID);
+      $uibModalInstance.close();
     }
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-    
+
+    $scope.approveApplicant = function(tutorID) {
+      contactAdminFactory.approveApplicant(tutorID);
+      console.log('make sure its here');
+      console.log(tutorID);
+      $uibModalInstance.close();
+    }
+
   });

@@ -13,7 +13,7 @@ angular.module('frontendApp')
 
     $scope.addClass = function(classInfo) {
       var request_data = {
-        'userID': '12345678',
+        'userID': '11111111',
         'className': classInfo.myClassType,
         'classNum': classInfo.myText,
         'requestType': 'Add'

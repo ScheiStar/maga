@@ -42,5 +42,8 @@
   },
   "scripts": {
     "test": "karma start test/karma.conf.js"
+  },
+  "dependencies": {
+    "json2csv": "^3.3.0"
   }
 }

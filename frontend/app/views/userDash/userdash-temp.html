@@ -50,10 +50,10 @@
 		    			</tr>
 		    		</thead>
 		    		<tbody>
-		    			<tr ng-repeat="x in classes">
-		    				<td ng-bind="x.type">
-								<td ng-bind="x.number">
-								<td ng-bind="x.grade">
+		    			<tr ng-repeat="x in courseInfo">
+		    				<td ng-bind="x.class_type">
+								<td ng-bind="x.class_num">
+								<td ng-bind="x.class_grade">
 		    				</td>
 		    				<td>
 		    					<button class="btn btn-default" style="cursor: pointer;" ng-click="dropClass(x); confirmDrop('sm', x)">Drop</button>
@@ -75,10 +75,10 @@
 			    			</tr>
 			    		</thead>
 			    		<tbody>
-			    			<tr ng-repeat="x in pendingClasses">
-			    				<td ng-bind="x.className"></td>
-									<td ng-bind="x.classNum"></td>
-									<td ng-bind="x.requestType"></td>
+			    			<tr ng-repeat="x in pendingCourses">
+			    				<td ng-bind="x.tr_classtype"></td>
+									<td ng-bind="x.tr_classnum"></td>
+									<td ng-bind="x.tr_request_type"></td>
 			    			</tr>
 			    		</tbody>
 				    </table>

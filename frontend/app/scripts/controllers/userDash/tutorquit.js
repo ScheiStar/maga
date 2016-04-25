@@ -18,10 +18,6 @@ angular.module('frontendApp').controller('TutorquitCtrl', function ($state, cont
       $state.go("userDash");
     }
     else alert('Please enter an actual message.');
-
-    //TODO: Log values in database and do something with them
-
-    //TODO: Get request for python script
   }
 
 
