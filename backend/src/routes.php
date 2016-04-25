@@ -778,7 +778,7 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$gpa=$data->applicant_gpa;
 	$status = "Pending";
 
-
+	$hash = password_hash($password, PASSWORD_DEFAULT)
 
 	// gets applicant
 	$query = $db->prepare('SELECT * FROM Applicants WHERE applicant_id = :uid');
@@ -810,7 +810,7 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$query->bindParam(":applicant_gpa", $gpa, PDO::PARAM_STR);
 	$query->bindParam(":applicant_major", $major, PDO::PARAM_STR);
 	$query->bindParam(":application_status", $status, PDO::PARAM_STR);
-	$query->bindParam(":applicant_password", $password, PDO::PARAM_STR);
+	$query->bindParam(":applicant_password", $hash, PDO::PARAM_STR);
 	$query->execute();
 
 
