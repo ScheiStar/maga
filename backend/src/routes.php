@@ -864,19 +864,6 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
     return $new_response;
   }
 
-  $testquery = $db->prepare("SELECT * FROM TutorRequests
-    WHERE tr_tutor_id = :uid AND tr_classtype = :classtype AND tr_classnum = :classnum
-    AND tr_request_type = :reqtype");
-
-  $testquery->bindParam(":uid", $uid, PDO::PARAM_INT);
-  $testquery->bindParam(":classname", $classname, PDO::PARAM_STR);
-  $testquery->bindParam(":classnum", $classnum, PDO::PARAM_STR);
-  $testquery->execute();
-
-  if(mysql_num_rows($testquery) == 0){
-    echo("Duplicate value");
-    return $response->withStatus(409);
-  }
 
   $query = $db->prepare("INSERT INTO TutorRequests
     (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type)
