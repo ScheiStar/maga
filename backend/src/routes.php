@@ -778,7 +778,7 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$gpa=$data->applicant_gpa;
 	$status = "Pending";
 
-	$hash = password_hash($password, PASSWORD_DEFAULT)
+	$hash = password_hash($password, PASSWORD_DEFAULT);
 
 	// gets applicant
 	$query = $db->prepare('SELECT * FROM Applicants WHERE applicant_id = :uid');
