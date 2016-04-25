@@ -49,5 +49,8 @@ angular.module('frontendApp')
       console.log(tutorID);
       $uibModalInstance.close();
     }
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 
   });

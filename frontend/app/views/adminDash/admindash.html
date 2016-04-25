@@ -2,16 +2,17 @@
 	<head>
 		<title>Administrator Dashboard</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="styles/admindash.css">
+<!--		<link rel="stylesheet" type="text/css" href="../../styles/admindash.css">-->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	</head>
-	<body>
+	<body ng-app="frontendApp">
+    <div class="container-fluid">
 		<nav class="navbar navbar-default navbar-static-top">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="navbar-header">
 		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
 		        <span class="sr-only">Toggle navigation</span>
@@ -21,17 +22,16 @@
 		      </button>
 		      <a class="navbar-brand">adminName</a>
 		    </div>
-
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a>Home<span class="sr-only">(current)</span></a></li>
 						<li><a ui-sref="adminDash-requests">Add/Drop Requests</a></li>
 						<li><a ui-sref="admindash-tutors">Tutors</a></li>
 						<li><a ui-sref="admindash-applications">Applications</a></li>
-					</ul>
+					</ul>  
 					<ul class="nav navbar-nav navbar-right">
 						<li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
-				</ul>
+				    </ul>
 				</div>
 			</div>
 		</nav>
@@ -39,6 +39,7 @@
   			<img src="../images/logo.png" alt="Maga" height="100" width="100">
   			<h1>Hello (adminName)!</h1>
 				<h3>Welcome to your administrator dashboard. Here you are able to manage all your tutors as necessary.</h3>
-		</div>
+    </div>
+    </div>
 	</body>
 </html>
