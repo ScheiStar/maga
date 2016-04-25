@@ -787,10 +787,10 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$applicant = $query->fetch(PDO::FETCH_OBJ);
 
 	// gets tutor
-	$query = $db->prepare('SELECT * FROM Tutors WHERE applicant_id = :uid');
-	$query->bindParam(':uid', $uid, PDO::PARAM_INT);
-	$query->execute();
-	$tutor = $query->fetch(PDO::FETCH_OBJ);
+	$query2 = $db->prepare('SELECT * FROM Tutors WHERE tutor_id = :uid');
+	$query2->bindParam(':uid', $uid, PDO::PARAM_INT);
+	$query2->execute();
+	$tutor = $query2->fetch(PDO::FETCH_OBJ);
 
 	//checks to see if a tutor or applicant already exists with that id
 	if($tutor || $applicant){
@@ -813,6 +813,8 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 	$query->bindParam(":applicant_password", $password, PDO::PARAM_STR);
 	$query->execute();
 
+
+
 	//inserts all courses
 	foreach($courses as $item) {
 
@@ -821,7 +823,7 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 		$grade = $item->grade;
 
 
-		$query = $db->prepare('INSERT into ApplicantClasses(class_name, class_gpa, class_number, Applicants_applicant_id) values(:class_name, :class_gpa, :class_number, :Applicants_applicant_id)');
+		$query = $db->prepare('INSERT into ApplicantClasses(class_type, class_grade, class_num, Applicants_applicant_id) values(:class_name, :class_gpa, :class_number, :Applicants_applicant_id)');
 		$query->bindParam(":class_name", $name, PDO::PARAM_STR);
 		$query->bindParam(":Applicants_applicant_id", $uid, PDO::PARAM_INT);
 		$query->bindParam(":class_gpa", $grade, PDO::PARAM_STR);
@@ -846,6 +848,7 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 		$day3 = $item->Wed;
 		$day4 = $item->Thurs;
 		$day5 = $item->Fri;
+
 
 		$query = $db->prepare('INSERT into ApplicantTimeslots(timeslot_time, Applicants_applicant_id, timeslot_day) values(:timeslot_time, :Applicants_applicant_id, :timeslot_day)');
 
@@ -896,7 +899,6 @@ $app->post('/applicationForm', function ($request, $response, $args)  {
 
 		}
 
-
 		$time_slot = $time_slot + 1;
 
 	}
@@ -924,6 +926,7 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
     return $new_response;
   }
 
+
   $query = $db->prepare("INSERT INTO TutorRequests
     (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type)
     VALUES(:uid, :classname, :classnum, :reqtype)");
@@ -940,14 +943,32 @@ $app->get('/getTutorRequests', function(ServerRequestInterface $request, Respons
 
   $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type
     FROM Tutors, TutorRequests
-    WHERE  Tutors.tutor_id = TutorRequests.tr_tutor_id;");
+    WHERE  Tutors.tutor_id = TutorRequests.tr_tutor_id");
   $query->execute();
 
   $temp = array();
   while($row = $query->fetch(PDO::FETCH_ASSOC)) {
     $temp[] = $row;
   }
+  echo json_encode($temp);
+});
 
+$app->get('/getTutorRequest/{id}', function($request, $response, $args) use($app) {
+  $db = $this->createDB;
+  $uid = $args['id'];
+  if(!isset($uid)){
+    echo "please provide a user ID";
+    return $response->withStatus(400);
+  }
+
+  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type FROM Tutors, TutorRequests WHERE  TutorRequests.tr_tutor_id = :uid AND TutorRequests.tr_tutor_id = Tutors.tutor_id");
+  $query->bindParam(':uid', $uid, PDO::PARAM_INT);
+  $query->execute();
+
+  $temp = array();
+  while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+    $temp[] = $row;
+  }
   echo json_encode($temp);
 
 });
@@ -1025,29 +1046,9 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 
 		}
 
-
-		//gets the timeslots
 		$query = $db->prepare('SELECT * from ApplicantTimeslots WHERE Applicants_applicant_id = :uid');
 		$query->bindParam(':uid', $uid, PDO::PARAM_INT);
 		$query->execute();
-
-
-		$query = $db->prepare('DELETE from Applicants WHERE applicant_id=:id');
-		$query->bindParam(':id', $id, PDO::PARAM_INT);
-		$query->execute();
-
-
-		//deletes the classes
-		$query2 = $db->prepare('DELETE FROM ApplicantClasses WHERE Applicants_applicant_id=:id');
-		$query2->bindParam(':id', $id, PDO::PARAM_INT);
-		$query2->execute();
-
-
-		//gets the timeslots
-		$query3 = $db->prepare('DELETE FROM ApplicantTimeslots WHERE Applicants_applicant_id=:id');
-		$query3->bindParam(':id', $id, PDO::PARAM_INT);
-		$query3->execute();
-
 
 
 		while($row = $query->fetch(PDO::FETCH_OBJ)){
@@ -1056,7 +1057,7 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 			$time = $row->timeslot_time;
 			$day = $row->timeslot_day;
 
-			$query3 = $db->prepare('INSERT into Timeslots(timeslot_time, Tutors_tutor_id, timeslot_day) values(:timeslot_time, :timeslot_day, :Tutors_tutor_id)');
+			$query3 = $db->prepare('INSERT into Timeslots(timeslot_time, Tutors_tutor_id, timeslot_day) values(:timeslot_time, :Tutors_tutor_id, :timeslot_day)');
 			$query3->bindParam(':Tutors_tutor_id', $uid, PDO::PARAM_INT);
 			$query3->bindParam(':timeslot_time', $time, PDO::PARAM_INT);
 			$query3->bindParam(':timeslot_day', $day, PDO::PARAM_INT);
@@ -1064,7 +1065,24 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 
 		}
 
+
+
 		//delete data from the Applicant tables
+		$query = $db->prepare('DELETE from Applicants WHERE applicant_id=:id');
+		$query->bindParam(':id', $uid, PDO::PARAM_INT);
+		$query->execute();
+
+
+		//deletes the classes
+		$query2 = $db->prepare('DELETE FROM ApplicantClasses WHERE Applicants_applicant_id=:id');
+		$query2->bindParam(':id', $uid, PDO::PARAM_INT);
+		$query2->execute();
+
+
+		//gets the timeslots
+		$query3 = $db->prepare('DELETE FROM ApplicantTimeslots WHERE Applicants_applicant_id=:id');
+		$query3->bindParam(':id', $uid, PDO::PARAM_INT);
+		$query3->execute();
 
 
 
@@ -1078,4 +1096,55 @@ $app->post('/updateApplicant/{id}', function($request, $response, $args){
 
 });
 
+$app->delete('/deleteTutor/{id}', function($request, $response, $args){
 
+
+		$db = $this->createDB;
+		$id = $args['id'];
+
+		if(!isset($id)){
+
+			$new_response = $response->withStatus(400);
+			echo "please provide a user id";
+			return $new_response;
+
+		}
+
+		// creates, prepares and executes sql query
+		$query = $db->prepare('SELECT * FROM Tutors WHERE tutor_id=:id');
+		$query->bindParam(':id', $id, PDO::PARAM_INT);
+		$query->execute();
+
+		//gets the user and applicant
+		$user = $query->fetch(PDO::FETCH_OBJ);
+
+		//if there is an applicant then respond with 200 else respond with 403
+		if($user){
+
+			$query = $db->prepare('DELETE FROM Tutors WHERE tutor_id=:id');
+			$query->bindParam(':id', $id, PDO::PARAM_INT);
+			$query->execute();
+
+
+			//deletes the classes
+			$query2 = $db->prepare('DELETE FROM TutorClasses WHERE Tutors_tutor_id=:id');
+			$query2->bindParam(':id', $id, PDO::PARAM_INT);
+			$query2->execute();
+
+
+			//deletes TimeSlots
+			$query3 = $db->prepare('DELETE FROM Timeslots WHERE Tutors_tutor_id=:id');
+			$query3->bindParam(':id', $id, PDO::PARAM_INT);
+			$query3->execute();
+
+
+		} else {
+
+			$new_response = $response->withStatus(204);
+			return $new_response;
+
+		}
+
+		return $response;
+
+});
