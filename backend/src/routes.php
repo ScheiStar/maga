@@ -597,13 +597,13 @@ $app->post('/updateTutorClasses/{id}', function($request, $response, $args){
 
         $tutorRequestInsertQuery->execute();
       } else {
-        echo 'Incorrect request type.'
+        echo('Incorrect request type.');
       }
     }
 
   } else {
     // This is the case that the Tutor with the specified id doesn't exist
-    echo "Tutor not found"
+    echo("Tutor not found");
   }
 
 });
