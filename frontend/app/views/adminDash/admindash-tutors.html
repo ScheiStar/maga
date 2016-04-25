@@ -30,33 +30,38 @@
             <li class="active" style="cursor: pointer;"><a ui-sref="admindash-tutors">Tutors</a></li>
             <li><a ui-sref="admindash-applications" style="cursor: pointer;">Applications</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
-        </ul>
+          <form class="form-inline pull-xs-right">
+            <button class="btn" type="submit" ng-click="signOut()">Sign Out</button>
+          </form>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
     <!-- style="background: url(../images/stars2.jpg);" -->
+    <form class="form-inline">
+      <input class="form-control" type="text" placeholder="Search" ng-model="searchList">
+    </form>
+    <br>
     <table class="table table-striped">
       <thead class="thead-inverse">
         <tr>
-          <th ng-click="order('applicantInfo.tutor_id')" style="cursor: pointer;">ID</th>
-          <th ng-click="order('applicantInfo.tutor_first_name')" style="cursor: pointer;">First Name</th>
-          <th ng-click="order('applicantInfo.tutor_last_name')" style="cursor: pointer;">Last Name</th>
-          <th ng-click="order('applicantInfo.tutor_email')" style="cursor: pointer;">Email</th>
-          <th ng-click="order('applicantInfo.tutor_major')" style="cursor: pointer;">Major</th>
+          <th ng-click="order('tutor_id')" style="cursor: pointer;">ID</th>
+          <th ng-click="order('tutor_first_name')" style="cursor: pointer;">First Name</th>
+          <th ng-click="order('tutor_last_name')" style="cursor: pointer;">Last Name</th>
+          <th ng-click="order('tutor_email')" style="cursor: pointer;">Email</th>
+          <th ng-click="order('tutor_major')" style="cursor: pointer;">Major</th>
           <th>View</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="x in ugh track by $index">
-          <td ng-bind="x.applicantInfo.tutor_id"></td>
-          <td ng-bind="x.applicantInfo.tutor_first_name"></td>
-          <td ng-bind="x.applicantInfo.tutor_last_name"></td>
-          <td ng-bind="x.applicantInfo.tutor_email"></td>
-          <td ng-bind="x.applicantInfo.tutor_major"></td>
+        <tr ng-repeat="x in tutors | filter:searchList">
+           <!-- | filter:searchList -->
+          <td ng-bind="x.tutor_id"></td>
+          <td ng-bind="x.tutor_first_name"></td>
+          <td ng-bind="x.tutor_last_name"></td>
+          <td ng-bind="x.tutor_email"></td>
+          <td ng-bind="x.tutor_major"></td>
           <td>
-              <button type="button" class="btn btn-info-outline btn-sm" ng-click="openTutorModal('lg', x.applicantInfo.tutor_id)">View</button>
+              <button type="button" class="btn btn-info-outline btn-sm" ng-click="openTutorModal('lg', x.tutor_id)">View</button>
           </td>
         </tr>
       </tbody>

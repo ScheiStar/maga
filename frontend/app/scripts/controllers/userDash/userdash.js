@@ -15,8 +15,9 @@ angular.module('frontendApp')
     console.log('authed?');
     console.log(userFactory.isAuthed());
     //if(!userFactory.isAuthed()) $state.go('login');
+    var currentUserID = userFactory.parseToken(userFactory.getToken()).userID;
 
-    userFactory.getThisTutor('10065493').then(function(data){
+    userFactory.getThisTutor(currentUserID).then(function(data){
       console.log('initial');
       $scope.ugh = data.data;
       $scope.calInfo = data.data.calArray;
@@ -32,7 +33,7 @@ angular.module('frontendApp')
       }
     });
 
-    userFactory.getThisTutorRequests('10065493').then(function(data){
+    userFactory.getThisTutorRequests(currentUserID).then(function(data){
       $scope.pendingCourses = data.data;
       console.log('oh yeah');
       console.log($scope.pendingCourses);
@@ -46,7 +47,7 @@ angular.module('frontendApp')
     $scope.submitDrop = function(classInfo) {
       console.log('dropping shit');
       var request_data = {
-        'userID': '10065493',
+        'userID': currentUserID,
         'className': JSON.parse(userFactory.getClassInfo()).class_type,
         'classNum': JSON.parse(userFactory.getClassInfo()).class_num,
         'requestType': 'Drop'

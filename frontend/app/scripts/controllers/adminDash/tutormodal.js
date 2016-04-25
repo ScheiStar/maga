@@ -8,12 +8,13 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('TutormodalCtrl', function (contactAdminFactory, $scope, $uibModalInstance) {
+  .controller('TutormodalCtrl', function ($filter, contactAdminFactory, $scope, $uibModalInstance) {
 
     $scope.tits = JSON.parse(contactAdminFactory.getTutorData());
 
     $scope.ugh = new Array();
     $scope.real = new Array();
+    $scope.searchList = '';
 
     var shitData = $scope.tits.calArray;
     console.log('LOOK');
@@ -28,6 +29,12 @@ angular.module('frontendApp')
       start++;
       end++;
     }
+
+    $scope.deleteTutor = function(tutorID) {
+      contactAdminFactory.terminateTutor(tutorID);
+      $uibModalInstance.close();
+    }
+
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };

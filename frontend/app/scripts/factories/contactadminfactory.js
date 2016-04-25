@@ -209,7 +209,22 @@ angular.module('frontendApp')
        }, function errorCallback(response) {
          console.log("Did not submit application.");
           return;
-   });
+        });
+     },
+
+     terminateTutor: function(tutorID) {
+       $http({
+         method: 'DELETE',
+         url: 'http://54.86.70.62/deleteTutor/' + tutorID
+       }).then(function(data){
+         console.log("Successfully deleted tutor.");
+         $state.go($state.current, {}, {reload: true});
+         alert('Bye bitch')
+         return true;
+       }, function errorCallback(response) {
+         console.log("Did not delete tutor.");
+          return false;
+        });
      }
 
 

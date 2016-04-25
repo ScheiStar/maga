@@ -12,10 +12,13 @@ angular.module('frontendApp')
     console.log('come on');
 
     $scope.ugh = new Array();
+    $scope.tutors = new Array();
     var user = {};
     console.log('before');
     contactAdminFactory.getTutors().then(function(data){
       $scope.ugh = data.data;
+      for(var i = 0; i<data.data.length; i++)
+        $scope.tutors.push(data.data[i].applicantInfo);
     });
 
 
@@ -62,14 +65,4 @@ angular.module('frontendApp')
     $scope.signOut = function() {
       userFactory.signOut();
     };
-
-
-
-
-
-
-
-
-
-
 });

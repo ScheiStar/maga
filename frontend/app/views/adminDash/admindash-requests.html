@@ -29,13 +29,16 @@
             <li style="cursor: pointer;"><a ui-sref="admindash-tutors">Tutors</a></li>
             <li style="cursor: pointer;"><a ui-sref="admindash-applications">Applications</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <!-- <li><input type="text" class="form-control" ng-model="searchUsers" placeholder="Search"></li> -->
-            <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
-        </ul>
+          <form class="form-inline pull-xs-right">
+            <button class="btn" type="submit" ng-click="signOut()">Sign Out</button>
+          </form>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <form class="form-inline">
+      <input class="form-control" type="text" placeholder="Search" ng-model="searchList">
+    </form>
+    <br>
 
     <table class="table table-striped">
       <thead class="thead-inverse">
@@ -50,7 +53,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="x in tutorRequests track by $index">
+        <tr ng-repeat="x in tutorRequests | filter:searchList">
           <td ng-bind="x.tutor_id"></td>
           <td ng-bind="x.tutor_first_name"></td>
           <td ng-bind="x.tutor_last_name"></td>
