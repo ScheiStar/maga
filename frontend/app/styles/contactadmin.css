@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 h3{
 	font-family: 'Lato';
@@ -8,6 +9,7 @@ h4{
 }
 
 .headcol{
+	font-family: 'Roboto';
 	color: white;
 	border-radius: 10px;
 	background: url(../images/poly.jpg) no-repeat center center;

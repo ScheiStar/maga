@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
 .jumbotron {
 	background: url(../images/poly.jpg) no-repeat center center;
     background-size: cover;
@@ -13,10 +14,17 @@ p{
 	padding-left: 6%;
 }
 h1{
+	font-family: 'Lato';
 	text-align: center;
 }
-
-td{
-	text-align: left;
+h3{
+	font-family: 'Lato';
+}
+h4{
+	font-family: 'Lato';
 }
 
+table{	
+	font-family: 'Lato';
+	text-align: left;
+}
