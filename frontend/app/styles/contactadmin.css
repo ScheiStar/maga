@@ -1,5 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
+h3{
+	font-family: 'Lato';
+}
 h4{
 	font-family: 'Lato';
+}
+
+.headcol{
+	color: white;
+	border-radius: 10px;
+	background: url(../images/poly.jpg) no-repeat center center;
 }

@@ -1,16 +1,11 @@
 .jumbotron {
-	background: url(../images/logo.png) no-repeat center center;
+	background: url(../images/poly.jpg) no-repeat center center;
     background-size: cover;
 	height: 10%;
 }
 #show-classes{
 	padding: 5px;
 	text-align: center;
-}
-
-@font-face{
-	font-family: poop;
-	@import url(https://fonts.googleapis.com/css?family=Lato);
 }
 
 p{
