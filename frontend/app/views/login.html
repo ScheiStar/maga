@@ -6,26 +6,35 @@
 		<link rel="stylesheet" type="text/css" href="styles/login.css">
 	</head>
 	<body>
-
-	<div class="offsetLogo">
-		<div class="text-center">
-			<img src="../images/logo.png" alt="Maga" height="200" width="200">
-			<h1>Maga</h1>
-			<form id="asd" class="form-signin" >
-		        <label for="inputEmail" class="sr-only">Email address</label>
-		        <input type="text" id="inputEmail" ng-model="user.userID"  class="form-control" placeholder="User ID" required="" autofocus="">
-		        <label for="inputPassword" class="sr-only">Password</label>
-		        <input type="password" id="inputPassword" ng-model="user.password" class="form-control" placeholder="Password" required="">
-		        <div class="checkbox">
-		          <label class="pull-left">
-		            <input type="checkbox" ng-model="rememberMe" value="remember-me"> Keep Me Logged In
-		          </label><br>
-		        </div>
-		        <button class="btn btn-md btn-info btn-block" ng-click="signIn(user)" type="submit">Sign in</button><br>
-						<button class="btn btn-md btn-primary pull-right" ng-click="recoverPass()" type="submit">Forgot Password?</button>
-						<button class="btn btn-md btn-primary pull-left" ui-sref="form.profile" type="submit" formnovalidate>Apply Here</button>
-		  </form>
+	<div class="padds">
+	<div class="logincontainer">
+		<div class="offsetLogo">
+			<div class="text-center">
+				<img src="../images/logo.png" alt="Maga" height="200" width="200">
+				<h1>Maga</h1>
+				<form id="asd" class="form-signin" >
+			        <label for="inputEmail" class="sr-only">Email address</label>
+			        <input type="text" id="inputEmail" ng-model="user.userID"  class="form-control" placeholder="User ID" required="" autofocus="">
+			        <br>
+			        <label for="inputPassword" class="sr-only">Password</label>
+			        <input type="password" id="inputPassword" ng-model="user.password" class="form-control" placeholder="Password" required="">
+			        <div class="checkbox">
+			          <label class="pull-left" style="color:white;">
+			            <input type="checkbox" ng-model="rememberMe" value="remember-me"> Keep Me Logged In
+			          </label><br>
+			        </div>
+			        <button class="btn btn-md btn-info btn-block" ng-click="signIn(user)" type="submit">Sign in</button><br>
+					<button class="btn btn-md btn-primary pull-right" ng-click="recoverPass()" type="submit">Forgot Password?</button>
+					<button class="btn btn-md btn-primary pull-left" ui-sref="form.profile" type="submit" formnovalidate>Apply Here</button>
+			  </form>
+			</div>
 		</div>
+		<br>
+		<br>
+		<br>
 	</div>
+	</div>
+	<br>
+
 	</body>
 </html>
