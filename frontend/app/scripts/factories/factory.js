@@ -20,7 +20,7 @@ angular.module('frontendApp')
             //console.log(userToken);
             var remember = auth;
             //$state.go("adminDash");
-            return;
+            return data;
         }, function errorCallback(response) {
           console.log("Failure!");
               console.log(response);
@@ -83,6 +83,65 @@ angular.module('frontendApp')
         else {
           return;
         }
-      }
+      },
+
+      tutorRequest: function(request_json) {
+        return $http({
+          method: 'POST',
+          url: 'http://54.86.70.62/requestClass',
+          data: request_json
+        }).then(function(data){
+            alert('Successfully submitted!')
+            $state.go('userDashClass');
+            return;
+        }, function errorCallback(response) {
+          console.log("Failure!");
+              console.log(response);
+              alert("Bad Tutor Request");
+    });
+  },
+
+        storeClassInfo: function(classInfo) {
+          localStorage.setItem("classInfo", JSON.stringify(classInfo));
+          return;
+        },
+
+        getClassInfo: function() {
+          return localStorage.getItem("classInfo");
+        },
+
+        getThisTutor: function(tutorID) {
+          return $http({
+            method: 'GET',
+            url: 'http://54.86.70.62/getTutor/'+tutorID
+          }).then(function(data){
+            return data;
+          }, function errorCallback(response) {
+             console.log("We fucked up on the application retrieval.");
+             return false;
+        });
+
+        },
+
+        getThisTutorRequests: function(tutorID) {
+          return $http({
+            method: 'GET',
+            url: 'http://54.86.70.62/getTutorRequest/'+tutorID
+          }).then(function(data){
+            return data;
+          }, function errorCallback(response) {
+             console.log("We fucked up on the application retrieval.");
+             return false;
+        });
+        },
+
+        storeCourseInfo: function(courseInfo) {
+          localStorage.setItem("courseInfo", JSON.stringify(courseInfo));
+          return;
+        },
+
+        getCourseInfo: function() {
+          return localStorage.getItem("courseInfo");
+        }
 }
 });

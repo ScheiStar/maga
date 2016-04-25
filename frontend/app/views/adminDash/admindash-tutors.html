@@ -12,7 +12,7 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -39,22 +39,24 @@
     <table class="table table-striped">
       <thead class="thead-inverse">
         <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Major</th>
-          <th>GPA</th>
+          <th ng-click="order('applicantInfo.tutor_id')">ID</th>
+          <th ng-click="order('applicantInfo.tutor_first_name')">First Name</th>
+          <th ng-click="order('applicantInfo.tutor_last_name')">Last Name</th>
+          <th ng-click="order('applicantInfo.tutor_email')">Email</th>
+          <th ng-click="order('applicantInfo.tutor_major')">Major</th>
+          <th>View</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="x in ugh track by $index">
-          <td ng-bind="x.userID"></td>
-          <td ng-bind="x.firstName"></td>
-          <td ng-bind="x.lastName"></td>
-          <td ng-bind="x.email"></td>
-          <td ng-bind="x.major"></td>
-          <td ng-bind="x.gpa"></td>
+          <td ng-bind="x.applicantInfo.tutor_id"></td>
+          <td ng-bind="x.applicantInfo.tutor_first_name"></td>
+          <td ng-bind="x.applicantInfo.tutor_last_name"></td>
+          <td ng-bind="x.applicantInfo.tutor_email"></td>
+          <td ng-bind="x.applicantInfo.tutor_major"></td>
+          <td>
+              <button type="button" class="btn btn-info-outline btn-sm" ng-click="openTutorModal('lg', x.applicantInfo.tutor_id)">View</button>
+          </td>
         </tr>
       </tbody>
     </table>

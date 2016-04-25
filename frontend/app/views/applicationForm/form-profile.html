@@ -1,51 +1,59 @@
-
 <div class="col-sm-7">
     <div class="form-group row">
-        <label for="fName" class="col-sm-3 form-control-label">First Name</label>
+        <label class="col-sm-3 form-control-label">First Name</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="fName" placeholder="First Name" ng-model="formData.applicant_first_name" required>
+            <input type="text" name="applicant_first_name" class="form-control" placeholder="First Name" ng-model="formData.applicant_first_name" required>
+            <p ng-show="tutorForm.applicant_first_name.$invalid && !tutorForm.applicant_first_name.$pristine" class="help-block">Your first name is required.</p>   
         </div>
     </div>
     <div class="form-group row">
-        <label for="lName" class="col-sm-3 form-control-label">Last Name</label>
+        <label class="col-sm-3 form-control-label">Last Name</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="lName" placeholder="Last Name" ng-model="formData.applicant_last_name" required>
+            <input type="text" name="applicant_last_name" class="form-control" placeholder="Last Name" ng-model="formData.applicant_last_name" required>
+            <p ng-show="tutorForm.applicant_last_name.$invalid && !tutorForm.applicant_last_name.$pristine" class="help-block">Your last name is required. </p>
         </div>
     </div>
     <div class="form-group row">
-        <label for="pass" class="col-sm-3 form-control-label">Password</label>
+        <label for="applicant_hash" class="col-sm-3 form-control-label">Password</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="pass" placeholder="Password" ng-model="formData.applicant_hash" required>
+            <input type="text" name="applicant_hash" class="form-control" placeholder="Password" ng-model="formData.applicant_hash" required>
+            <p ng-show="tutorForm.applicant_hash.$invalid && !tutorForm.applicant_hash.$pristine" class="help-block">Your password is required.</p>
         </div>
     </div>
     <div class="form-group row">
         <label for="confPass" class="col-sm-3 form-control-label">Confirm Password</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="confPass" placeholder="Confirm Password" ng-model="formData.confPass" required>
+            <input type="text" name="confHash" class="form-control" placeholder="Confirm Password" ng-model="formData.confHash" required>
+            <p ng-show="tutorForm.confHash.$invalid && !tutorForm.confHash.$pristine" class="help-block">Please confirm your password.</p>
         </div>
     </div>
     <div class="form-group row">
         <label for="id" class="col-sm-3 form-control-label">SMU ID</label>
         <div class="col-sm-9">
-            <input type="number" class="form-control" id="id" placeholder="SMU ID" ng-model="formData.applicant_id" required>
+            <input type="number" name="applicant_id" class="form-control" id="id" placeholder="SMU ID" ng-model="formData.applicant_id" ng-minlength="8" ng-maxlength="8" required>
+            <p ng-show="tutorForm.applicant_id.$error.minlength" class="help-block">ID must be 8 chracters</p>
+            <p ng-show="tutorForm.applicant_id.$error.maxlength" class="help-block">ID must be 8 chracters</p>
         </div>
     </div>
     <div class="form-group row">
         <label for="email" class="col-sm-3 form-control-label">Email</label>
         <div class="col-sm-9">
-            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="formData.applicant_email" required>
+            <input type="email" name="applicant_email" class="form-control" id="email" placeholder="Email" ng-model="formData.applicant_email" required>
+            <p ng-show="tutorForm.applicant_email.$invalid && !tutorForm.applicant_email.$pristine" class="help-block">Email is required.</p>
         </div>
     </div>
     <div class="form-group row">
         <label for="major" class="col-sm-3 form-control-label">Major</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="major" placeholder="Major" ng-model="formData.applicant_major" required>
+            <input type="text" name="applicant_major" class="form-control" placeholder="Major" ng-model="formData.applicant_major" required>
+            <p ng-show="tutorForm.applicant_major.$invalid && !tutorForm.applicant_major.$pristine" class="help-block">Major is required.</p>
         </div>
     </div>
     <div class="form-group row">
         <label for="gpa" class="col-sm-3 form-control-label">GPA</label>
         <div class="col-sm-9">
-            <input type="number" class="form-control" id="gpa" placeholder="GPA" ng-model="formData.applicant_gpa" required>
+            <input type="number" name="applicant_gpa" class="form-control" id="gpa" placeholder="GPA" ng-model="formData.applicant_gpa" required>
+            <p ng-show="tutorForm.applicant_gpa.$invalid && !tutorForm.applicant_gpa.$pristine" class="help-block">GPA is required.</p>
         </div>
     </div>
     <fieldset class="form-group">
@@ -57,8 +65,11 @@
 
 <div class="form-group row">
 <div class="col-xs-6 col-xs-offset-3">
-    <a ui-sref="form.interests" class="btn btn-block btn-info">
+    <button type="button" class="btn btn-info" ng-click="goFormTwo()"></button>
+<!--    ng-disabled="tutorForm.$invalid"    -->
+<!--        use an ng-click that checks each field for completeness and then dont -->
     Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
 </div>
 </div>
+<!--            <h1>Is valid: {{tutorForm.$valid}}</h1>-->

@@ -27,10 +27,6 @@ angular.module('frontendApp').controller('ContactadminCtrl', function ($state, c
 
     }
     else alert('Please enter an actual message.');
-
-    //TODO: Log values in database and do something with them
-
-    //TODO: Get request for python script
   }
 
 

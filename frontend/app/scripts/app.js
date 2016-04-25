@@ -22,7 +22,16 @@ angular
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
     $stateProvider
-
+      .state('/dropClassModal', {
+        templateUrl: 'views/adminDash/dropclassmodal.html',
+        controller: 'DropclassmodalCtrl',
+        controllerAs: 'dropClassModal'
+      })
+      .state('/tutorModal', {
+        templateUrl: 'views/adminDash/tutormodal.html',
+        controller: 'TutormodalCtrl',
+        controllerAs: 'tutorModal'
+      })
       .state('state1', {
         url: '/',
         templateUrl: 'views/main.html',
@@ -45,7 +54,8 @@ angular
       .state('form', {
           url: '/form',
           templateUrl: 'views/applicationForm/form.html',
-          controller: 'formController'
+          controller: 'formController',
+          abstract: true
       })
       // nested states
       // each of these sections will have their own view
@@ -129,5 +139,10 @@ angular
         templateUrl: 'views/testtablw.html',
         controller: 'TesttablwCtrl',
         controllerAs: 'testTablw'
+      })
+      .state('addClassModal', {
+        templateUrl: 'views/userDash/addclassmodal.html',
+        controller: 'AddclassmodalCtrl',
+        controllerAs: 'addClassModal'
       })
     });

@@ -3,16 +3,12 @@
 }
 
 .norm {
-  color: white;
+  color: pink;
 }
 
 .yeah {
-  color: blue;
-  /*background-color: #0099FF;*/
-}
-
-.no {
   color: #0099FF;
+  background-color: #0099FF;
 }
 
 /*
