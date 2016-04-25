@@ -145,4 +145,7 @@ angular
         controller: 'AddclassmodalCtrl',
         controllerAs: 'addClassModal'
       })
+      .state('TEST', {
+        templateUrl: 'views/testtwo.html'
+      })
     });

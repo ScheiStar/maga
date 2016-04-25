@@ -6,3 +6,92 @@ h4 {
 	text-align: center;
 }
 
+.container {
+    position: relative;
+}
+
+.norm {
+  color: white;
+}
+
+.yeah {
+  color: blue;
+  /*background-color: #0099FF;*/
+}
+
+.likeNone {
+  color: #A9E2F3;
+  background-color: #A9E2F3;
+}
+
+.kindaSome {
+  color: #58D3F7;
+  background-color: #58D3F7;
+  border-radius: #58D3F7;
+}
+
+
+.key {
+  text-align: center;
+
+}
+.keyOne {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  background-color: #A9E2F3;
+}
+
+.keyTwo {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  background-color: #58D3F7;
+}
+
+.keyThree {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  background-color: #58ACFA;
+}
+
+.keyFour {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  background-color: #2E9AFE;
+}
+
+.keyFive {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  background-color: #0040FF;
+}
+
+.goodAmount  {
+  color: #58ACFA;
+  background-color: #58ACFA;
+}
+
+.woahAmount {
+  color: #2E9AFE;
+  background-color: #2E9AFE;
+}
+
+.wowThatsAlot {
+  color: #0040FF;
+  background-color: #0040FF;
+}
+
+.no {
+  color: #0099FF;
+}
+.btn-success {
+    font-size: 20rem;
+
+}
+table {
+    background-color: white;
+}

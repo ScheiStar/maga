@@ -13,11 +13,13 @@ angular.module('frontendApp')
 
     $scope.addClass = function(classInfo) {
       var request_data = {
-        'userID': '11111111',
+        'userID': '10065493',
         'className': classInfo.myClassType,
         'classNum': classInfo.myText,
         'requestType': 'Add'
       };
+      console.log('BEFORE REQUEST');
+      console.log(request_data);
       userFactory.tutorRequest(request_data);
       $state.go("userDashClass");
       $uibModalInstance.dismiss('cancel');

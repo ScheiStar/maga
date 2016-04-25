@@ -16,6 +16,8 @@ angular.module('frontendApp')
     $scope.real = new Array();
 
     var shitData = $scope.tits.calArray;
+    console.log('LOOK');
+    console.log($scope.tits)
 
     $scope.ugh = shitData;
 

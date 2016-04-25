@@ -85,14 +85,16 @@ angular.module('frontendApp')
         }
       },
 
-      tutorRequest: function(request_json) {
+      tutorRequest: function(request_data) {
+        console.log('ISNIDE');
+        console.log(request_data);
         return $http({
           method: 'POST',
           url: 'http://54.86.70.62/requestClass',
-          data: request_json
+          data: request_data
         }).then(function(data){
             alert('Successfully submitted!')
-            $state.go('userDashClass');
+            $state.go($state.current, {}, {reload: true});
             return;
         }, function errorCallback(response) {
           console.log("Failure!");
