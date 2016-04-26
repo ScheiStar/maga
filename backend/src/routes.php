@@ -549,7 +549,7 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 $app->post('/updateTutorClasses', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
 	$db = $this->createDB;
 
-  // Decode the json 
+  // Decode the json
   $json = $request->getBody();
   $data = json_decode($json);
 
@@ -568,7 +568,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
   // bc string
   $className = "'" . $className . "'";
   $classNum = "'" . $classNum . "'";
-    
+
   // Find the tutor
   $checkTutorQuery = $db->prepare('SELECT * FROM Tutors WHERE tutor_id=:id');
   $checkTutorQuery->bindParam(':id', $userID, PDO::PARAM_INT);
@@ -577,8 +577,8 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
   $tutor = $checkTutorQuery->fetch(PDO::FETCH_OBJ);
 
   if ($tutor){
-    // First check TutorRequests for the state of each class that matches the 
-    // Tutor id    
+    // First check TutorRequests for the state of each class that matches the
+    // Tutor id
     $tutorRequests = $db->prepare('SELECT * FROM TutorRequests WHERE tr_classtype=:rType AND tr_classnum=:rNum Tutors_tutor_id=:id');
     $tutorRequests->bindParam(':id', $userID, PDO::PARAM_INT);
     $tutorRequests->bindParam(':rType', $className, PDO::PARAM_STR);
@@ -587,7 +587,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
 
     // Iterate through the requests and check what type they are
     while($request = $tutorRequests->fetch(PDO::FETCH_OBJ)) {
-      // If the type is ADD, then we have to update TutorClass to be 
+      // If the type is ADD, then we have to update TutorClass to be
       if ($requestChoice == "Approve") {
         if ($requestType == "Add" && $requestType == $request->tr_request_type) {
           // Insert into TutorClasses
@@ -599,7 +599,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
 
           $tutorInsertQuery->execute();
 
-          
+
           // Delete from requests table
           $tutorRequestRemoveQuery = $db->prepare('DELETE FROM TutorRequests WHERE tr_id=:rId');
 
@@ -623,7 +623,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
 
           $tutorRequestInsertQuery->execute();
         }
-        
+
       } elseif ($requestChoice == "Deny") {
 
         // Delete from requests table
@@ -950,35 +950,37 @@ $app->post('/requestClass',function (ServerRequestInterface $request, ResponseIn
   $classname = $data->className;
   $classnum = $data->classNum;
   $reqtype = $data->requestType;
+  $grade = $data->grade;
 
-  echo $uid;
-  echo $classname;
-  echo $classnum;
-  echo $reqtype;
-  echo '\n';
+  // echo $uid;
+  // echo $classname;
+  // echo $classnum;
+  // echo $reqtype;
+  // echo '\n';
 
-  if(!isset($uid) || !isset($classname) || !isset($classnum) || !isset($reqtype)){
+  if(!isset($uid) || !isset($classname) || !isset($classnum) || !isset($reqtype) || !isset($grade)){
     $new_response = $response->withStatus(400);
-    echo("Please send a valid JSON");
+    // echo("Please send a valid JSON");
     return $new_response;
   }
 
 
   $query = $db->prepare("INSERT INTO TutorRequests
-    (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type)
+    (tr_tutor_id, tr_classtype, tr_classnum, tr_request_type, tr_grade)
     VALUES(:uid, :classname, :classnum, :reqtype)");
   $query->bindParam(":uid", $uid, PDO::PARAM_INT);
   $query->bindParam(":classname", $classname, PDO::PARAM_STR);
   $query->bindParam(":classnum", $classnum, PDO::PARAM_STR);
   $query->bindParam(":reqtype", $reqtype, PDO::PARAM_STR);
+  $query->bindParam(":grade", $grade, PDO::PARAM_STR);
   $query->execute();
-  print_r ($query->errorInfo());
+  // print_r ($query->errorInfo());
 });
 
 $app->get('/getTutorRequests', function(ServerRequestInterface $request, ResponseInterface $response) use($app) {
   $db = $this->createDB;
 
-  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type
+  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type, TutorRequests.tr_grade
     FROM Tutors, TutorRequests
     WHERE  Tutors.tutor_id = TutorRequests.tr_tutor_id");
   $query->execute();
@@ -998,7 +1000,7 @@ $app->get('/getTutorRequest/{id}', function($request, $response, $args) use($app
     return $response->withStatus(400);
   }
 
-  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type FROM Tutors, TutorRequests WHERE  TutorRequests.tr_tutor_id = :uid AND TutorRequests.tr_tutor_id = Tutors.tutor_id");
+  $query = $db->prepare("SELECT Tutors.tutor_first_name, Tutors.tutor_last_name, Tutors.tutor_id, TutorRequests.tr_classtype, TutorRequests.tr_classnum, TutorRequests.tr_request_type, TutorRequests.tr_grade FROM Tutors, TutorRequests WHERE  TutorRequests.tr_tutor_id = :uid AND TutorRequests.tr_tutor_id = Tutors.tutor_id");
   $query->bindParam(':uid', $uid, PDO::PARAM_INT);
   $query->execute();
 
