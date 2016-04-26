@@ -588,7 +588,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
     while($request = $tutorRequests->fetch(PDO::FETCH_OBJ)) {
       // If the type is ADD, then we have to update TutorClass to be 
       if ($requestChoice == "Approve") {
-        $tutorInsertQuery = $db->prepare('INSERT INTO TutorClasses (class_type, class_num, Tutors_tutor_id) VALUES (:rType, :rNum, :rId)');
+        $tutorInsertQuery = $db->prepare('INSERT INTO TutorClasses (tr_tutor_id, class_type, class_num) VALUES (:rId, :rType, :rNum)');
 
         $tutorInsertQuery->bindParam(':rType', $request->tr_classtype, PDO::PARAM_STR);
         $tutorInsertQuery->bindParam(':rNum', $request->tr_classnum, PDO::PARAM_STR);
