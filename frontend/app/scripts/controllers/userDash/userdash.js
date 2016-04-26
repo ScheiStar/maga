@@ -50,10 +50,12 @@ angular.module('frontendApp')
 
     $scope.submitDrop = function(classInfo) {
       console.log('dropping shit');
+      console.log(JSON.parse(userFactory.getClassInfo()));
       var request_data = {
         'userID': currentUserID,
         'className': JSON.parse(userFactory.getClassInfo()).class_type,
         'classNum': JSON.parse(userFactory.getClassInfo()).class_num,
+        'grade': JSON.parse(userFactory.getClassInfo()).class_grade,
         'requestType': 'Drop'
       }
       userFactory.tutorRequest(request_data);

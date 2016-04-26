@@ -198,7 +198,7 @@ angular.module('frontendApp')
        }).then(function(data){
          console.log("Successfully adjusted request.");
          alert('Course adjusted.')
-         $state.go('login');
+         $state.go($state.current, {}, {reload: true});
          return true;
        }, function errorCallback(response) {
          console.log("Did not submit application.");

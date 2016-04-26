@@ -48,6 +48,7 @@
           <th ng-click="order('tutor_last_name')">Last Name</th>
           <th ng-click="order('tr_classtype')">Class Name</th>
           <th ng-click="order('tr_classnum')">Class Number</th>
+          <th ng-click="order('tr_grade')">Class Number</th>
           <th ng-click="order('tr_request_type')">Type</th>
           <th>Action</th>
         </tr>
@@ -59,10 +60,11 @@
           <td ng-bind="x.tutor_last_name"></td>
           <td ng-bind="x.tr_classtype"></td>
           <td ng-bind="x.tr_classnum"></td>
+          <td ng-bind="x.tr_grade"></td>
           <td ng-bind="x.tr_request_type"></td>
           <td>
-            <button type="button" class="btn btn-info-outline btn-sm" ng-click="adjustTutorRequest(x)">Approve</button>
-            <button type="button" class="btn btn-danger-outline btn-sm" ngclick="denyTutorRequest(x)">Deny</button>
+            <button type="button" class="btn btn-info-outline btn-sm" ng-click="acceptTutorRequest(x)">Approve</button>
+            <button type="button" class="btn btn-danger-outline btn-sm" ng-click="denyTutorRequest(x)">Deny</button>
           </td>
         </tr>
       </tbody>

@@ -75,6 +75,7 @@
 			    			<tr>
 			    				<th>Class Type</th>
 			    				<th>Class Number</th>
+									<th>Grade</th>
 			    				<th>Request Type</th>
 			    			</tr>
 			    		</thead>
@@ -82,6 +83,7 @@
 			    			<tr ng-repeat="x in pendingCourses">
 			    				<td ng-bind="x.tr_classtype"></td>
 									<td ng-bind="x.tr_classnum"></td>
+									<td ng-bind="x.tr_grade"></td>
 									<td ng-bind="x.tr_request_type"></td>
 			    			</tr>
 			    		</tbody>

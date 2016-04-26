@@ -14,6 +14,7 @@ angular.module('frontendApp')
         'userID': userFactory.parseToken(userFactory.getToken()).userID,
         'className': classInfo.myClassType,
         'classNum': classInfo.myText,
+        'grade': classInfo.myGrade,
         'requestType': 'Add'
       };
 

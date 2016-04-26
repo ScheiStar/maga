@@ -54,8 +54,10 @@ angular.module('frontendApp')
 
     var orderBy = $filter('orderBy');
     $scope.order = function(predicate) {
+      console.log('ORDER');
+      console.log(predicate);
       $scope.predicate = predicate;
-      $scope.ugh = orderBy($scope.ugh, predicate);
+      $scope.tutors = orderBy($scope.tutors, predicate);
     };
 
     $scope.signOut = function() {
