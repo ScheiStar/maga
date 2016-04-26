@@ -22,6 +22,11 @@ angular
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
     $stateProvider
+      .state('/terminateTutorModal', {
+        templateUrl: 'views/adminDash/terminatetutormodal.html',
+        controller: 'TerminatetutormodalCtrl',
+        controllerAs: 'terminateTutorModal'
+      })
       .state('/tutorQuitModal', {
         templateUrl: 'views/userDash/tutorquitmodal.html',
         controller: 'TutorquitmodalCtrl',

@@ -78,6 +78,7 @@ angular.module('frontendApp')
         else if (title == 'ACCT') return 'Accounting Tutors';
         else if (title == 'HIST') return 'History Tutors';
         else if (title == 'BIOL') return 'Biology Tutors';
+        else if (title == 'MATH') return 'Mathematics Tutors';
         else return;
       }
 

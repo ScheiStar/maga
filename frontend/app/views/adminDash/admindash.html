@@ -45,11 +45,13 @@
       <button  id="single-button" ng-bind="getTitle(currentTitle)" type="button" class="btn btn-info-outline" uib-dropdown-toggle ng-disabled="disabled">
       </button>
       <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-				<li role="menuitem"><a ng-click="changeCal('ALL')">ALL</a></li>
+        <li role="menuitem"><a ng-click="changeCal('ALL')">ALL</a></li>
+        <li class="divider"></li>
         <li role="menuitem"><a ng-click="changeCal('ACCT')">ACCT</a></li>
+        <li role="menuitem"><a ng-click="changeCal('BIOL')">BIOL</a></li>
         <li role="menuitem"><a ng-click="changeCal('CSE')">CSE</a></li>
         <li role="menuitem"><a ng-click="changeCal('HIST')">HIST</a></li>
-        <li role="menuitem"><a ng-click="changeCal('BIOL')">BIOL</a></li>
+        <li role="menuitem"><a ng-click="changeCal('MATH')">MATH</a></li>
       </ul>
     </div>
 		<table class="table table-bordered">

@@ -189,7 +189,6 @@ angular.module('frontendApp')
       }).then(function(data){
         console.log("Successfully deleted application.");
         $state.go($state.current, {}, {reload: true});
-        alert('Bye bitch')
         return true;
       }, function errorCallback(response) {
         console.log("Did not submit application.");
@@ -221,7 +220,6 @@ angular.module('frontendApp')
        }).then(function(data){
          console.log("Successfully deleted tutor.");
          $state.go($state.current, {}, {reload: true});
-         alert('Bye bitch')
          return true;
        }, function errorCallback(response) {
          console.log("Did not delete tutor.");

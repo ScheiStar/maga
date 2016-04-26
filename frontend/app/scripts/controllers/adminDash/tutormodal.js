@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('TutormodalCtrl', function ($filter, contactAdminFactory, $scope, $uibModalInstance) {
+  .controller('TutormodalCtrl', function ($filter, contactAdminFactory, $scope, $uibModalInstance, $uibModal) {
 
     $scope.tits = JSON.parse(contactAdminFactory.getTutorData());
 
@@ -31,12 +31,25 @@ angular.module('frontendApp')
     }
 
     $scope.deleteTutor = function(tutorID) {
-      console.log('YEA');
-      console.log(tutorID);
-      contactAdminFactory.terminateTutor(tutorID);
-      $uibModalInstance.close();
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'views/adminDash/terminatetutormodal.html',
+        controller: 'TerminatetutormodalCtrl',
+        size: 'sm',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+      modalInstance.result.then(function () {
+          console.log("UIBModalInstance Success");
+          contactAdminFactory.terminateTutor(tutorID);
+          $uibModalInstance.close();
+      }, function () {
+          console.log("UIBModalInstance Dismiss");
+      });
     }
-
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
