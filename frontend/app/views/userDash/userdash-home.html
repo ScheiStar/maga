@@ -7,6 +7,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <style>
+            #userName {
+                color:white;
+            }
+        
+        </style>
 	</head>
 	<body style="background-color: lightblue" ng-app="frontendApp" ng-controller="TesttablwCtrl" >
 		<nav class="navbar navbar-default navbar-static-top">
@@ -39,7 +45,7 @@
 		<div class="jumbotron">
 			<div class="container">
 				<img src="../images/logo.png" alt="Maga" height="150" width="150">
-		  		<h3 ng-bind="ugh.tutorInfo.tutor_first_name + ' ' + ugh.tutorInfo.tutor_last_name">Welcome {{ugh.tutoInfo.tutor_first_name}}!</h3>
+		  		<h3 id="userName" ng-bind="ugh.tutorInfo.tutor_first_name + ' ' + ugh.tutorInfo.tutor_last_name">Welcome {{ugh.tutoInfo.tutor_first_name}}!</h3>
 			</div>
 		</div>
 

@@ -8,15 +8,12 @@
     td{
         background-color: white;
     }
-    td:hover {
-        background-color: red;
-    }
     .table > tbody > tr > td.active{
         background-color: blue;
     }
-    tr:hover {
-        background-color: coral;  
-        }
+    td:hover {
+        background-color:lightblue;        
+    }
     .help-block {
         color: red;
     }
@@ -30,6 +27,7 @@
             <label class="col-xs-1 form-control-label">Course 1</label>
             <div class="col-xs-3">
 			          	<input type="text" name="courseArray0" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[0]" required>
+<!--
 					  	<datalist id="classType" >
 					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH">                               <option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM">                             <option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
 						    <option value="BA"><option value="BAEX"><option value="BB"><option value="BHSC"><option value="BIOL"><option value="BL">                                   <option value="BLI"><option value="BSSN"><option value="BUSE">
@@ -40,6 +38,10 @@
 						    <option value="GEOL"><option value="GERM"><option value="GR"><option value="GUIT">
 						    <option value="HARP"><option value="HARS"><option value="HB">
 					  	</datalist>
+-->
+                    <datalist id="classType">
+                        <option value="ACCT"><option value="HIST"><option value="CSE"><option value="BIOL"><option value="MATH">
+                    </datalist>
                 <p ng-show="tutorForm.courseArray0.$invalid && !tutorForm.courseArray0.$pristine" class="help-block">Required</p>
             </div>
             <div class="col-xs-2">
@@ -175,9 +177,16 @@
 
 <div class="form-group row">
 <div class="col-xs-6 col-xs-offset-3">
+<!--
     <a ui-sref="form.payment" class="btn btn-block btn-info" ng-disabled="tutorForm.$invalid">
     Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
+-->
+        <button type="button" class="btn btn-info" ng-click="goFormThree()">
+<!--    ng-disabled="tutorForm.$invalid"    -->
+<!--        use an ng-click that checks each field for completeness and then dont -->
+    Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </button>
 </div>
 </div>
 </body>

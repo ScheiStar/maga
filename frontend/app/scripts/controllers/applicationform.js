@@ -106,5 +106,14 @@ angular.module('frontendApp')
         else
             alert('Invalid Form... :(');
     };
+    $scope.goFormThree = function(){
+        console.log('form three');
+        if ($scope.tutorForm.$valid){
+//            console.log('blarg');
+            $state.go('form.payment');
+        }
+        else
+            alert('Invalid Form... :(');
+    };
 });
 
