@@ -555,7 +555,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
   $userID = $data->userID;
   $className = $data->className;
   $classNum = $data->classNum;
-  $requestType = $data->requestType;
+  $requestType = $data->approveDeny;
 
   if(!isset($userID) || !isset($className) || !isset($classNum) || !isset($requestType)){
     echo "invalid request json";
@@ -565,16 +565,15 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
   // bc string
   $className = "'" . $className . "'";
   $classNum = "'" . $classNum . "'";
-  $requestType = "'" . $requestType . "'";
     
-  $requestInsertQuery = $db->prepare('INSERT INTO TutorRequests (tr_tutor_id, tr_classtype, tr_classnum, Tutors_tutor_id, tr_request_type) VALUES (:iTutorId, :iClassType, :iClassNum, :iTutorId, :iRequestType');
+  // $requestInsertQuery = $db->prepare('INSERT INTO TutorRequests (tr_tutor_id, tr_classtype, tr_classnum, Tutors_tutor_id, tr_request_type) VALUES (:iTutorId, :iClassType, :iClassNum, :iTutorId, :iRequestType');
 
-  $requestInsertQuery->bindParam(':iTutorId', $userID, PDO::PARAM_INT);
-  $requestInsertQuery->bindParam(':iClassType', $className, PDO::PARAM_STR);
-  $requestInsertQuery->bindParam(':iClassNum', $classNum, PDO::PARAM_STR);
-  $requestInsertQuery->bindParam(':iRequestType', $requestType, PDO::PARAM_STR);
+  // $requestInsertQuery->bindParam(':iTutorId', $userID, PDO::PARAM_INT);
+  // $requestInsertQuery->bindParam(':iClassType', $className, PDO::PARAM_STR);
+  // $requestInsertQuery->bindParam(':iClassNum', $classNum, PDO::PARAM_STR);
+  // $requestInsertQuery->bindParam(':iRequestType', $requestType, PDO::PARAM_STR);
 
-  $requestInsertQuery->execute();
+  // $requestInsertQuery->execute();
 
   // Find the tutor
   $checkTutorQuery = $db->prepare('SELECT * FROM Tutors WHERE tutor_id=:id');
@@ -586,16 +585,16 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
   if ($tutor){
     // First check TutorRequests for the state of each class that matches the 
     // Tutor id    
-    $tutorRequests = $db->prepare('SELECT * FROM TutorRequests WHERE Tutors_tutor_id=:id');
+    $tutorRequests = $db->prepare('SELECT * FROM TutorRequests WHERE tr_classtype=:rType AND tr_classnum=:rNum Tutors_tutor_id=:id');
     $tutorRequests->bindParam(':id', $userID, PDO::PARAM_INT);
+    $tutorRequests->bindParam(':rType', $className, PDO::PARAM_STR);
+    $tutorRequests->bindParam(':rNum', $classNum, PDO::PARAM_STR);
     $tutorRequests->execute();
 
     // Iterate through the requests and check what type they are
     while($request = $tutorRequests->fetch(PDO::FETCH_OBJ)) {
-      $type = $request->tr_request_type;
-
       // If the type is ADD, then we have to update TutorClass to be 
-      if ($type == "Add") {
+      if ($requestType == "Approve") {
         $tutorInsertQuery = $db->prepare('INSERT INTO TutorClasses (class_type, class_num, Tutors_tutor_id) VALUES (:rType, :rNum, :rId)');
 
         $tutorInsertQuery->bindParam(':rType', $request->tr_classtype, PDO::PARAM_STR);
@@ -611,15 +610,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
 
         $tutorRequestInsertQuery->execute();
 
-      } elseif ($type == "Drop") {
-        $tutorInsertQuery = $db->prepare('DELETE FROM TutorClasses WHERE class_type=:rType AND class_num=:rNum AND Tutors_tutor_id=:rId');
-
-        $tutorInsertQuery->bindParam(':rType', $request->tr_classtype, PDO::PARAM_STR);
-        $tutorInsertQuery->bindParam(':rNum', $request->tr_classnum, PDO::PARAM_STR);
-        $tutorInsertQuery->bindParam(':rId', $request->tr_tutor_id, PDO::PARAM_INT);
-
-        $tutorInsertQuery->execute();
-
+      } elseif ($type == "Deny") {
         // Delete from requests table
         $tutorRequestRemoveQuery = $db->prepare('DELETE FROM TutorRequests WHERE tr_id=:rId');
 
