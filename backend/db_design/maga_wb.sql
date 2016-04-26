@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `alecDB`.`TutorRequests` (
   `tr_tutor_id` INT NULL,
   `tr_classtype` VARCHAR(4) NULL,
   `tr_classnum` VARCHAR(4) NULL,
-  `Tutors_tutor_id` INT NOT NULL,
+  `tr_grade` VARCHAR(5) NULL,
   `tr_request_type` VARCHAR(4) NULL,
   PRIMARY KEY (`tr_id`))
 ENGINE = InnoDB;
