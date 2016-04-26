@@ -17,8 +17,8 @@ angular.module('frontendApp')
     $scope.searchList = '';
 
     var shitData = $scope.tits.calArray;
-    console.log('LOOK');
-    console.log($scope.tits)
+    //console.log('LOOK');
+    //console.log($scope.tits)
 
     $scope.ugh = shitData;
 
@@ -31,8 +31,8 @@ angular.module('frontendApp')
     }
 
     $scope.deleteTutor = function(tutorID) {
-      console.log('YEA');
-      console.log(tutorID);
+      //console.log('YEA');
+      //console.log(tutorID);
       contactAdminFactory.terminateTutor(tutorID);
       $uibModalInstance.close();
     }

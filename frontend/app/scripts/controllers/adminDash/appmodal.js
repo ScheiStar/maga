@@ -10,11 +10,11 @@
 angular.module('frontendApp')
   .controller('AppmodalCtrl', function (contactAdminFactory, userFactory, $scope, $state, $uibModalInstance) {
 
-    console.log(contactAdminFactory.getAppID());
+    //console.log(contactAdminFactory.getAppID());
 
-    console.log('In addModal');
+    //console.log('In addModal');
 
-    console.log(JSON.parse(contactAdminFactory.getModalData()));
+    //console.log(JSON.parse(contactAdminFactory.getModalData()));
 
     $scope.tits = JSON.parse(contactAdminFactory.getModalData());
 
@@ -32,25 +32,25 @@ angular.module('frontendApp')
       start++;
       end++;
     }
-    console.log('ugh');
-    console.log($scope.ugh);
+    //console.log('ugh');
+    //console.log($scope.ugh);
 
 
     $scope.denyApplicant = function(tutorID) {
       contactAdminFactory.deny(tutorID);
-      console.log('make sure its here');
-      console.log(tutorID);
+      //console.log('make sure its here');
+      //console.log(tutorID);
       $uibModalInstance.close();
     }
 
     $scope.approveApplicant = function(tutorID) {
       contactAdminFactory.approveApplicant(tutorID).then(function(data) {
-        console.log('make sure its here');
-        console.log(tutorID);
+        //console.log('make sure its here');
+        //console.log(tutorID);
         userFactory.getThisTutor(tutorID).then(function(data){
-          console.log('SENDING EMAIL');
+          //console.log('SENDING EMAIL');
           var email = data.data.tutorInfo.tutor_email;
-          console.log(data.data);
+          //console.log(data.data);
           var user_data = {
             'email': email,
             'message': '',

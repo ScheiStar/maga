@@ -61,8 +61,8 @@
           <td ng-bind="x.tr_classnum"></td>
           <td ng-bind="x.tr_request_type"></td>
           <td>
-            <button type="button" class="btn btn-info-outline btn-sm" ng-click="">Approve</button>
-            <button type="button" class="btn btn-danger-outline btn-sm" ngclick="">Deny</button>
+            <button type="button" class="btn btn-info-outline btn-sm" ng-click="adjustTutorRequest(x)">Approve</button>
+            <button type="button" class="btn btn-danger-outline btn-sm" ngclick="denyTutorRequest(x)">Deny</button>
           </td>
         </tr>
       </tbody>

@@ -19,7 +19,7 @@ angular.module('frontendApp')
     };
 
     $scope.openAppModal = function (size) {
-      console.log('click');
+      //console.log('click');
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/admindash-applications.html',
@@ -34,7 +34,7 @@ angular.module('frontendApp')
     };
 
     $scope.openTutorsModal = function (size) {
-      console.log('click');
+      //console.log('click');
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'views/admindash-tutors.html',
@@ -54,10 +54,10 @@ angular.module('frontendApp')
     var useMe = {};
     contactAdminFactory.getTutors().then(function(data){
       $scope.testData = data.data;
-      console.log('LOOK AT TEST DATA');
+      //console.log('LOOK AT TEST DATA');
       //useMe = data[1].data;
-      console.log($scope.testData);
-      console.log('THURSDAY');
+      //console.log($scope.testData);
+      //console.log('THURSDAY');
 
       //LOGIC TO BE USED FOR THE HEAT MAP GRAPHS
       var heatMapCals = [];
@@ -82,15 +82,15 @@ angular.module('frontendApp')
       }
 
       $scope.changeCal = function(type) {
-        console.log('changing cal');
-        console.log(type);
+        //console.log('changing cal');
+        //console.log(type);
         $scope.ugh = heatMapCals[type].data;
-        console.log($scope.ugh);
+        //console.log($scope.ugh);
         $scope.currentTitle = type;
         var start = 2;
         var end = 3;
         for (var x = 0; x<$scope.ugh.length; x++) {
-          console.log('ASDAS');
+          //console.log('ASDAS');
           $scope.ugh[x].time = start + ':00 - ' + end + ':00';
           start++;
           end++;
@@ -158,16 +158,16 @@ angular.module('frontendApp')
 
       //LOGIC TO BE USED FOR THE HEAT MAP GRAPHS
 
-      console.log('HEAT');
-      console.log(heatMapCals);
-      console.log($scope.testData[0].calArray[0].Fri);
+      //console.log('HEAT');
+      //console.log(heatMapCals);
+      //console.log($scope.testData[0].calArray[0].Fri);
       $scope.ugh = heatMapCals['ALL'].data;
       $scope.currentTitle = 'ALL';
 
       var start = 2;
       var end = 3;
       for (var x = 0; x<$scope.ugh.length; x++) {
-        console.log('ASDAS');
+        //console.log('ASDAS');
         $scope.ugh[x].time = start + ':00 - ' + end + ':00';
         start++;
         end++;

@@ -26,28 +26,38 @@ body {
 }
 
 .likeNone {
-  color: #6F90A2;
-  background-color: #6F90A2;
+  color: #0065D5;
+  /*background-color: #58D6DC;*/
+	/*background-color: #0047E2;*/
+	background-color: #0065D5;
 }
 
 .kindaSome {
-  color: #477187;
-  background-color: #477187;
+  color: #008BC6;
+  /*background-color: #2FCDD4;*/
+	/*background-color: #006BD3;*/
+	background-color: #008BC6;
 }
 
 .goodAmount  {
-  color: #28546C;
-  background-color: #28546C;
+  color: #00ACB9;
+  /*background-color: #07C6CF;*/
+	/*background-color: #008BC6;*/
+	background-color: #00ACB9;
 }
 
 .woahAmount {
-  color: #113B51;
-  background-color: #113B51;
+  color: #00C9AD;
+  /*background-color: #01A7AF;*/
+	/*background-color: #00B6B5;*/
+	background-color: #00C9AD;
 }
 
 .wowThatsAlot {
-  color: #032436;
-  background-color: #032436;
+  color: #00D5A9;
+  /*background-color: #00777D;*/
+	/*background-color: #00E1A4;*/
+	background-color: #00D5A9;
 }
 
 .key {
@@ -57,7 +67,9 @@ body {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #6F90A2;
+  /*background-color: #58D6DC;*/
+	/*background-color: #0047E2;*/
+	background-color: #0065D5;
 	color: white;
 }
 
@@ -65,7 +77,9 @@ body {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #477187;
+  /*background-color: #2FCDD4;*/
+	/*background-color: #006BD3;*/
+	background-color: #008BC6;
 	color: white;
 }
 
@@ -73,7 +87,9 @@ body {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #28546C;
+  /*background-color: #07C6CF;*/
+	/*background-color: #008BC6;*/
+	background-color: #00ACB9;
 	color: white;
 }
 
@@ -81,7 +97,10 @@ body {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #113B51;
+  /*background-color: #01A7AF;*/
+	/*background-color: #00B6B5;*/
+	background-color: #00C9AD;
+
 	color: white;
 }
 
@@ -89,7 +108,9 @@ body {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #032436;
+  /*background-color: #00777D;*/
+	/*background-color: #00E1A4;*/
+	background-color: #00D5A9;
 	color: white;
 }
 

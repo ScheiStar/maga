@@ -9,8 +9,6 @@
  */
 angular.module('frontendApp')
   .controller('AddclassmodalCtrl', function ($scope, $state, $uibModalInstance, userFactory) {
-    console.log('in this bitch');
-
     $scope.addClass = function(classInfo) {
       var request_data = {
         'userID': userFactory.parseToken(userFactory.getToken()).userID,
@@ -18,8 +16,7 @@ angular.module('frontendApp')
         'classNum': classInfo.myText,
         'requestType': 'Add'
       };
-      console.log('BEFORE REQUEST');
-      console.log(request_data);
+
       userFactory.tutorRequest(request_data);
       $state.go("userDashClass");
       $uibModalInstance.dismiss('cancel');

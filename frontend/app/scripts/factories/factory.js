@@ -6,20 +6,14 @@ angular.module('frontendApp')
 
     return {
       signIn: function(user_json, auth) {
-        console.log('signing in');
-
         return $http({
           method: 'POST',
           url: 'http://54.86.70.62/login',
           data: user_json
         }).then(function(data){
             var userToken = data.data;
-            console.log('setting token');
-            console.log(userToken);
             localStorage.setItem("token", userToken);
-            //console.log(userToken);
             var remember = auth;
-            //$state.go("adminDash");
             return data;
         }, function errorCallback(response) {
           console.log("Failure!");
@@ -30,12 +24,6 @@ angular.module('frontendApp')
       getCurrentUser: function(){
         return currentUser;
       },
-
-      // saveToken: function() {
-      //   console.log('Saving token now');
-      //   $window.localStorage['jwtToken'] = userToken;
-      //   return;
-      // },
 
       getToken: function() {
         return localStorage.getItem("token");
@@ -50,12 +38,8 @@ angular.module('frontendApp')
       isAuthed: function() {
         var token = this.getToken();
         if(token) {
-          //console.log(token);
            var params = this.parseToken(token);
-           //console.log(params);
-           //remember = true;
            return true;
-           //return Math.round(new Date().getTime() / 1000) <= params.exp;
          } else {
            return false;
          }
@@ -77,7 +61,6 @@ angular.module('frontendApp')
       loginInit: function() {
         potentialToken = localStorage.getItem("token");
         if(potentialToken) {
-          //return potentialToken.parseToken(potentialToken).userID;
           return potentialToken;
         }
         else {
@@ -86,8 +69,6 @@ angular.module('frontendApp')
       },
 
       tutorRequest: function(request_data) {
-        console.log('ISNIDE');
-        console.log(request_data);
         return $http({
           method: 'POST',
           url: 'http://54.86.70.62/requestClass',
@@ -98,7 +79,6 @@ angular.module('frontendApp')
             return;
         }, function errorCallback(response) {
           console.log("Failure!");
-              console.log(response);
               alert("Bad Tutor Request");
     });
   },
@@ -132,7 +112,7 @@ angular.module('frontendApp')
           }).then(function(data){
             return data;
           }, function errorCallback(response) {
-             console.log("We fucked up on the application retrieval.");
+             console.log("We messed up on the application retrieval.");
              return false;
         });
         },

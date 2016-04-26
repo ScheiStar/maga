@@ -14,7 +14,7 @@ angular.module('frontendApp')
     $scope.ugh = new Array();
     $scope.tutors = new Array();
     var user = {};
-    console.log('before');
+    //console.log('before');
     contactAdminFactory.getTutors().then(function(data){
       $scope.ugh = data.data;
       for(var i = 0; i<data.data.length; i++)
@@ -23,8 +23,8 @@ angular.module('frontendApp')
 
 
     $scope.openTutorModal = function (size, tutorID) {
-      console.log('opening tutor modal');
-      console.log(tutorID);
+      //console.log('opening tutor modal');
+      //console.log(tutorID);
        contactAdminFactory.storeTutorID(tutorID);
 
         for (var i=0; i < $scope.ugh.length; i++){

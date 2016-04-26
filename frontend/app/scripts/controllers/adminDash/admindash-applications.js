@@ -34,8 +34,8 @@ angular.module('frontendApp')
 
 
     $scope.openAppModal = function (size, appID) {
-      console.log('opening modal');
-      console.log(appID);
+      //console.log('opening modal');
+      //console.log(appID);
       contactAdminFactory.storeAppID(appID);
 
       for (var i=0; i < $scope.applicants.data.length; i++){
@@ -65,9 +65,5 @@ angular.module('frontendApp')
 //              alert('Modal dismissed at: ' + new Date());
             });
     };
-
-    $scope.work = function() {
-        console.log(JSON.parse(contactAdminFactory.getModalData()));
-    }
 
   });

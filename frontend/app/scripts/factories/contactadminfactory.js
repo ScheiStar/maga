@@ -12,8 +12,6 @@ angular.module('frontendApp')
 
     return {
       emailAdmin: function (user_data) {
-        console.log("in admin factory");
-        console.log(user_data);
             $http({
               method: 'POST',
               url: 'http://54.86.70.62/sendEmail',
@@ -44,10 +42,6 @@ angular.module('frontendApp')
             userArray.push(user);
             user = {};
           }
-          //console.log('printing shit');
-          //console.log(data);
-          //console.log(userArray);
-          //console.log(data);
           var allData = [userArray, data];
           return allData;
         }, function errorCallback(response) {
@@ -74,14 +68,9 @@ angular.module('frontendApp')
             userArray.push(user);
             user = {};
           }
-          console.log('tutor shit inside factory');
-          console.log(data);
-          console.log('returning');
-          //console.log(userArray);
-          //var allData = [userArray, data];
           return data;
         }, function errorCallback(response) {
-           console.log("We fucked up on the application retrieval.");
+           console.log("We messed up on the application retrieval.");
            return false;
       });
     },
@@ -96,8 +85,6 @@ angular.module('frontendApp')
     },
 
     storeModalData: function(data){
-        console.log('storing');
-        //console.log(data);
         localStorage.setItem("modalData", JSON.stringify(data));
         return;
     },
@@ -116,22 +103,15 @@ angular.module('frontendApp')
     },
 
     storeTutorData: function(data){
-        console.log('storing tutor data');
-        //console.log(data);
         localStorage.setItem("currentTutorData", JSON.stringify(data));
         return;
     },
 
     getModalData: function(){
-      console.log('getting');
       if(localStorage.getItem("modalData") == null){
-        console.log('Null')
-        //console.log(localStorage.getItem("modalData"));
         return false
       }
       else{
-        console.log('NOT NULL');
-        //console.log(localStorage.getItem("modalData"));
         return localStorage.getItem("modalData");
       }
     },
@@ -143,24 +123,9 @@ angular.module('frontendApp')
         method: 'GET',
         url: 'http://54.86.70.62/getTutorRequests'
       }).then(function(data){
-        console.log("Successfully recieved requests.");
-        // for (var i = 0; i < data.data.length; i++) {
-        //   user.userID = data.data[i].tutor_id;
-        //   user.lastName = data.data[i].tutor_first_name;
-        //   user.firstName = data.data[i].tutor_last_name;
-        //   user.classType = data.data[i].tr_classtype;
-        //   user.classNum = data.data[i].tr_classnum;
-        //   user.requestType = data.data[i].tr_request_type;
-        //   requestArray.push(user);
-        //   user = {};
-        // }
-        console.log('request shit inside factory');
-        console.log(data);
-        console.log('returning requests');
-        console.log(requestArray);
         return data;
       }, function errorCallback(response) {
-         console.log("We fucked up on the tutor requests retrieval.");
+         console.log("We messed up on the tutor requests retrieval.");
          return false;
     });
     },
@@ -189,7 +154,6 @@ angular.module('frontendApp')
       }).then(function(data){
         console.log("Successfully deleted application.");
         $state.go($state.current, {}, {reload: true});
-        alert('Bye bitch')
         return true;
       }, function errorCallback(response) {
         console.log("Did not submit application.");
@@ -213,22 +177,33 @@ angular.module('frontendApp')
      },
 
      terminateTutor: function(tutorID) {
-       console.log('IDIDID');
-       console.log(tutorID);
        $http({
          method: 'DELETE',
          url: 'http://54.86.70.62/deleteTutor/' + tutorID
        }).then(function(data){
          console.log("Successfully deleted tutor.");
          $state.go($state.current, {}, {reload: true});
-         alert('Bye bitch')
          return true;
        }, function errorCallback(response) {
          console.log("Did not delete tutor.");
           return false;
         });
+     },
+
+     adjustTutorRequest: function(request_data) {
+       $http({
+         method: 'POST',
+         url: 'http://54.86.70.62/updateTutorClasses',
+         data: request_data
+       }).then(function(data){
+         console.log("Successfully adjusted request.");
+         alert('Course adjusted.')
+         $state.go('login');
+         return true;
+       }, function errorCallback(response) {
+         console.log("Did not submit application.");
+          return false;
+        });
      }
-
-
    }
  });

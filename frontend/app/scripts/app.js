@@ -38,7 +38,7 @@ angular
         controllerAs: 'tutorModal'
       })
       .state('state1', {
-        url: '/',
+        url: '/main',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -50,7 +50,7 @@ angular
         controllerAs: 'about'
       })
       .state('login', {
-        url: '/login',
+        url: '/',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
@@ -92,12 +92,6 @@ angular
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
-      // .state('userDash.home', {
-      //   url: '/userDashClass',
-      //   templateUrl: 'views/userDash/userdash-home.html',
-      //   controller: 'UserdashCtrl',
-      //   controllerAs: 'userDash'
-      // })
       .state('helpDash', {
         url: '/helpDash',
         templateUrl: 'views/helpdash.html',
