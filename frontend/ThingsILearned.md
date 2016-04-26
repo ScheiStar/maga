@@ -12,7 +12,7 @@
 
 ## Nested States
 - Nested states are the bomb, just make sure that the parent [.state] name matches the child [.state] name. If you have the following example it won't work because the parent name is different from the child name:
-```javascript
+
     .state('applicationForm', {
         url: '/applicationForm',
         templateUrl: 'views/applicationForm/form.html',
@@ -23,7 +23,7 @@
         url: '/profile',
         templateUrl: 'views/applicationForm/form-profile.html'
     })
-    ```
+    
 
     
 The following code will not recognize the states as linked:
@@ -33,3 +33,52 @@ The following code will not recognize the states as linked:
         <a ui-sref-active="active" ui-sref=".interests"><span>2</span> Classes & Times</a>
         <a ui-sref-active="active" ui-sref=".payment"><span>3</span> Verify Info</a>
     </div>
+    
+Use "abstract: true" to make sure that you don't navigate to the abstract state
+      
+      .state('form', {
+          url: '/form',
+          templateUrl: 'views/applicationForm/form.html',
+          controller: 'formController',
+          abstract: true
+      })
+## Styling
+- If you don't know how to acess an html element to style it in css, right click it and inspect it to see exactly what to call it. I learned this from trying to style the calendar a different color.
+      
+## $uibModal
+- If you wanna use this puppy you got to abstract the modal controller and html into separate files from the "parent" page (the page that the modal is activated from). You inject $uibModal into the parent page's controller, then you inject $uibModalInstance into the actual modal page's controller.
+This is an example of creating a modal that will catch the states thrown when you exit the modal and allow you to exit it
+
+    $scope.confirmDrop = function(size, classInfo){
+      console.log('finna store');
+      console.log(classInfo);
+      userFactory.storeClassInfo(classInfo);
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'views/userDash/dropclassmodal.html',
+        controller: 'DropclassmodalCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+      modalInstance.result.then(function () {
+          //functionality goes here 
+          console.log("UIBModalInstance Success");
+          $scope.submitDrop(classInfo); //when ok() is invoked invoke this line
+      }, function () {
+          console.log("UIBModalInstance Dismiss");
+          //funcitonality goes here //when cancel() is invoked invoke this line
+      }); 
+    };
+    
+This part you put in the actual modal controller and it catches the two states and sends it back to the parent page for functionality over there
+
+    $scope.ok = function () {
+        $uibModalInstance.close();
+    }
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };

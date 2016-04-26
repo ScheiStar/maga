@@ -4,5 +4,132 @@
 
 h4 {
 	text-align: center;
+	color: white;
+}
+/*
+body {
+    background-color:midnightblue;
+}
+*/
+
+.container {
+    position: relative;
 }
 
+.norm {
+  color: white;
+}
+
+.yeah {
+  color: blue;
+  /*background-color: #0099FF;*/
+}
+
+.likeNone {
+  color: #0065D5;
+  /*background-color: #58D6DC;*/
+	/*background-color: #0047E2;*/
+	background-color: #0065D5;
+}
+
+.kindaSome {
+  color: #008BC6;
+  /*background-color: #2FCDD4;*/
+	/*background-color: #006BD3;*/
+	background-color: #008BC6;
+}
+
+.goodAmount  {
+  color: #00ACB9;
+  /*background-color: #07C6CF;*/
+	/*background-color: #008BC6;*/
+	background-color: #00ACB9;
+}
+
+.woahAmount {
+  color: #00C9AD;
+  /*background-color: #01A7AF;*/
+	/*background-color: #00B6B5;*/
+	background-color: #00C9AD;
+}
+
+.wowThatsAlot {
+  color: #00D5A9;
+  /*background-color: #00777D;*/
+	/*background-color: #00E1A4;*/
+	background-color: #00D5A9;
+}
+
+.key {
+  text-align: center;
+}
+.keyOne {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  /*background-color: #58D6DC;*/
+	/*background-color: #0047E2;*/
+	background-color: #0065D5;
+	color: white;
+}
+
+.keyTwo {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  /*background-color: #2FCDD4;*/
+	/*background-color: #006BD3;*/
+	background-color: #008BC6;
+	color: white;
+}
+
+.keyThree {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  /*background-color: #07C6CF;*/
+	/*background-color: #008BC6;*/
+	background-color: #00ACB9;
+	color: white;
+}
+
+.keyFour {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  /*background-color: #01A7AF;*/
+	/*background-color: #00B6B5;*/
+	background-color: #00C9AD;
+
+	color: white;
+}
+
+.keyFive {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  /*background-color: #00777D;*/
+	/*background-color: #00E1A4;*/
+	background-color: #00D5A9;
+	color: white;
+}
+
+.no {
+  color: #0099FF;
+}
+.btn-success {
+    font-size: 20rem;
+
+}
+table {
+    background-color: white;
+		font-family: 'Lato';
+		text-align: left;
+}
+
+.jumbotron {
+	background: url(../images/poly.jpg) no-repeat center center;
+    background-size: cover;
+	height: 10%;
+	color: white;
+}

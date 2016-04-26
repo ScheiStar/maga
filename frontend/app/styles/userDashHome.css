@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+.container {
+    position: relative;
+}
+
+.norm {
+  color: white;
+}
+
+.yeah {
+  color: #0099FF;
+  background-color: #0099FF;
+}
+
+body {
+    background-color: lightblue;
+}
+
+/*
+#submitButton {
+    position: absolute;
+    float: right;
+}
+*/
+/*
+.modal-button {
+    font-size: 1 rem;
+    position: absolute;
+    float: right;
+}
+*/
+
+.btn-success {
+    font-size: 20rem;
+
+}
+table {
+  background-color: white;
+  font-family: 'Lato';
+}
+
+h4 {
+    color: blue;
+}
+
+/*
+.modal-button {
+    background-color:antiquewhite;
+}
+*/

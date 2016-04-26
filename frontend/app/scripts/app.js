@@ -22,9 +22,28 @@ angular
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
     $stateProvider
-
+      .state('/terminateTutorModal', {
+        templateUrl: 'views/adminDash/terminatetutormodal.html',
+        controller: 'TerminatetutormodalCtrl',
+        controllerAs: 'terminateTutorModal'
+      })
+      .state('/tutorQuitModal', {
+        templateUrl: 'views/userDash/tutorquitmodal.html',
+        controller: 'TutorquitmodalCtrl',
+        controllerAs: 'tutorQuitModal'
+      })
+      .state('/dropClassModal', {
+        templateUrl: 'views/adminDash/dropclassmodal.html',
+        controller: 'DropclassmodalCtrl',
+        controllerAs: 'dropClassModal'
+      })
+      .state('/tutorModal', {
+        templateUrl: 'views/adminDash/tutormodal.html',
+        controller: 'TutormodalCtrl',
+        controllerAs: 'tutorModal'
+      })
       .state('state1', {
-        url: '/',
+        url: '/main',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -36,7 +55,7 @@ angular
         controllerAs: 'about'
       })
       .state('login', {
-        url: '/login',
+        url: '/',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
@@ -45,7 +64,8 @@ angular
       .state('form', {
           url: '/form',
           templateUrl: 'views/applicationForm/form.html',
-          controller: 'formController'
+          controller: 'formController',
+          abstract: true
       })
       // nested states
       // each of these sections will have their own view
@@ -73,16 +93,10 @@ angular
       })
       .state('userDashClass', {
         url: '/userDashClass',
-        templateUrl: 'views/userDash/userdash-classes.html',
+        templateUrl: 'views/userDash/userdash-temp.html',
         controller: 'UserdashCtrl',
         controllerAs: 'userDash'
       })
-      // .state('userDash.home', {
-      //   url: '/userDashClass',
-      //   templateUrl: 'views/userDash/userdash-home.html',
-      //   controller: 'UserdashCtrl',
-      //   controllerAs: 'userDash'
-      // })
       .state('helpDash', {
         url: '/helpDash',
         templateUrl: 'views/helpdash.html',
@@ -94,11 +108,7 @@ angular
         controller: 'AdmindashCtrl',
         controllerAs: 'adminDash'
       })
-      .state('admindash-applications', {
-        templateUrl: 'views/adminDash/admindash-applications.html',
-        controller: 'AdmindashApplicationsCtrl',
-        controllerAs: 'admindashApplications'
-      })
+
       .state('admindash-tutors', {
         templateUrl: 'views/adminDash/admindash-tutors.html',
         controller: 'AdmindashTutorsCtrl',
@@ -111,10 +121,14 @@ angular
       })
       .state('/appModal', {
         templateUrl: 'views/adminDash/appmodal.html',
-        controller: 'AdmindashApplicationsCtrl',
+        controller: 'AppmodalCtrl',
         controllerAs: 'appModal'
       })
-
+      .state('admindash-applications', {
+        templateUrl: 'views/adminDash/admindash-applications.html',
+        controller: 'AdmindashApplicationsCtrl',
+        controllerAs: 'admindashApplications'
+      })
       .state('contactAdmin', {
             templateUrl: 'views/userDash/contactadmin.html',
             controller: 'ContactadminCtrl',
@@ -129,5 +143,13 @@ angular
         templateUrl: 'views/testtablw.html',
         controller: 'TesttablwCtrl',
         controllerAs: 'testTablw'
+      })
+      .state('addClassModal', {
+        templateUrl: 'views/userDash/addclassmodal.html',
+        controller: 'AddclassmodalCtrl',
+        controllerAs: 'addClassModal'
+      })
+      .state('TEST', {
+        templateUrl: 'views/testtwo.html'
       })
     });
