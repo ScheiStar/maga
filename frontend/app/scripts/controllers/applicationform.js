@@ -16,6 +16,20 @@ angular.module('frontendApp')
     $scope.formData.calArray = [];
     $scope.formData.courseDictArray = [];
     var courseDict = {};
+    $scope.regex = 'rootpass';
+    
+//    var model = element(by.binding('model'));
+//    var input = element(by.id('input'));
+//
+//    it('should validate the input with the default pattern', function() {
+//        input.sendKeys('aaa');
+//        expect(model.getText()).not.toContain('aaa');
+//        
+//        input.clear().then(function() {
+//            input.sendKeys('123');
+//            expect(model.getText()).toContain('123');
+//        });
+//    });
 
     // function to process the form
     $scope.processForm = function() {
