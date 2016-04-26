@@ -557,7 +557,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
   $classNum = $data->classNum;
   $requestType = $data->requestType;
 
-  if(!isasset($userID) || !isset($className) || !isset($classNum) || !isset($requestType)){
+  if(!isset($userID) || !isset($className) || !isset($classNum) || !isset($requestType)){
     echo "invalid request json";
     return $new_response;
   }
