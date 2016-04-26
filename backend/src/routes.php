@@ -546,7 +546,7 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 	return $response;
 });
 
-$app->post('/updateTutorClasses/{id}', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+$app->post('/updateTutorClasses', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
   // Decode the json 
   $json = $request->getBody();
   $data = json_decode($json);
@@ -578,7 +578,7 @@ $app->post('/updateTutorClasses/{id}', function (ServerRequestInterface $request
 
   // Find the tutor
   $checkTutorQuery = $db->prepare('SELECT * FROM Tutors WHERE tutor_id=:id');
-  $checkTutorQuery->bindParam(':id', $id, PDO::PARAM_INT);
+  $checkTutorQuery->bindParam(':id', $userID, PDO::PARAM_INT);
   $checkTutorQuery->execute();
 
   $tutor = $checkTutorQuery->fetch(PDO::FETCH_OBJ);
@@ -587,7 +587,7 @@ $app->post('/updateTutorClasses/{id}', function (ServerRequestInterface $request
     // First check TutorRequests for the state of each class that matches the 
     // Tutor id    
     $tutorRequests = $db->prepare('SELECT * FROM TutorRequests WHERE Tutors_tutor_id=:id');
-    $tutorRequests->bindParam(':id', $id, PDO::PARAM_INT);
+    $tutorRequests->bindParam(':id', $userID, PDO::PARAM_INT);
     $tutorRequests->execute();
 
     // Iterate through the requests and check what type they are
