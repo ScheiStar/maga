@@ -547,6 +547,8 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 });
 
 $app->post('/updateTutorClasses', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+	$db = $this->createDB;
+
   // Decode the json 
   $json = $request->getBody();
   $data = json_decode($json);
