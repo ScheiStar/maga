@@ -33,6 +33,10 @@ angular.module('frontendApp')
       }
     });
 
+    $window.onbeforeunload = function(){
+      userFactory.onExit();
+    };
+
     userFactory.getThisTutorRequests(currentUserID).then(function(data){
       $scope.pendingCourses = data.data;
       console.log('oh yeah');

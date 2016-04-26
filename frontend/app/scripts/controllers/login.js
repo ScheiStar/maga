@@ -12,7 +12,13 @@ angular.module('frontendApp')
     $scope.user = {};
     console.log('authed?');
     console.log(userFactory.isAuthed());
-    if(userFactory.isAuthed()) $state.go('userDash');
+    if(userFactory.isAuthed()) {
+      if(userFactory.parseToken(userFactory.getToken()).admin == 0) {
+          $state.go('userDash');
+        } else {
+          $state.go('adminDash');
+          }
+    }
 
 
     $scope.signIn = function(user) {
@@ -36,7 +42,7 @@ angular.module('frontendApp')
           if(userFactory.parseToken(userFactory.getToken()).admin == 0) {
               $state.go('userDash');
             } else {
-              $state.go('adminDash');  
+              $state.go('adminDash');
               }
         }
           console.log(userFactory.parseToken(userFactory.getToken()));

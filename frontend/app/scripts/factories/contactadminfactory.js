@@ -198,7 +198,7 @@ angular.module('frontendApp')
      },
 
      approveApplicant: function(tutorID) {
-       $http({
+       return $http({
          method: 'POST',
          url: 'http://54.86.70.62/updateApplicant/'+tutorID
        }).then(function(data){
@@ -213,6 +213,8 @@ angular.module('frontendApp')
      },
 
      terminateTutor: function(tutorID) {
+       console.log('IDIDID');
+       console.log(tutorID);
        $http({
          method: 'DELETE',
          url: 'http://54.86.70.62/deleteTutor/' + tutorID

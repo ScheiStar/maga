@@ -31,6 +31,8 @@ angular.module('frontendApp')
     }
 
     $scope.deleteTutor = function(tutorID) {
+      console.log('YEA');
+      console.log(tutorID);
       contactAdminFactory.terminateTutor(tutorID);
       $uibModalInstance.close();
     }

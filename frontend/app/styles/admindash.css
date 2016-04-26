@@ -26,69 +26,71 @@ body {
 }
 
 .likeNone {
-  color: #A9E2F3;
-  background-color: #A9E2F3;
+  color: #6F90A2;
+  background-color: #6F90A2;
 }
 
 .kindaSome {
-  color: #58D3F7;
-  background-color: #58D3F7;
-  border-radius: #58D3F7;
+  color: #477187;
+  background-color: #477187;
 }
 
+.goodAmount  {
+  color: #28546C;
+  background-color: #28546C;
+}
+
+.woahAmount {
+  color: #113B51;
+  background-color: #113B51;
+}
+
+.wowThatsAlot {
+  color: #032436;
+  background-color: #032436;
+}
 
 .key {
   text-align: center;
-
 }
 .keyOne {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #A9E2F3;
+  background-color: #6F90A2;
+	color: white;
 }
 
 .keyTwo {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #58D3F7;
+  background-color: #477187;
+	color: white;
 }
 
 .keyThree {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #58ACFA;
+  background-color: #28546C;
+	color: white;
 }
 
 .keyFour {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #2E9AFE;
+  background-color: #113B51;
+	color: white;
 }
 
 .keyFive {
   display: inline-block;
   width: 100px;
   height: 20px;
-  background-color: #0040FF;
-}
-
-.goodAmount  {
-  color: #58ACFA;
-  background-color: #58ACFA;
-}
-
-.woahAmount {
-  color: #2E9AFE;
-  background-color: #2E9AFE;
-}
-
-.wowThatsAlot {
-  color: #0040FF;
-  background-color: #0040FF;
+  background-color: #032436;
+	color: white;
 }
 
 .no {
@@ -100,6 +102,8 @@ body {
 }
 table {
     background-color: white;
+		font-family: 'Lato';
+		text-align: left;
 }
 
 .jumbotron {
