@@ -588,28 +588,50 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
     while($request = $tutorRequests->fetch(PDO::FETCH_OBJ)) {
       // If the type is ADD, then we have to update TutorClass to be 
       if ($requestChoice == "Approve") {
-        $tutorInsertQuery = $db->prepare('INSERT INTO TutorClasses (tr_tutor_id, class_type, class_num) VALUES (:rId, :rType, :rNum)');
+        if ($requestType == "Add") {
+          // Insert into TutorClasses
+          $tutorInsertQuery = $db->prepare('INSERT INTO TutorClasses (tr_tutor_id, class_type, class_num) VALUES (:rId, :rType, :rNum)');
 
-        $tutorInsertQuery->bindParam(':rType', $request->tr_classtype, PDO::PARAM_STR);
-        $tutorInsertQuery->bindParam(':rNum', $request->tr_classnum, PDO::PARAM_STR);
-        $tutorInsertQuery->bindParam(':rId', $request->tr_tutor_id, PDO::PARAM_INT);
+          $tutorInsertQuery->bindParam(':rType', $request->tr_classtype, PDO::PARAM_STR);
+          $tutorInsertQuery->bindParam(':rNum', $request->tr_classnum, PDO::PARAM_STR);
+          $tutorInsertQuery->bindParam(':rId', $request->tr_tutor_id, PDO::PARAM_INT);
 
-        $tutorInsertQuery->execute();
+          $tutorInsertQuery->execute();
 
-        // Delete from requests table
-        $tutorRequestRemoveQuery = $db->prepare('DELETE FROM TutorRequests WHERE tr_id=:rId');
+          
+          // Delete from requests table
+          $tutorRequestRemoveQuery = $db->prepare('DELETE FROM TutorRequests WHERE tr_id=:rId');
 
-        $tutorRequestInsertQuery->bindParam(':rId', $request->tr_id, PDO::PARAM_INT);
+          $tutorRequestInsertQuery->bindParam(':rId', $request->tr_id, PDO::PARAM_INT);
 
-        $tutorRequestInsertQuery->execute();
+          $tutorRequestInsertQuery->execute();
+        } elseif ($requestType == "Drop") {
+          // Remove from TutorClasses
+          $tutorInsertQuery = $db->prepare('DELETE FROM TutorClasses WHERE class_type=:rType AND class_num=:rNum AND tr_tutor_id=:rId');
 
+          $tutorInsertQuery->bindParam(':rType', $request->tr_classtype, PDO::PARAM_STR);
+          $tutorInsertQuery->bindParam(':rNum', $request->tr_classnum, PDO::PARAM_STR);
+          $tutorInsertQuery->bindParam(':rId', $request->tr_tutor_id, PDO::PARAM_INT);
+
+          $tutorInsertQuery->execute();
+
+          // Delete from requests table
+          $tutorRequestRemoveQuery = $db->prepare('DELETE FROM TutorRequests WHERE tr_id=:rId');
+
+          $tutorRequestInsertQuery->bindParam(':rId', $request->tr_id, PDO::PARAM_INT);
+
+          $tutorRequestInsertQuery->execute();
+        }
+        
       } elseif ($requestChoice == "Deny") {
+
         // Delete from requests table
         $tutorRequestRemoveQuery = $db->prepare('DELETE FROM TutorRequests WHERE tr_id=:rId');
 
         $tutorRequestInsertQuery->bindParam(':rId', $request->tr_id, PDO::PARAM_INT);
 
         $tutorRequestInsertQuery->execute();
+
       } else {
         echo('Incorrect request type.');
       }
