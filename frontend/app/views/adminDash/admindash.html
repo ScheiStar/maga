@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<title>Administrator Dashboard</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="styles/admindash.css">
+		<link href="../styles/admindash.css" rel="stylesheet" type="text/css">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	</head>
+	<body ng-app="frontendApp">
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <!-- <a class="navbar-brand">adminName</a> -->
+		    </div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active" style="cursor: pointer;"><a>Home<span class="sr-only">(current)</span></a></li>
+						<li><a ui-sref="adminDash-requests" style="cursor: pointer;">Add/Drop Requests</a></li>
+						<li><a ui-sref="admindash-tutors" style="cursor: pointer;">Tutors</a></li>
+						<li><a ui-sref="admindash-applications" style="cursor: pointer;">Applications</a></li>
+					</ul>
+					<form class="form-inline pull-xs-right">
+            <button class="btn" type="submit" ng-click="signOut()">Sign Out</button>
+          </form>
+			</div>
+		</nav>
+		 <div class="container">
+			 <div class="jumbotron">
+				 <img src="../images/logo.png" alt="Maga" height="200" width="200">
+				 <h1>Welcome!</h1>
+				 <h3>Welcome to your administrator dashboard. Here you are able to manage all your tutors as necessary.</h3>
+				 </div>
+			 </div>
+
+		<div class="btn-group" uib-dropdown is-open="status.isopen">
+      <button  id="single-button" ng-bind="getTitle(currentTitle)" type="button" class="btn btn-info-outline" uib-dropdown-toggle ng-disabled="disabled">
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+        <li role="menuitem"><a ng-click="changeCal('ALL')">ALL</a></li>
+        <li class="divider"></li>
+        <li role="menuitem"><a ng-click="changeCal('ACCT')">ACCT</a></li>
+        <li role="menuitem"><a ng-click="changeCal('BIOL')">BIOL</a></li>
+        <li role="menuitem"><a ng-click="changeCal('CSE')">CSE</a></li>
+        <li role="menuitem"><a ng-click="changeCal('HIST')">HIST</a></li>
+        <li role="menuitem"><a ng-click="changeCal('MATH')">MATH</a></li>
+      </ul>
+    </div>
+		<table class="table table-bordered">
+		  <div style="text-align: center"><h3 ng-bind="getTitle(currentTitle)"></h3></div>
+		  <thead>
+		    <tr>
+		      <th>Time</th>
+		      <th>Mon</th>
+		      <th>Tue</th>
+		      <th>Wed</th>
+		      <th>Thu</th>
+		      <th>Fri</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat="x in ugh track by $index">
+		      <th scope="row" ng-bind="x.time"></th>
+		      <td class = "norm" ng-bind="x.Mon" ng-class="getColor(x.Mon)"></td>
+		      <td class = "norm" ng-bind="x.Tues" ng-class="getColor(x.Tues)"></td>
+		      <td class = "norm" ng-bind="x.Wed" ng-class="getColor(x.Wed)"></td>
+		      <td class = "norm" ng-bind="x.Thurs" ng-class="getColor(x.Thurs)"></td>
+		      <td class = "norm" ng-bind="x.Fri" ng-class="getColor(x.Fri)"></td>
+		    </tr>
+		  </tbody>
+		</table>
+		  <br>
+			<div class="key">Number of Tutors Available Based on Time and Subject</div>
+		<div class="key">
+		  <div class="keyOne"> < 5 </div>
+		  <div class="keyTwo">5-7</div>
+		  <div class="keyThree">7-8</div>
+		  <div class="keyFour">8-9</div>
+		  <div class="keyFive"> > 10 </div>
+		</div>
+	</body>
+</html>

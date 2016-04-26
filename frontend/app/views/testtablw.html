@@ -1,0 +1,72 @@
+<link href="views/testStyle.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- <div class="btn-group" uib-dropdown dropdown-append-to-body>
+      <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+        Dropdown on Body <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+        <li role="menuitem" ng-class="changeCal('CSE')">CSE</li>
+        <li role="menuitem"><a ng-class="changeCal('ACCT')">ACCT</a></li>
+        <li role="menuitem"><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li role="menuitem"><a href="#">Separated link</a></li>
+      </ul>
+    </div> -->
+
+
+    <div class="btn-group" uib-dropdown is-open="status.isopen">
+      <button  id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+        {{currentTitle}}<span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+        <li role="menuitem"><a ng-click="changeCal('ACCT')">ACCT</a></li>
+        <li role="menuitem"><a ng-click="changeCal('CSE')">CSE</a></li>
+        <li role="menuitem"><a ng-click="changeCal('HIST')">HIST</a></li>
+        <li role="menuitem"><a ng-click="changeCal('BIOL')">BIOL</a></li>
+      </ul>
+    </div>
+<table class="table table-bordered">
+  <div style="text-align: center"><h3>{{currentTitle}}</h3></div>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Mon</th>
+      <th>Tue</th>
+      <th>Wed</th>
+      <th>Thu</th>
+      <th>Fri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in ugh track by $index">
+      <th scope="row" ng-bind="x.time"></th>
+      <td class = "norm" ng-bind="x.Mon" ng-class="getColor(x.Mon)"></td>
+      <td class = "norm" ng-bind="x.Tues" ng-class="getColor(x.Tues)"></td>
+      <td class = "norm" ng-bind="x.Wed" ng-class="getColor(x.Wed)"></td>
+      <td class = "norm" ng-bind="x.Thurs" ng-class="getColor(x.Thurs)"></td>
+      <td class = "norm" ng-bind="x.Fri" ng-class="getColor(x.Fri)"></td>
+    </tr>
+  </tbody>
+</table>
+  <br>
+<div class="key">
+  <div class="keyOne"> < 5 </div>
+  <div class="keyTwo">5-7</div>
+  <div class="keyThree">7-8</div>
+  <div class="keyFour">8-9</div>
+  <div class="keyFive"> > 10 </div>
+</div>
+
+  <!-- <tbody>
+    <tr ng-repeat="x in ugh track by $index">
+      <th scope="row" ng-bind="x.time"></th>
+      <td class = "norm" ng-bind="x.Sun"></td>
+      <td class = "norm" ng-bind="x.Mon"></td>
+      <td class = "norm" ng-bind="x.Tues"></td>
+      <td class = "norm" ng-bind="x.Wed"></td>
+      <td class = "norm" ng-bind="x.Thurs"></td>
+      <td class = "norm" ng-bind="x.Fri"></td>
+    </tr>
+  </tbody> -->

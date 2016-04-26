@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+.jumbotron {
+	background: url(../images/poly.jpg) no-repeat center center;
+    background-size: cover;
+	height: 10%;
+}
+#show-classes{
+	padding: 5px;
+	text-align: center;
+}
+
+p{
+	text-align: center;
+	padding-left: 6%;
+}
+h1{
+	font-family: 'Lato';
+	text-align: center;
+}
+h3{
+	font-family: 'Lato';
+}
+h4{
+	font-family: 'Lato';
+}
+
+table{
+	font-family: 'Lato';
+	text-align: left;
+}
+body {
+    background-color: lightblue;
+}
+
+/*#shit {
+	background-color: #00bfff;
+}*/
+
+#addButton {
+	background-color: #0099FF;
+}

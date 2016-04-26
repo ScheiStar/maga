@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>User Dashboard</title>
+    <link href="../styles/admindashtutor.css" rel="stylesheet" type="text/css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!--    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="userdash-home.html">adminName</a> -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li style="cursor: pointer;"><a ui-sref="adminDash">Home<span class="sr-only">(current)</span></a></li>
+            <li style="cursor: pointer;"><a ui-sref="adminDash-requests">Add/Drop Requests</a></li>
+            <li class="active" style="cursor: pointer;"><a ui-sref="admindash-tutors">Tutors</a></li>
+            <li><a ui-sref="admindash-applications" style="cursor: pointer;">Applications</a></li>
+          </ul>
+          <form class="form-inline pull-xs-right">
+            <button class="btn" type="submit" ng-click="signOut()">Sign Out</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <!-- style="background: url(../images/stars2.jpg);" -->
+    <form class="form-inline">
+      <input class="form-control" type="text" placeholder="Search" ng-model="searchList">
+    </form>
+    <br>
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th ng-click="order('tutor_id')" style="cursor: pointer;">ID</th>
+          <th ng-click="order('tutor_first_name')" style="cursor: pointer;">First Name</th>
+          <th ng-click="order('tutor_last_name')" style="cursor: pointer;">Last Name</th>
+          <th ng-click="order('tutor_email')" style="cursor: pointer;">Email</th>
+          <th ng-click="order('tutor_major')" style="cursor: pointer;">Major</th>
+          <th>View</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="x in tutors | filter:searchList">
+          <td ng-bind="x.tutor_id"></td>
+          <td ng-bind="x.tutor_first_name"></td>
+          <td ng-bind="x.tutor_last_name"></td>
+          <td ng-bind="x.tutor_email"></td>
+          <td ng-bind="x.tutor_major"></td>
+          <td>
+              <button type="button" class="btn btn-info-outline btn-sm" ng-click="openTutorModal('lg', x.tutor_id)">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

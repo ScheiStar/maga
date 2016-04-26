@@ -1,0 +1,28 @@
+.btn btn-info {
+    background-color: #0099FF;
+}
+td{
+    background-color: white;
+}
+.table > tbody > tr > td.active{
+    background-color: #0099FF;
+}
+td:hover {
+    background-color:lightblue;        
+}
+.help-block {
+    color: red;
+}
+
+#next1,
+#next2{
+    background-color: #0099FF;
+}
+
+
+#course1,
+#course2,
+#course3 {
+    white-space: nowrap;
+    padding-right: 6rem;
+}

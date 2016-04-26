@@ -1,0 +1,63 @@
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- <a class="navbar-brand" href="userdash-home.html">adminName</a> -->
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li style="cursor: pointer;"><a ui-sref="adminDash">Home<span class="sr-only">(current)</span></a></li>
+        <li style="cursor: pointer;"><a ui-sref="adminDash-requests">Add/Drop Requests</a></li>
+        <li style="cursor: pointer;"><a ui-sref="admindash-tutors">Tutors</a></li>
+        <li class="active" style="cursor: pointer;"><a ui-sref="admindash-applications">Applications</a></li>
+      </ul>
+      <form class="form-inline pull-xs-right">
+        <button class="btn" type="submit" ng-click="signOut()">Sign Out</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<form class="form-inline">
+  <input class="form-control" type="text" placeholder="Search" ng-model="searchList">
+</form>
+<br>
+
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th ng-click="order('appID')">ID</th>
+      <th ng-click="order('firstName')">First Name</th>
+      <th ng-click="order('lastName')">Last Name</th>
+      <th ng-click="order('major')">Major</th>
+      <th ng-click="order('appStatus')">Status</th>
+      <th>View</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in ugh | filter:searchList">
+      <td ng-bind="x.appID"></td>
+      <td ng-bind="x.firstName"></td>
+      <td ng-bind="x.lastName"></td>
+      <td ng-bind="x.major"></td>
+      <td> <h5> <span class="label label label-info" ng-bind="x.appStatus"></span></h5></td>
+      <td>
+        <button type="button" class="btn btn-info-outline btn-sm" ng-click="openAppModal('lg', x.appID)">View</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

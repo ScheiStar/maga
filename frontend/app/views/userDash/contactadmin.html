@@ -1,0 +1,49 @@
+<link href="../styles/contactAdmin.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../styles/userDash.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<nav class="navbar navbar-default navbar-static-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse">
+		      <ul class="nav navbar-nav">
+		        <li><a ui-sref="userDash">Home</a></li>
+		        <li><a ui-sref="userDashClass">Add/Drop Class</a></li>
+		        <li class="active" style="cursor: pointer;"><a ui-sref="contactAdmin">Contact Admin<span class="sr-only">(current)</span></a></li>
+		        <li style="cursor: pointer;"><a ui-sref="tutorQuit">Quit Tutor</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+			      <li><button type="button" ng-click="signOut()" class="btn btn-default navbar-btn">Sign Out</button></li>
+			  </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+<div class="headcol">
+	<div class="modal-header text-center">
+    	<h2 class="modal-title"><b>Contact Administrator</b></h2>
+	</div>
+</div>
+<br>
+<div class="form-group text-center">
+  <!-- <img src="../images/logo.png" alt="Maga"  height="200" width="200"> -->
+  <h4 align="left"> Please type your message below. The administrator will get back to you usually within 24-48 hours via the email you signed up with.</h4>
+  <label>Message:</label>
+  <textarea class="form-control" ng-model="user.message" rows="5"></textarea>
+  <br>
+  <button id="addButton" class="btn btn-md btn-info btn-block" ng-click="submitMessage(user)">Submit</button>
+</div>

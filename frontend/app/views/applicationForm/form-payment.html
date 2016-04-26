@@ -1,0 +1,72 @@
+<head>
+<!--    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/darkly/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../../styles/application.css">
+</head>
+<div class="text-center">
+<!--    <span class="glyphicon glyphicon-heart"></span>-->
+    <h3>Verify Your Info, Please!</h3>
+    <div class="container">
+        <div class="col-xs-4">
+<!--            <h1>Form Valid: {{tutorForm.$valid}}</h1>-->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Detail</th>
+                    <th>Your Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">First Name</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_first_name}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Last Name</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_last_name}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Password</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_hash}}</a></p></td>
+                </tr>
+<!--
+                <tr>
+                    <th scope="row">Confirm Password</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.confPass}}</a></p></td>
+                </tr>
+-->
+                <tr>
+                    <th scope="row">SMU ID</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_id}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_email}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Major</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_major}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">GPA</th>
+                    <td><p class="text-left"><a ui-sref="form.profile">{{formData.applicant_gpa}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Course 1</th>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[0]}}{{formData.courseArray[1]}}   {{formData.courseArray[2]}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Course 2</th>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[3]}}{{formData.courseArray[4]}}   {{formData.courseArray[5]}}</a></p></td>
+                </tr>
+                <tr>
+                    <th scope="row">Course 3</th>
+                    <td><p class="text-left"><a ui-sref="form.interests">{{formData.courseArray[6]}}{{formData.courseArray[7]}}   {{formData.courseArray[8]}}</a></p></td>
+                </tr>
+            </tbody>
+        </table>
+            <a ui-sref="form.interests">Click Here to Verify Tutor Times</a>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" ng-disabled="tutorForm.$invalid">Submit</button>
+</div>
+<!--            <h1>Is valid: {{tutorForm.$valid}}</h1>-->

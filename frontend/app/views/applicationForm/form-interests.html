@@ -1,0 +1,197 @@
+<head>
+    <script>
+    jQuery('td').click(function(){
+        jQuery(this).toggleClass('active');
+    });
+</script>
+    <style>
+
+</style>
+<!--    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/darkly/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../../styles/application.css">
+</head>
+<body>
+    <h3><label>Please Enter Classes:</label></h3>
+<div class="form-group">
+        <div class="form-group row">
+            <label class="col-xs-1 form-control-label" id="course1">Course 1</label>
+            <div class="col-xs-3">
+			          	<input type="text" name="courseArray0" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[0]" required>
+<!--
+					  	<datalist id="classType" >
+					    	<option value="ACCT"><option value="ADPR"><option value="ADV"><option value="AERO"><option value="AMAE"><option value="ANTH">                               <option value="ARBC"><option value="ARHS"><option value="ASAG"><option value="ASCE"><option value="ASDR"><option value="ASIM">                             <option value="ASPH"><option value="ASPR"><option value="ASPT"><option value="ASSC">
+						    <option value="BA"><option value="BAEX"><option value="BB"><option value="BHSC"><option value="BIOL"><option value="BL">                                   <option value="BLI"><option value="BSSN"><option value="BUSE">
+						    <option value="CA"><option value="CEE"><option value="CELL"><option value="CF"><option value="CFA"><option value="CFB">                                     <option value="CHEM"><option value="CHIN"><option value="CISB"><option value="CLAR"><option value="CLAS"><option value="CM">                               <option value="COMM"><option value="CRCP"><option value="CSE">
+						    <option value="DANC"><option value="DBBS"><option value="DISC"><option value="DM"><option value="DNSH"><option value="DSIN">
+						    <option value="ECO"><option value="EDU"><option value="EE"><option value="EETS"><option value="EMIS"><option value="ENGL">                                 <option value="ENGR"><option value="ENSC"><option value="ENST"><option value="ECO"><option value="EPL"><option value="ESL">                                 <option value="ETST"><option value="EUPH"><option value="EV">
+						    <option value="FILM"><option value="FINA"><option value="FLUT"><option value="FNAR"><option value="FREN"><option value="FRHN">
+						    <option value="GEOL"><option value="GERM"><option value="GR"><option value="GUIT">
+						    <option value="HARP"><option value="HARS"><option value="HB">
+					  	</datalist>
+-->
+                    <datalist id="classType">
+                        <option value="ACCT"><option value="HIST"><option value="CSE"><option value="BIOL"><option value="MATH">
+                    </datalist>
+                <p ng-show="tutorForm.courseArray0.$invalid && !tutorForm.courseArray0.$pristine" class="help-block">Required</p>
+            </div>
+            <div class="col-xs-2">
+                <input type="text" name="courseArray1" class="form-control" placeholder="Course #" ng-model="formData.courseArray[1]" required>
+                <p ng-show="tutorForm.courseArray1.$invalid && !tutorForm.courseArray1.$pristine" class="help-block">Required</p>
+            </div>
+            <div class="col-xs-2">
+                <input type="text" name="courseArray2" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[2]" required>
+					<datalist id="classGrade">
+			             <option value="A"><option value="A-">
+			             <option value="B+"><option value="B"><option value="B-">
+			             <option value="C+"><option value="C"><option value="C-">
+			             <option value="D+"><option value="D"><option value="D-">
+			             <option value="F">
+					</datalist>
+                <p ng-show="tutorForm.courseArray2.$invalid && !tutorForm.courseArray2.$pristine" class="help-block">Required</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="class2" class="col-xs-1 form-control-label" id="course2">Course 2</label>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[3]" >
+            </div>
+            <div class="col-xs-2">
+                <input type="text" class="form-control" placeholder="Course #" pattern="[0-9]{4}" ng-model="formData.courseArray[4]" >
+            </div>
+            <div class="col-xs-2">
+                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[5]" >
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="class3" class="col-xs-1 form-control-label" id="course3">Course 3</label>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" list="classType" placeholder="Course Type" ng-model="formData.courseArray[6]" >
+            </div>
+            <div class="col-xs-2">
+                <input type="text" class="form-control" placeholder="Course #" ng-model="formData.courseArray[7]">
+            </div>
+            <div class="col-xs-2">
+                <input type="text" class="form-control" list="classGrade" placeholder="Grade" ng-model="formData.courseArray[8]" >
+            </div>
+        </div>
+</div>
+    <h3><label>Please Enter Your Times:</label></h3>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Sun</th>
+      <th>Mon</th>
+      <th>Tue</th>
+      <th>Wed</th>
+      <th>Thu</th>
+      <th>Fri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2:00 - 3:00</th>
+      <td ng-click="addRealTime(0, 'Sun')"></td>
+      <td ng-click="addRealTime(0, 'Mon')"></td>
+      <td ng-click="addRealTime(0, 'Tues')"></td>
+      <td ng-click="addRealTime(0, 'Wed')"></td>
+      <td ng-click="addRealTime(0, 'Thurs')"></td>
+      <td ng-click="addRealTime(0, 'Fri')"></td>
+    </tr>
+    <tr>
+      <th scope="row">3:00 - 4:00</th>
+      <td ng-click="addRealTime(1, 'Sun')"></td>
+      <td ng-click="addRealTime(1, 'Mon')"></td>
+      <td ng-click="addRealTime(1, 'Tues')"></td>
+      <td ng-click="addRealTime(1, 'Wed')"></td>
+      <td ng-click="addRealTime(1, 'Thurs')"></td>
+      <td ng-click="addRealTime(1, 'Fri')"></td>
+    </tr>
+    <tr>
+      <th scope="row">4:00 - 5:00</th>
+      <td ng-click="addRealTime(2, 'Sun')"></td>
+      <td ng-click="addRealTime(2, 'Mon')"></td>
+      <td ng-click="addRealTime(2, 'Tues')"></td>
+      <td ng-click="addRealTime(2, 'Wed')"></td>
+      <td ng-click="addRealTime(2, 'Thurs')"></td>
+      <td ng-click="addRealTime(2, 'Fri')"></td>
+    </tr>
+    <tr>
+      <th scope="row">5:00 - 6:00</th>
+      <td ng-click="addRealTime(3, 'Sun')"></td>
+      <td ng-click="addRealTime(3, 'Mon')"></td>
+      <td ng-click="addRealTime(3, 'Tues')"></td>
+      <td ng-click="addRealTime(3, 'Wed')"></td>
+      <td ng-click="addRealTime(3, 'Thurs')"></td>
+      <td ng-click="addRealTime(3, 'Fri')"></td>
+    <tr>
+      <th scope="row">6:00 - 7:00</th>
+      <td ng-click="addRealTime(4, 'Sun')"></td>
+      <td ng-click="addRealTime(4, 'Mon')"></td>
+      <td ng-click="addRealTime(4, 'Tues')"></td>
+      <td ng-click="addRealTime(4, 'Wed')"></td>
+      <td ng-click="addRealTime(4, 'Thurs')"></td>
+      <td ng-click="addRealTime(4, 'Fri')"></td>
+    </tr>
+    <tr>
+      <th scope="row">7:00 - 8:00</th>
+      <td ng-click="addRealTime(5, 'Sun')"></td>
+      <td ng-click="addRealTime(5, 'Mon')"></td>
+      <td ng-click="addRealTime(5, 'Tues')"></td>
+      <td ng-click="addRealTime(5, 'Wed')"></td>
+      <td ng-click="addRealTime(5, 'Thurs')"></td>
+      <td ng-click="addRealTime(5, 'Fri')"></td>
+    </tr>
+    <tr>
+      <th scope="row">8:00 - 9:00</th>
+      <td ng-click="addRealTime(6, 'Sun')"></td>
+      <td ng-click="addRealTime(6, 'Mon')"></td>
+      <td ng-click="addRealTime(6, 'Tues')"></td>
+      <td ng-click="addRealTime(6, 'Wed')"></td>
+      <td ng-click="addRealTime(6, 'Thurs')"></td>
+      <td ng-click="addRealTime(6, 'Fri')"></td>
+    </tr>
+    <tr>
+      <th scope="row">9:00 - 10:00</th>
+      <td ng-click="addRealTime(7, 'Sun')"></td>
+      <td ng-click="addRealTime(7, 'Mon')"></td>
+      <td ng-click="addRealTime(7, 'Tues')"></td>
+      <td ng-click="addRealTime(7, 'Wed')"></td>
+      <td ng-click="addRealTime(7, 'Thurs')"></td>
+      <td ng-click="addRealTime(7, 'Fri')"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="form-group row">
+<div class="col-xs-6 col-xs-offset-3">
+<!--
+    <a ui-sref="form.payment" class="btn btn-block btn-info" ng-disabled="tutorForm.$invalid">
+    Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+-->
+        <button type="button" class="btn btn-info" id="next2" ng-click="goFormThree()">
+<!--    ng-disabled="tutorForm.$invalid"    -->
+<!--        use an ng-click that checks each field for completeness and then dont -->
+    Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </button>
+</div>
+</div>
+</body>
+<!--            <h1>Is valid: {{tutorForm.$valid}}</h1>-->
+
+
+<!--Bits and pieces for later if we need them!-->
+
+<!--
+    <tr>
+      <th scope="row">3:00 - 4:00</th>
+      <td><input class="btn btn-primary" type="button" data-toggle="button" ng-click="addTime('sun', 3)"></td>
+      <td><input class="btn btn-primary" type="button" data-toggle="button" ng-click="addTime('mon', 3)"></td>
+      <td><input class="btn btn-primary" type="button" data-toggle="button" ng-click="addTime('tue', 3)"></td>
+      <td><input class="btn btn-primary" type="button" data-toggle="button" ng-click="addTime('wed', 3)"></td>
+      <td><input class="btn btn-primary" type="button" data-toggle="button" ng-click="addTime('thu', 3)"></td>
+      <td><input class="btn btn-primary" type="button" data-toggle="button" ng-click="addTime('fri', 3)"></td>
+    </tr>-->
