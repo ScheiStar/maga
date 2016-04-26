@@ -546,7 +546,37 @@ $app->delete('/deleteApplication/{id}',function($request,$response,$args){
 	return $response;
 });
 
-$app->post('/updateTutorClasses/{id}', function($request, $response, $args){
+$app->post('/updateTutorClasses/{id}', function (ServerRequestInterface $request, ResponseInterface $response) use($app) {
+  // Decode the json 
+  $json = $request->getBody();
+  $data = json_decode($json);
+
+  // Now we grab the attributes we need
+  $userID = $data->userID;
+  $className = $data->className;
+  $classNum = $data->classNum;
+  $requestType = $data->requestType;
+
+  if(!isasset($userID) || !isset($className) || !isset($classNum) || !isset($requestType)){
+    echo "invalid request json";
+    return $new_response;
+  }
+
+  // bc string
+  $className = "'" . $className . "'";
+  $classNum = "'" . $classNum . "'";
+  $requestType = "'" . $requestType . "'";
+    
+  $requestInsertQuery = $db->prepare('INSERT INTO TutorRequests (tr_tutor_id, tr_classtype, tr_classnum, Tutors_tutor_id, tr_request_type) VALUES (:iTutorId, :iClassType, :iClassNum, :iTutorId, :iRequestType');
+
+  $requestInsertQuery->bindParam(':iTutorId', $userID, PDO::PARAM_INT);
+  $requestInsertQuery->bindParam(':iClassType', $className, PDO::PARAM_STR);
+  $requestInsertQuery->bindParam(':iClassNum', $classNum, PDO::PARAM_STR);
+  $requestInsertQuery->bindParam(':iRequestType', $requestType, PDO::PARAM_STR);
+
+  $requestInsertQuery->execute();
+
+  // Find the tutor
   $checkTutorQuery = $db->prepare('SELECT * FROM Tutors WHERE tutor_id=:id');
   $checkTutorQuery->bindParam(':id', $id, PDO::PARAM_INT);
   $checkTutorQuery->execute();
