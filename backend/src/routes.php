@@ -558,6 +558,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
   $className = $data->className;
   $classNum = $data->classNum;
   $requestChoice = $data->requestChoice;
+  $requestType = $data->requestType;
 
   if(!isset($userID) || !isset($className) || !isset($classNum) || !isset($requestChoice)){
     echo "invalid request json";
@@ -588,7 +589,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
     while($request = $tutorRequests->fetch(PDO::FETCH_OBJ)) {
       // If the type is ADD, then we have to update TutorClass to be 
       if ($requestChoice == "Approve") {
-        if ($requestType == "Add") {
+        if ($requestType == "Add" && $requestType == $request->tr_request_type) {
           // Insert into TutorClasses
           $tutorInsertQuery = $db->prepare('INSERT INTO TutorClasses (tr_tutor_id, class_type, class_num) VALUES (:rId, :rType, :rNum)');
 
@@ -605,7 +606,7 @@ $app->post('/updateTutorClasses', function (ServerRequestInterface $request, Res
           $tutorRequestInsertQuery->bindParam(':rId', $request->tr_id, PDO::PARAM_INT);
 
           $tutorRequestInsertQuery->execute();
-        } elseif ($requestType == "Drop") {
+        } elseif ($requestType == "Drop" && $requestType == $request->tr_request_type) {
           // Remove from TutorClasses
           $tutorInsertQuery = $db->prepare('DELETE FROM TutorClasses WHERE class_type=:rType AND class_num=:rNum AND tr_tutor_id=:rId');
 
