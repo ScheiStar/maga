@@ -72,6 +72,15 @@ angular.module('frontendApp')
         else return;
       }
 
+      $scope.getTitle = function(title) {
+        if (title == 'ALL') return 'All Tutors';
+        else if (title == 'CSE') return 'Computer Science Tutors';
+        else if (title == 'ACCT') return 'Accounting Tutors';
+        else if (title == 'HIST') return 'History Tutors';
+        else if (title == 'BIOL') return 'Biology Tutors';
+        else return;
+      }
+
       $scope.changeCal = function(type) {
         console.log('changing cal');
         console.log(type);

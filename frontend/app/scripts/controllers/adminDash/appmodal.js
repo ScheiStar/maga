@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AppmodalCtrl', function (contactAdminFactory, $scope, $state, $uibModalInstance) {
+  .controller('AppmodalCtrl', function (contactAdminFactory, userFactory, $scope, $state, $uibModalInstance) {
 
     console.log(contactAdminFactory.getAppID());
 
@@ -44,9 +44,23 @@ angular.module('frontendApp')
     }
 
     $scope.approveApplicant = function(tutorID) {
-      contactAdminFactory.approveApplicant(tutorID);
-      console.log('make sure its here');
-      console.log(tutorID);
+      contactAdminFactory.approveApplicant(tutorID).then(function(data) {
+        console.log('make sure its here');
+        console.log(tutorID);
+        userFactory.getThisTutor(tutorID).then(function(data){
+          console.log('SENDING EMAIL');
+          var email = data.data.tutorInfo.tutor_email;
+          console.log(data.data);
+          var user_data = {
+            'email': email,
+            'message': '',
+            'type': "appAcceptance"
+          };
+
+          contactAdminFactory.emailAdmin(user_data);
+        });
+
+      });
       $uibModalInstance.close();
     }
     $scope.cancel = function () {
