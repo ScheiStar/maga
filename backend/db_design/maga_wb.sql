@@ -54,27 +54,6 @@ ENGINE = InnoDB;
 
 SHOW WARNINGS;
 
--- -----------------------------------------------------
--- Table `alecDB`.`Sessions`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `alecDB`.`Sessions` ;
-
-SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `alecDB`.`Sessions` (
-  `session_id` INT NOT NULL,
-  `session_date` DATE NULL,
-  `session_time` VARCHAR(45) NULL,
-  `Tutors_tutor_id` INT NOT NULL,
-  `student_id` VARCHAR(45) NULL,
-  `student_email` VARCHAR(45) NULL,
-  `session_start_time` VARCHAR(45) NULL,
-  `session_end_time` VARCHAR(45) NULL,
-  `student_first_name` VARCHAR(45) NULL,
-  `student_last_name` VARCHAR(45) NULL,
-  PRIMARY KEY (`session_id`))
-ENGINE = InnoDB;
-
-SHOW WARNINGS;
 
 -- -----------------------------------------------------
 -- Table `alecDB`.`Applicants`
@@ -112,24 +91,6 @@ ENGINE = InnoDB;
 
 SHOW WARNINGS;
 
--- -----------------------------------------------------
--- Table `alecDB`.`Reviews`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `alecDB`.`Reviews` ;
-
-SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `alecDB`.`Reviews` (
-  `review_id` INT NOT NULL,
-  `score_helpfulness` INT NULL,
-  `score_clarity` INT NULL,
-  `score_friendlynes` INT NULL,
-  `Sessions_session_id` INT NOT NULL,
-  `score_avg` INT NULL,
-  `review_comments` VARCHAR(500) NULL,
-  PRIMARY KEY (`review_id`))
-ENGINE = InnoDB;
-
-SHOW WARNINGS;
 
 -- -----------------------------------------------------
 -- Table `alecDB`.`Users`
